@@ -43,7 +43,7 @@ Located in `src/services/api.js`, the API client provides centralized methods fo
 ### Development
 Create `.env` in root with:
 ```
-VITE_API_URL=http://localhost:8080/api
+VITE_API_URL=
 ```
 
 ### Production
