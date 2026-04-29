@@ -26,9 +26,10 @@ jobs:
     
     - name: Run tests
       run: |
+        # Install Gradle CLI on the runner and run tests with it (wrapper JAR may be missing in repo)
+        sudo apt-get update && sudo apt-get install -y gradle
         cd backend
-        chmod +x gradlew
-        ./gradlew test
+        gradle test
     
     - name: Upload test reports
       if: always()
@@ -58,9 +59,10 @@ jobs:
     
     - name: Build with Gradle
       run: |
+        # Install Gradle CLI and build (use system gradle to avoid missing wrapper JAR in CI)
+        sudo apt-get update && sudo apt-get install -y gradle
         cd backend
-        chmod +x gradlew
-        ./gradlew build -x test
+        gradle build -x test
     
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3

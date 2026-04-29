@@ -17,15 +17,11 @@ FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
+
 # Copy JAR from builder stage
 COPY --from=builder /app/build/libs/*.jar app.jar
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-  CMD java -cp app.jar org.springframework.boot.loader.JarLauncher ping || exit 1
-
-# Expose port
 EXPOSE 8080
 
-# Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]

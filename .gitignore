@@ -49,3 +49,6 @@ backend/.gradle/
 # Temporary files
 *.tmp
 *.temp
+
+# Allow committing Gradle wrapper jar (needed for CI reproducibility)
+!backend/gradle/wrapper/gradle-wrapper.jar
