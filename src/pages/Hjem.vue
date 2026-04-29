@@ -7,17 +7,17 @@
         <h1 class="display">Velkommen<br/>til <em>Glassburet</em>.</h1>
         <p class="lede">Et kontor med altfor mange vinduer, altfor mange kaffekopper, og helt klart altfor mange one-linere. Her samler vi det vi sier, det vi gjør, og det vi planlegger sammen.</p>
         <div class="hero-meta">
-          <div><strong>23</strong>aktive medlemmer</div>
-          <div><strong>847</strong>siterte quotes</div>
-          <div><strong>14</strong>aktiviteter denne uken</div>
+          <div><strong>{{ stats?.memberCount || '-' }}</strong>aktive medlemmer</div>
+          <div><strong>{{ stats?.quoteCount || '-' }}</strong>siterte quotes</div>
+          <div><strong>{{ stats?.activitiesThisWeek || '-' }}</strong>aktiviteter denne uken</div>
           <div><strong>∞</strong>kaffekopper</div>
         </div>
       </div>
 
       <div class="hero-card">
         <span class="eyebrow">Dagens quote</span>
-        <p class="quote-of-day">var det nå vi skulle grille pølser?</p>
-        <div class="quote-author">— Maya, fredag 17:43, plutselig stille i rommet</div>
+        <p class="quote-of-day">{{ featuredQuote?.text || 'Laster...' }}</p>
+        <div class="quote-author" v-if="featuredQuote">— {{ featuredQuote.author }}</div>
       </div>
     </div>
 
@@ -115,3 +115,25 @@
     </div>
   </section>
 </template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+import { statsApi, quoteApi } from '../services/api'
+
+const stats = ref(null)
+const featuredQuote = ref(null)
+
+onMounted(async () => {
+  try {
+    stats.value = await statsApi.getStats()
+  } catch (error) {
+    console.error('Failed to load stats:', error)
+  }
+
+  try {
+    featuredQuote.value = await quoteApi.getFeatured()
+  } catch (error) {
+    console.error('Failed to load featured quote:', error)
+  }
+})
+</script>

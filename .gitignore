@@ -4,9 +4,10 @@ node_modules/
 # Build output
 dist/
 
-# Env
+# Env (keep .env.example for developers)
 .env
-.env.*
+.env.local
+.env.*.local
 
 # OS / editor
 .DS_Store
@@ -27,3 +28,27 @@ coverage/
 
 # Local binaries
 node_modules/
+
+# Gradle / Java
+backend/build/
+backend/.gradle/
+*.jar
+*.class
+*.jar.md5
+*.jar.sha1
+.classpath
+.project
+.settings/
+*.iml
+.gradle
+
+# Database
+*.db
+*.h2.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Allow committing Gradle wrapper jar (needed for CI reproducibility)
+!backend/gradle/wrapper/gradle-wrapper.jar
