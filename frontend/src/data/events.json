@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "title": "Pizzakveld i Glassburet",
+    "description": "Sosialt pizzakveld for alle på glassburet.",
+    "eventDate": "2026-04-30",
+    "timeStart": "19:00",
+    "timeEnd": "22:00",
+    "location": "Cathinka Guldbergs hus",
+    "category": "SOSIALT",
+    "attendees": ["Thomas", "Maya", "Inna", "Ragnhild", "Kristofers", "Viktor", "Henrik", "Halvard", "Leoul", "Magne", "Qvarme", "TefiBoi"]
+  },
+  {
+    "id": 2,
+    "title": "Kollokvie: Lineær Algebra eksamen",
+    "description": "Felles kollokvie til forberedelse til lineær algebra eksamen.",
+    "eventDate": "2026-05-03",
+    "timeStart": "14:00",
+    "timeEnd": "17:00",
+    "location": "Realfagbygget rom 3A1",
+    "category": "FAGLIG",
+    "attendees": ["Thomas", "Maya", "Inna", "Ragnhild", "Kristofers", "Viktor", "Henrik", "Halvard"]
+  },
+  {
+    "id": 3,
+    "title": "Echo-tur til Fløyen + grilling",
+    "description": "Tur til Fløyen med grilling i regi av Echo.",
+    "eventDate": "2026-05-07",
+    "timeStart": "16:30",
+    "timeEnd": "20:00",
+    "location": "Møtes ved Fløybanen",
+    "category": "TUR",
+    "attendees": ["Thomas", "Maya", "Inna", "Ragnhild", "Kristofers", "Viktor", "Henrik", "Halvard", "Leoul", "Magne", "Qvarme", "TefiBoi", "Braathen", "Bolland", "Sindre", "Julie", "Anders", "Sofie", "Lars"]
+  },
+  {
+    "id": 4,
+    "title": "Brettspillkveld",
+    "description": "Bli med på brettspill og hygge i Glassburet.",
+    "eventDate": "2026-05-09",
+    "timeStart": "18:00",
+    "timeEnd": "22:00",
+    "location": "Glassburet",
+    "category": "SOSIALT",
+    "attendees": ["Thomas", "Maya", "Inna", "Ragnhild", "Viktor"]
+  },
+  {
+    "id": 5,
+    "title": "Eksamensforberedelse: Algoritmer",
+    "description": "Felles økt for å gå gjennom pensum til algoritmer og datastrukturer.",
+    "eventDate": "2026-05-14",
+    "timeStart": "13:00",
+    "timeEnd": "16:00",
+    "location": "Høyteknologisenteret lesesal",
+    "category": "FAGLIG",
+    "attendees": ["Thomas", "Maya", "Kristofers", "Henrik", "Halvard"]
+  },
+  {
+    "id": 6,
+    "title": "Sommerfest i Glassburet",
+    "description": "Avslutning på semesteret med mat, drikke og god stemning.",
+    "eventDate": "2026-05-28",
+    "timeStart": "17:00",
+    "timeEnd": "23:00",
+    "location": "Glassburet",
+    "category": "SOSIALT",
+    "attendees": ["Thomas", "Maya", "Inna", "Ragnhild", "Kristofers", "Viktor", "Henrik", "Halvard", "Leoul", "Magne", "Qvarme", "TefiBoi"]
+  }
+]

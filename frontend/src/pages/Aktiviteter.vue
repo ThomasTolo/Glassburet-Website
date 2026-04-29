@@ -47,6 +47,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { eventApi } from '../services/api'
+import staticEvents from '../data/events.json'
 
 const events = ref([])
 const joined = ref({})
@@ -79,12 +80,13 @@ const toggleAttendance = async (eventId, idx) => {
 
 onMounted(async () => {
   try {
-    events.value = await eventApi.getUpcoming()
-    events.value.forEach((_, idx) => {
-      joined.value[idx] = false
-    })
+    const api = await eventApi.getUpcoming()
+    events.value = api.length > 0 ? api : staticEvents
   } catch (error) {
-    console.error('Failed to load events:', error)
+    events.value = staticEvents
   }
+  events.value.forEach((_, idx) => {
+    joined.value[idx] = false
+  })
 })
 </script>

@@ -58,3 +58,10 @@ export const galleryApi = {
 export const statsApi = {
   getStats: () => apiCall('/stats'),
 };
+
+export const puzzleApi = {
+  getLatestConnections: () => apiCall('/puzzles/connections/latest'),
+  createConnections:    (dto) => apiCall('/puzzles/connections', { method: 'POST', body: JSON.stringify(dto) }),
+  getLatestWordle:      () => apiCall('/puzzles/wordle/latest'),
+  createWordle:         (dto) => apiCall('/puzzles/wordle', { method: 'POST', body: JSON.stringify(dto) }),
+};
