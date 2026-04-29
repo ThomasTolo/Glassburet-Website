@@ -48,6 +48,7 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
 import { scoreApi } from '../services/api'
+import staticLeaderboard from '../data/leaderboard.json'
 
 const tabs = ['I dag', 'Denne uken', 'Denne måneden', 'All-time']
 const activeTab = ref(0)
@@ -63,9 +64,10 @@ const periodMap = {
 const loadLeaderboard = async () => {
   try {
     const period = periodMap[activeTab.value]
-    leaderboard.value = await scoreApi.getLeaderboard(period)
+    const lb = await scoreApi.getLeaderboard(period)
+    leaderboard.value = lb.length > 0 ? lb : staticLeaderboard
   } catch (error) {
-    console.error('Failed to load leaderboard:', error)
+    leaderboard.value = staticLeaderboard
   }
 }
 

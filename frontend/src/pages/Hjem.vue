@@ -40,12 +40,14 @@
           <span class="eyebrow">Dagens leder</span>
           <div class="card-arrow">→</div>
         </div>
-        <div class="stat-big"><em>Thomas</em></div>
-        <div style="font-family: var(--mono); font-size: 12px; opacity: 0.75;">412 PTS · 6 SPILL FERDIG</div>
+        <div class="stat-big"><em>{{ leaderboard[0]?.memberName || '-' }}</em></div>
+        <div style="font-family: var(--mono); font-size: 12px; opacity: 0.75;">{{ leaderboard[0]?.score || '-' }} PTS</div>
         <div class="rank-mini" style="margin-top: 18px;">
-          <div class="rank-row"><span class="rank-num">2</span><span class="rank-name">Maya</span><span class="rank-score">389</span></div>
-          <div class="rank-row"><span class="rank-num">3</span><span class="rank-name">Inna</span><span class="rank-score">377</span></div>
-          <div class="rank-row"><span class="rank-num">4</span><span class="rank-name">Ragnhild</span><span class="rank-score">351</span></div>
+          <div v-for="(entry, idx) in leaderboard.slice(1, 4)" :key="entry.memberName" class="rank-row">
+            <span class="rank-num">{{ idx + 2 }}</span>
+            <span class="rank-name">{{ entry.memberName }}</span>
+            <span class="rank-score">{{ entry.score }}</span>
+          </div>
         </div>
       </RouterLink>
 
@@ -58,29 +60,13 @@
           <div class="card-arrow">→</div>
         </div>
         <div class="announce-list">
-          <div class="announce-item">
-            <div class="announce-date"><strong>30</strong>APR</div>
+          <div v-for="event in events.slice(0, 3)" :key="event.id" class="announce-item">
+            <div class="announce-date"><strong>{{ formatDay(event.eventDate) }}</strong>{{ formatMonth(event.eventDate) }}</div>
             <div>
-              <div class="announce-title">Pizzakveld i Glassburet</div>
-              <div class="announce-meta">19:00 · Cathinka Guldbergs hus · 12 påmeldte</div>
+              <div class="announce-title">{{ event.title }}</div>
+              <div class="announce-meta">{{ event.timeStart }} · {{ event.location }} · {{ event.attendees?.length || 0 }} påmeldte</div>
             </div>
-            <span class="pill pill-accent">SOSIALT</span>
-          </div>
-          <div class="announce-item">
-            <div class="announce-date"><strong>03</strong>MAI</div>
-            <div>
-              <div class="announce-title">Kollokvie: Lineær Algebra eksamen</div>
-              <div class="announce-meta">14:00 · Realfagbygget rom 3A1 · 8 påmeldte</div>
-            </div>
-            <span class="pill">FAGLIG</span>
-          </div>
-          <div class="announce-item">
-            <div class="announce-date"><strong>07</strong>MAI</div>
-            <div>
-              <div class="announce-title">Echo-tur til Fløyen + grilling</div>
-              <div class="announce-meta">16:30 · Møtes ved Fløybanen · 19 påmeldte</div>
-            </div>
-            <span class="pill pill-soft">TUR</span>
+            <span :class="['pill', getCategoryClass(event.category)]">{{ event.category }}</span>
           </div>
         </div>
       </RouterLink>
@@ -90,9 +76,9 @@
           <span class="eyebrow">Sitater</span>
           <div class="card-arrow">→</div>
         </div>
-        <p style="font-family: var(--serif); font-style: italic; font-size: 22px; line-height: 1.25; margin-top: 8px; letter-spacing: -0.01em;">"jeg trodde derivasjon var noe man gjorde med snø"</p>
-        <div style="font-family: var(--mono); font-size: 11px; color: var(--ink-mute); margin-top: 16px; text-transform: uppercase; letter-spacing: 0.12em;">— ANONYM, MANDAG MORGEN</div>
-        <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line-soft); font-size: 12px; color: var(--ink-mute);">3 nye quotes denne uken</div>
+        <p style="font-family: var(--serif); font-style: italic; font-size: 22px; line-height: 1.25; margin-top: 8px; letter-spacing: -0.01em;">"{{ sidebarQuote?.text }}"</p>
+        <div style="font-family: var(--mono); font-size: 11px; color: var(--ink-mute); margin-top: 16px; text-transform: uppercase; letter-spacing: 0.12em;">— {{ sidebarQuote?.author }}</div>
+        <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line-soft); font-size: 12px; color: var(--ink-mute);">{{ staticQuotes.length }} quotes i arkivet</div>
       </RouterLink>
 
       <RouterLink to="/galleri" class="card card-12">
@@ -118,10 +104,27 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { statsApi, quoteApi } from '../services/api'
+import { statsApi, quoteApi, eventApi, scoreApi } from '../services/api'
+import staticQuotes from '../data/quotes.json'
+import staticEvents from '../data/events.json'
+import staticLeaderboard from '../data/leaderboard.json'
 
 const stats = ref(null)
 const featuredQuote = ref(null)
+const sidebarQuote = staticQuotes[staticQuotes.length - 1]
+const events = ref([])
+const leaderboard = ref([])
+
+const formatDay = (dateString) => new Date(dateString).getDate()
+const formatMonth = (dateString) => {
+  const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAI', 'JUN', 'JUL', 'AUG', 'SEP', 'OKT', 'NOV', 'DES']
+  return months[new Date(dateString).getMonth()]
+}
+const getCategoryClass = (category) => {
+  if (category === 'SOSIALT') return 'pill-accent'
+  if (category === 'TUR') return 'pill-soft'
+  return ''
+}
 
 onMounted(async () => {
   try {
@@ -133,7 +136,21 @@ onMounted(async () => {
   try {
     featuredQuote.value = await quoteApi.getFeatured()
   } catch (error) {
-    console.error('Failed to load featured quote:', error)
+    featuredQuote.value = staticQuotes.find(q => q.featured) || staticQuotes[0]
+  }
+
+  try {
+    const api = await eventApi.getUpcoming()
+    events.value = api.length > 0 ? api : staticEvents
+  } catch (error) {
+    events.value = staticEvents
+  }
+
+  try {
+    const lb = await scoreApi.getLeaderboard('weekly')
+    leaderboard.value = lb.length > 0 ? lb : staticLeaderboard
+  } catch (error) {
+    leaderboard.value = staticLeaderboard
   }
 })
 </script>

@@ -11,6 +11,7 @@
         <RouterLink class="nav-link" to="/liners">Beste One-Liners</RouterLink>
         <RouterLink class="nav-link" to="/galleri">Galleri</RouterLink>
         <RouterLink class="nav-link" to="/aktiviteter">Aktiviteter</RouterLink>
+        <RouterLink class="nav-link" to="/spill">Spill</RouterLink>
         <RouterLink class="nav-link" to="/poeng">Poengtavle</RouterLink>
       </div>
       <div class="nav-meta">
