@@ -1,0 +1,16 @@
+package com.glassburet.repository;
+
+import com.glassburet.model.Quote;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.Optional;
+
+public interface QuoteRepository extends JpaRepository<Quote, Long> {
+    Optional<Quote> findFirstByFeaturedTrue();
+
+    @Query("SELECT q FROM Quote q ORDER BY RAND()")
+    Optional<Quote> findRandom();
+
+    long countByFeaturedTrue();
+}
