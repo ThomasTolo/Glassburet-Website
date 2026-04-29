@@ -49,7 +49,7 @@ VITE_API_URL=
 ### Production
 Update `.env` with your production API URL:
 ```
-VITE_API_URL=https://api.glassburet.example.com/api
+VITE_API_URL=https://api.example.com/
 ```
 
 The API URL is automatically picked up by Vite and injected at build time via `import.meta.env.VITE_API_URL`.
