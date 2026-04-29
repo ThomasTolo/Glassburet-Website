@@ -1,3 +1,5 @@
+import { clearAuthToken, setAuthToken } from './authState'
+
 const API_URL = import.meta.env.VITE_API_URL || '/api';
 
 const apiCall = async (endpoint, options = {}) => {
@@ -7,6 +9,12 @@ const apiCall = async (endpoint, options = {}) => {
       'Content-Type': 'application/json',
     },
   };
+
+  // attach stored Bearer token if present
+  const token = localStorage.getItem('token');
+  if (token) {
+    defaultOptions.headers['Authorization'] = `Bearer ${token}`;
+  }
 
   try {
     const response = await fetch(url, { ...defaultOptions, ...options });
@@ -25,6 +33,23 @@ export const quoteApi = {
   getFeatured: () => apiCall('/quotes/featured'),
   create: (quoteDto) => apiCall('/quotes', { method: 'POST', body: JSON.stringify(quoteDto) }),
   delete: (id) => apiCall(`/quotes/${id}`, { method: 'DELETE' }),
+};
+
+export const auth = {
+  login: async (name, password) => {
+    const res = await fetch(`${API_URL}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, password }),
+    });
+    if (!res.ok) throw new Error('Login failed');
+    const data = await res.json();
+    setAuthToken(data.token);
+    return data.token;
+  },
+  setToken: (token) => setAuthToken(token),
+  clearAuth: () => clearAuthToken(),
+  getAuth: () => localStorage.getItem('token'),
 };
 
 export const linerApi = {

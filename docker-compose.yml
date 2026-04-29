@@ -9,11 +9,13 @@ services:
     environment:
       SPRING_APPLICATION_NAME: glassburet
       SERVER_PORT: 8080
-      SPRING_DATASOURCE_URL: jdbc:h2:mem:glassburetdb
-      SPRING_DATASOURCE_DRIVERCLASSNAME: org.h2.Driver
-      SPRING_DATASOURCE_USERNAME: sa
-      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.H2Dialect
-      SPRING_JPA_HIBERNATE_DDL_AUTO: create-drop
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/glassburetdb
+      SPRING_DATASOURCE_DRIVERCLASSNAME: org.postgresql.Driver
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      APP_JWT_SECRET: glassburet-jwt-secret-key-for-hmac-sha256-minimum-256bits
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/api/stats"]
@@ -33,3 +35,19 @@ services:
       backend:
         condition: service_healthy
     restart: unless-stopped
+
+  db:
+    image: postgres:15
+    container_name: glassburet-db
+    environment:
+      POSTGRES_DB: glassburetdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+volumes:
+  db-data:

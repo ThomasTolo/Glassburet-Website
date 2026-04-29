@@ -6,6 +6,7 @@ import Galleri from '../pages/Galleri.vue'
 import Aktiviteter from '../pages/Aktiviteter.vue'
 import Poeng from '../pages/Poeng.vue'
 import Spill from '../pages/Spill.vue'
+import Login from '../pages/Login.vue'
 
 export const router = createRouter({
   history: createWebHashHistory(),
@@ -19,5 +20,6 @@ export const router = createRouter({
     { path: '/aktiviteter',  component: Aktiviteter },
     { path: '/poeng',        component: Poeng       },
     { path: '/spill',        component: Spill       },
+    { path: '/login',        component: Login       },
   ],
 })
