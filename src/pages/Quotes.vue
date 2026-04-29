@@ -26,6 +26,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { quoteApi } from '../services/api'
+import staticQuotes from '../data/quotes.json'
 
 const quotes = ref([])
 
@@ -39,9 +40,10 @@ const formatDate = (dateString) => {
 
 onMounted(async () => {
   try {
-    quotes.value = await quoteApi.getAll()
+    const apiQuotes = await quoteApi.getAll()
+    quotes.value = apiQuotes.length > 0 ? apiQuotes : staticQuotes
   } catch (error) {
-    console.error('Failed to load quotes:', error)
+    quotes.value = staticQuotes
   }
 })
 </script>

@@ -1,0 +1,170 @@
+[
+  {
+    "id": 1,
+    "text": "Mobbing er bra",
+    "author": "Alle",
+    "createdAt": "2026-02-13T12:00:00",
+    "featured": false
+  },
+  {
+    "id": 2,
+    "text": "Du må alltid ta vare på deg selv først",
+    "author": "Thomas Tolo",
+    "createdAt": "2026-02-13T14:00:00",
+    "featured": false
+  },
+  {
+    "id": 3,
+    "text": "Den solen som skinner inni meg og som bare stråler og lyser så sterkt",
+    "author": "Braathen",
+    "createdAt": "2026-02-15T18:43:00",
+    "featured": false
+  },
+  {
+    "id": 4,
+    "text": "Noen er gode til å stå, andre er gode til å ligge",
+    "author": "Maya",
+    "createdAt": "2026-02-17T16:16:00",
+    "featured": false
+  },
+  {
+    "id": 5,
+    "text": "Runk det ned",
+    "author": "Leoul",
+    "createdAt": "2026-02-18T12:00:00",
+    "featured": false
+  },
+  {
+    "id": 6,
+    "text": "Han er litt for gay for min smak",
+    "author": "Kris",
+    "createdAt": "2026-02-19T14:10:00",
+    "featured": false
+  },
+  {
+    "id": 7,
+    "text": "Eneste jeg føler kl 3 på natta er at jeg er inni hun",
+    "author": "Kris",
+    "createdAt": "2026-02-21T21:08:00",
+    "featured": false
+  },
+  {
+    "id": 8,
+    "text": "Hva gjør du hvis de ikke kjenner deg igjen? Flekker fram nummer 2?",
+    "author": "Inna",
+    "createdAt": "2026-02-23T15:46:00",
+    "featured": false
+  },
+  {
+    "id": 9,
+    "text": "Jeg er ganske glad for at foreldrene mine sendte meg vekk når jeg var 15",
+    "author": "Kris",
+    "createdAt": "2026-02-24T15:44:00",
+    "featured": false
+  },
+  {
+    "id": 10,
+    "text": "jo finere jente, jo skitnere pc-skjerm",
+    "author": "Kris",
+    "createdAt": "2026-02-25T14:01:00",
+    "featured": false
+  },
+  {
+    "id": 11,
+    "text": "Hææ skjermen min er ikke så skitten...",
+    "author": "Ragnhild",
+    "createdAt": "2026-02-25T15:23:00",
+    "featured": false
+  },
+  {
+    "id": 12,
+    "text": "Du tør sikkert ikke å ta toeren",
+    "author": "Magne",
+    "createdAt": "2026-02-26T14:45:00",
+    "featured": false
+  },
+  {
+    "id": 13,
+    "text": "tar du ting med ro, så kommer det til deg",
+    "author": "Thomas",
+    "createdAt": "2026-02-26T22:33:00",
+    "featured": false
+  },
+  {
+    "id": 14,
+    "text": "Hun vil ha 1 kne, jeg vil ha 2",
+    "author": "Kriss",
+    "createdAt": "2026-02-27T20:30:00",
+    "featured": false
+  },
+  {
+    "id": 15,
+    "text": "korrrrrrrrrrrrrrrrrrrr?",
+    "author": "random person",
+    "createdAt": "2026-02-28T02:48:00",
+    "featured": false
+  },
+  {
+    "id": 16,
+    "text": "Roser er røde, fioler er blå, faren din er deilig, det er broren din også.",
+    "author": "sukse 2022",
+    "createdAt": "2026-03-03T12:00:00",
+    "featured": false
+  },
+  {
+    "id": 17,
+    "text": "Du sitter der som en hest",
+    "author": "Ragnhild",
+    "createdAt": "2026-03-04T13:52:00",
+    "featured": false
+  },
+  {
+    "id": 18,
+    "text": "aaah cook",
+    "author": "viktor",
+    "createdAt": "2026-03-26T11:57:00",
+    "featured": false
+  },
+  {
+    "id": 19,
+    "text": "visste du ikke at hvis du rister på musa di så blir den større?",
+    "author": "Victor",
+    "createdAt": "2026-03-26T12:26:00",
+    "featured": false
+  },
+  {
+    "id": 20,
+    "text": "Han vil bare ha snappen din!",
+    "author": "Victor",
+    "createdAt": "2026-04-07T16:49:00",
+    "featured": false
+  },
+  {
+    "id": 21,
+    "text": "NOWE!",
+    "author": "Victor",
+    "createdAt": "2026-04-08T14:27:00",
+    "featured": false
+  },
+  {
+    "id": 22,
+    "text": "prompt and pray",
+    "author": "Ragnhild",
+    "createdAt": "2026-04-23T16:39:00",
+    "featured": false
+  },
+  {
+    "id": 23,
+    "text": "Penger er viktig, men penger kan ikke kjøpe så bra folk som på glassburet",
+    "author": "Kriss",
+    "createdAt": "2026-04-23T16:41:00",
+    "featured": true
+  },
+  {
+    "id": 24,
+    "text": "ting du kan si om både maskinlæring og i senga, hva tenker du om dypere?",
+    "author": "kriss",
+    "createdAt": "2026-04-28T13:07:00",
+    "featured": false
+  }
+]
