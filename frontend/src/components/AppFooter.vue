@@ -3,7 +3,7 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <h3>Glassburet <em>—</em></h3>
-        <p>Et lite hjørne på UiB MATNAT, knyttet til Echo. Mange vinduer, like mye prokrastinering. Bygd av oss, for oss, fordi en Discord-server bare ikke holdt.</p>
+        <p>Et lite hjørne på Høytek, knyttet til UiB. Mange vinduer, like mye prokrastinering. Bygd av oss, for oss, fordi en Discord-server bare ikke holdt.</p>
       </div>
       <div class="footer-col">
         <h4>Naviger</h4>

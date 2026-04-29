@@ -102,12 +102,15 @@
 
       <!-- Creator form -->
       <div class="creator-wrap">
-        <button class="creator-toggle" @click="creatorOpen = !creatorOpen">
-          <span class="creator-toggle-icon">{{ creatorOpen ? '−' : '+' }}</span>
-          Lag ny Connections-puzzle
-        </button>
+        <template v-if="isAuthenticated">
+          <button class="creator-toggle" @click="creatorOpen = !creatorOpen">
+            <span class="creator-toggle-icon">{{ creatorOpen ? '−' : '+' }}</span>
+            Lag ny Connections-puzzle
+          </button>
+        </template>
+        <RouterLink v-else class="creator-login-hint" to="/login">Logg inn for å lage puzzle →</RouterLink>
 
-        <form v-if="creatorOpen" class="creator-form" @submit.prevent="submitConnCreator">
+        <form v-if="creatorOpen && isAuthenticated" class="creator-form" @submit.prevent="submitConnCreator">
           <div class="creator-author-row">
             <label class="creator-label">Ditt navn</label>
             <input v-model="creatorAuthor" class="creator-input" placeholder="Anonym" maxlength="40" />
@@ -217,12 +220,15 @@
 
       <!-- Creator form -->
       <div class="creator-wrap">
-        <button class="creator-toggle" @click="creatorOpen = !creatorOpen">
-          <span class="creator-toggle-icon">{{ creatorOpen ? '−' : '+' }}</span>
-          Lag nytt Wordle-ord
-        </button>
+        <template v-if="isAuthenticated">
+          <button class="creator-toggle" @click="creatorOpen = !creatorOpen">
+            <span class="creator-toggle-icon">{{ creatorOpen ? '−' : '+' }}</span>
+            Lag nytt Wordle-ord
+          </button>
+        </template>
+        <RouterLink v-else class="creator-login-hint" to="/login">Logg inn for å lage ord →</RouterLink>
 
-        <form v-if="creatorOpen" class="creator-form" @submit.prevent="submitWrdCreator">
+        <form v-if="creatorOpen && isAuthenticated" class="creator-form" @submit.prevent="submitWrdCreator">
           <div class="creator-author-row">
             <label class="creator-label">Ditt navn</label>
             <input v-model="creatorAuthor" class="creator-input" placeholder="Anonym" maxlength="40" />
@@ -260,6 +266,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { puzzleApi } from '../services/api'
+import { isAuthenticated } from '../services/authState'
 
 const activeGame = ref('connections')
 
@@ -747,6 +754,16 @@ onUnmounted(() => {
   border-top: 1px solid var(--line-soft);
   padding-top: 24px;
 }
+.creator-login-hint {
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-mute);
+  transition: color 0.2s ease;
+}
+.creator-login-hint:hover { color: var(--ink); }
+
 .creator-toggle {
   display: flex;
   align-items: center;

@@ -16,19 +16,26 @@ public class Member {
     private String name;
 
     @NotBlank
-    @Column(nullable = false, length = 4)
-    private String tag;
+    @Column(name = "password_hash", nullable = false)
+    private String passwordHash;
+
+    @NotBlank
+    @Column(nullable = false)
+    private String role; // e.g. ROLE_MEMBER or ROLE_ADMIN
 
     public Member() {}
 
-    public Member(String name, String tag) {
+    public Member(String name, String passwordHash) {
         this.name = name;
-        this.tag = tag;
+        this.passwordHash = passwordHash;
+        this.role = "ROLE_MEMBER";
     }
 
     public Long getId() { return id; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
-    public String getTag() { return tag; }
-    public void setTag(String tag) { this.tag = tag; }
+    public String getPasswordHash() { return passwordHash; }
+    public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
 }
