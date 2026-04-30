@@ -22,12 +22,14 @@
           <span>UiB MATNAT × ECHO</span>
         </div>
         <div class="nav-actions">
-          <span v-if="isAuthenticated" class="role-pill" :class="isAdmin ? 'admin' : 'member'">
-            {{ isAdmin ? 'Admin' : 'Medlem' }} · {{ displayName || 'Logget inn' }}
+          <span v-if="isAuthenticated" class="role-pill" :class="isOwner ? 'owner' : isAdmin ? 'admin' : 'member'">
+            {{ isOwner ? 'Owner' : isAdmin ? 'Admin' : 'Medlem' }} · {{ displayName || 'Logget inn' }}
           </span>
+          <button v-if="isOwner" class="auth-link" type="button" @click="showUsers = true">Brukere</button>
           <RouterLink v-if="!isAuthenticated" class="auth-link" to="/login">Logg inn</RouterLink>
           <button v-else class="auth-link" type="button" @click="logout">Logg ut</button>
         </div>
+        <UserManagement v-if="showUsers" @close="showUsers = false" />
       </div>
     </div>
   </nav>
@@ -36,10 +38,12 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { clearAuthToken, displayName, isAdmin, isAuthenticated } from '../services/authState'
+import { clearAuthToken, displayName, isAdmin, isAuthenticated, isOwner } from '../services/authState'
+import UserManagement from './UserManagement.vue'
 
 const days = ['SØNDAG', 'MANDAG', 'TIRSDAG', 'ONSDAG', 'TORSDAG', 'FREDAG', 'LØRDAG']
 const clockText = ref('')
+const showUsers = ref(false)
 const router = useRouter()
 
 function updateClock() {
@@ -96,6 +100,11 @@ function logout() {
 
 .role-pill.member {
   color: var(--ink-soft);
+}
+
+.role-pill.owner {
+  color: #7c3aed;
+  border-color: rgba(124, 58, 237, 0.25);
 }
 
 .role-pill.admin {

@@ -34,6 +34,7 @@ const token = ref(readStoredToken())
 const currentUser = computed(() => decodeTokenPayload(token.value))
 const isAuthenticated = computed(() => Boolean(token.value))
 const isAdmin = computed(() => currentUser.value?.role === 'ROLE_ADMIN')
+const isOwner = computed(() => currentUser.value?.role === 'ROLE_OWNER')
 const displayName = computed(() => currentUser.value?.sub || '')
 
 function setAuthToken(nextToken) {
@@ -51,6 +52,7 @@ export {
   currentUser,
   isAuthenticated,
   isAdmin,
+  isOwner,
   displayName,
   setAuthToken,
   clearAuthToken,

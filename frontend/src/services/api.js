@@ -84,6 +84,14 @@ export const statsApi = {
   getStats: () => apiCall('/stats'),
 };
 
+export const memberApi = {
+  getAll: () => apiCall('/auth/members'),
+  updateRole: (name, role) => apiCall(`/auth/members/${encodeURIComponent(name)}/role`, {
+    method: 'PUT',
+    body: JSON.stringify({ role }),
+  }),
+};
+
 export const puzzleApi = {
   getLatestConnections: () => apiCall('/puzzles/connections/latest'),
   createConnections:    (dto) => apiCall('/puzzles/connections', { method: 'POST', body: JSON.stringify(dto) }),
