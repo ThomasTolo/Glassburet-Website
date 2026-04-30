@@ -1,6 +1,7 @@
 package com.glassburet.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,6 +18,12 @@ public class ConnectionsPuzzle {
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
+    @Column(name = "is_daily")
+    private Boolean isDaily = false;
+
+    @Column(name = "puzzle_date")
+    private LocalDate puzzleDate;
+
     @Column(nullable = false) private String group0Category;
     @Column(nullable = false, columnDefinition = "TEXT") private String group0Words;
     @Column(nullable = false) private String group1Category;
@@ -32,6 +39,10 @@ public class ConnectionsPuzzle {
     public String getCreatedBy() { return createdBy; }
     public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
     public LocalDateTime getCreatedAt() { return createdAt; }
+    public Boolean getIsDaily() { return isDaily; }
+    public void setIsDaily(Boolean isDaily) { this.isDaily = isDaily; }
+    public LocalDate getPuzzleDate() { return puzzleDate; }
+    public void setPuzzleDate(LocalDate puzzleDate) { this.puzzleDate = puzzleDate; }
 
     public String getGroup0Category() { return group0Category; }
     public void setGroup0Category(String c) { this.group0Category = c; }

@@ -6,6 +6,8 @@ import com.glassburet.service.ConnectionsPuzzleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/puzzles/connections")
 public class ConnectionsPuzzleController {
@@ -14,6 +16,16 @@ public class ConnectionsPuzzleController {
 
     public ConnectionsPuzzleController(ConnectionsPuzzleService service) {
         this.service = service;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ConnectionsPuzzleResponse>> getAll() {
+        return ResponseEntity.ok(service.getAll());
+    }
+
+    @GetMapping("/daily")
+    public ResponseEntity<ConnectionsPuzzleResponse> getDaily() {
+        return ResponseEntity.ok(service.getDailyPuzzle());
     }
 
     @GetMapping("/latest")

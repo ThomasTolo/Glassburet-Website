@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "text": "Mobbing er bra",
+    "author": "Alle",
+    "createdAt": "2026-02-13T12:00:00",
+    "featured": false
+  },
+  {
+    "id": 2,
+    "text": "Du må alltid ta vare på deg selv først",
+    "author": "Thomas Tolo",
+    "createdAt": "2026-02-13T14:00:00",
+    "featured": false
+  },
+  {
+    "id": 3,
+    "text": "Den solen som skinner inni meg og som bare stråler og lyser så sterkt",
+    "author": "Braathen",
+    "createdAt": "2026-02-15T18:43:00",
+    "featured": false
+  },
+  {
+    "id": 4,
+    "text": "Noen er gode til å stå, andre er gode til å ligge",
+    "author": "Maya",
+    "createdAt": "2026-02-17T16:16:00",
+    "featured": false
+  },
+  {
+    "id": 5,
+    "text": "Runk det ned",
+    "author": "Leoul",
+    "createdAt": "2026-02-18T12:00:00",
+    "featured": false
+  },
+  {
+    "id": 6,
+    "text": "Han er litt for gay for min smak",
+    "author": "Kris",
+    "createdAt": "2026-02-19T14:10:00",
+    "featured": false
+  },
+  {
+    "id": 7,
+    "text": "Eneste jeg føler kl 3 på natta er at jeg er inni hun",
+    "author": "Kris",
+    "createdAt": "2026-02-21T21:08:00",
+    "featured": false
+  },
+  {
+    "id": 8,
+    "text": "Hva gjør du hvis de ikke kjenner deg igjen? Flekker fram nummer 2?",
+    "author": "Inna",
+    "createdAt": "2026-02-23T15:46:00",
+    "featured": false
+  },
+  {
+    "id": 9,
+    "text": "Jeg er ganske glad for at foreldrene mine sendte meg vekk når jeg var 15",
+    "author": "Kris",
+    "createdAt": "2026-02-24T15:44:00",
+    "featured": false
+  },
+  {
+    "id": 10,
+    "text": "jo finere jente, jo skitnere pc-skjerm",
+    "author": "Kris",
+    "createdAt": "2026-02-25T14:01:00",
+    "featured": false
+  }
+]

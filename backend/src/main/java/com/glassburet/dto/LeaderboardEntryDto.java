@@ -3,13 +3,13 @@ package com.glassburet.dto;
 public class LeaderboardEntryDto {
 
     private String memberName;
-    private long totalScore;
+    private long score;
 
-    public LeaderboardEntryDto(String memberName, long totalScore) {
+    public LeaderboardEntryDto(String memberName, long score) {
         this.memberName = memberName;
-        this.totalScore = totalScore;
+        this.score = score;
     }
 
     public String getMemberName() { return memberName; }
-    public long getTotalScore() { return totalScore; }
+    public long getScore() { return score; }
 }

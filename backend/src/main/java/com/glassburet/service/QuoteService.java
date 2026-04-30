@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.time.LocalDateTime;
 
 @Service
 public class QuoteService {
@@ -28,9 +29,17 @@ public class QuoteService {
     }
 
     public Quote findFeatured() {
-        return quoteRepository.findFirstByFeaturedTrue()
-                .or(quoteRepository::findRandom)
-                .orElseThrow(() -> new NoSuchElementException("No quotes found"));
+        // Prefer a quote created today (latest). If none, return the most recent quote.
+        try {
+            var today = java.time.LocalDate.now();
+            var start = today.atStartOfDay();
+            var end = start.plusDays(1);
+            return quoteRepository.findTopByCreatedAtBetweenOrderByCreatedAtDesc(start, end)
+                    .or(() -> quoteRepository.findTopByOrderByCreatedAtDesc())
+                    .orElseThrow(() -> new NoSuchElementException("No quotes found"));
+        } catch (NoSuchElementException e) {
+            throw e;
+        }
     }
 
     @Transactional
@@ -39,6 +48,38 @@ public class QuoteService {
         quote.setText(dto.getText());
         quote.setAuthor(dto.getAuthor());
         quote.setFeatured(dto.isFeatured());
+        if (dto.getCreatedAt() != null && !dto.getCreatedAt().isBlank()) {
+            try {
+                quote.setCreatedAt(LocalDateTime.parse(dto.getCreatedAt()));
+            } catch (Exception ignored) {
+            }
+        }
+        return quoteRepository.save(quote);
+    }
+
+    @Transactional
+    public Quote update(Long id, QuoteDto dto) {
+        Quote quote = findById(id);
+        quote.setText(dto.getText());
+        quote.setAuthor(dto.getAuthor());
+        quote.setFeatured(dto.isFeatured());
+        if (dto.getCreatedAt() != null && !dto.getCreatedAt().isBlank()) {
+            try {
+                quote.setCreatedAt(LocalDateTime.parse(dto.getCreatedAt()));
+            } catch (Exception ignored) {
+            }
+        }
+        return quoteRepository.save(quote);
+    }
+
+    @Transactional
+    public Quote toggleLike(Long id, String memberName) {
+        Quote quote = findById(id);
+        if (quote.getLikes().contains(memberName)) {
+            quote.getLikes().remove(memberName);
+        } else {
+            quote.getLikes().add(memberName);
+        }
         return quoteRepository.save(quote);
     }
 

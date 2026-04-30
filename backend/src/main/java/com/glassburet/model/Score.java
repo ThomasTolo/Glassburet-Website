@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "scores")
+@Table(name = "scores", uniqueConstraints = @UniqueConstraint(columnNames = {"member_name", "game_name", "puzzle_id"}))
 public class Score {
 
     @Id
@@ -15,20 +15,23 @@ public class Score {
     private Long id;
 
     @NotBlank
-    @Column(nullable = false)
+    @Column(name = "member_name", nullable = false)
     private String memberName;
 
     @Enumerated(EnumType.STRING)
     @NotNull
-    @Column(nullable = false)
+    @Column(name = "game_name", nullable = false)
     private GameName gameName;
 
     @Column(nullable = false)
     private int scoreValue;
 
     @NotNull
-    @Column(nullable = false)
+    @Column(name = "game_date", nullable = false)
     private LocalDate gameDate;
+
+    @Column(name = "puzzle_id")
+    private Long puzzleId;
 
     @Column(nullable = false)
     private LocalDateTime submittedAt = LocalDateTime.now();
@@ -44,6 +47,8 @@ public class Score {
     public void setScoreValue(int scoreValue) { this.scoreValue = scoreValue; }
     public LocalDate getGameDate() { return gameDate; }
     public void setGameDate(LocalDate gameDate) { this.gameDate = gameDate; }
+    public Long getPuzzleId() { return puzzleId; }
+    public void setPuzzleId(Long puzzleId) { this.puzzleId = puzzleId; }
     public LocalDateTime getSubmittedAt() { return submittedAt; }
     public void setSubmittedAt(LocalDateTime submittedAt) { this.submittedAt = submittedAt; }
 }

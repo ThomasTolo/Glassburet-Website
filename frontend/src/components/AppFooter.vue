@@ -15,11 +15,10 @@
         <RouterLink to="/poeng">Poengtavle</RouterLink>
       </div>
       <div class="footer-col">
-        <h4>Echo & UiB</h4>
+        <h4>UiB</h4>
         <a href="#">Echo Bergen</a>
         <a href="#">MATNAT-fakultet</a>
-        <a href="#">Realfagsbygget</a>
-        <a href="#">Studentkalender</a>
+        <a href="#">Høyteknologisenteret</a>
       </div>
       <div class="footer-col">
         <h4>Hjelp meg</h4>

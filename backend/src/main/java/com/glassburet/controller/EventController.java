@@ -32,6 +32,11 @@ public class EventController {
         return ResponseEntity.ok(eventService.create(eventDto));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Event> updateEvent(@PathVariable Long id, @RequestBody EventDto eventDto) {
+        return ResponseEntity.ok(eventService.update(id, eventDto));
+    }
+
     @PutMapping("/{eventId}/attendance/{memberName}")
     public ResponseEntity<Event> toggleAttendance(@PathVariable Long eventId, @PathVariable String memberName) {
         return ResponseEntity.ok(eventService.toggleAttendance(eventId, memberName));

@@ -9,8 +9,8 @@
         <p class="lede">Daglige utfordringer for deg og vennegjengen. Hvem er egentlig skarpest?</p>
       </div>
       <div class="page-header-meta">
-        ONSDAG 29 APR 2026<br />
-        DAG 142 / SEMESTERET<br />
+        {{ dateLabel }}<br />
+        {{ semesterLabel }}<br />
         2 SPILL I DAG
       </div>
     </div>
@@ -39,6 +39,23 @@
           <div class="mistake-dots">
             <span v-for="i in 4" :key="i" :class="['mdot', i <= (4 - connMistakes) ? 'active' : '']" />
           </div>
+        </div>
+      </div>
+
+      <!-- Puzzle library -->
+      <div class="puzzle-library">
+        <span class="eyebrow" style="margin-bottom:8px;display:block;">Velg puzzle</span>
+        <div class="puzzle-list">
+          <button
+            v-for="p in allConnPuzzles"
+            :key="p.id"
+            :class="['puzzle-pick', selectedConnId === p.id && 'active', completedConnIds.includes(p.id) && 'done']"
+            @click="loadConnPuzzle(p)"
+          >
+            <span>{{ p.isDaily ? '⊙ Daglig' : (p.createdBy || 'Anonym') }}</span>
+            <span class="puzzle-pick-date">{{ formatPuzzleDate(p.createdAt) }}</span>
+            <span v-if="completedConnIds.includes(p.id)" class="puzzle-pick-done">✓</span>
+          </button>
         </div>
       </div>
 
@@ -79,8 +96,9 @@
       <div v-if="connGameState === 'won'" class="sp-result">
         <div class="sp-result-icon">🎉</div>
         <h3>Gratulerer!</h3>
-        <p>Du løste dagens Tankeburet!</p>
-        <button class="conn-btn conn-btn-primary" @click="connReset">Spill igjen</button>
+        <p>Du løste Tankeburet! <strong>{{ connScore }} poeng</strong></p>
+        <p v-if="connScoreSubmitted" class="score-saved">✓ Poeng registrert!</p>
+        <p v-else-if="!isAuthenticated" class="score-saved" style="color:var(--ink-mute)">Logg inn for å registrere poeng</p>
       </div>
 
       <div v-if="connGameState === 'lost'" class="sp-result">
@@ -97,7 +115,14 @@
             <span>{{ group.words.join(' · ') }}</span>
           </div>
         </div>
-        <button class="conn-btn conn-btn-primary" style="margin-top: 16px" @click="connReset">Prøv igjen</button>
+        <p v-if="connScoreSubmitted" class="score-saved">✓ Poeng registrert!</p>
+        <p v-else-if="!isAuthenticated" class="score-saved" style="color:var(--ink-mute)">Logg inn for å registrere poeng</p>
+      </div>
+
+      <div v-if="connGameState === 'completed'" class="sp-result">
+        <div class="sp-result-icon">✅</div>
+        <h3>Allerede fullført</h3>
+        <p>Du har allerede spilt denne puzzlen. Velg en annen fra listen over.</p>
       </div>
 
       <!-- Creator form -->
@@ -111,11 +136,6 @@
         <RouterLink v-else class="creator-login-hint" to="/login">Logg inn for å lage puzzle →</RouterLink>
 
         <form v-if="creatorOpen && isAuthenticated" class="creator-form" @submit.prevent="submitConnCreator">
-          <div class="creator-author-row">
-            <label class="creator-label">Ditt navn</label>
-            <input v-model="creatorAuthor" class="creator-input" placeholder="Anonym" maxlength="40" />
-          </div>
-
           <div class="creator-groups">
             <div
               v-for="(group, gi) in connCreatorForm"
@@ -177,6 +197,23 @@
         </div>
       </div>
 
+      <!-- Puzzle library -->
+      <div class="puzzle-library">
+        <span class="eyebrow" style="margin-bottom:8px;display:block;">Velg ord</span>
+        <div class="puzzle-list">
+          <button
+            v-for="p in allWrdPuzzles"
+            :key="p.id"
+            :class="['puzzle-pick', selectedWrdId === p.id && 'active', completedWrdIds.includes(p.id) && 'done']"
+            @click="loadWrdPuzzle(p)"
+          >
+            <span>{{ p.isDaily ? '⊙ Daglig' : (p.createdBy || 'Anonym') }}</span>
+            <span class="puzzle-pick-date">{{ formatPuzzleDate(p.createdAt) }}</span>
+            <span v-if="completedWrdIds.includes(p.id)" class="puzzle-pick-done">✓</span>
+          </button>
+        </div>
+      </div>
+
       <div class="wrd-grid">
         <div v-for="rIdx in 6" :key="rIdx" class="wrd-row">
           <div
@@ -194,15 +231,23 @@
       <div v-if="wrdGameState === 'won'" class="sp-result">
         <div class="sp-result-icon">🟩</div>
         <h3>Imponerende!</h3>
-        <p>Du gjettet <strong>{{ wrdTarget }}</strong> på {{ wrdGuesses.length }} forsøk!</p>
-        <button class="conn-btn conn-btn-primary" @click="wrdReset">Spill igjen</button>
+        <p>Du gjettet <strong>{{ wrdTarget }}</strong> på {{ wrdGuesses.length }} forsøk! <strong>{{ wrdScore }} poeng</strong></p>
+        <p v-if="wrdScoreSubmitted" class="score-saved">✓ Poeng registrert!</p>
+        <p v-else-if="!isAuthenticated" class="score-saved" style="color:var(--ink-mute)">Logg inn for å registrere poeng</p>
       </div>
 
       <div v-if="wrdGameState === 'lost'" class="sp-result">
         <div class="sp-result-icon">😔</div>
         <h3>Bedre lykke neste gang!</h3>
         <p>Ordet var <strong>{{ wrdTarget }}</strong></p>
-        <button class="conn-btn conn-btn-primary" @click="wrdReset">Prøv igjen</button>
+        <p v-if="wrdScoreSubmitted" class="score-saved">✓ Poeng registrert!</p>
+        <p v-else-if="!isAuthenticated" class="score-saved" style="color:var(--ink-mute)">Logg inn for å registrere poeng</p>
+      </div>
+
+      <div v-if="wrdGameState === 'completed'" class="sp-result">
+        <div class="sp-result-icon">✅</div>
+        <h3>Allerede fullført</h3>
+        <p>Du har allerede spilt dette ordet. Velg et annet fra listen over.</p>
       </div>
 
       <div class="wrd-keyboard">
@@ -229,11 +274,6 @@
         <RouterLink v-else class="creator-login-hint" to="/login">Logg inn for å lage ord →</RouterLink>
 
         <form v-if="creatorOpen && isAuthenticated" class="creator-form" @submit.prevent="submitWrdCreator">
-          <div class="creator-author-row">
-            <label class="creator-label">Ditt navn</label>
-            <input v-model="creatorAuthor" class="creator-input" placeholder="Anonym" maxlength="40" />
-          </div>
-
           <div class="creator-author-row">
             <label class="creator-label">Ord (5 bokstaver)</label>
             <input
@@ -264,11 +304,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-import { puzzleApi } from '../services/api'
-import { isAuthenticated } from '../services/authState'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { puzzleApi, scoreApi } from '../services/api'
+import { useLiveDateInfo } from '../composables/useLiveDateInfo'
+import { isAuthenticated, displayName } from '../services/authState'
 
 const activeGame = ref('connections')
+const { dateLabel, semesterLabel } = useLiveDateInfo({ intervalMs: 60000 })
 
 // ——— CONNECTIONS ——————————————————————————————————————
 
@@ -289,6 +331,17 @@ const connSolved    = ref([])
 const connBadWords  = ref([])
 const connMistakes  = ref(0)
 const connGameState = ref('playing')
+const connScoreSubmitted = ref(false)
+const allConnPuzzles = ref([])
+const selectedConnId = ref(null)
+
+const completedConnIds = ref([])
+const completedWrdIds  = ref([])
+
+const connScore = computed(() => {
+  if (connGameState.value === 'won') return Math.max(0, 1000 - (connMistakes.value * 125))
+  return 0
+})
 
 function connInit() {
   const all = connPuzzle.value.groups.flatMap(g => g.words)
@@ -298,6 +351,7 @@ function connInit() {
   connBadWords.value  = []
   connMistakes.value  = 0
   connGameState.value = 'playing'
+  connScoreSubmitted.value = false
 }
 
 function connShuffle() {
@@ -323,19 +377,23 @@ function connSubmit() {
     connSolved.value    = [...connSolved.value, match]
     connShuffled.value  = connShuffled.value.filter(w => !match.words.includes(w))
     connSelected.value  = []
-    if (connSolved.value.length === 4) connGameState.value = 'won'
+    if (connSolved.value.length === 4) {
+      connGameState.value = 'won'
+      if (isAuthenticated.value && !connScoreSubmitted.value) submitConnScore()
+    }
   } else {
     connBadWords.value = [...sel]
     connMistakes.value++
     setTimeout(() => {
       connBadWords.value = []
       connSelected.value = []
-      if (connMistakes.value >= 4) connGameState.value = 'lost'
+      if (connMistakes.value >= 4) {
+        connGameState.value = 'lost'
+        if (isAuthenticated.value && !connScoreSubmitted.value) submitConnScore()
+      }
     }, 600)
   }
 }
-
-function connReset() { connInit() }
 
 function applyConnectionsPuzzle(data) {
   connPuzzle.value = {
@@ -349,29 +407,58 @@ function applyConnectionsPuzzle(data) {
   connInit()
 }
 
-// ——— WORDLE ————————————————————————————————————————————
-
-const wordList = [
-  'SPILL', 'NORSK', 'FJORD', 'BILDE', 'GLASS', 'KRAFT', 'SMART', 'STORM',
-  'NOTER', 'PLASS', 'SKOLE', 'KLART', 'SNILL', 'FLOTT', 'STERK', 'VOKSE',
-  'ÅPENT', 'VARMT', 'KALDT', 'VENTE', 'SISTE', 'LYSER', 'BRUKE', 'DAGER',
-  'ELSKE', 'FINNE', 'GRØNN', 'HENTE', 'JOBBE', 'KJØRE', 'LAGET', 'MASSE',
-  'NESTE', 'RASKT', 'TROLL', 'UNDER', 'VERDI', 'YNGRE', 'FARGE', 'TOLKE',
-]
-
-function getDailyWord() {
-  const epoch = new Date('2026-01-01')
-  const today = new Date()
-  const day = Math.floor((today - epoch) / 86400000)
-  return wordList[((day % wordList.length) + wordList.length) % wordList.length]
+function loadConnPuzzle(p) {
+  selectedConnId.value = p.id
+  if (completedConnIds.value.includes(p.id)) {
+    connGameState.value = 'completed'
+    return
+  }
+  applyConnectionsPuzzle(p)
 }
 
-const wrdTarget    = ref(getDailyWord())
+async function submitConnScore() {
+  if (!displayName.value || !displayName.value.trim()) {
+    return
+  }
+  try {
+    await scoreApi.submit({
+      memberName: displayName.value,
+      gameName: 'CONNECTIONS',
+      scoreValue: connScore.value,
+      gameDate: new Date().toISOString().split('T')[0],
+      puzzleId: selectedConnId.value,
+    })
+    connScoreSubmitted.value = true
+    const completed = await scoreApi.getCompleted(displayName.value, 'CONNECTIONS')
+    completedConnIds.value = completed
+    if (selectedConnId.value && !completedConnIds.value.includes(selectedConnId.value)) {
+      completedConnIds.value = [...completedConnIds.value, selectedConnId.value]
+    }
+  } catch {}
+}
+
+const formatPuzzleDate = (dateString) => {
+  if (!dateString) return ''
+  const d = new Date(dateString)
+  return `${d.getDate()}.${d.getMonth() + 1}`
+}
+
+// ——— WORDLE ————————————————————————————————————————————
+
+const wrdTarget    = ref('')
 const wrdCreatedBy = ref(null)
 const wrdGuesses   = ref([])
 const wrdCurrent   = ref('')
 const wrdGameState = ref('playing')
 const wrdMessage   = ref('')
+const wrdScoreSubmitted = ref(false)
+const allWrdPuzzles = ref([])
+const selectedWrdId = ref(null)
+
+const wrdScore = computed(() => {
+  if (wrdGameState.value === 'won') return Math.max(0, 1000 - ((wrdGuesses.value.length - 1) * 125))
+  return 0
+})
 
 const keyboardRows = [
   ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'Å'],
@@ -428,25 +515,55 @@ function wrdKeyPress(key) {
     wrdCurrent.value = ''
     if (guess === wrdTarget.value) {
       wrdGameState.value = 'won'
+      if (isAuthenticated.value && !wrdScoreSubmitted.value) submitWrdScore()
     } else if (wrdGuesses.value.length >= 6) {
       wrdGameState.value = 'lost'
+      if (isAuthenticated.value && !wrdScoreSubmitted.value) submitWrdScore()
     }
   } else if (/^[A-ZÆØÅ]$/.test(key) && wrdCurrent.value.length < 5) {
     wrdCurrent.value += key
   }
 }
 
-function wrdReset() {
+function loadWrdPuzzle(p) {
+  selectedWrdId.value = p.id
+  if (completedWrdIds.value.includes(p.id)) {
+    wrdGameState.value = 'completed'
+    return
+  }
+  wrdTarget.value    = p.word
+  wrdCreatedBy.value = p.createdBy
   wrdGuesses.value   = []
   wrdCurrent.value   = ''
   wrdGameState.value = 'playing'
   wrdMessage.value   = ''
+  wrdScoreSubmitted.value = false
+}
+
+async function submitWrdScore() {
+  if (!displayName.value || !displayName.value.trim()) {
+    return
+  }
+  try {
+    await scoreApi.submit({
+      memberName: displayName.value,
+      gameName: 'WORDLE',
+      scoreValue: wrdScore.value,
+      gameDate: new Date().toISOString().split('T')[0],
+      puzzleId: selectedWrdId.value,
+    })
+    wrdScoreSubmitted.value = true
+    const completed = await scoreApi.getCompleted(displayName.value, 'WORDLE')
+    completedWrdIds.value = completed
+    if (selectedWrdId.value && !completedWrdIds.value.includes(selectedWrdId.value)) {
+      completedWrdIds.value = [...completedWrdIds.value, selectedWrdId.value]
+    }
+  } catch {}
 }
 
 // ——— CREATOR SHARED STATE ——————————————————————————————
 
-const creatorOpen   = ref(false)
-const creatorAuthor = ref('')
+const creatorOpen = ref(false)
 
 // ——— CONNECTIONS CREATOR ———————————————————————————————
 
@@ -467,14 +584,15 @@ async function submitConnCreator() {
   }
   connCreating.value = true
   try {
-    await puzzleApi.createConnections({
-      createdBy: creatorAuthor.value.trim() || 'Anonym',
+    const data = await puzzleApi.createConnections({
+      createdBy: displayName.value || 'Anonym',
       groups: connCreatorForm.value.map(g => ({
         category: g.category.trim(),
         words:    g.words.map(w => w.trim().toUpperCase()),
       })),
     })
-    const data = await puzzleApi.getLatestConnections()
+    allConnPuzzles.value.unshift(data)
+    selectedConnId.value = data.id
     applyConnectionsPuzzle(data)
     creatorOpen.value = false
     connCreatorForm.value = [
@@ -503,12 +621,11 @@ async function submitWrdCreator() {
   wrdCreating.value = true
   try {
     const data = await puzzleApi.createWordle({
-      createdBy: creatorAuthor.value.trim() || 'Anonym',
+      createdBy: displayName.value || 'Anonym',
       word,
     })
-    wrdTarget.value    = data.word
-    wrdCreatedBy.value = data.createdBy
-    wrdReset()
+    allWrdPuzzles.value.unshift(data)
+    loadWrdPuzzle(data)
     creatorOpen.value  = false
     wrdCreatorWord.value = ''
   } catch {
@@ -534,20 +651,43 @@ onMounted(async () => {
   connInit()
   window.addEventListener('keydown', handleKeydown)
 
-  try {
-    const [connResult, wrdResult] = await Promise.allSettled([
-      puzzleApi.getLatestConnections(),
-      puzzleApi.getLatestWordle(),
+  const [dailyConnResult, dailyWrdResult, allConnResult, allWrdResult] = await Promise.allSettled([
+    puzzleApi.getDailyConnections(),
+    puzzleApi.getDailyWordle(),
+    puzzleApi.getAllConnections(),
+    puzzleApi.getAllWordle(),
+  ])
+
+  if (allConnResult.status === 'fulfilled') allConnPuzzles.value = allConnResult.value
+  if (allWrdResult.status === 'fulfilled')  allWrdPuzzles.value  = allWrdResult.value
+
+  // Ensure daily puzzles appear in the library (race: getAll may resolve before daily is created)
+  if (dailyConnResult.status === 'fulfilled' && dailyConnResult.value?.id) {
+    if (!allConnPuzzles.value.some(p => p.id === dailyConnResult.value.id)) {
+      allConnPuzzles.value = [dailyConnResult.value, ...allConnPuzzles.value]
+    }
+  }
+  if (dailyWrdResult.status === 'fulfilled' && dailyWrdResult.value?.id) {
+    if (!allWrdPuzzles.value.some(p => p.id === dailyWrdResult.value.id)) {
+      allWrdPuzzles.value = [dailyWrdResult.value, ...allWrdPuzzles.value]
+    }
+  }
+
+  // Load completed puzzle IDs for the current user before applying any puzzle
+  if (isAuthenticated.value && displayName.value) {
+    const [connComp, wrdComp] = await Promise.allSettled([
+      scoreApi.getCompleted(displayName.value, 'CONNECTIONS'),
+      scoreApi.getCompleted(displayName.value, 'WORDLE'),
     ])
-    if (connResult.status === 'fulfilled' && connResult.value?.groups) {
-      applyConnectionsPuzzle(connResult.value)
-    }
-    if (wrdResult.status === 'fulfilled' && wrdResult.value?.word) {
-      wrdTarget.value    = wrdResult.value.word
-      wrdCreatedBy.value = wrdResult.value.createdBy
-    }
-  } catch {
-    // keep defaults silently
+    if (connComp.status === 'fulfilled') completedConnIds.value = connComp.value
+    if (wrdComp.status === 'fulfilled')  completedWrdIds.value  = wrdComp.value
+  }
+
+  if (dailyConnResult.status === 'fulfilled' && dailyConnResult.value?.groups) {
+    loadConnPuzzle(dailyConnResult.value)
+  }
+  if (dailyWrdResult.status === 'fulfilled' && dailyWrdResult.value?.word) {
+    loadWrdPuzzle(dailyWrdResult.value)
   }
 })
 
@@ -580,6 +720,38 @@ onUnmounted(() => {
 .sp-panel { max-width: 700px; margin: 0 auto; }
 .sp-sub { color: var(--ink-mute); font-size: 13px; margin-top: 8px; }
 .puzzle-by { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--accent-3); margin-left: 8px; }
+
+/* ── Puzzle library ──────────────────────────── */
+.puzzle-library {
+  margin-bottom: 24px;
+  padding: 16px;
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+}
+.puzzle-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.puzzle-pick {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+  transition: all 0.15s ease;
+  text-align: left;
+}
+.puzzle-pick:hover { border-color: var(--ink); color: var(--ink); }
+.puzzle-pick.active { border-color: var(--accent); color: var(--accent); background: var(--bg-soft); }
+.puzzle-pick.done { opacity: 0.55; }
+.puzzle-pick-date { font-size: 10px; opacity: 0.6; margin-top: 2px; }
+.puzzle-pick-done { font-size: 10px; color: var(--accent); margin-top: 2px; }
 
 /* ── Connections ─────────────────────────────── */
 .conn-top {
@@ -742,11 +914,16 @@ onUnmounted(() => {
   border-radius: var(--radius);
   margin: 16px 0;
   animation: fadeUp 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
-.sp-result-icon { font-size: 52px; margin-bottom: 16px; }
-.sp-result h3 { font-family: var(--serif); font-size: 36px; font-weight: 400; margin-bottom: 10px; letter-spacing: -0.02em; }
-.sp-result p  { color: var(--ink-soft); font-size: 15px; margin-bottom: 24px; }
+.sp-result-icon { font-size: 52px; }
+.sp-result h3 { font-family: var(--serif); font-size: 36px; font-weight: 400; letter-spacing: -0.02em; }
+.sp-result p  { color: var(--ink-soft); font-size: 15px; }
 .sp-result strong { color: var(--ink); }
+.score-saved { font-family: var(--mono); font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
 
 /* ── Creator ─────────────────────────────────── */
 .creator-wrap {
@@ -882,5 +1059,6 @@ onUnmounted(() => {
   .wrd-key-wide { min-width: 46px; font-size: 9px; }
   .wrd-top, .conn-top { flex-direction: column; gap: 16px; }
   .creator-words-row { grid-template-columns: repeat(2, 1fr); }
+  .puzzle-list { flex-direction: column; }
 }
 </style>

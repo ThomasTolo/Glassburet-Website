@@ -17,7 +17,7 @@
       <div class="nav-aside">
         <div class="nav-meta">
           <span class="live-dot"></span>
-          <span>{{ clockText }}</span>
+          <span>{{ clockLabel }}</span>
           <span>·</span>
           <span>UiB</span>
         </div>
@@ -36,29 +36,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { clearAuthToken, displayName, isAdmin, isAuthenticated, isOwner } from '../services/authState'
+import { useLiveDateInfo } from '../composables/useLiveDateInfo'
 import UserManagement from './UserManagement.vue'
 
-const days = ['SØNDAG', 'MANDAG', 'TIRSDAG', 'ONSDAG', 'TORSDAG', 'FREDAG', 'LØRDAG']
-const clockText = ref('')
 const showUsers = ref(false)
 const router = useRouter()
-
-function updateClock() {
-  const now = new Date()
-  const h = String(now.getHours()).padStart(2, '0')
-  const m = String(now.getMinutes()).padStart(2, '0')
-  clockText.value = `${days[now.getDay()]} · ${h}:${m}`
-}
-
-let interval
-onMounted(() => {
-  updateClock()
-  interval = setInterval(updateClock, 30000)
-})
-onUnmounted(() => clearInterval(interval))
+const { clockLabel } = useLiveDateInfo({ intervalMs: 1000 })
 
 function logout() {
   clearAuthToken()
