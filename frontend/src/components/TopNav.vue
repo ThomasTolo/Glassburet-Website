@@ -19,7 +19,7 @@
           <span class="live-dot"></span>
           <span>{{ clockText }}</span>
           <span>·</span>
-          <span>UiB MATNAT × ECHO</span>
+          <span>UiB</span>
         </div>
         <div class="nav-actions">
           <span v-if="isAuthenticated" class="role-pill" :class="isOwner ? 'owner' : isAdmin ? 'admin' : 'member'">
