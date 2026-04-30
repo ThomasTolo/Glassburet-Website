@@ -365,6 +365,7 @@ p.lede { font-size: 17px; line-height: 1.55; color: var(--ink-soft); max-width: 
   margin: 12px 0 16px;
   color: var(--ink);
 }
+.card-dark .liner-pull { color: var(--bg); }
 .liner-pull span { background: linear-gradient(transparent 60%, rgba(212,167,44,0.45) 60%); padding: 0 4px; }
 
 /* ================= QUOTES PAGE ================= */

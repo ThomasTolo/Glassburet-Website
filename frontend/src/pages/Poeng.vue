@@ -4,7 +4,7 @@
       <div>
         <span class="eyebrow">Daglig konkurranse</span>
         <h1 class="display" style="font-size: clamp(40px, 6vw, 84px); margin: 12px 0 16px;">Poeng<em>tavle</em>.</h1>
-        <p class="lede">Hvor flink er du egentlig sammenlignet med de andre? Resultater fra Tankeburet og Ordburet.</p>
+        <p class="lede">Hvor flink er du egentlig sammenlignet med de andre? Resultater fra dagens spill.</p>
       </div>
       <div class="page-header-meta">
         {{ dateLabel }}<br/>
@@ -71,6 +71,10 @@ const gameFilters = [
   { label: 'Alle spill', value: '' },
   { label: 'Tankeburet', value: 'CONNECTIONS' },
   { label: 'Ordburet', value: 'WORDLE' },
+  { label: 'Merburet', value: 'MORE_OR_LESS' },
+  { label: 'Låtburet', value: 'SONGLESS' },
+  { label: 'Kryssburet', value: 'CROSSTUNES' },
+  { label: 'Tidsburet', value: 'TIMEGUESSR' },
 ]
 const activeGame = ref('')
 const activeGameLabel = computed(() => gameFilters.find(g => g.value === activeGame.value)?.label ?? 'Leaderboard')

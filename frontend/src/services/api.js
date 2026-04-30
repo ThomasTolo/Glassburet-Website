@@ -116,4 +116,7 @@ export const puzzleApi = {
   getDailyWordle:       () => apiCall('/puzzles/wordle/daily'),
   getLatestWordle:      () => apiCall('/puzzles/wordle/latest'),
   createWordle:         (dto) => apiCall('/puzzles/wordle', { method: 'POST', body: JSON.stringify(dto) }),
+  getAllNative:         (gameName) => apiCall(`/puzzles/native/${encodeURIComponent(gameName)}`),
+  getDailyNative:       (gameName) => apiCall(`/puzzles/native/${encodeURIComponent(gameName)}/daily`),
+  createNative:         (gameName, dto) => apiCall(`/puzzles/native/${encodeURIComponent(gameName)}`, { method: 'POST', body: JSON.stringify(dto) }),
 };

@@ -104,7 +104,6 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { eventApi } from '../services/api'
 import { isAuthenticated, isAdminOrAbove, displayName } from '../services/authState'
-import staticEvents from '../data/events.json'
 import { subscribeToUpdates } from '../services/realtime'
 
 const events = ref([])
@@ -192,9 +191,9 @@ const deleteEvent = async (id) => {
 const loadEvents = async () => {
   try {
     const api = await eventApi.getUpcoming()
-    events.value = api.length > 0 ? api : staticEvents
+    events.value = Array.isArray(api) ? api : []
   } catch {
-    events.value = staticEvents
+    events.value = []
   }
 }
 

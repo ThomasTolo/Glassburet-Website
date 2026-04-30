@@ -2,7 +2,7 @@
   <section>
     <div class="page-header">
       <div>
-        <span class="eyebrow">Daglige spill · 2 tilgjengelig</span>
+        <span class="eyebrow">Daglige spill · 6 tilgjengelig</span>
         <h1 class="display" style="font-size: clamp(40px, 6vw, 84px); margin: 12px 0 16px;">
           Dagens <em>spill</em>.
         </h1>
@@ -11,7 +11,7 @@
       <div class="page-header-meta">
         {{ dateLabel }}<br />
         {{ semesterLabel }}<br />
-        2 SPILL I DAG
+        6 SPILL I DAG
       </div>
     </div>
 
@@ -21,6 +21,14 @@
       </button>
       <button :class="['sp-tab', activeGame === 'wordle' && 'active']" @click="activeGame = 'wordle'; creatorOpen = false">
         Ordburet
+      </button>
+      <button
+        v-for="game in nativeGames"
+        :key="game.id"
+        :class="['sp-tab', activeGame === game.id && 'active']"
+        @click="activeGame = game.id; creatorOpen = false"
+      >
+        {{ game.name }}
       </button>
     </div>
 
@@ -33,6 +41,7 @@
             Finn fire grupper av fire ord som hører sammen.
             <span v-if="connPuzzle.createdBy" class="puzzle-by">Laget av {{ connPuzzle.createdBy }}</span>
           </p>
+          <a class="source-button" href="https://www.nytimes.com/games/connections" target="_blank" rel="noopener noreferrer">Inspirasjon</a>
         </div>
         <div class="conn-mistakes-box">
           <span class="eyebrow">Feil igjen</span>
@@ -189,6 +198,7 @@
             Gjett det 5-bokstavers ordet på 6 forsøk.
             <span v-if="wrdCreatedBy" class="puzzle-by">Laget av {{ wrdCreatedBy }}</span>
           </p>
+          <a class="source-button" href="https://www.nytimes.com/games/wordle/index.html" target="_blank" rel="noopener noreferrer">Inspirasjon</a>
         </div>
         <div class="wrd-legend">
           <div class="wrd-legend-item"><span class="wrd-sq correct" /> Riktig posisjon</div>
@@ -300,6 +310,180 @@
         </form>
       </div>
     </div>
+
+    <!-- ═══════════════ NATIVE DAILY GAMES ═══════════════ -->
+    <div v-if="activeNativeGame" class="sp-panel">
+      <div class="native-game-panel">
+        <div class="native-game-icon">{{ activeNativeGame.icon }}</div>
+        <h2 class="section-title">{{ activeNativeGame.name }}</h2>
+        <p class="sp-sub">
+          {{ activeNativeGame.description }}
+        </p>
+        <a class="source-button" :href="activeNativeGame.url" target="_blank" rel="noopener noreferrer">Inspirasjon</a>
+
+        <div class="puzzle-library native-library">
+          <span class="eyebrow" style="margin-bottom:8px;display:block;">Velg spill</span>
+          <div class="puzzle-list">
+            <button
+              v-for="p in activeNativePuzzles"
+              :key="p.id"
+              :class="['puzzle-pick', selectedNativeIds[activeGame] === p.id && 'active', activeNativeCompletedIds.includes(p.id) && 'done']"
+              @click="loadNativePuzzle(activeGame, p)"
+            >
+              <span>{{ p.isDaily ? '⊙ Daglig' : (p.createdBy || 'Anonym') }}</span>
+              <span class="puzzle-pick-date">{{ formatPuzzleDate(p.createdAt) }}</span>
+              <span v-if="activeNativeCompletedIds.includes(p.id)" class="puzzle-pick-done">✓</span>
+            </button>
+          </div>
+        </div>
+
+        <div v-if="activeNativeGameState === 'completed'" class="sp-result compact-result">
+          <div class="sp-result-icon">✅</div>
+          <h3>Allerede fullført</h3>
+          <p>Du har allerede spilt denne. Velg en annen fra listen over.</p>
+        </div>
+
+        <div v-if="activeGame === 'merburet'" class="native-game-body">
+          <template v-if="activeNativeGameState !== 'completed' && !merDone">
+            <span class="eyebrow">Runde {{ merIndex + 1 }} / {{ merRounds.length }}</span>
+            <h3 class="native-prompt">{{ merCurrent.metric }}</h3>
+            <div class="choice-grid">
+              <button class="choice-card" @click="merChoose('left')">{{ merCurrent.left }}</button>
+              <button class="choice-card" @click="merChoose('right')">{{ merCurrent.right }}</button>
+            </div>
+            <p v-if="merMessage" class="wrd-message">{{ merMessage }}</p>
+          </template>
+          <div v-if="activeNativeGameState !== 'completed' && merDone" class="sp-result compact-result">
+            <div class="sp-result-icon">↕</div>
+            <h3>{{ merCorrect }} av {{ merRounds.length }} riktig</h3>
+            <p><strong>{{ merScore }} poeng</strong></p>
+            <p v-if="nativeSubmitted.merburet" class="score-saved">✓ Poeng registrert!</p>
+            <p v-else-if="!isAuthenticated" class="score-saved" style="color:var(--ink-mute)">Logg inn for å registrere poeng</p>
+          </div>
+        </div>
+
+        <div v-if="activeGame === 'latburet'" class="native-game-body">
+          <template v-if="activeNativeGameState !== 'completed' && !songDone">
+            <div class="clue-list">
+              <span v-for="clue in songPuzzle.clues.slice(0, songGuesses.length + 1)" :key="clue" class="clue-pill">{{ clue }}</span>
+            </div>
+            <form class="native-form" @submit.prevent="songSubmit">
+              <input v-model="songGuess" class="creator-input native-input" placeholder="Skriv tittel" />
+              <button class="conn-btn conn-btn-primary" type="submit">Gjett</button>
+            </form>
+            <p v-if="songMessage" class="wrd-message">{{ songMessage }}</p>
+          </template>
+          <div v-if="activeNativeGameState !== 'completed' && songDone" class="sp-result compact-result">
+            <div class="sp-result-icon">♪</div>
+            <h3>{{ songPuzzle.answer }}</h3>
+            <p><strong>{{ songScore }} poeng</strong></p>
+            <p v-if="nativeSubmitted.latburet" class="score-saved">✓ Poeng registrert!</p>
+            <p v-else-if="!isAuthenticated" class="score-saved" style="color:var(--ink-mute)">Logg inn for å registrere poeng</p>
+          </div>
+        </div>
+
+        <div v-if="activeGame === 'kryssburet'" class="native-game-body">
+          <form v-if="activeNativeGameState !== 'completed' && !crossDone" class="cross-form" @submit.prevent="crossSubmit">
+            <label v-for="(clue, idx) in crossPuzzle.clues" :key="clue.prompt" class="cross-row">
+              <span>{{ idx + 1 }}. {{ clue.prompt }}</span>
+              <input v-model="crossInputs[idx]" class="creator-input native-input" />
+            </label>
+            <button class="conn-btn conn-btn-primary" type="submit">Send inn</button>
+          </form>
+          <div v-if="activeNativeGameState !== 'completed' && crossDone" class="sp-result compact-result">
+            <div class="sp-result-icon">+</div>
+            <h3>{{ crossCorrect }} av {{ crossPuzzle.clues.length }} riktig</h3>
+            <p><strong>{{ crossScore }} poeng</strong></p>
+            <p v-if="nativeSubmitted.kryssburet" class="score-saved">✓ Poeng registrert!</p>
+            <p v-else-if="!isAuthenticated" class="score-saved" style="color:var(--ink-mute)">Logg inn for å registrere poeng</p>
+          </div>
+        </div>
+
+        <div v-if="activeGame === 'tidsburet'" class="native-game-body">
+          <template v-if="activeNativeGameState !== 'completed' && !timeDone">
+            <h3 class="native-prompt">{{ timePuzzle.prompt }}</h3>
+            <div class="time-grid">
+              <label class="creator-label">
+                År
+                <input v-model.number="timeYear" class="creator-input native-input" type="number" min="1800" max="2026" />
+              </label>
+              <label class="creator-label">
+                Sted
+                <select v-model="timePlace" class="creator-input native-input">
+                  <option value="" disabled>Velg sted</option>
+                  <option v-for="place in timePuzzle.options" :key="place" :value="place">{{ place }}</option>
+                </select>
+              </label>
+            </div>
+            <button class="conn-btn conn-btn-primary" :disabled="!timePlace" @click="timeSubmit">Send inn</button>
+          </template>
+          <div v-if="activeNativeGameState !== 'completed' && timeDone" class="sp-result compact-result">
+            <div class="sp-result-icon">◷</div>
+            <h3>{{ timePuzzle.year }} · {{ timePuzzle.place }}</h3>
+            <p><strong>{{ timeScore }} poeng</strong></p>
+            <p v-if="nativeSubmitted.tidsburet" class="score-saved">✓ Poeng registrert!</p>
+            <p v-else-if="!isAuthenticated" class="score-saved" style="color:var(--ink-mute)">Logg inn for å registrere poeng</p>
+          </div>
+        </div>
+
+        <div class="creator-wrap native-creator">
+          <template v-if="isAuthenticated">
+            <button class="creator-toggle" @click="creatorOpen = !creatorOpen">
+              <span class="creator-toggle-icon">{{ creatorOpen ? '−' : '+' }}</span>
+              Lag ny {{ activeNativeGame.name }}
+            </button>
+          </template>
+          <RouterLink v-else class="creator-login-hint" to="/login">Logg inn for å lage spill →</RouterLink>
+
+          <form v-if="creatorOpen && isAuthenticated" class="creator-form" @submit.prevent="submitNativeCreator">
+            <template v-if="activeGame === 'merburet'">
+              <div v-for="(round, idx) in merCreatorRounds" :key="idx" class="creator-group">
+                <label class="creator-label">Duell {{ idx + 1 }}</label>
+                <input v-model="round.metric" class="creator-input" placeholder="Spørsmål" required />
+                <div class="creator-words-row">
+                  <input v-model="round.left" class="creator-input" placeholder="Venstre" required />
+                  <input v-model="round.right" class="creator-input" placeholder="Høyre" required />
+                </div>
+                <select v-model="round.answer" class="creator-input" required>
+                  <option value="left">Venstre er riktig</option>
+                  <option value="right">Høyre er riktig</option>
+                </select>
+              </div>
+            </template>
+
+            <template v-if="activeGame === 'latburet'">
+              <input v-model="songCreator.answer" class="creator-input" placeholder="Tittel" required @input="songCreator.answer = songCreator.answer.toUpperCase()" />
+              <input v-for="idx in 3" :key="idx" v-model="songCreator.clues[idx - 1]" class="creator-input" :placeholder="`Hint ${idx}`" required />
+            </template>
+
+            <template v-if="activeGame === 'kryssburet'">
+              <div v-for="(clue, idx) in crossCreator.clues" :key="idx" class="creator-group">
+                <label class="creator-label">Hint {{ idx + 1 }}</label>
+                <input v-model="clue.prompt" class="creator-input" placeholder="Hint" required />
+                <input v-model="clue.answer" class="creator-input" placeholder="Svar" required @input="clue.answer = clue.answer.toUpperCase()" />
+              </div>
+            </template>
+
+            <template v-if="activeGame === 'tidsburet'">
+              <input v-model="timeCreator.prompt" class="creator-input" placeholder="Historisk spor" required />
+              <div class="creator-words-row">
+                <input v-model.number="timeCreator.year" class="creator-input" type="number" placeholder="År" required />
+                <input v-model="timeCreator.place" class="creator-input" placeholder="Riktig sted" required />
+              </div>
+              <input v-model="timeCreator.optionsText" class="creator-input" placeholder="Valg, separert med komma" required />
+            </template>
+
+            <div class="creator-actions">
+              <button type="button" class="conn-btn" @click="creatorOpen = false">Avbryt</button>
+              <button type="submit" class="conn-btn conn-btn-primary" :disabled="nativeCreating">
+                {{ nativeCreating ? 'Lagrer…' : 'Publiser spill' }}
+              </button>
+            </div>
+            <p v-if="nativeCreatorError" class="creator-error">{{ nativeCreatorError }}</p>
+          </form>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -312,6 +496,217 @@ import { subscribeToUpdates } from '../services/realtime'
 
 const activeGame = ref('connections')
 const { dateLabel, semesterLabel } = useLiveDateInfo({ intervalMs: 60000 })
+const nativeGames = [
+  {
+    id: 'merburet',
+    name: 'Merburet',
+    description: 'Gjett hva som har størst tallverdi i dagens fem dueller.',
+    gameName: 'MORE_OR_LESS',
+    url: 'https://lessgames.com/moreless',
+    icon: '↕',
+  },
+  {
+    id: 'latburet',
+    name: 'Låtburet',
+    description: 'Finn tittelen fra korte, trygge musikkhint.',
+    gameName: 'SONGLESS',
+    url: 'https://lessgames.com/songless',
+    icon: '♪',
+  },
+  {
+    id: 'kryssburet',
+    name: 'Kryssburet',
+    description: 'Løs fire musikkord fra dagens krysshint.',
+    gameName: 'CROSSTUNES',
+    url: 'https://crosstune.io',
+    icon: '+',
+  },
+  {
+    id: 'tidsburet',
+    name: 'Tidsburet',
+    description: 'Gjett år og sted ut fra historiske spor.',
+    gameName: 'TIMEGUESSR',
+    url: 'https://timeguessr.com',
+    icon: '◷',
+  },
+]
+const activeNativeGame = computed(() => nativeGames.find(game => game.id === activeGame.value))
+const nativePuzzles = ref({ merburet: [], latburet: [], kryssburet: [], tidsburet: [] })
+const selectedNativeIds = ref({})
+const completedNativeIds = ref({ merburet: [], latburet: [], kryssburet: [], tidsburet: [] })
+const nativeSubmitted = ref({})
+const activeNativePuzzles = computed(() => nativePuzzles.value[activeGame.value] ?? [])
+const activeNativeCompletedIds = computed(() => completedNativeIds.value[activeGame.value] ?? [])
+const activeNativeGameState = computed(() => {
+  const id = selectedNativeIds.value[activeGame.value]
+  return id && activeNativeCompletedIds.value.includes(id) ? 'completed' : 'playing'
+})
+
+async function submitNativeScore(gameId, scoreValue) {
+  const game = nativeGames.find(g => g.id === gameId)
+  if (!game || !displayName.value || !displayName.value.trim()) return
+  try {
+    await scoreApi.submit({
+      memberName: displayName.value,
+      gameName: game.gameName,
+      scoreValue,
+      gameDate: new Date().toISOString().split('T')[0],
+      puzzleId: selectedNativeIds.value[gameId],
+    })
+    nativeSubmitted.value = { ...nativeSubmitted.value, [gameId]: true }
+    const completed = await scoreApi.getCompleted(displayName.value, game.gameName)
+    completedNativeIds.value = { ...completedNativeIds.value, [gameId]: completed }
+    if (selectedNativeIds.value[gameId] && !completed.includes(selectedNativeIds.value[gameId])) {
+      completedNativeIds.value = {
+        ...completedNativeIds.value,
+        [gameId]: [...completed, selectedNativeIds.value[gameId]],
+      }
+    }
+  } catch {}
+}
+
+function parseNativePayload(puzzle) {
+  try {
+    return JSON.parse(puzzle.payloadJson)
+  } catch {
+    return null
+  }
+}
+
+function loadNativePuzzle(gameId, puzzle) {
+  selectedNativeIds.value = { ...selectedNativeIds.value, [gameId]: puzzle.id }
+  nativeSubmitted.value = { ...nativeSubmitted.value, [gameId]: false }
+  if ((completedNativeIds.value[gameId] ?? []).includes(puzzle.id)) return
+  const payload = parseNativePayload(puzzle)
+  if (!payload) return
+  if (gameId === 'merburet') applyMerPuzzle(payload)
+  if (gameId === 'latburet') applySongPuzzle(payload)
+  if (gameId === 'kryssburet') applyCrossPuzzle(payload)
+  if (gameId === 'tidsburet') applyTimePuzzle(payload)
+}
+
+// ——— MERBURET ——————————————————————————————————————————
+
+const merRounds = ref([])
+const merIndex = ref(0)
+const merCorrect = ref(0)
+const merDone = ref(false)
+const merMessage = ref('')
+const merCurrent = computed(() => merRounds.value[merIndex.value] ?? { metric: '', left: '', right: '', answer: 'left' })
+const merScore = computed(() => merCorrect.value * 200)
+
+function applyMerPuzzle(payload) {
+  merRounds.value = Array.isArray(payload.rounds) ? payload.rounds : []
+  merIndex.value = 0
+  merCorrect.value = 0
+  merDone.value = false
+  merMessage.value = ''
+}
+
+function merChoose(choice) {
+  if (merDone.value) return
+  if (choice === merCurrent.value.answer) {
+    merCorrect.value++
+    merMessage.value = 'Riktig'
+  } else {
+    merMessage.value = 'Feil'
+  }
+  setTimeout(() => {
+    merMessage.value = ''
+    if (merIndex.value >= merRounds.value.length - 1) {
+      merDone.value = true
+      if (isAuthenticated.value) submitNativeScore('merburet', merScore.value)
+      return
+    }
+    merIndex.value++
+  }, 450)
+}
+
+// ——— LÅTBURET ——————————————————————————————————————————
+
+const songPuzzle = ref({ answer: '', clues: [] })
+const songGuess = ref('')
+const songGuesses = ref([])
+const songDone = ref(false)
+const songMessage = ref('')
+const songScore = computed(() => songDone.value ? Math.max(0, 1000 - ((songGuesses.value.length - 1) * 200)) : 0)
+
+function applySongPuzzle(payload) {
+  songPuzzle.value = { answer: payload.answer ?? '', clues: Array.isArray(payload.clues) ? payload.clues : [] }
+  songGuess.value = ''
+  songGuesses.value = []
+  songDone.value = false
+  songMessage.value = ''
+}
+
+function songSubmit() {
+  if (songDone.value || !songGuess.value.trim()) return
+  const guess = songGuess.value.trim().toUpperCase()
+  songGuesses.value = [...songGuesses.value, guess]
+  songGuess.value = ''
+  if (guess === songPuzzle.value.answer || songGuesses.value.length >= songPuzzle.value.clues.length) {
+    songDone.value = true
+    if (isAuthenticated.value) submitNativeScore('latburet', guess === songPuzzle.value.answer ? songScore.value : 0)
+  } else {
+    songMessage.value = 'Nytt hint låst opp'
+    setTimeout(() => { songMessage.value = '' }, 1200)
+  }
+}
+
+// ——— KRYSSBURET ————————————————————————————————————————
+
+const crossPuzzle = ref({ clues: [] })
+const crossInputs = ref(['', '', '', ''])
+const crossDone = ref(false)
+const crossCorrect = ref(0)
+const crossScore = computed(() => crossCorrect.value * 250)
+
+function applyCrossPuzzle(payload) {
+  crossPuzzle.value = { clues: Array.isArray(payload.clues) ? payload.clues : [] }
+  crossInputs.value = crossPuzzle.value.clues.map(() => '')
+  crossDone.value = false
+  crossCorrect.value = 0
+}
+
+function crossSubmit() {
+  if (crossDone.value) return
+  crossCorrect.value = crossPuzzle.value.clues.filter((clue, idx) => (
+    crossInputs.value[idx] || ''
+  ).trim().toUpperCase() === clue.answer).length
+  crossDone.value = true
+  if (isAuthenticated.value) submitNativeScore('kryssburet', crossScore.value)
+}
+
+// ——— TIDSBURET ——————————————————————————————————————————
+
+const timePuzzle = ref({ prompt: '', year: 2000, place: '', options: [] })
+const timeYear = ref(2000)
+const timePlace = ref('')
+const timeDone = ref(false)
+const timeScore = computed(() => {
+  if (!timeDone.value) return 0
+  const yearPoints = Math.max(0, 500 - Math.abs(Number(timeYear.value) - timePuzzle.value.year) * 20)
+  const placePoints = timePlace.value === timePuzzle.value.place ? 500 : 0
+  return yearPoints + placePoints
+})
+
+function applyTimePuzzle(payload) {
+  timePuzzle.value = {
+    prompt: payload.prompt ?? '',
+    year: Number(payload.year) || 2000,
+    place: payload.place ?? '',
+    options: Array.isArray(payload.options) ? payload.options : [],
+  }
+  timeYear.value = 2000
+  timePlace.value = ''
+  timeDone.value = false
+}
+
+function timeSubmit() {
+  if (timeDone.value || !timePlace.value) return
+  timeDone.value = true
+  if (isAuthenticated.value) submitNativeScore('tidsburet', timeScore.value)
+}
 
 // ——— CONNECTIONS ——————————————————————————————————————
 
@@ -636,6 +1031,123 @@ async function submitWrdCreator() {
   }
 }
 
+// ——— NATIVE GAME CREATOR ———————————————————————————————
+
+const nativeCreating = ref(false)
+const nativeCreatorError = ref('')
+const merCreatorRounds = ref([
+  { metric: '', left: '', right: '', answer: 'left' },
+  { metric: '', left: '', right: '', answer: 'left' },
+  { metric: '', left: '', right: '', answer: 'left' },
+  { metric: '', left: '', right: '', answer: 'left' },
+  { metric: '', left: '', right: '', answer: 'left' },
+])
+const songCreator = ref({ answer: '', clues: ['', '', ''] })
+const crossCreator = ref({
+  clues: [
+    { prompt: '', answer: '' },
+    { prompt: '', answer: '' },
+    { prompt: '', answer: '' },
+    { prompt: '', answer: '' },
+  ],
+})
+const timeCreator = ref({ prompt: '', year: new Date().getFullYear(), place: '', optionsText: '' })
+
+function resetNativeCreator(gameId) {
+  if (gameId === 'merburet') {
+    merCreatorRounds.value = [
+      { metric: '', left: '', right: '', answer: 'left' },
+      { metric: '', left: '', right: '', answer: 'left' },
+      { metric: '', left: '', right: '', answer: 'left' },
+      { metric: '', left: '', right: '', answer: 'left' },
+      { metric: '', left: '', right: '', answer: 'left' },
+    ]
+  }
+  if (gameId === 'latburet') songCreator.value = { answer: '', clues: ['', '', ''] }
+  if (gameId === 'kryssburet') {
+    crossCreator.value = {
+      clues: [
+        { prompt: '', answer: '' },
+        { prompt: '', answer: '' },
+        { prompt: '', answer: '' },
+        { prompt: '', answer: '' },
+      ],
+    }
+  }
+  if (gameId === 'tidsburet') timeCreator.value = { prompt: '', year: new Date().getFullYear(), place: '', optionsText: '' }
+}
+
+function buildNativeCreatorPayload(gameId) {
+  if (gameId === 'merburet') {
+    if (merCreatorRounds.value.some(r => !r.metric.trim() || !r.left.trim() || !r.right.trim())) return null
+    return {
+      rounds: merCreatorRounds.value.map(r => ({
+        metric: r.metric.trim(),
+        left: r.left.trim(),
+        right: r.right.trim(),
+        answer: r.answer,
+      })),
+    }
+  }
+  if (gameId === 'latburet') {
+    if (!songCreator.value.answer.trim() || songCreator.value.clues.some(c => !c.trim())) return null
+    return {
+      answer: songCreator.value.answer.trim().toUpperCase(),
+      clues: songCreator.value.clues.map(c => c.trim()),
+    }
+  }
+  if (gameId === 'kryssburet') {
+    if (crossCreator.value.clues.some(c => !c.prompt.trim() || !c.answer.trim())) return null
+    return {
+      clues: crossCreator.value.clues.map(c => ({
+        prompt: c.prompt.trim(),
+        answer: c.answer.trim().toUpperCase(),
+      })),
+    }
+  }
+  if (gameId === 'tidsburet') {
+    const options = timeCreator.value.optionsText.split(',').map(o => o.trim()).filter(Boolean)
+    if (!timeCreator.value.prompt.trim() || !timeCreator.value.place.trim() || !timeCreator.value.year || options.length < 2) return null
+    if (!options.includes(timeCreator.value.place.trim())) options.unshift(timeCreator.value.place.trim())
+    return {
+      prompt: timeCreator.value.prompt.trim(),
+      year: Number(timeCreator.value.year),
+      place: timeCreator.value.place.trim(),
+      options,
+    }
+  }
+  return null
+}
+
+async function submitNativeCreator() {
+  nativeCreatorError.value = ''
+  const game = activeNativeGame.value
+  if (!game) return
+  const payload = buildNativeCreatorPayload(game.id)
+  if (!payload) {
+    nativeCreatorError.value = 'Fyll ut alle feltene.'
+    return
+  }
+  nativeCreating.value = true
+  try {
+    const data = await puzzleApi.createNative(game.gameName, {
+      createdBy: displayName.value || 'Anonym',
+      payloadJson: JSON.stringify(payload),
+    })
+    nativePuzzles.value = {
+      ...nativePuzzles.value,
+      [game.id]: [data, ...(nativePuzzles.value[game.id] ?? [])],
+    }
+    loadNativePuzzle(game.id, data)
+    resetNativeCreator(game.id)
+    creatorOpen.value = false
+  } catch {
+    nativeCreatorError.value = 'Noe gikk galt. Prøv igjen.'
+  } finally {
+    nativeCreating.value = false
+  }
+}
+
 // ——— KEYBOARD HANDLER ——————————————————————————————————
 
 function handleKeydown(e) {
@@ -650,24 +1162,49 @@ function handleKeydown(e) {
 
 async function loadCompletedPuzzles() {
   if (!isAuthenticated.value || !displayName.value) return
-  const [connComp, wrdComp] = await Promise.allSettled([
+  const [connComp, wrdComp, ...nativeComp] = await Promise.allSettled([
     scoreApi.getCompleted(displayName.value, 'CONNECTIONS'),
     scoreApi.getCompleted(displayName.value, 'WORDLE'),
+    ...nativeGames.map(game => scoreApi.getCompleted(displayName.value, game.gameName)),
   ])
   if (connComp.status === 'fulfilled') completedConnIds.value = connComp.value
   if (wrdComp.status === 'fulfilled')  completedWrdIds.value  = wrdComp.value
+  const nextCompleted = { ...completedNativeIds.value }
+  nativeComp.forEach((result, idx) => {
+    if (result.status === 'fulfilled') nextCompleted[nativeGames[idx].id] = result.value
+  })
+  completedNativeIds.value = nextCompleted
 }
 
 async function loadPuzzleLibrary({ applyDaily = false } = {}) {
-  const [dailyConnResult, dailyWrdResult, allConnResult, allWrdResult] = await Promise.allSettled([
+  const nativeRequests = nativeGames.flatMap(game => [
+    puzzleApi.getDailyNative(game.gameName),
+    puzzleApi.getAllNative(game.gameName),
+  ])
+  const [dailyConnResult, dailyWrdResult, allConnResult, allWrdResult, ...nativeResults] = await Promise.allSettled([
     puzzleApi.getDailyConnections(),
     puzzleApi.getDailyWordle(),
     puzzleApi.getAllConnections(),
     puzzleApi.getAllWordle(),
+    ...nativeRequests,
   ])
 
   if (allConnResult.status === 'fulfilled') allConnPuzzles.value = allConnResult.value
   if (allWrdResult.status === 'fulfilled')  allWrdPuzzles.value  = allWrdResult.value
+  const nextNativePuzzles = { ...nativePuzzles.value }
+  const dailyNative = {}
+  nativeGames.forEach((game, idx) => {
+    const dailyResult = nativeResults[idx * 2]
+    const allResult = nativeResults[idx * 2 + 1]
+    if (allResult?.status === 'fulfilled') nextNativePuzzles[game.id] = allResult.value
+    if (dailyResult?.status === 'fulfilled' && dailyResult.value?.id) {
+      dailyNative[game.id] = dailyResult.value
+      if (!nextNativePuzzles[game.id]?.some(p => p.id === dailyResult.value.id)) {
+        nextNativePuzzles[game.id] = [dailyResult.value, ...(nextNativePuzzles[game.id] ?? [])]
+      }
+    }
+  })
+  nativePuzzles.value = nextNativePuzzles
 
   // Ensure daily puzzles appear in the library (race: getAll may resolve before daily is created)
   if (dailyConnResult.status === 'fulfilled' && dailyConnResult.value?.id) {
@@ -686,6 +1223,11 @@ async function loadPuzzleLibrary({ applyDaily = false } = {}) {
   }
   if (applyDaily && dailyWrdResult.status === 'fulfilled' && dailyWrdResult.value?.word) {
     loadWrdPuzzle(dailyWrdResult.value)
+  }
+  if (applyDaily) {
+    nativeGames.forEach(game => {
+      if (dailyNative[game.id]) loadNativePuzzle(game.id, dailyNative[game.id])
+    })
   }
 }
 
@@ -711,6 +1253,7 @@ onUnmounted(() => {
 <style scoped>
 .sp-tabs {
   display: flex;
+  flex-wrap: wrap;
   border-bottom: 1px solid var(--line);
   margin-bottom: 40px;
 }
@@ -732,6 +1275,28 @@ onUnmounted(() => {
 .sp-panel { max-width: 700px; margin: 0 auto; }
 .sp-sub { color: var(--ink-mute); font-size: 13px; margin-top: 8px; }
 .puzzle-by { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--accent-3); margin-left: 8px; }
+.source-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin-top: 12px;
+  padding: 9px 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: 999px;
+  background: var(--bg);
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  transition: all 0.2s ease;
+}
+.source-button:hover {
+  border-color: var(--accent-2);
+  color: var(--accent-2);
+  background: var(--paper);
+}
 
 /* ── Puzzle library ──────────────────────────── */
 .puzzle-library {
@@ -937,6 +1502,103 @@ onUnmounted(() => {
 .sp-result strong { color: var(--ink); }
 .score-saved { font-family: var(--mono); font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
 
+.native-game-panel {
+  text-align: center;
+  padding: 48px 32px;
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.native-game-icon {
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--line-soft);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 32px;
+  color: var(--accent-2);
+}
+.native-game-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.native-prompt {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.25;
+}
+.choice-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.choice-card {
+  min-height: 96px;
+  padding: 18px;
+  background: var(--bg);
+  border: 1.5px solid var(--line-soft);
+  border-radius: var(--radius);
+  font-family: var(--serif);
+  font-size: 22px;
+  transition: all 0.15s ease;
+}
+.choice-card:hover { border-color: var(--ink); background: var(--bg-soft); }
+.clue-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.clue-pill {
+  padding: 8px 12px;
+  border: 1px solid var(--line-soft);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+}
+.native-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.native-input { text-align: center; }
+.cross-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cross-row {
+  display: grid;
+  grid-template-columns: 1fr minmax(160px, 220px);
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.time-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.compact-result { width: 100%; margin: 0; padding: 32px 24px; }
+
 /* ── Creator ─────────────────────────────────── */
 .creator-wrap {
   margin-top: 48px;
@@ -1072,5 +1734,9 @@ onUnmounted(() => {
   .wrd-top, .conn-top { flex-direction: column; gap: 16px; }
   .creator-words-row { grid-template-columns: repeat(2, 1fr); }
   .puzzle-list { flex-direction: column; }
+  .choice-grid, .time-grid { grid-template-columns: 1fr; }
+  .native-form { flex-direction: column; }
+  .cross-row { grid-template-columns: 1fr; }
+  .native-game-panel { padding: 32px 18px; }
 }
 </style>
