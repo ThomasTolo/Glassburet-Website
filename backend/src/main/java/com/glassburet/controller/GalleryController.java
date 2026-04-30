@@ -2,6 +2,7 @@ package com.glassburet.controller;
 
 import com.glassburet.dto.PhotoDto;
 import com.glassburet.model.Photo;
+import com.glassburet.realtime.SiteUpdateBroadcaster;
 import com.glassburet.service.GalleryService;
 import org.springframework.http.MediaType;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,6 +24,9 @@ public class GalleryController {
     @Autowired
     private GalleryService galleryService;
 
+    @Autowired
+    private SiteUpdateBroadcaster siteUpdateBroadcaster;
+
     @GetMapping
     public ResponseEntity<List<Photo>> getAllPhotos(@RequestParam(required = false) String category) {
         return ResponseEntity.ok(galleryService.findAll(category));
@@ -30,7 +34,9 @@ public class GalleryController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Photo> uploadPhoto(@RequestBody PhotoDto photoDto) {
-        return ResponseEntity.ok(galleryService.create(photoDto));
+        Photo photo = galleryService.create(photoDto);
+        siteUpdateBroadcaster.publish("gallery");
+        return ResponseEntity.ok(photo);
     }
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -59,6 +65,7 @@ public class GalleryController {
             dto.setCategory(category);
             dto.setUploadedBy(uploadedBy);
             Photo created = galleryService.create(dto);
+            siteUpdateBroadcaster.publish("gallery");
             return ResponseEntity.status(201).body(created);
         } catch (Exception e) {
             throw new RuntimeException("Failed to upload file", e);
@@ -67,17 +74,22 @@ public class GalleryController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Photo> updatePhoto(@PathVariable Long id, @RequestBody PhotoDto photoDto) {
-        return ResponseEntity.ok(galleryService.update(id, photoDto));
+        Photo photo = galleryService.update(id, photoDto);
+        siteUpdateBroadcaster.publish("gallery");
+        return ResponseEntity.ok(photo);
     }
 
     @PutMapping("/{id}/like")
     public ResponseEntity<Photo> likePhoto(@PathVariable Long id, Authentication auth) {
-        return ResponseEntity.ok(galleryService.toggleLike(id, auth.getName()));
+        Photo photo = galleryService.toggleLike(id, auth.getName());
+        siteUpdateBroadcaster.publish("gallery");
+        return ResponseEntity.ok(photo);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePhoto(@PathVariable Long id) {
         galleryService.delete(id);
+        siteUpdateBroadcaster.publish("gallery");
         return ResponseEntity.noContent().build();
     }
 }

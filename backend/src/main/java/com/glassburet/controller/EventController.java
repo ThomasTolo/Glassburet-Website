@@ -3,6 +3,7 @@ package com.glassburet.controller;
 import com.glassburet.dto.EventDto;
 import com.glassburet.model.Event;
 import com.glassburet.model.EventCategory;
+import com.glassburet.realtime.SiteUpdateBroadcaster;
 import com.glassburet.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,9 @@ public class EventController {
     @Autowired
     private EventService eventService;
 
+    @Autowired
+    private SiteUpdateBroadcaster siteUpdateBroadcaster;
+
     @GetMapping
     public ResponseEntity<List<Event>> getUpcomingEvents() {
         return ResponseEntity.ok(eventService.findUpcoming());
@@ -29,22 +33,29 @@ public class EventController {
 
     @PostMapping
     public ResponseEntity<Event> createEvent(@RequestBody EventDto eventDto) {
-        return ResponseEntity.ok(eventService.create(eventDto));
+        Event event = eventService.create(eventDto);
+        siteUpdateBroadcaster.publish("events");
+        return ResponseEntity.ok(event);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Event> updateEvent(@PathVariable Long id, @RequestBody EventDto eventDto) {
-        return ResponseEntity.ok(eventService.update(id, eventDto));
+        Event event = eventService.update(id, eventDto);
+        siteUpdateBroadcaster.publish("events");
+        return ResponseEntity.ok(event);
     }
 
     @PutMapping("/{eventId}/attendance/{memberName}")
     public ResponseEntity<Event> toggleAttendance(@PathVariable Long eventId, @PathVariable String memberName) {
-        return ResponseEntity.ok(eventService.toggleAttendance(eventId, memberName));
+        Event event = eventService.toggleAttendance(eventId, memberName);
+        siteUpdateBroadcaster.publish("events");
+        return ResponseEntity.ok(event);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEvent(@PathVariable Long id) {
         eventService.delete(id);
+        siteUpdateBroadcaster.publish("events");
         return ResponseEntity.noContent().build();
     }
 }

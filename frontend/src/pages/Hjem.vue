@@ -103,10 +103,11 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { statsApi, quoteApi, eventApi, scoreApi, linerApi, galleryApi } from '../services/api'
 import staticEvents from '../data/events.json'
 import { useLiveDateInfo } from '../composables/useLiveDateInfo'
+import { subscribeToUpdates } from '../services/realtime'
 
 const stats = ref(null)
 const featuredQuote = ref(null)
@@ -133,7 +134,7 @@ const getCategoryClass = (category) => {
   return ''
 }
 
-onMounted(async () => {
+const loadHome = async () => {
   try { stats.value = await statsApi.getStats() } catch {}
 
   try { featuredQuote.value = await quoteApi.getFeatured() } catch {}
@@ -160,5 +161,18 @@ onMounted(async () => {
   try { liners.value = await linerApi.getAll() } catch {}
 
   try { photos.value = await galleryApi.getAll() } catch {}
+}
+
+const unsubscribers = []
+
+onMounted(async () => {
+  await loadHome()
+  ;['quotes', 'events', 'scores', 'liners', 'gallery'].forEach(type => {
+    unsubscribers.push(subscribeToUpdates(type, loadHome))
+  })
+})
+
+onUnmounted(() => {
+  unsubscribers.forEach(unsubscribe => unsubscribe())
 })
 </script>

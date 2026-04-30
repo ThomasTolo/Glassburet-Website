@@ -308,6 +308,7 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { puzzleApi, scoreApi } from '../services/api'
 import { useLiveDateInfo } from '../composables/useLiveDateInfo'
 import { isAuthenticated, displayName } from '../services/authState'
+import { subscribeToUpdates } from '../services/realtime'
 
 const activeGame = ref('connections')
 const { dateLabel, semesterLabel } = useLiveDateInfo({ intervalMs: 60000 })
@@ -647,10 +648,17 @@ function handleKeydown(e) {
 
 // ——— INIT ———————————————————————————————————————————————
 
-onMounted(async () => {
-  connInit()
-  window.addEventListener('keydown', handleKeydown)
+async function loadCompletedPuzzles() {
+  if (!isAuthenticated.value || !displayName.value) return
+  const [connComp, wrdComp] = await Promise.allSettled([
+    scoreApi.getCompleted(displayName.value, 'CONNECTIONS'),
+    scoreApi.getCompleted(displayName.value, 'WORDLE'),
+  ])
+  if (connComp.status === 'fulfilled') completedConnIds.value = connComp.value
+  if (wrdComp.status === 'fulfilled')  completedWrdIds.value  = wrdComp.value
+}
 
+async function loadPuzzleLibrary({ applyDaily = false } = {}) {
   const [dailyConnResult, dailyWrdResult, allConnResult, allWrdResult] = await Promise.allSettled([
     puzzleApi.getDailyConnections(),
     puzzleApi.getDailyWordle(),
@@ -673,26 +681,30 @@ onMounted(async () => {
     }
   }
 
-  // Load completed puzzle IDs for the current user before applying any puzzle
-  if (isAuthenticated.value && displayName.value) {
-    const [connComp, wrdComp] = await Promise.allSettled([
-      scoreApi.getCompleted(displayName.value, 'CONNECTIONS'),
-      scoreApi.getCompleted(displayName.value, 'WORDLE'),
-    ])
-    if (connComp.status === 'fulfilled') completedConnIds.value = connComp.value
-    if (wrdComp.status === 'fulfilled')  completedWrdIds.value  = wrdComp.value
-  }
-
-  if (dailyConnResult.status === 'fulfilled' && dailyConnResult.value?.groups) {
+  if (applyDaily && dailyConnResult.status === 'fulfilled' && dailyConnResult.value?.groups) {
     loadConnPuzzle(dailyConnResult.value)
   }
-  if (dailyWrdResult.status === 'fulfilled' && dailyWrdResult.value?.word) {
+  if (applyDaily && dailyWrdResult.status === 'fulfilled' && dailyWrdResult.value?.word) {
     loadWrdPuzzle(dailyWrdResult.value)
   }
+}
+
+let unsubscribePuzzles = null
+let unsubscribeScores = null
+
+onMounted(async () => {
+  connInit()
+  window.addEventListener('keydown', handleKeydown)
+  await loadCompletedPuzzles()
+  await loadPuzzleLibrary({ applyDaily: true })
+  unsubscribePuzzles = subscribeToUpdates('puzzles', () => loadPuzzleLibrary())
+  unsubscribeScores = subscribeToUpdates('scores', loadCompletedPuzzles)
 })
 
 onUnmounted(() => {
   window.removeEventListener('keydown', handleKeydown)
+  if (unsubscribePuzzles) unsubscribePuzzles()
+  if (unsubscribeScores) unsubscribeScores()
 })
 </script>
 

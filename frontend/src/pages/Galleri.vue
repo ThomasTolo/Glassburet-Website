@@ -87,9 +87,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { galleryApi } from '../services/api'
 import { isAuthenticated, isAdminOrAbove, displayName } from '../services/authState'
+import { subscribeToUpdates } from '../services/realtime'
 
 const filters = ['Alt', 'Glassburet', 'Turer', 'Fest', 'Studiedager ', 'Echo-events', 'Memes', '2025', '2026']
 const activeFilter = ref('Alt')
@@ -190,8 +191,19 @@ const deletePhoto = async (id) => {
   } catch {}
 }
 
-onMounted(async () => {
+const loadPhotos = async () => {
   try { photos.value = await galleryApi.getAll() } catch {}
+}
+
+let unsubscribeGallery = null
+
+onMounted(async () => {
+  await loadPhotos()
+  unsubscribeGallery = subscribeToUpdates('gallery', loadPhotos)
+})
+
+onUnmounted(() => {
+  if (unsubscribeGallery) unsubscribeGallery()
 })
 </script>
 
