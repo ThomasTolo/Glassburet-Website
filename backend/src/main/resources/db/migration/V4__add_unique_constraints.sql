@@ -1,13 +1,14 @@
--- Deduplicate existing rows before adding unique constraints/indexes.
--- Keep the row with the smallest id for each duplicate group.
+-- Temporarily disabled: referenced tables (scores, quotes, liners, photos) don't exist yet.
+-- These will be created elsewhere or in later migrations.
+-- TODO: Recreate unique constraint logic after their dependencies are created.
 
-WITH dup_scores AS (
-  SELECT id FROM (
-    SELECT id, ROW_NUMBER() OVER (PARTITION BY member_name, game_name, game_date ORDER BY id) AS rn
-    FROM scores
-  ) t WHERE t.rn > 1
-)
-DELETE FROM scores WHERE id IN (SELECT id FROM dup_scores);
+-- WITH dup_scores AS (
+--   SELECT id FROM (
+--     SELECT id, ROW_NUMBER() OVER (PARTITION BY member_name, game_name, game_date ORDER BY id) AS rn
+--     FROM scores
+--   ) t WHERE t.rn > 1
+-- )
+-- DELETE FROM scores WHERE id IN (SELECT id FROM dup_scores);
 
 WITH dup_quotes AS (
   SELECT id FROM (
