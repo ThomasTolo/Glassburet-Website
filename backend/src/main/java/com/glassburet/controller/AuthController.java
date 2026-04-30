@@ -7,9 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -43,16 +42,7 @@ public class AuthController {
     public ResponseEntity<?> register(@RequestBody Map<String, String> body) {
         String name = body.get("name");
         String password = body.get("password");
-        String role = body.getOrDefault("role", "ROLE_MEMBER");
-
-        // Bootstrap: if no members exist, allow the first registration regardless of role.
-        long count = memberRepository.count();
-        if (count > 0 && "ROLE_ADMIN".equals(role)) {
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            if (auth == null || !auth.isAuthenticated() || auth.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
-                return ResponseEntity.status(403).body(Map.of("error", "admin required"));
-            }
-        }
+        String role = "ROLE_MEMBER";
 
         if (memberRepository.existsByName(name)) {
             return ResponseEntity.badRequest().body(Map.of("error", "Member exists"));
@@ -67,6 +57,14 @@ public class AuthController {
         return ResponseEntity.ok(Map.of("created", true));
     }
 
+    @GetMapping("/members")
+    public ResponseEntity<?> listMembers() {
+        List<Map<String, String>> members = memberRepository.findAll().stream()
+                .map(m -> Map.of("name", m.getName(), "role", m.getRole()))
+                .toList();
+        return ResponseEntity.ok(members);
+    }
+
     @PutMapping("/members/{name}/role")
     public ResponseEntity<?> updateRole(@PathVariable String name, @RequestBody Map<String, String> body) {
         String newRole = body.get("role");
@@ -75,6 +73,9 @@ public class AuthController {
         }
         return memberRepository.findByName(name)
                 .map(m -> {
+                    if ("ROLE_OWNER".equals(m.getRole())) {
+                        return ResponseEntity.status(403).body(Map.of("error", "Cannot modify an Owner account"));
+                    }
                     m.setRole(newRole);
                     memberRepository.save(m);
                     return ResponseEntity.ok(Map.of("updated", true, "name", name, "role", newRole));
