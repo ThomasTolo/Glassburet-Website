@@ -1,14 +1,5 @@
--- Cleanup duplicate rows that would violate new unique constraints
--- Keep the row with the smallest id for each duplicate group
-
--- Scores: keep one per (member_name, game_name, game_date)
-WITH dup AS (
-  SELECT id FROM (
-    SELECT id, ROW_NUMBER() OVER (PARTITION BY member_name, game_name, game_date ORDER BY id) AS rn
-    FROM scores
-  ) t WHERE t.rn > 1
-)
-DELETE FROM scores WHERE id IN (SELECT id FROM dup);
+-- Temporarily disabled: referenced tables (scores, quotes, liners, photos, events) don't exist yet.
+-- TODO: Recreate cleanup logic after table creation.
 
 -- Quotes: dedupe exact text+author duplicates
 WITH dup AS (
