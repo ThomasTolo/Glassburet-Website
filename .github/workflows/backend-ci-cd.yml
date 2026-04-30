@@ -31,6 +31,13 @@ jobs:
         cd backend
         ./gradlew test
 
+    - name: Upload JaCoCo coverage reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: jacoco-coverage-reports
+        path: backend/build/reports/jacoco/
+
     - name: Upload test reports
       if: always()
       uses: actions/upload-artifact@v4
