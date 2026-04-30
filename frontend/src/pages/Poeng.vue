@@ -22,7 +22,7 @@
         :class="['lb-tab', { active: activeTab === i }]"
         @click="activeTab = i; loadLeaderboard()"
       >
-        {{ tab }}<span v-if="i === 0" class="badge">{{ semesterDayNumber }}</span>
+        {{ tab }}
       </button>
     </div>
 
@@ -58,9 +58,10 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { scoreApi } from '../services/api'
 import { useLiveDateInfo } from '../composables/useLiveDateInfo'
+import { subscribeToUpdates } from '../services/realtime'
 
 const tabs = ['I dag', 'Denne uken', 'Denne måneden', 'All-time']
 const activeTab = ref(0)
@@ -73,7 +74,7 @@ const gameFilters = [
 ]
 const activeGame = ref('')
 const activeGameLabel = computed(() => gameFilters.find(g => g.value === activeGame.value)?.label ?? 'Leaderboard')
-const { dateLabel, semesterLabel, semesterDayNumber } = useLiveDateInfo({ intervalMs: 60000 })
+const { dateLabel, semesterLabel } = useLiveDateInfo({ intervalMs: 60000 })
 
 // Manual score submission removed — scores should only come from games
 
@@ -92,7 +93,17 @@ const loadLeaderboard = async () => {
 
 // submitScore removed — scores are handled by game backend
 
-onMounted(() => { loadLeaderboard() })
+let unsubscribeScores = null
+
+onMounted(() => {
+  loadLeaderboard()
+  unsubscribeScores = subscribeToUpdates('scores', loadLeaderboard)
+})
+
+onUnmounted(() => {
+  if (unsubscribeScores) unsubscribeScores()
+})
+
 watch(() => activeTab.value, loadLeaderboard)
 </script>
 

@@ -1,6 +1,7 @@
 package com.glassburet.controller;
 
 import com.glassburet.model.Member;
+import com.glassburet.realtime.SiteUpdateBroadcaster;
 import com.glassburet.repository.MemberRepository;
 import com.glassburet.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class AuthController {
 
     @Autowired
     private JwtUtil jwtUtil;
+
+    @Autowired
+    private SiteUpdateBroadcaster siteUpdateBroadcaster;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> body) {
@@ -63,6 +67,7 @@ public class AuthController {
         m.setRole(role);
 
         memberRepository.save(m);
+        siteUpdateBroadcaster.publish("members");
         String token = jwtUtil.generateToken(m.getName(), m.getRole());
         return ResponseEntity.ok(Map.of("token", token));
     }
@@ -88,6 +93,8 @@ public class AuthController {
                     }
                     m.setRole(newRole);
                     memberRepository.save(m);
+                    siteUpdateBroadcaster.publish("members");
+                    siteUpdateBroadcaster.publish("auth");
                     return ResponseEntity.ok(Map.of("updated", true, "name", name, "role", newRole));
                 })
                 .orElseGet(() -> ResponseEntity.status(404).body(Map.of("error", "Member not found")));

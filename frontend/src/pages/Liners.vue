@@ -73,9 +73,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { linerApi } from '../services/api'
 import { isAuthenticated, isAdminOrAbove, displayName } from '../services/authState'
+import { subscribeToUpdates } from '../services/realtime'
 
 const liners = ref([])
 const showCreate = ref(false)
@@ -142,8 +143,19 @@ const deleteLiner = async (id) => {
   } catch {}
 }
 
-onMounted(async () => {
+const loadLiners = async () => {
   try { liners.value = await linerApi.getAll() } catch {}
+}
+
+let unsubscribeLiners = null
+
+onMounted(async () => {
+  await loadLiners()
+  unsubscribeLiners = subscribeToUpdates('liners', loadLiners)
+})
+
+onUnmounted(() => {
+  if (unsubscribeLiners) unsubscribeLiners()
 })
 </script>
 

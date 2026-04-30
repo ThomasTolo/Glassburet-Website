@@ -79,10 +79,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { quoteApi } from '../services/api'
 import { isAuthenticated, isAdminOrAbove, displayName } from '../services/authState'
 import { useLiveDateInfo } from '../composables/useLiveDateInfo'
+import { subscribeToUpdates } from '../services/realtime'
 
 const quotes = ref([])
 const showCreate = ref(false)
@@ -172,10 +173,21 @@ const deleteQuote = async (id) => {
   } catch {}
 }
 
-onMounted(async () => {
+const loadQuotes = async () => {
   try {
     quotes.value = await quoteApi.getAll()
   } catch {}
+}
+
+let unsubscribeQuotes = null
+
+onMounted(async () => {
+  await loadQuotes()
+  unsubscribeQuotes = subscribeToUpdates('quotes', loadQuotes)
+})
+
+onUnmounted(() => {
+  if (unsubscribeQuotes) unsubscribeQuotes()
 })
 </script>
 

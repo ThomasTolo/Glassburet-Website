@@ -101,10 +101,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { eventApi } from '../services/api'
 import { isAuthenticated, isAdminOrAbove, displayName } from '../services/authState'
 import staticEvents from '../data/events.json'
+import { subscribeToUpdates } from '../services/realtime'
 
 const events = ref([])
 const categories = ['SOSIALT', 'FAGLIG', 'TUR', 'ECHO', 'GLASSBURET']
@@ -188,13 +189,24 @@ const deleteEvent = async (id) => {
   } catch {}
 }
 
-onMounted(async () => {
+const loadEvents = async () => {
   try {
     const api = await eventApi.getUpcoming()
     events.value = api.length > 0 ? api : staticEvents
   } catch {
     events.value = staticEvents
   }
+}
+
+let unsubscribeEvents = null
+
+onMounted(async () => {
+  await loadEvents()
+  unsubscribeEvents = subscribeToUpdates('events', loadEvents)
+})
+
+onUnmounted(() => {
+  if (unsubscribeEvents) unsubscribeEvents()
 })
 </script>
 

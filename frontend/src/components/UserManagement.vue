@@ -32,8 +32,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { memberApi } from '../services/api'
+import { subscribeToUpdates } from '../services/realtime'
 
 defineEmits(['close'])
 
@@ -74,7 +75,16 @@ function roleClass(role) {
   return 'member'
 }
 
-onMounted(fetchMembers)
+let unsubscribeMembers = null
+
+onMounted(() => {
+  fetchMembers()
+  unsubscribeMembers = subscribeToUpdates('members', fetchMembers)
+})
+
+onUnmounted(() => {
+  if (unsubscribeMembers) unsubscribeMembers()
+})
 </script>
 
 <style scoped>

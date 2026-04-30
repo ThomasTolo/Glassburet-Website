@@ -3,6 +3,7 @@ package com.glassburet.controller;
 import com.glassburet.dto.ScoreSubmitDto;
 import com.glassburet.dto.LeaderboardEntryDto;
 import com.glassburet.model.Score;
+import com.glassburet.realtime.SiteUpdateBroadcaster;
 import com.glassburet.service.ScoreService;
 import com.glassburet.dto.ScoreSubmissionResult;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,9 @@ public class ScoreController {
     @Autowired
     private ScoreService scoreService;
 
+    @Autowired
+    private SiteUpdateBroadcaster siteUpdateBroadcaster;
+
     @PostMapping
     public ResponseEntity<Score> submitScore(@RequestBody ScoreSubmitDto scoreSubmitDto, Authentication authentication) {
         if (authentication == null || authentication.getName() == null || authentication.getName().isBlank()) {
@@ -30,6 +34,7 @@ public class ScoreController {
         try {
             ScoreSubmissionResult result = scoreService.submit(scoreSubmitDto);
             if (result.isCreated()) {
+                siteUpdateBroadcaster.publish("scores");
                 return ResponseEntity.status(HttpStatus.CREATED).body(result.getScore());
             }
             return ResponseEntity.ok(result.getScore());
