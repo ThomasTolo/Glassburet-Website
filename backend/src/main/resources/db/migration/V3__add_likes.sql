@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS quote_likes (
+    quote_id BIGINT NOT NULL REFERENCES quotes(id) ON DELETE CASCADE,
+    member_name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (quote_id, member_name)
+);
+
+CREATE TABLE IF NOT EXISTS liner_likes (
+    liner_id BIGINT NOT NULL REFERENCES liners(id) ON DELETE CASCADE,
+    member_name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (liner_id, member_name)
+);
+
+CREATE TABLE IF NOT EXISTS photo_likes (
+    photo_id BIGINT NOT NULL REFERENCES photos(id) ON DELETE CASCADE,
+    member_name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (photo_id, member_name)
+);

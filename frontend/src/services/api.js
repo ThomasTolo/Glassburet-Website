@@ -17,6 +17,10 @@ const apiCall = async (endpoint, options = {}) => {
   }
 
   try {
+    // If caller passed FormData, let the browser set Content-Type (boundary)
+    if (options.body instanceof FormData) {
+      delete defaultOptions.headers['Content-Type'];
+    }
     const response = await fetch(url, { ...defaultOptions, ...options });
     if (!response.ok) {
       throw new Error(`API error: ${response.status} ${response.statusText}`);
@@ -32,6 +36,8 @@ export const quoteApi = {
   getAll: () => apiCall('/quotes'),
   getFeatured: () => apiCall('/quotes/featured'),
   create: (quoteDto) => apiCall('/quotes', { method: 'POST', body: JSON.stringify(quoteDto) }),
+  update: (id, quoteDto) => apiCall(`/quotes/${id}`, { method: 'PUT', body: JSON.stringify(quoteDto) }),
+  like: (id) => apiCall(`/quotes/${id}/like`, { method: 'PUT' }),
   delete: (id) => apiCall(`/quotes/${id}`, { method: 'DELETE' }),
 };
 
@@ -54,21 +60,27 @@ export const auth = {
 
 export const linerApi = {
   getAll: () => apiCall('/liners'),
+  create: (linerDto) => apiCall('/liners', { method: 'POST', body: JSON.stringify(linerDto) }),
+  update: (id, linerDto) => apiCall(`/liners/${id}`, { method: 'PUT', body: JSON.stringify(linerDto) }),
+  delete: (id) => apiCall(`/liners/${id}`, { method: 'DELETE' }),
   incrementSaidCount: (id) => apiCall(`/liners/${id}/said`, { method: 'PUT' }),
+  like: (id) => apiCall(`/liners/${id}/like`, { method: 'PUT' }),
 };
 
 export const eventApi = {
   getUpcoming: () => apiCall('/events'),
   getByCategory: (category) => apiCall(`/events/category/${category}`),
   create: (eventDto) => apiCall('/events', { method: 'POST', body: JSON.stringify(eventDto) }),
-  toggleAttendance: (eventId, memberName) => apiCall(`/events/${eventId}/attendance/${memberName}`, { method: 'PUT' }),
+  update: (id, eventDto) => apiCall(`/events/${id}`, { method: 'PUT', body: JSON.stringify(eventDto) }),
+  toggleAttendance: (eventId, memberName) => apiCall(`/events/${eventId}/attendance/${encodeURIComponent(memberName)}`, { method: 'PUT' }),
   delete: (id) => apiCall(`/events/${id}`, { method: 'DELETE' }),
 };
 
 export const scoreApi = {
   submit: (scoreSubmitDto) => apiCall('/scores', { method: 'POST', body: JSON.stringify(scoreSubmitDto) }),
-  getLeaderboard: (period = 'weekly') => apiCall(`/scores/leaderboard?period=${period}`),
+  getLeaderboard: (period = 'weekly', game = '') => apiCall(`/scores/leaderboard?period=${period}${game ? `&game=${encodeURIComponent(game)}` : ''}`),
   getScoresForDate: (date) => apiCall(`/scores/daily/${date}`),
+  getCompleted: (memberName, gameName) => apiCall(`/scores/completed?memberName=${encodeURIComponent(memberName)}&gameName=${encodeURIComponent(gameName)}`),
 };
 
 export const galleryApi = {
@@ -77,6 +89,9 @@ export const galleryApi = {
     return apiCall(`/gallery${query}`);
   },
   upload: (photoDto) => apiCall('/gallery', { method: 'POST', body: JSON.stringify(photoDto) }),
+  uploadFile: (formData) => apiCall('/gallery/upload', { method: 'POST', body: formData }),
+  update: (id, photoDto) => apiCall(`/gallery/${id}`, { method: 'PUT', body: JSON.stringify(photoDto) }),
+  like: (id) => apiCall(`/gallery/${id}/like`, { method: 'PUT' }),
   delete: (id) => apiCall(`/gallery/${id}`, { method: 'DELETE' }),
 };
 
@@ -93,8 +108,12 @@ export const memberApi = {
 };
 
 export const puzzleApi = {
+  getAllConnections:     () => apiCall('/puzzles/connections'),
+  getDailyConnections:  () => apiCall('/puzzles/connections/daily'),
   getLatestConnections: () => apiCall('/puzzles/connections/latest'),
   createConnections:    (dto) => apiCall('/puzzles/connections', { method: 'POST', body: JSON.stringify(dto) }),
+  getAllWordle:          () => apiCall('/puzzles/wordle'),
+  getDailyWordle:       () => apiCall('/puzzles/wordle/daily'),
   getLatestWordle:      () => apiCall('/puzzles/wordle/latest'),
   createWordle:         (dto) => apiCall('/puzzles/wordle', { method: 'POST', body: JSON.stringify(dto) }),
 };

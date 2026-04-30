@@ -23,22 +23,47 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, JwtAuthenticationFilter jwtFilter) throws Exception {
         http
-            .csrf().disable()
+            .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
+                // Auth endpoints
                 .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/auth/members").hasRole("OWNER")
                 .requestMatchers(HttpMethod.PUT, "/api/auth/members/**").hasRole("OWNER")
-                .requestMatchers(HttpMethod.PUT, "/api/liners/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/puzzles/**").authenticated()
+
+                // Quotes — like (authenticated), create/edit/delete (ADMIN)
+                .requestMatchers(HttpMethod.PUT, "/api/quotes/*/like").authenticated()
+                .requestMatchers(HttpMethod.PUT, "/api/quotes/**").hasAnyRole("ADMIN", "OWNER")
+                .requestMatchers(HttpMethod.POST, "/api/quotes/**").hasAnyRole("ADMIN", "OWNER")
+                .requestMatchers(HttpMethod.DELETE, "/api/quotes/**").hasAnyRole("ADMIN", "OWNER")
+
+                // Liners — said (public), like (authenticated), CRUD (ADMIN+OWNER)
+                .requestMatchers(HttpMethod.PUT, "/api/liners/*/said").permitAll()
+                .requestMatchers(HttpMethod.PUT, "/api/liners/*/like").authenticated()
+                .requestMatchers(HttpMethod.PUT, "/api/liners/**").hasAnyRole("ADMIN", "OWNER")
+                .requestMatchers(HttpMethod.POST, "/api/liners/**").hasAnyRole("ADMIN", "OWNER")
+                .requestMatchers(HttpMethod.DELETE, "/api/liners/**").hasAnyRole("ADMIN", "OWNER")
+
+                // Gallery — like (authenticated), create/edit/delete (ADMIN)
+                .requestMatchers(HttpMethod.PUT, "/api/gallery/*/like").authenticated()
+                .requestMatchers(HttpMethod.PUT, "/api/gallery/**").hasAnyRole("ADMIN", "OWNER")
+                .requestMatchers(HttpMethod.POST, "/api/gallery/**").hasAnyRole("ADMIN", "OWNER")
+                .requestMatchers(HttpMethod.DELETE, "/api/gallery/**").hasAnyRole("ADMIN", "OWNER")
+
+                // Events — attendance (authenticated), create/edit/delete (ADMIN)
                 .requestMatchers(HttpMethod.PUT, "/api/events/*/attendance/*").authenticated()
-                .requestMatchers(HttpMethod.POST, "/api/scores").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.POST, "/api/gallery/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/api/gallery/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.POST, "/api/quotes/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/api/quotes/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.POST, "/api/events/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/api/events/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/events/**").hasAnyRole("ADMIN", "OWNER")
+                .requestMatchers(HttpMethod.POST, "/api/events/**").hasAnyRole("ADMIN", "OWNER")
+                .requestMatchers(HttpMethod.DELETE, "/api/events/**").hasAnyRole("ADMIN", "OWNER")
+
+                // Scores — submit (any member), completed list (authenticated)
+                .requestMatchers(HttpMethod.POST, "/api/scores").authenticated()
+                .requestMatchers(HttpMethod.GET, "/api/scores/completed").authenticated()
+
+                // Puzzles — create (authenticated), list/latest (public)
+                .requestMatchers(HttpMethod.POST, "/api/puzzles/**").authenticated()
+
+                // Everything else public
                 .anyRequest().permitAll()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

@@ -3,9 +3,9 @@
 
     <div class="hero-grid">
       <div class="hero-left">
-        <span class="eyebrow">Utgave 142 · Vår 2026</span>
+        <span class="eyebrow">{{ issueLabel }}</span>
         <h1 class="display">Velkommen<br/>til <em>Glassburet</em>.</h1>
-        <p class="lede">Et kontor med altfor mange vinduer, altfor mange kaffekopper, og helt klart altfor mange one-linere. Her samler vi det vi sier, det vi gjør, og det vi planlegger sammen.</p>
+        <p class="lede">Et kontor med altfor mange vinduer, altfor mange kaffekopper, og helt klart altfor mange legendariske quotes. Her samler vi det vi sier, det vi gjør, og det vi planlegger sammen.</p>
         <div class="hero-meta">
           <div><strong>{{ stats?.memberCount || '-' }}</strong>aktive medlemmer</div>
           <div><strong>{{ stats?.quoteCount || '-' }}</strong>siterte quotes</div>
@@ -28,9 +28,10 @@
           <span class="eyebrow">Pinnet på veggen</span>
           <div class="card-arrow">→</div>
         </div>
-        <p class="liner-pull">"Helt <span style="background: linear-gradient(transparent 60%, rgba(212,167,44,0.55) 60%); padding: 0 6px;">film</span>" — sa han, og så kom ulvene.</p>
+        <p class="liner-pull" v-if="randomLiner">"{{ randomLiner.text }}" — <em>{{ randomLiner.author || 'ukjent' }}</em></p>
+        <p class="liner-pull" v-else>Ingen one-liners i arkivet.</p>
         <div style="display:flex; justify-content:space-between; align-items:center; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.12); font-family: var(--mono); font-size: 11px; opacity: 0.7;">
-          <span>72 ONE-LINERS I ARKIVET</span>
+          <span>{{ liners.length || '-' }} ONE-LINERS I ARKIVET</span>
           <span>OPPDATERT I DAG</span>
         </div>
       </RouterLink>
@@ -76,25 +77,24 @@
           <span class="eyebrow">Sitater</span>
           <div class="card-arrow">→</div>
         </div>
-        <p style="font-family: var(--serif); font-style: italic; font-size: 22px; line-height: 1.25; margin-top: 8px; letter-spacing: -0.01em;">"{{ sidebarQuote?.text }}"</p>
+        <p style="font-family: var(--serif); font-style: italic; font-size: 22px; line-height: 1.25; margin-top: 8px; letter-spacing: -0.01em;">"{{ sidebarQuote?.text || '...' }}"</p>
         <div style="font-family: var(--mono); font-size: 11px; color: var(--ink-mute); margin-top: 16px; text-transform: uppercase; letter-spacing: 0.12em;">— {{ sidebarQuote?.author }}</div>
-        <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line-soft); font-size: 12px; color: var(--ink-mute);">{{ staticQuotes.length }} quotes i arkivet</div>
+        <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line-soft); font-size: 12px; color: var(--ink-mute);">{{ quotes.length || '-' }} quotes i arkivet</div>
       </RouterLink>
 
       <RouterLink to="/galleri" class="card card-12">
         <div class="card-head">
           <div>
             <span class="eyebrow">Galleriet</span>
-            <h3 style="margin-top: 12px; font-size: 26px;">Bilder fra Glassburet & turer <em style="font-style: italic; color: var(--ink-mute); font-weight: 400; font-size: 18px;">/ 247 stk</em></h3>
+            <h3 style="margin-top: 12px; font-size: 26px;">Bilder fra Glassburet & turer <em style="font-style: italic; color: var(--ink-mute); font-weight: 400; font-size: 18px;">/ {{ photos.length || '-' }} stk</em></h3>
           </div>
           <div class="card-arrow">→</div>
         </div>
         <div class="photo-strip">
-          <div class="photo-thumb"></div>
-          <div class="photo-thumb"></div>
-          <div class="photo-thumb"></div>
-          <div class="photo-thumb"></div>
-          <div class="photo-thumb"></div>
+          <div v-for="photo in photos.slice(0, 5)" :key="photo.id" class="photo-thumb">
+            <img v-if="photo.imageUrl" :src="photo.imageUrl" :alt="photo.caption" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" />
+          </div>
+          <div v-for="i in Math.max(0, 5 - photos.slice(0,5).length)" :key="'empty-'+i" class="photo-thumb"></div>
         </div>
       </RouterLink>
 
@@ -103,17 +103,24 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { statsApi, quoteApi, eventApi, scoreApi } from '../services/api'
-import staticQuotes from '../data/quotes.json'
+import { ref, computed, onMounted } from 'vue'
+import { statsApi, quoteApi, eventApi, scoreApi, linerApi, galleryApi } from '../services/api'
 import staticEvents from '../data/events.json'
-import staticLeaderboard from '../data/leaderboard.json'
+import { useLiveDateInfo } from '../composables/useLiveDateInfo'
 
 const stats = ref(null)
 const featuredQuote = ref(null)
-const sidebarQuote = staticQuotes[staticQuotes.length - 1]
+const quotes = ref([])
+const sidebarQuote = computed(() => quotes.value.length > 0 ? quotes.value[quotes.value.length - 1] : null)
 const events = ref([])
 const leaderboard = ref([])
+const liners = ref([])
+const randomLiner = computed(() => {
+  if (liners.value.length === 0) return null
+  return liners.value[Math.floor(Math.random() * liners.value.length)]
+})
+const photos = ref([])
+const { issueLabel } = useLiveDateInfo({ intervalMs: 60000 })
 
 const formatDay = (dateString) => new Date(dateString).getDate()
 const formatMonth = (dateString) => {
@@ -127,30 +134,31 @@ const getCategoryClass = (category) => {
 }
 
 onMounted(async () => {
-  try {
-    stats.value = await statsApi.getStats()
-  } catch (error) {
-    console.error('Failed to load stats:', error)
-  }
+  try { stats.value = await statsApi.getStats() } catch {}
+
+  try { featuredQuote.value = await quoteApi.getFeatured() } catch {}
 
   try {
-    featuredQuote.value = await quoteApi.getFeatured()
-  } catch (error) {
-    featuredQuote.value = staticQuotes.find(q => q.featured) || staticQuotes[0]
-  }
+    const apiQuotes = await quoteApi.getAll()
+    quotes.value = apiQuotes.length > 0 ? apiQuotes : []
+  } catch {}
 
   try {
     const api = await eventApi.getUpcoming()
     events.value = api.length > 0 ? api : staticEvents
-  } catch (error) {
+  } catch {
     events.value = staticEvents
   }
 
   try {
     const lb = await scoreApi.getLeaderboard('weekly')
-    leaderboard.value = lb.length > 0 ? lb : staticLeaderboard
-  } catch (error) {
-    leaderboard.value = staticLeaderboard
+    leaderboard.value = Array.isArray(lb) ? lb : []
+  } catch {
+    leaderboard.value = []
   }
+
+  try { liners.value = await linerApi.getAll() } catch {}
+
+  try { photos.value = await galleryApi.getAll() } catch {}
 })
 </script>

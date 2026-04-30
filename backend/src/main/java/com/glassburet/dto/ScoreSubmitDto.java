@@ -18,6 +18,8 @@ public class ScoreSubmitDto {
     @NotNull
     private LocalDate gameDate;
 
+    private Long puzzleId;
+
     public String getMemberName() { return memberName; }
     public void setMemberName(String memberName) { this.memberName = memberName; }
     public GameName getGameName() { return gameName; }
@@ -26,4 +28,6 @@ public class ScoreSubmitDto {
     public void setScoreValue(int scoreValue) { this.scoreValue = scoreValue; }
     public LocalDate getGameDate() { return gameDate; }
     public void setGameDate(LocalDate gameDate) { this.gameDate = gameDate; }
+    public Long getPuzzleId() { return puzzleId; }
+    public void setPuzzleId(Long puzzleId) { this.puzzleId = puzzleId; }
 }

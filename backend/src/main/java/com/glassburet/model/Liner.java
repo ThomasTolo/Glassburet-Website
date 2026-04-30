@@ -2,6 +2,8 @@ package com.glassburet.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "liners")
@@ -25,6 +27,11 @@ public class Liner {
 
     private String author;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "liner_likes", joinColumns = @JoinColumn(name = "liner_id"))
+    @Column(name = "member_name")
+    private Set<String> likes = new HashSet<>();
+
     public Liner() {}
 
     public Long getId() { return id; }
@@ -38,4 +45,6 @@ public class Liner {
     public void setSinceYear(Integer sinceYear) { this.sinceYear = sinceYear; }
     public String getAuthor() { return author; }
     public void setAuthor(String author) { this.author = author; }
+    public Set<String> getLikes() { return likes; }
+    public void setLikes(Set<String> likes) { this.likes = likes; }
 }

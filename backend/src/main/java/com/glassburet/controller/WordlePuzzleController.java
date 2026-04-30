@@ -6,6 +6,8 @@ import com.glassburet.service.WordlePuzzleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/puzzles/wordle")
 public class WordlePuzzleController {
@@ -14,6 +16,16 @@ public class WordlePuzzleController {
 
     public WordlePuzzleController(WordlePuzzleService service) {
         this.service = service;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<WordlePuzzle>> getAll() {
+        return ResponseEntity.ok(service.getAll());
+    }
+
+    @GetMapping("/daily")
+    public ResponseEntity<WordlePuzzle> getDaily() {
+        return ResponseEntity.ok(service.getDailyPuzzle());
     }
 
     @GetMapping("/latest")

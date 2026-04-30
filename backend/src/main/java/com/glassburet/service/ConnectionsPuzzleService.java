@@ -7,6 +7,7 @@ import com.glassburet.repository.ConnectionsPuzzleRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +20,58 @@ public class ConnectionsPuzzleService {
     public ConnectionsPuzzleService(ConnectionsPuzzleRepository repository) {
         this.repository = repository;
     }
+
+    private static final String[][] DAILY_PUZZLES = {
+        {"Noe å drikke",        "KAFFE,TE,SAFT,BRUS",
+         "Programmeringsspråk", "PYTHON,JAVA,SWIFT,RUBY",
+         "Nordiske land",       "NORGE,SVERIGE,FINLAND,ISLAND",
+         "Dyr i norsk natur",   "ÆLG,BJØRN,ULV,REV"},
+
+        {"Norske byer",         "OSLO,BERGEN,TROMSØ,STAVANGER",
+         "Instrumenter",        "GITAR,PIANO,FIOLIN,TROMMER",
+         "Vanlige mattyper",    "PIZZA,TACO,SUSHI,BURGER",
+         "Primærfarger",        "RØD,BLÅ,GRØNN,GUL"},
+
+        {"Frontendrammeverk",   "REACT,VUE,ANGULAR,SVELTE",
+         "Databaser",           "POSTGRES,MYSQL,MONGODB,REDIS",
+         "Git-kommandoer",      "PUSH,PULL,MERGE,COMMIT",
+         "Skyplattformer",      "AWS,AZURE,GCP,HEROKU"},
+
+        {"Norske fjorder",      "SOGNE,HARDANGER,GEIRANGER,LYSE",
+         "Årstider",            "VINTER,VÅR,SOMMER,HØST",
+         "Planeter",            "MARS,VENUS,JUPITER,SATURN",
+         "Norsk tradisjonskost","BRUNOST,LUTEFISK,RAKFISK,LEFSE"},
+
+        {"Datastrukturer",      "LISTE,STAKK,KØ,TRE",
+         "Agile begreper",      "SPRINT,BACKLOG,STANDUP,REVIEW",
+         "Nettlesere",          "CHROME,FIREFOX,SAFARI,EDGE",
+         "Operativsystemer",    "WINDOWS,LINUX,MACOS,ANDROID"},
+
+        {"Norske fotballag",    "VIKING,BRANN,ROSENBORG,VÅLERENGA",
+         "Treningsformer",      "YOGA,PILATES,CROSSFIT,SVØMMING",
+         "Vintersport",         "LANGRENN,SLALOM,SKIFLYGING,SKISKYTING",
+         "Norske idrettsstjerner","NORTHUG,KLÆBO,HAALAND,WARHOLM"},
+
+        {"Rom i huset",         "KJØKKEN,STUE,SOVEROM,BAD",
+         "Klesstykker",         "JAKKE,BUKSE,SKJORTE,GENSER",
+         "Vær",                 "REGN,SNØ,TORDEN,SOL",
+         "Norsk slang for bra", "KULT,DIGG,BALLA,FETT"},
+
+        {"Glassburet-sider",    "GALLERI,POENG,HJEM,AKTIVITETER",
+         "Frukt",               "EPLE,BANAN,APPELSIN,PÆRE",
+         "Programmeringsbegreper","KLASSE,OBJEKT,METODE,LØKKE",
+         "Norske artister",     "AURORA,SIGRID,YLVIS,ASTRID"},
+
+        {"Kjøkkenredskaper",    "KNIV,GAFFEL,SKJE,STEKEPANNE",
+         "Matematikkbegreper",  "ALGEBRA,GEOMETRI,KALKULUS,STATISTIKK",
+         "Studiesteder i Norge","NTNU,UIO,UIB,UIS",
+         "Nettverksprotokoller","HTTP,TCP,UDP,DNS"},
+
+        {"Norsk natur",         "FJORD,FJELL,SKOG,ELVER",
+         "Ukedager",            "MANDAG,TIRSDAG,ONSDAG,TORSDAG",
+         "Farger på norsk flagg","RØD,BLÅ,HVIT,GUL",
+         "Hobbyaktiviteter",    "GAMING,MALING,LØPING,LESING"},
+    };
 
     @Transactional
     public ConnectionsPuzzleResponse create(ConnectionsPuzzleDto dto) {
@@ -38,8 +91,40 @@ public class ConnectionsPuzzleService {
         return toResponse(repository.save(puzzle));
     }
 
+    @Transactional
+    public ConnectionsPuzzleResponse getDailyPuzzle() {
+        LocalDate today = LocalDate.now();
+        Optional<ConnectionsPuzzle> existing = repository.findByPuzzleDateAndIsDailyTrue(today);
+        if (existing.isPresent()) return toResponse(existing.get());
+
+        long dayIndex = today.toEpochDay() - LocalDate.of(2026, 1, 1).toEpochDay();
+        int idx = (int) (((dayIndex % DAILY_PUZZLES.length) + DAILY_PUZZLES.length) % DAILY_PUZZLES.length);
+        String[] p = DAILY_PUZZLES[idx];
+
+        ConnectionsPuzzle puzzle = new ConnectionsPuzzle();
+        puzzle.setCreatedBy("Glassburet");
+        puzzle.setIsDaily(true);
+        puzzle.setPuzzleDate(today);
+        puzzle.setGroup0Category(p[0]);
+        puzzle.setGroup0Words(p[1]);
+        puzzle.setGroup1Category(p[2]);
+        puzzle.setGroup1Words(p[3]);
+        puzzle.setGroup2Category(p[4]);
+        puzzle.setGroup2Words(p[5]);
+        puzzle.setGroup3Category(p[6]);
+        puzzle.setGroup3Words(p[7]);
+
+        return toResponse(repository.save(puzzle));
+    }
+
     public Optional<ConnectionsPuzzleResponse> getLatest() {
         return repository.findTopByOrderByCreatedAtDesc().map(this::toResponse);
+    }
+
+    public List<ConnectionsPuzzleResponse> getAll() {
+        return repository.findAllByOrderByCreatedAtDesc().stream()
+                .map(this::toResponse)
+                .collect(java.util.stream.Collectors.toList());
     }
 
     private ConnectionsPuzzleResponse toResponse(ConnectionsPuzzle p) {
@@ -47,6 +132,8 @@ public class ConnectionsPuzzleService {
         resp.setId(p.getId());
         resp.setCreatedBy(p.getCreatedBy());
         resp.setCreatedAt(p.getCreatedAt());
+        resp.setIsDaily(Boolean.TRUE.equals(p.getIsDaily()));
+        resp.setPuzzleDate(p.getPuzzleDate());
         resp.setGroups(List.of(
             new ConnectionsPuzzleResponse.Group(p.getGroup0Category(), split(p.getGroup0Words()), 0),
             new ConnectionsPuzzleResponse.Group(p.getGroup1Category(), split(p.getGroup1Words()), 1),

@@ -5,6 +5,7 @@ import com.glassburet.model.Quote;
 import com.glassburet.service.QuoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +30,16 @@ public class QuoteController {
     @PostMapping
     public ResponseEntity<Quote> createQuote(@RequestBody QuoteDto quoteDto) {
         return ResponseEntity.ok(quoteService.create(quoteDto));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Quote> updateQuote(@PathVariable Long id, @RequestBody QuoteDto quoteDto) {
+        return ResponseEntity.ok(quoteService.update(id, quoteDto));
+    }
+
+    @PutMapping("/{id}/like")
+    public ResponseEntity<Quote> likeQuote(@PathVariable Long id, Authentication auth) {
+        return ResponseEntity.ok(quoteService.toggleLike(id, auth.getName()));
     }
 
     @DeleteMapping("/{id}")

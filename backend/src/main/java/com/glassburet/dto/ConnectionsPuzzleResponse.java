@@ -1,5 +1,6 @@
 package com.glassburet.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -9,6 +10,8 @@ public class ConnectionsPuzzleResponse {
     private String createdBy;
     private LocalDateTime createdAt;
     private List<Group> groups;
+    private boolean isDaily;
+    private LocalDate puzzleDate;
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -18,6 +21,10 @@ public class ConnectionsPuzzleResponse {
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
     public List<Group> getGroups() { return groups; }
     public void setGroups(List<Group> groups) { this.groups = groups; }
+    public boolean isIsDaily() { return isDaily; }
+    public void setIsDaily(boolean isDaily) { this.isDaily = isDaily; }
+    public LocalDate getPuzzleDate() { return puzzleDate; }
+    public void setPuzzleDate(LocalDate puzzleDate) { this.puzzleDate = puzzleDate; }
 
     public static class Group {
         private final String category;
