@@ -16,16 +16,11 @@
       </div>
       <div class="footer-col">
         <h4>UiB</h4>
-        <a href="#">Echo Bergen</a>
-        <a href="#">MATNAT-fakultet</a>
-        <a href="#">Høyteknologisenteret</a>
+        <a href="https://echo.uib.no">Echo Bergen</a>
       </div>
       <div class="footer-col">
         <h4>Hjelp meg</h4>
-        <a href="#">Legg til quote</a>
-        <a href="#">Foreslå aktivitet</a>
-        <a href="#">Last opp bilder</a>
-        <a href="#">Send tilbakemelding</a>
+        <a href="mailto:thomastj278@gmail.com">Kontakt oss</a>
       </div>
     </div>
     <div class="footer-bot">
