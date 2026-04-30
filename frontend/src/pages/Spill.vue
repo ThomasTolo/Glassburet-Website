@@ -17,10 +17,10 @@
 
     <div class="sp-tabs">
       <button :class="['sp-tab', activeGame === 'connections' && 'active']" @click="activeGame = 'connections'; creatorOpen = false">
-        Connections
+        Tankeburet
       </button>
       <button :class="['sp-tab', activeGame === 'wordle' && 'active']" @click="activeGame = 'wordle'; creatorOpen = false">
-        Wordle
+        Ordburet
       </button>
     </div>
 
@@ -28,7 +28,7 @@
     <div v-if="activeGame === 'connections'" class="sp-panel">
       <div class="conn-top">
         <div>
-          <h2 class="section-title">Connections</h2>
+          <h2 class="section-title">Tankeburet</h2>
           <p class="sp-sub">
             Finn fire grupper av fire ord som hører sammen.
             <span v-if="connPuzzle.createdBy" class="puzzle-by">Laget av {{ connPuzzle.createdBy }}</span>
@@ -79,7 +79,7 @@
       <div v-if="connGameState === 'won'" class="sp-result">
         <div class="sp-result-icon">🎉</div>
         <h3>Gratulerer!</h3>
-        <p>Du løste dagens Connections!</p>
+        <p>Du løste dagens Tankeburet!</p>
         <button class="conn-btn conn-btn-primary" @click="connReset">Spill igjen</button>
       </div>
 
@@ -105,7 +105,7 @@
         <template v-if="isAuthenticated">
           <button class="creator-toggle" @click="creatorOpen = !creatorOpen">
             <span class="creator-toggle-icon">{{ creatorOpen ? '−' : '+' }}</span>
-            Lag ny Connections-puzzle
+            Lag ny Tankeburet-puzzle
           </button>
         </template>
         <RouterLink v-else class="creator-login-hint" to="/login">Logg inn for å lage puzzle →</RouterLink>
@@ -164,7 +164,7 @@
     <div v-if="activeGame === 'wordle'" class="sp-panel">
       <div class="wrd-top">
         <div>
-          <h2 class="section-title">Wordle</h2>
+          <h2 class="section-title">Ordburet</h2>
           <p class="sp-sub">
             Gjett det 5-bokstavers ordet på 6 forsøk.
             <span v-if="wrdCreatedBy" class="puzzle-by">Laget av {{ wrdCreatedBy }}</span>
@@ -223,7 +223,7 @@
         <template v-if="isAuthenticated">
           <button class="creator-toggle" @click="creatorOpen = !creatorOpen">
             <span class="creator-toggle-icon">{{ creatorOpen ? '−' : '+' }}</span>
-            Lag nytt Wordle-ord
+            Lag nytt Ordburet-ord
           </button>
         </template>
         <RouterLink v-else class="creator-login-hint" to="/login">Logg inn for å lage ord →</RouterLink>

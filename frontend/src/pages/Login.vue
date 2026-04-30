@@ -62,7 +62,6 @@
           </div>
 
           <p v-if="error" class="login-error">{{ error }}</p>
-          <p v-if="registerSuccess" class="login-success">Konto opprettet! Du kan nå logge inn.</p>
         </form>
       </div>
     </div>
@@ -73,7 +72,7 @@
 import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { auth } from '../services/api'
-import { clearAuthToken, displayName, isAuthenticated } from '../services/authState'
+import { clearAuthToken, setAuthToken, displayName, isAuthenticated } from '../services/authState'
 
 const API_URL = import.meta.env.VITE_API_URL || '/api'
 
@@ -87,12 +86,10 @@ const regName = ref('')
 const regPassword = ref('')
 const loading = ref(false)
 const error = ref('')
-const registerSuccess = ref(false)
 
 function switchMode(next) {
   mode.value = next
   error.value = ''
-  registerSuccess.value = false
 }
 
 const redirectTo = computed(() => {
@@ -115,7 +112,16 @@ async function submitLogin() {
 
 async function submitRegister() {
   error.value = ''
-  registerSuccess.value = false
+
+  if (regPassword.value.length < 8) {
+    error.value = 'Passordet må være minst 8 tegn.'
+    return
+  }
+  if (!/\d/.test(regPassword.value)) {
+    error.value = 'Passordet må inneholde minst ett tall.'
+    return
+  }
+
   loading.value = true
   try {
     const res = await fetch(`${API_URL}/auth/register`, {
@@ -123,13 +129,20 @@ async function submitRegister() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: regName.value.trim(), password: regPassword.value }),
     })
+    const data = await res.json().catch(() => ({}))
     if (!res.ok) {
-      const data = await res.json().catch(() => ({}))
-      error.value = data.error === 'Member exists' ? 'Navnet er allerede i bruk.' : 'Registrering mislyktes.'
+      if (data.error === 'Member exists') {
+        error.value = 'Navnet er allerede i bruk.'
+      } else if (data.error === 'Password must be at least 8 characters') {
+        error.value = 'Passordet må være minst 8 tegn.'
+      } else if (data.error === 'Password must contain at least one number') {
+        error.value = 'Passordet må inneholde minst ett tall.'
+      } else {
+        error.value = 'Registrering mislyktes.'
+      }
     } else {
-      registerSuccess.value = true
-      regName.value = ''
-      regPassword.value = ''
+      setAuthToken(data.token)
+      await router.push(redirectTo.value)
     }
   } catch {
     error.value = 'Noe gikk galt. Prøv igjen.'

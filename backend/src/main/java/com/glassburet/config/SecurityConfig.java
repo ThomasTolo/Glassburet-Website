@@ -28,7 +28,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/auth/members").hasRole("OWNER")
-                .requestMatchers(HttpMethod.PUT, "/api/auth/members/**").hasAnyRole("ADMIN", "OWNER")
+                .requestMatchers(HttpMethod.PUT, "/api/auth/members/**").hasRole("OWNER")
                 .requestMatchers(HttpMethod.PUT, "/api/liners/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/puzzles/**").authenticated()
                 .requestMatchers(HttpMethod.PUT, "/api/events/*/attendance/*").authenticated()

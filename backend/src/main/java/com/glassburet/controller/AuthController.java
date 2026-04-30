@@ -44,6 +44,15 @@ public class AuthController {
         String password = body.get("password");
         String role = "ROLE_MEMBER";
 
+        if (name == null || name.isBlank()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Name is required"));
+        }
+        if (password == null || password.length() < 8) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Password must be at least 8 characters"));
+        }
+        if (!password.matches(".*\\d.*")) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Password must contain at least one number"));
+        }
         if (memberRepository.existsByName(name)) {
             return ResponseEntity.badRequest().body(Map.of("error", "Member exists"));
         }
@@ -54,7 +63,8 @@ public class AuthController {
         m.setRole(role);
 
         memberRepository.save(m);
-        return ResponseEntity.ok(Map.of("created", true));
+        String token = jwtUtil.generateToken(m.getName(), m.getRole());
+        return ResponseEntity.ok(Map.of("token", token));
     }
 
     @GetMapping("/members")
