@@ -1,9 +1,16 @@
 # Glassburet — Website
 
-Small Vue 3 + Vite site used as the Glassburet frontend.
+A full-stack application for the Glassburet community at UiB. Built with Vue 3 + Vite frontend and Spring Boot 3.3 backend.
+
+## Tech Stack
+- **Frontend**: Vue 3, Vite, vue-router, WebSocket support
+- **Backend**: Spring Boot 3.3, Spring Security (JWT), Spring Data JPA, PostgreSQL, H2
+- **CI/CD**: GitHub Actions with JaCoCo test coverage reporting
+- **Deployment**: Docker & Docker Compose
 
 ## Prerequisites
-- Node.js 18+ (or a recent LTS) and npm
+- **Frontend**: Node.js 18+ (or a recent LTS) and npm
+- **Backend**: JDK 21, Gradle 8.10+
 
 ## Quick start
 Install dependencies:
@@ -30,14 +37,34 @@ Preview the production build locally:
 npm run preview
 ```
 
-Notes
-- The Vite entry is `index.html` at the project root.
-- The app uses Vue 3 and `vue-router` (hash history) so it can be served as static files.
-- For a simple static preview of `dist/` after `npm run build` you can also use `npx serve dist` or any static file server.
+## Project Structure
 
-Files of interest
-- `src/` — application source
-- `src/main.js` — app bootstrap
-- `src/router/index.js` — routes and `createWebHashHistory()`
-- `index.html` — Vite entry
+```
+.
+├── frontend/          # Vue 3 + Vite application
+│   └── src/
+│       ├── components/       # Reusable Vue components
+│       ├── pages/            # Page components
+│       ├── services/         # API client, auth, WebSocket
+│       ├── router/           # Route definitions
+│       └── main.js           # App bootstrap
+├── backend/           # Spring Boot application
+│   ├── src/
+│   │   ├── main/java/com/glassburet/
+│   │   │   ├── controller/   # REST endpoints
+│   │   │   ├── service/      # Business logic
+│   │   │   ├── model/        # JPA entities
+│   │   │   ├── dto/          # Data transfer objects
+│   │   │   ├── config/       # Configuration beans
+│   │   │   ├── security/     # JWT & auth
+│   │   │   └── realtime/     # WebSocket handlers
+│   │   └── test/             # Unit & integration tests
+│   └── build.gradle          # Gradle with JaCoCo
+└── docker-compose.yml        # Development environment
+
+## Files of Interest
+- `frontend/src/services/api.js` — Centralized API client
+- `frontend/src/services/realtime.js` — WebSocket subscriptions
+- `backend/build.gradle` — Build configuration with JaCoCo
+- `.github/workflows/backend-ci-cd.yml` — CI/CD pipeline
 
