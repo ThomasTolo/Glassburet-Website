@@ -105,7 +105,6 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { statsApi, quoteApi, eventApi, scoreApi, linerApi, galleryApi } from '../services/api'
-import staticEvents from '../data/events.json'
 import { useLiveDateInfo } from '../composables/useLiveDateInfo'
 import { subscribeToUpdates } from '../services/realtime'
 
@@ -117,8 +116,9 @@ const events = ref([])
 const leaderboard = ref([])
 const liners = ref([])
 const randomLiner = computed(() => {
-  if (liners.value.length === 0) return null
-  return liners.value[Math.floor(Math.random() * liners.value.length)]
+  const visibleLiners = liners.value.filter(liner => liner.text?.trim())
+  if (visibleLiners.length === 0) return null
+  return visibleLiners[Math.floor(Math.random() * visibleLiners.length)]
 })
 const photos = ref([])
 const { issueLabel } = useLiveDateInfo({ intervalMs: 60000 })
@@ -146,9 +146,9 @@ const loadHome = async () => {
 
   try {
     const api = await eventApi.getUpcoming()
-    events.value = api.length > 0 ? api : staticEvents
+    events.value = Array.isArray(api) ? api : []
   } catch {
-    events.value = staticEvents
+    events.value = []
   }
 
   try {
