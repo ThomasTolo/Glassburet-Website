@@ -47,7 +47,7 @@
 
     <div class="gallery-grid">
       <div v-for="(photo, idx) in filteredPhotos" :key="photo.id" :class="['photo', `p${(idx % 10) + 1}`]">
-        <img :src="photo.imageUrl" :alt="photo.caption" />
+        <img :src="resolveMediaUrl(photo.imageUrl)" :alt="photo.caption" />
         <div class="caption">{{ photo.caption }}</div>
 
         <div v-if="isAdminOrAbove" class="photo-admin-overlay">
@@ -88,7 +88,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue'
-import { galleryApi } from '../services/api'
+import { galleryApi, resolveMediaUrl } from '../services/api'
 import { isAuthenticated, isAdminOrAbove, displayName } from '../services/authState'
 import { subscribeToUpdates } from '../services/realtime'
 
