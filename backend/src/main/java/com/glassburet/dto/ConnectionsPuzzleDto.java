@@ -5,10 +5,13 @@ import java.util.List;
 public class ConnectionsPuzzleDto {
 
     private String createdBy;
+    private String title;
     private List<GroupDto> groups;
 
     public String getCreatedBy() { return createdBy; }
     public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
     public List<GroupDto> getGroups() { return groups; }
     public void setGroups(List<GroupDto> groups) { this.groups = groups; }
 

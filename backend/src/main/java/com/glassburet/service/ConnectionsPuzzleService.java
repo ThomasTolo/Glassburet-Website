@@ -6,6 +6,8 @@ import com.glassburet.model.ConnectionsPuzzle;
 import com.glassburet.repository.ConnectionsPuzzleRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -79,16 +81,26 @@ public class ConnectionsPuzzleService {
 
         ConnectionsPuzzle puzzle = new ConnectionsPuzzle();
         puzzle.setCreatedBy(dto.getCreatedBy() != null ? dto.getCreatedBy() : "Anonym");
-        puzzle.setGroup0Category(groups.get(0).getCategory());
-        puzzle.setGroup0Words(String.join(",", groups.get(0).getWords()));
-        puzzle.setGroup1Category(groups.get(1).getCategory());
-        puzzle.setGroup1Words(String.join(",", groups.get(1).getWords()));
-        puzzle.setGroup2Category(groups.get(2).getCategory());
-        puzzle.setGroup2Words(String.join(",", groups.get(2).getWords()));
-        puzzle.setGroup3Category(groups.get(3).getCategory());
-        puzzle.setGroup3Words(String.join(",", groups.get(3).getWords()));
+        applyDto(puzzle, dto);
 
         return toResponse(repository.save(puzzle));
+    }
+
+    @Transactional
+    public ConnectionsPuzzleResponse update(Long id, ConnectionsPuzzleDto dto, String ownerName, boolean canOverride) {
+        ConnectionsPuzzle puzzle = repository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        requireEditable(puzzle, ownerName, canOverride);
+        applyDto(puzzle, dto);
+        return toResponse(repository.save(puzzle));
+    }
+
+    @Transactional
+    public void delete(Long id, String ownerName, boolean canOverride) {
+        ConnectionsPuzzle puzzle = repository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        requireEditable(puzzle, ownerName, canOverride);
+        repository.delete(puzzle);
     }
 
     @Transactional
@@ -103,6 +115,7 @@ public class ConnectionsPuzzleService {
 
         ConnectionsPuzzle puzzle = new ConnectionsPuzzle();
         puzzle.setCreatedBy("Glassburet");
+        puzzle.setTitle("Daglig Tankeburet");
         puzzle.setIsDaily(true);
         puzzle.setPuzzleDate(today);
         puzzle.setGroup0Category(p[0]);
@@ -131,6 +144,7 @@ public class ConnectionsPuzzleService {
         ConnectionsPuzzleResponse resp = new ConnectionsPuzzleResponse();
         resp.setId(p.getId());
         resp.setCreatedBy(p.getCreatedBy());
+        resp.setTitle(p.getTitle());
         resp.setCreatedAt(p.getCreatedAt());
         resp.setIsDaily(Boolean.TRUE.equals(p.getIsDaily()));
         resp.setPuzzleDate(p.getPuzzleDate());
@@ -145,5 +159,31 @@ public class ConnectionsPuzzleService {
 
     private List<String> split(String words) {
         return Arrays.asList(words.split(","));
+    }
+
+    private void applyDto(ConnectionsPuzzle puzzle, ConnectionsPuzzleDto dto) {
+        List<ConnectionsPuzzleDto.GroupDto> groups = dto.getGroups();
+        puzzle.setTitle(clean(dto.getTitle()));
+        puzzle.setGroup0Category(groups.get(0).getCategory());
+        puzzle.setGroup0Words(String.join(",", groups.get(0).getWords()));
+        puzzle.setGroup1Category(groups.get(1).getCategory());
+        puzzle.setGroup1Words(String.join(",", groups.get(1).getWords()));
+        puzzle.setGroup2Category(groups.get(2).getCategory());
+        puzzle.setGroup2Words(String.join(",", groups.get(2).getWords()));
+        puzzle.setGroup3Category(groups.get(3).getCategory());
+        puzzle.setGroup3Words(String.join(",", groups.get(3).getWords()));
+    }
+
+    private void requireEditable(ConnectionsPuzzle puzzle, String ownerName, boolean canOverride) {
+        if (Boolean.TRUE.equals(puzzle.getIsDaily())) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
+        if (!canOverride && (ownerName == null || !ownerName.equals(puzzle.getCreatedBy()))) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
+    }
+
+    private String clean(String value) {
+        return value == null || value.isBlank() ? null : value.trim();
     }
 }

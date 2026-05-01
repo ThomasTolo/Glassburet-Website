@@ -27,6 +27,9 @@ const apiCall = async (endpoint, options = {}) => {
     if (!response.ok) {
       throw new Error(`API error: ${response.status} ${response.statusText}`);
     }
+    if (response.status === 204) {
+      return null;
+    }
     return await response.json();
   } catch (error) {
     console.error(`API call failed: ${endpoint}`, error);
@@ -114,11 +117,17 @@ export const puzzleApi = {
   getDailyConnections:  () => apiCall('/puzzles/connections/daily'),
   getLatestConnections: () => apiCall('/puzzles/connections/latest'),
   createConnections:    (dto) => apiCall('/puzzles/connections', { method: 'POST', body: JSON.stringify(dto) }),
+  updateConnections:    (id, dto) => apiCall(`/puzzles/connections/${id}`, { method: 'PUT', body: JSON.stringify(dto) }),
+  deleteConnections:    (id) => apiCall(`/puzzles/connections/${id}`, { method: 'DELETE' }),
   getAllWordle:          () => apiCall('/puzzles/wordle'),
   getDailyWordle:       () => apiCall('/puzzles/wordle/daily'),
   getLatestWordle:      () => apiCall('/puzzles/wordle/latest'),
   createWordle:         (dto) => apiCall('/puzzles/wordle', { method: 'POST', body: JSON.stringify(dto) }),
+  updateWordle:         (id, dto) => apiCall(`/puzzles/wordle/${id}`, { method: 'PUT', body: JSON.stringify(dto) }),
+  deleteWordle:         (id) => apiCall(`/puzzles/wordle/${id}`, { method: 'DELETE' }),
   getAllNative:         (gameName) => apiCall(`/puzzles/native/${encodeURIComponent(gameName)}`),
   getDailyNative:       (gameName) => apiCall(`/puzzles/native/${encodeURIComponent(gameName)}/daily`),
   createNative:         (gameName, dto) => apiCall(`/puzzles/native/${encodeURIComponent(gameName)}`, { method: 'POST', body: JSON.stringify(dto) }),
+  updateNative:         (gameName, id, dto) => apiCall(`/puzzles/native/${encodeURIComponent(gameName)}/${id}`, { method: 'PUT', body: JSON.stringify(dto) }),
+  deleteNative:         (gameName, id) => apiCall(`/puzzles/native/${encodeURIComponent(gameName)}/${id}`, { method: 'DELETE' }),
 };

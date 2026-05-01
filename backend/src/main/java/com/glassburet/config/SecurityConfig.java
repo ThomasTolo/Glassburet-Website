@@ -62,6 +62,8 @@ public class SecurityConfig {
 
                 // Puzzles — create (authenticated), list/latest (public)
                 .requestMatchers(HttpMethod.POST, "/api/puzzles/**").authenticated()
+                .requestMatchers(HttpMethod.PUT, "/api/puzzles/**").authenticated()
+                .requestMatchers(HttpMethod.DELETE, "/api/puzzles/**").authenticated()
 
                 // Everything else public
                 .anyRequest().permitAll()
