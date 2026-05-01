@@ -209,10 +209,10 @@ onUnmounted(() => {
 
 <style scoped>
 .photo-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 6px 0 2px;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  z-index: 3;
 }
 .like-btn {
   font-family: var(--mono);
@@ -221,6 +221,8 @@ onUnmounted(() => {
   border: 1px solid var(--line-soft);
   border-radius: 999px;
   color: var(--ink-mute);
+  background: rgba(244, 241, 234, 0.85);
+  backdrop-filter: blur(4px);
   transition: all 0.2s;
 }
 .like-btn:hover, .like-btn.liked { color: var(--accent-2); border-color: var(--accent-2); }
