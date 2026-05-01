@@ -499,7 +499,6 @@ p.lede { font-size: 17px; line-height: 1.55; color: var(--ink-soft); max-width: 
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: 92px;
   gap: 12px;
 }
 .photo {
@@ -512,9 +511,7 @@ p.lede { font-size: 17px; line-height: 1.55; color: var(--ink-soft); max-width: 
 }
 .photo img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 36%;
+  height: auto;
   display: block;
 }
 .photo:hover { transform: scale(1.02); z-index: 5; box-shadow: var(--shadow-md); }
@@ -540,16 +537,16 @@ p.lede { font-size: 17px; line-height: 1.55; color: var(--ink-soft); max-width: 
 }
 .photo:hover .caption { opacity: 1; transform: translateY(0); }
 
-.p1 { grid-column: span 6; grid-row: span 3; background: linear-gradient(135deg, #0d3b2e, #1a5a47, #2a6e58); }
-.p2 { grid-column: span 3; grid-row: span 2; background: linear-gradient(160deg, #c2410c, #d4a72c); }
-.p3 { grid-column: span 3; grid-row: span 2; background: linear-gradient(200deg, #14201c, #3d4a45); }
-.p4 { grid-column: span 3; grid-row: span 3; background: linear-gradient(180deg, #d4a72c, #c2410c, #14201c); }
-.p5 { grid-column: span 3; grid-row: span 3; background: linear-gradient(225deg, #ebe6db, #c9c1ae, #6b7872); }
-.p6 { grid-column: span 4; grid-row: span 2; background: linear-gradient(135deg, #1a5a47, #d4a72c); }
-.p7 { grid-column: span 4; grid-row: span 2; background: linear-gradient(45deg, #14201c, #c2410c); }
-.p8 { grid-column: span 4; grid-row: span 2; background: linear-gradient(315deg, #0d3b2e, #6b7872); }
-.p9 { grid-column: span 6; grid-row: span 2; background: linear-gradient(90deg, #c2410c, #d4a72c, #ebe6db); }
-.p10 { grid-column: span 6; grid-row: span 2; background: linear-gradient(270deg, #14201c, #1a5a47, #0d3b2e); }
+.p1 { grid-column: span 6; }
+.p2 { grid-column: span 3; }
+.p3 { grid-column: span 3; }
+.p4 { grid-column: span 3; }
+.p5 { grid-column: span 3; }
+.p6 { grid-column: span 4; }
+.p7 { grid-column: span 4; }
+.p8 { grid-column: span 4; }
+.p9 { grid-column: span 6; }
+.p10 { grid-column: span 6; }
 
 /* ================= ANNOUNCEMENTS ================= */
 .announce-grid {
