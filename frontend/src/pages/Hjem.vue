@@ -92,7 +92,7 @@
         </div>
         <div class="photo-strip">
           <div v-for="photo in photos.slice(0, 5)" :key="photo.id" class="photo-thumb">
-            <img v-if="photo.imageUrl" :src="photo.imageUrl" :alt="photo.caption" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" />
+            <img v-if="photo.imageUrl" :src="resolveMediaUrl(photo.imageUrl)" :alt="photo.caption" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" />
           </div>
           <div v-for="i in Math.max(0, 5 - photos.slice(0,5).length)" :key="'empty-'+i" class="photo-thumb"></div>
         </div>
@@ -104,7 +104,7 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { statsApi, quoteApi, eventApi, scoreApi, linerApi, galleryApi } from '../services/api'
+import { statsApi, quoteApi, eventApi, scoreApi, linerApi, galleryApi, resolveMediaUrl } from '../services/api'
 import { useLiveDateInfo } from '../composables/useLiveDateInfo'
 import { subscribeToUpdates } from '../services/realtime'
 
