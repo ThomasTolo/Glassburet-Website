@@ -153,10 +153,10 @@
             >
               <div class="creator-group-label">
                 Gruppe {{ gi + 1 }}
-                <span class="creator-diff-badge">{{ ['Gul · Lett', 'Grønn · Medium', 'Blå · Vanskelig', 'Lilla · Ekspert'][gi] }}</span>
+                <span class="creator-diff-badge">{{ ['Gul · Lett', 'Grønn · Medium', 'Rød · Vanskelig', 'Svart · Ekspert'][gi] }}</span>
               </div>
               <input
-                v-model="group.category"
+                v-model="group.category"So
                 class="creator-input"
                 :placeholder="`Kategori for gruppe ${gi + 1}…`"
                 maxlength="60"
