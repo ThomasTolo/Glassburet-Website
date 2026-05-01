@@ -53,18 +53,28 @@
 
       <!-- Puzzle library -->
       <div class="puzzle-library">
-        <span class="eyebrow" style="margin-bottom:8px;display:block;">Velg puzzle</span>
-        <div class="puzzle-list">
-          <button
-            v-for="p in allConnPuzzles"
-            :key="p.id"
-            :class="['puzzle-pick', selectedConnId === p.id && 'active', completedConnIds.includes(p.id) && 'done']"
-            @click="loadConnPuzzle(p)"
-          >
-            <span>{{ p.isDaily ? '⊙ Daglig' : (p.createdBy || 'Anonym') }}</span>
-            <span class="puzzle-pick-date">{{ formatPuzzleDate(p.createdAt) }}</span>
-            <span v-if="completedConnIds.includes(p.id)" class="puzzle-pick-done">✓</span>
+        <div class="puzzle-library-head">
+          <span class="eyebrow">Velg puzzle</span>
+          <button v-if="allConnPuzzles.length > LIBRARY_LIMIT" type="button" class="library-more" @click="connLibraryExpanded = !connLibraryExpanded">
+            {{ connLibraryExpanded ? 'Vis færre' : 'Vis mer' }}
           </button>
+        </div>
+        <div class="puzzle-list">
+          <div v-for="p in visibleConnPuzzles" :key="p.id" class="puzzle-pick-card">
+            <button
+              :class="['puzzle-pick', selectedConnId === p.id && 'active', completedConnIds.includes(p.id) && 'done']"
+              @click="loadConnPuzzle(p)"
+            >
+              <span class="puzzle-pick-title">{{ puzzleDisplayTitle(p, 'Tankeburet') }}</span>
+              <span class="puzzle-pick-by">{{ puzzleCreatorLabel(p) }}</span>
+              <span class="puzzle-pick-date">{{ formatPuzzleDate(p.createdAt) }}</span>
+              <span v-if="completedConnIds.includes(p.id)" class="puzzle-pick-done">✓</span>
+            </button>
+            <div v-if="canManagePuzzle(p)" class="puzzle-manage">
+              <button type="button" @click="editConnPuzzle(p)">Rediger</button>
+              <button type="button" @click="deleteConnPuzzle(p)">Slett</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -138,7 +148,7 @@
       <!-- Creator form -->
       <div class="creator-wrap">
         <template v-if="isAuthenticated">
-          <button class="creator-toggle" @click="creatorOpen = !creatorOpen">
+          <button class="creator-toggle" @click="toggleCreator">
             <span class="creator-toggle-icon">{{ creatorOpen ? '−' : '+' }}</span>
             Lag ny Tankeburet-puzzle
           </button>
@@ -146,6 +156,10 @@
         <RouterLink v-else class="creator-login-hint" to="/login">Logg inn for å lage puzzle →</RouterLink>
 
         <form v-if="creatorOpen && isAuthenticated" class="creator-form" @submit.prevent="submitConnCreator">
+          <div class="creator-author-row">
+            <label class="creator-label">Tittel</label>
+            <input v-model="connCreatorTitle" class="creator-input" placeholder="Navn på spillet" required />
+          </div>
           <div class="creator-groups">
             <div
               v-for="(group, gi) in connCreatorForm"
@@ -157,7 +171,7 @@
                 <span class="creator-diff-badge">{{ ['Gul · Lett', 'Grønn · Medium', 'Rød · Vanskelig', 'Svart · Ekspert'][gi] }}</span>
               </div>
               <input
-                v-model="group.category"So
+                v-model="group.category"
                 class="creator-input"
                 :placeholder="`Kategori for gruppe ${gi + 1}…`"
                 maxlength="60"
@@ -179,9 +193,9 @@
           </div>
 
           <div class="creator-actions">
-            <button type="button" class="conn-btn" @click="creatorOpen = false">Avbryt</button>
+            <button type="button" class="conn-btn" @click="cancelCreator">Avbryt</button>
             <button type="submit" class="conn-btn conn-btn-primary" :disabled="connCreating">
-              {{ connCreating ? 'Lagrer…' : 'Publiser puzzle' }}
+              {{ connCreating ? 'Lagrer…' : (editingConnId ? 'Oppdater puzzle' : 'Publiser puzzle') }}
             </button>
           </div>
 
@@ -210,18 +224,28 @@
 
       <!-- Puzzle library -->
       <div class="puzzle-library">
-        <span class="eyebrow" style="margin-bottom:8px;display:block;">Velg ord</span>
-        <div class="puzzle-list">
-          <button
-            v-for="p in allWrdPuzzles"
-            :key="p.id"
-            :class="['puzzle-pick', selectedWrdId === p.id && 'active', completedWrdIds.includes(p.id) && 'done']"
-            @click="loadWrdPuzzle(p)"
-          >
-            <span>{{ p.isDaily ? '⊙ Daglig' : (p.createdBy || 'Anonym') }}</span>
-            <span class="puzzle-pick-date">{{ formatPuzzleDate(p.createdAt) }}</span>
-            <span v-if="completedWrdIds.includes(p.id)" class="puzzle-pick-done">✓</span>
+        <div class="puzzle-library-head">
+          <span class="eyebrow">Velg ord</span>
+          <button v-if="allWrdPuzzles.length > LIBRARY_LIMIT" type="button" class="library-more" @click="wrdLibraryExpanded = !wrdLibraryExpanded">
+            {{ wrdLibraryExpanded ? 'Vis færre' : 'Vis mer' }}
           </button>
+        </div>
+        <div class="puzzle-list">
+          <div v-for="p in visibleWrdPuzzles" :key="p.id" class="puzzle-pick-card">
+            <button
+              :class="['puzzle-pick', selectedWrdId === p.id && 'active', completedWrdIds.includes(p.id) && 'done']"
+              @click="loadWrdPuzzle(p)"
+            >
+              <span class="puzzle-pick-title">{{ puzzleDisplayTitle(p, 'Ordburet') }}</span>
+              <span class="puzzle-pick-by">{{ puzzleCreatorLabel(p) }}</span>
+              <span class="puzzle-pick-date">{{ formatPuzzleDate(p.createdAt) }}</span>
+              <span v-if="completedWrdIds.includes(p.id)" class="puzzle-pick-done">✓</span>
+            </button>
+            <div v-if="canManagePuzzle(p)" class="puzzle-manage">
+              <button type="button" @click="editWrdPuzzle(p)">Rediger</button>
+              <button type="button" @click="deleteWrdPuzzle(p)">Slett</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -277,7 +301,7 @@
       <!-- Creator form -->
       <div class="creator-wrap">
         <template v-if="isAuthenticated">
-          <button class="creator-toggle" @click="creatorOpen = !creatorOpen">
+          <button class="creator-toggle" @click="toggleCreator">
             <span class="creator-toggle-icon">{{ creatorOpen ? '−' : '+' }}</span>
             Lag nytt Ordburet-ord
           </button>
@@ -285,6 +309,10 @@
         <RouterLink v-else class="creator-login-hint" to="/login">Logg inn for å lage ord →</RouterLink>
 
         <form v-if="creatorOpen && isAuthenticated" class="creator-form" @submit.prevent="submitWrdCreator">
+          <div class="creator-author-row">
+            <label class="creator-label">Tittel</label>
+            <input v-model="wrdCreatorTitle" class="creator-input" placeholder="Navn på spillet" required />
+          </div>
           <div class="creator-author-row">
             <label class="creator-label">Ord (5 bokstaver)</label>
             <input
@@ -301,9 +329,9 @@
           </div>
 
           <div class="creator-actions">
-            <button type="button" class="conn-btn" @click="creatorOpen = false">Avbryt</button>
+            <button type="button" class="conn-btn" @click="cancelCreator">Avbryt</button>
             <button type="submit" class="conn-btn conn-btn-primary" :disabled="wrdCreating || wrdCreatorWord.length !== 5">
-              {{ wrdCreating ? 'Lagrer…' : 'Publiser ord' }}
+              {{ wrdCreating ? 'Lagrer…' : (editingWrdId ? 'Oppdater ord' : 'Publiser ord') }}
             </button>
           </div>
 
@@ -323,18 +351,28 @@
         <a class="source-button" :href="activeNativeGame.url" target="_blank" rel="noopener noreferrer">Inspirasjon</a>
 
         <div class="puzzle-library native-library">
-          <span class="eyebrow" style="margin-bottom:8px;display:block;">Velg spill</span>
-          <div class="puzzle-list">
-            <button
-              v-for="p in activeNativePuzzles"
-              :key="p.id"
-              :class="['puzzle-pick', selectedNativeIds[activeGame] === p.id && 'active', activeNativeCompletedIds.includes(p.id) && 'done']"
-              @click="loadNativePuzzle(activeGame, p)"
-            >
-              <span>{{ p.isDaily ? '⊙ Daglig' : (p.createdBy || 'Anonym') }}</span>
-              <span class="puzzle-pick-date">{{ formatPuzzleDate(p.createdAt) }}</span>
-              <span v-if="activeNativeCompletedIds.includes(p.id)" class="puzzle-pick-done">✓</span>
+          <div class="puzzle-library-head">
+            <span class="eyebrow">Velg spill</span>
+            <button v-if="activeNativePuzzles.length > LIBRARY_LIMIT" type="button" class="library-more" @click="toggleNativeLibrary">
+              {{ nativeLibraryExpanded[activeGame] ? 'Vis færre' : 'Vis mer' }}
             </button>
+          </div>
+          <div class="puzzle-list">
+            <div v-for="p in visibleNativePuzzles" :key="p.id" class="puzzle-pick-card">
+              <button
+                :class="['puzzle-pick', selectedNativeIds[activeGame] === p.id && 'active', activeNativeCompletedIds.includes(p.id) && 'done']"
+                @click="loadNativePuzzle(activeGame, p)"
+              >
+                <span class="puzzle-pick-title">{{ nativePuzzleDisplayTitle(p) }}</span>
+                <span class="puzzle-pick-by">{{ puzzleCreatorLabel(p) }}</span>
+                <span class="puzzle-pick-date">{{ formatPuzzleDate(p.createdAt) }}</span>
+                <span v-if="activeNativeCompletedIds.includes(p.id)" class="puzzle-pick-done">✓</span>
+              </button>
+              <div v-if="canManagePuzzle(p)" class="puzzle-manage">
+                <button type="button" @click="editNativePuzzle(p)">Rediger</button>
+                <button type="button" @click="deleteNativePuzzle(p)">Slett</button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -382,7 +420,21 @@
             </button>
             <p v-if="!songPuzzle.previewUrl" class="wrd-message">Ingen forhåndsvisning tilgjengelig for denne sangen</p>
             <form class="songless-form" @submit.prevent="songSubmit">
-              <input v-model="songGuess" class="creator-input native-input" placeholder="Tittel på sangen..." />
+              <div class="songless-guess-wrap">
+                <input v-model="songGuess" class="creator-input native-input" placeholder="Tittel på sangen..." @input="songSearchSuggestions" />
+                <div v-if="songSuggestions.length" class="songless-suggestions">
+                  <button
+                    v-for="suggestion in songSuggestions"
+                    :key="suggestion.trackId"
+                    type="button"
+                    class="songless-suggestion"
+                    @click="songSelectSuggestion(suggestion)"
+                  >
+                    <strong>{{ suggestion.trackName }}</strong>
+                    <span>{{ suggestion.artistName }}</span>
+                  </button>
+                </div>
+              </div>
               <div class="songless-actions">
                 <button class="conn-btn" type="button" @click="songSkip">Hopp over</button>
                 <button class="conn-btn conn-btn-primary" type="submit">Gjett</button>
@@ -462,6 +514,7 @@
                   {{ cwPlaying ? '⏸' : '▶' }}
                 </button>
                 <button class="cw-ctrl-btn" @click="cwNextClue" title="Neste">⏭</button>
+                <button class="conn-btn cw-hint-btn" type="button" :disabled="!cwActiveCell" @click="cwUseHint">Hint</button>
               </div>
             </div>
             <div class="cw-submit-row">
@@ -508,7 +561,7 @@
 
         <div class="creator-wrap native-creator">
           <template v-if="isAuthenticated">
-            <button class="creator-toggle" @click="creatorOpen = !creatorOpen">
+            <button class="creator-toggle" @click="toggleCreator">
               <span class="creator-toggle-icon">{{ creatorOpen ? '−' : '+' }}</span>
               Lag ny {{ activeNativeGame.name }}
             </button>
@@ -516,6 +569,10 @@
           <RouterLink v-else class="creator-login-hint" to="/login">Logg inn for å lage spill →</RouterLink>
 
           <form v-if="creatorOpen && isAuthenticated" class="creator-form" @submit.prevent="submitNativeCreator">
+            <div v-if="activeGame !== 'kryssburet'" class="creator-author-row">
+              <label class="creator-label">Tittel</label>
+              <input v-model="nativeCreatorTitle" class="creator-input" placeholder="Navn på spillet" required />
+            </div>
             <template v-if="activeGame === 'merburet'">
               <div v-for="(round, idx) in merCreatorRounds" :key="idx" class="creator-group">
                 <label class="creator-label">Duell {{ idx + 1 }}</label>
@@ -616,9 +673,9 @@
             </template>
 
             <div class="creator-actions">
-              <button type="button" class="conn-btn" @click="creatorOpen = false">Avbryt</button>
+              <button type="button" class="conn-btn" @click="cancelCreator">Avbryt</button>
               <button type="submit" class="conn-btn conn-btn-primary" :disabled="nativeCreating">
-                {{ nativeCreating ? 'Lagrer…' : 'Publiser spill' }}
+                {{ nativeCreating ? 'Lagrer…' : (editingNativeId ? 'Oppdater spill' : 'Publiser spill') }}
               </button>
             </div>
             <p v-if="nativeCreatorError" class="creator-error">{{ nativeCreatorError }}</p>
@@ -633,7 +690,7 @@
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { puzzleApi, scoreApi } from '../services/api'
 import { useLiveDateInfo } from '../composables/useLiveDateInfo'
-import { isAuthenticated, displayName } from '../services/authState'
+import { isAuthenticated, displayName, isAdminOrAbove } from '../services/authState'
 import { subscribeToUpdates } from '../services/realtime'
 
 const activeGame = ref('connections')
@@ -679,10 +736,42 @@ const completedNativeIds = ref({ merburet: [], latburet: [], kryssburet: [], tid
 const nativeSubmitted = ref({})
 const activeNativePuzzles = computed(() => nativePuzzles.value[activeGame.value] ?? [])
 const activeNativeCompletedIds = computed(() => completedNativeIds.value[activeGame.value] ?? [])
+const LIBRARY_LIMIT = 6
+const connLibraryExpanded = ref(false)
+const wrdLibraryExpanded = ref(false)
+const nativeLibraryExpanded = ref({})
+const visibleConnPuzzles = computed(() => connLibraryExpanded.value ? allConnPuzzles.value : allConnPuzzles.value.slice(0, LIBRARY_LIMIT))
+const visibleWrdPuzzles = computed(() => wrdLibraryExpanded.value ? allWrdPuzzles.value : allWrdPuzzles.value.slice(0, LIBRARY_LIMIT))
+const visibleNativePuzzles = computed(() => nativeLibraryExpanded.value[activeGame.value] ? activeNativePuzzles.value : activeNativePuzzles.value.slice(0, LIBRARY_LIMIT))
 const activeNativeGameState = computed(() => {
   const id = selectedNativeIds.value[activeGame.value]
   return id && activeNativeCompletedIds.value.includes(id) ? 'completed' : 'playing'
 })
+
+function toggleNativeLibrary() {
+  nativeLibraryExpanded.value = {
+    ...nativeLibraryExpanded.value,
+    [activeGame.value]: !nativeLibraryExpanded.value[activeGame.value],
+  }
+}
+
+function puzzleDisplayTitle(puzzle, fallback) {
+  return puzzle?.title?.trim() || (puzzle?.isDaily ? `Daglig ${fallback}` : fallback)
+}
+
+function puzzleCreatorLabel(puzzle) {
+  return `Laget av ${puzzle?.createdBy || 'Anonym'}`
+}
+
+function nativePuzzleDisplayTitle(puzzle) {
+  const payload = parseNativePayload(puzzle)
+  return puzzleDisplayTitle(puzzle, payload?.title || activeNativeGame.value?.name || 'Spill')
+}
+
+function canManagePuzzle(puzzle) {
+  if (!isAuthenticated.value || !puzzle || puzzle.isDaily) return false
+  return isAdminOrAbove.value || puzzle.createdBy === displayName.value
+}
 
 async function submitNativeScore(gameId, scoreValue) {
   const game = nativeGames.find(g => g.id === gameId)
@@ -770,6 +859,7 @@ const songDurations = [0.1, 0.5, 1, 2, 4, 8]
 const songPuzzle = ref({ answer: '', artist: '', title: '', trackId: null, previewUrl: null })
 const songGuess = ref('')
 const songGuesses = ref([])
+const songSuggestions = ref([])
 const songStep = ref(0)
 const songDone = ref(false)
 const songWon = ref(false)
@@ -779,6 +869,7 @@ const songStarting = ref(false)
 let _songAudio = null
 let _songTimer = null
 let _songPlayToken = 0
+let _songSuggestTimer = null
 
 const songCurrentDuration = computed(() => songDurations[Math.min(songStep.value, songDurations.length - 1)])
 const songScore = computed(() => songWon.value ? Math.max(0, 1000 - (songStep.value * 150)) : 0)
@@ -812,6 +903,7 @@ async function applySongPuzzle(payload) {
   }
   songGuess.value = ''
   songGuesses.value = []
+  songSuggestions.value = []
   songStep.value = 0
   songDone.value = false
   songWon.value = false
@@ -823,6 +915,7 @@ function songSubmit() {
   const guess = songGuess.value.trim()
   songGuesses.value = [...songGuesses.value, guess]
   songGuess.value = ''
+  songSuggestions.value = []
   if (normalizeCwAudioTitle(guess) === normalizeCwAudioTitle(songPuzzle.value.answer)) {
     songWon.value = true
     songDone.value = true
@@ -844,6 +937,7 @@ function songSubmit() {
 function songSkip() {
   if (songDone.value) return
   songGuesses.value = [...songGuesses.value, '']
+  songSuggestions.value = []
   if (songStep.value >= songDurations.length - 1) {
     songDone.value = true
     songStopPreview()
@@ -851,6 +945,29 @@ function songSkip() {
     return
   }
   songStep.value++
+}
+
+function songSearchSuggestions() {
+  if (_songSuggestTimer) clearTimeout(_songSuggestTimer)
+  const query = songGuess.value.trim()
+  if (query.length < 2) {
+    songSuggestions.value = []
+    return
+  }
+  _songSuggestTimer = setTimeout(async () => {
+    try {
+      const res = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(query)}&media=music&limit=6`)
+      const data = await res.json()
+      songSuggestions.value = data.results || []
+    } catch {
+      songSuggestions.value = []
+    }
+  }, 180)
+}
+
+function songSelectSuggestion(suggestion) {
+  songGuess.value = suggestion.trackName
+  songSuggestions.value = []
 }
 
 async function songTogglePreview() {
@@ -1015,6 +1132,7 @@ watch(cwSelected, (sel) => {
 })
 
 function cwSelectClue(n, dir) {
+  if (!cwSelected.value || cwSelected.value.n !== n || cwSelected.value.dir !== dir) cwStopPreview()
   cwSelected.value = { n, dir }
 }
 
@@ -1025,6 +1143,7 @@ function cwClickCell(row, col) {
     const refs = cell.clueRefs
     if (refs.length > 1 && cwSelected.value) {
       const idx = refs.findIndex(r => r.n === cwSelected.value.n && r.dir === cwSelected.value.dir)
+      cwStopPreview()
       cwSelected.value = { n: refs[(idx + 1) % refs.length].n, dir: refs[(idx + 1) % refs.length].dir }
     }
     return
@@ -1036,6 +1155,7 @@ function cwClickCell(row, col) {
     const sameDir = refs.find(r => r.dir === cwSelected.value.dir)
     if (sameDir) { cwSelected.value = { n: sameDir.n, dir: sameDir.dir }; return }
   }
+  cwStopPreview()
   cwSelected.value = { n: refs[0].n, dir: refs[0].dir }
 }
 
@@ -1044,7 +1164,10 @@ function cwMoveCursor(delta) {
   const positions = getCluePositions(cwCurrentClue.value)
   const idx = positions.findIndex(p => p.row === cwActiveCell.value.row && p.col === cwActiveCell.value.col)
   const next = positions[idx + delta]
-  if (next) cwActiveCell.value = { row: next.row, col: next.col }
+  if (next) {
+    cwStopPreview()
+    cwActiveCell.value = { row: next.row, col: next.col }
+  }
 }
 
 function cwCheckWin() {
@@ -1091,6 +1214,18 @@ function cwSubmit() {
   cwDone.value = true
   cwStopPreview()
   if (isAuthenticated.value) submitNativeScore('kryssburet', cwScore.value)
+}
+
+function cwUseHint() {
+  if (!cwActiveCell.value) return
+  const cell = cwGrid.value[cwActiveCell.value.row]?.[cwActiveCell.value.col]
+  if (!cell || cell.black || !cell.answer) return
+  cwStopPreview()
+  cwInput.value = {
+    ...cwInput.value,
+    [`${cell.row},${cell.col}`]: cell.answer,
+  }
+  cwCheckWin()
 }
 
 function cwPrevClue() {
@@ -1233,6 +1368,7 @@ function connSubmit() {
 function applyConnectionsPuzzle(data) {
   connPuzzle.value = {
     createdBy: data.createdBy,
+    title: data.title,
     groups: data.groups.map(g => ({
       category:   g.category,
       words:      g.words,
@@ -1419,6 +1555,26 @@ async function submitWrdScore() {
 
 const creatorOpen = ref(false)
 
+function toggleCreator() {
+  if (creatorOpen.value) {
+    cancelCreator()
+    return
+  }
+  resetCurrentCreator()
+  creatorOpen.value = true
+}
+
+function cancelCreator() {
+  creatorOpen.value = false
+  resetCurrentCreator()
+}
+
+function resetCurrentCreator() {
+  if (activeGame.value === 'connections') resetConnCreator()
+  else if (activeGame.value === 'wordle') resetWrdCreator()
+  else if (activeNativeGame.value) resetNativeCreator(activeGame.value)
+}
+
 // ——— CONNECTIONS CREATOR ———————————————————————————————
 
 const connCreatorForm = ref([
@@ -1427,34 +1583,49 @@ const connCreatorForm = ref([
   { category: '', words: ['', '', '', ''] },
   { category: '', words: ['', '', '', ''] },
 ])
+const connCreatorTitle = ref('')
+const editingConnId = ref(null)
 const connCreating     = ref(false)
 const connCreatorError = ref('')
 
+function resetConnCreator() {
+  editingConnId.value = null
+  connCreatorTitle.value = ''
+  connCreatorForm.value = [
+    { category: '', words: ['', '', '', ''] },
+    { category: '', words: ['', '', '', ''] },
+    { category: '', words: ['', '', '', ''] },
+    { category: '', words: ['', '', '', ''] },
+  ]
+}
+
 async function submitConnCreator() {
   connCreatorError.value = ''
+  if (!connCreatorTitle.value.trim()) { connCreatorError.value = 'Tittel må fylles ut.'; return }
   for (const g of connCreatorForm.value) {
     if (!g.category.trim()) { connCreatorError.value = 'Alle kategorier må fylles ut.'; return }
     if (g.words.some(w => !w.trim())) { connCreatorError.value = 'Alle 16 ord må fylles ut.'; return }
   }
   connCreating.value = true
   try {
-    const data = await puzzleApi.createConnections({
+    const dto = {
       createdBy: displayName.value || 'Anonym',
+      title: connCreatorTitle.value.trim(),
       groups: connCreatorForm.value.map(g => ({
         category: g.category.trim(),
         words:    g.words.map(w => w.trim().toUpperCase()),
       })),
-    })
-    allConnPuzzles.value.unshift(data)
+    }
+    const data = editingConnId.value
+      ? await puzzleApi.updateConnections(editingConnId.value, dto)
+      : await puzzleApi.createConnections(dto)
+    allConnPuzzles.value = editingConnId.value
+      ? allConnPuzzles.value.map(p => p.id === data.id ? data : p)
+      : [data, ...allConnPuzzles.value]
     selectedConnId.value = data.id
     applyConnectionsPuzzle(data)
     creatorOpen.value = false
-    connCreatorForm.value = [
-      { category: '', words: ['', '', '', ''] },
-      { category: '', words: ['', '', '', ''] },
-      { category: '', words: ['', '', '', ''] },
-      { category: '', words: ['', '', '', ''] },
-    ]
+    resetConnCreator()
   } catch {
     connCreatorError.value = 'Noe gikk galt. Prøv igjen.'
   } finally {
@@ -1462,26 +1633,59 @@ async function submitConnCreator() {
   }
 }
 
+function editConnPuzzle(p) {
+  if (!canManagePuzzle(p)) return
+  editingConnId.value = p.id
+  connCreatorTitle.value = puzzleDisplayTitle(p, 'Tankeburet')
+  connCreatorForm.value = p.groups.map(g => ({
+    category: g.category,
+    words: [...g.words],
+  }))
+  creatorOpen.value = true
+}
+
+async function deleteConnPuzzle(p) {
+  if (!canManagePuzzle(p) || !window.confirm('Slette dette spillet?')) return
+  await puzzleApi.deleteConnections(p.id)
+  allConnPuzzles.value = allConnPuzzles.value.filter(item => item.id !== p.id)
+  if (selectedConnId.value === p.id && allConnPuzzles.value[0]) loadConnPuzzle(allConnPuzzles.value[0])
+}
+
 // ——— WORDLE CREATOR ————————————————————————————————————
 
 const wrdCreatorWord  = ref('')
+const wrdCreatorTitle = ref('')
+const editingWrdId = ref(null)
 const wrdCreating     = ref(false)
 const wrdCreatorError = ref('')
 
+function resetWrdCreator() {
+  editingWrdId.value = null
+  wrdCreatorTitle.value = ''
+  wrdCreatorWord.value = ''
+}
+
 async function submitWrdCreator() {
   wrdCreatorError.value = ''
+  if (!wrdCreatorTitle.value.trim()) { wrdCreatorError.value = 'Tittel må fylles ut.'; return }
   const word = wrdCreatorWord.value.trim().toUpperCase()
   if (word.length !== 5) { wrdCreatorError.value = 'Ordet må ha nøyaktig 5 bokstaver.'; return }
   wrdCreating.value = true
   try {
-    const data = await puzzleApi.createWordle({
+    const dto = {
       createdBy: displayName.value || 'Anonym',
+      title: wrdCreatorTitle.value.trim(),
       word,
-    })
-    allWrdPuzzles.value.unshift(data)
+    }
+    const data = editingWrdId.value
+      ? await puzzleApi.updateWordle(editingWrdId.value, dto)
+      : await puzzleApi.createWordle(dto)
+    allWrdPuzzles.value = editingWrdId.value
+      ? allWrdPuzzles.value.map(p => p.id === data.id ? data : p)
+      : [data, ...allWrdPuzzles.value]
     loadWrdPuzzle(data)
     creatorOpen.value  = false
-    wrdCreatorWord.value = ''
+    resetWrdCreator()
   } catch {
     wrdCreatorError.value = 'Noe gikk galt. Prøv igjen.'
   } finally {
@@ -1489,10 +1693,27 @@ async function submitWrdCreator() {
   }
 }
 
+function editWrdPuzzle(p) {
+  if (!canManagePuzzle(p)) return
+  editingWrdId.value = p.id
+  wrdCreatorTitle.value = puzzleDisplayTitle(p, 'Ordburet')
+  wrdCreatorWord.value = p.word
+  creatorOpen.value = true
+}
+
+async function deleteWrdPuzzle(p) {
+  if (!canManagePuzzle(p) || !window.confirm('Slette dette ordet?')) return
+  await puzzleApi.deleteWordle(p.id)
+  allWrdPuzzles.value = allWrdPuzzles.value.filter(item => item.id !== p.id)
+  if (selectedWrdId.value === p.id && allWrdPuzzles.value[0]) loadWrdPuzzle(allWrdPuzzles.value[0])
+}
+
 // ——— NATIVE GAME CREATOR ———————————————————————————————
 
 const nativeCreating = ref(false)
 const nativeCreatorError = ref('')
+const nativeCreatorTitle = ref('')
+const editingNativeId = ref(null)
 const merCreatorRounds = ref([
   { metric: '', left: '', right: '', answer: 'left' },
   { metric: '', left: '', right: '', answer: 'left' },
@@ -1573,6 +1794,8 @@ function cwCreatorAddClue() {
 const timeCreator = ref({ prompt: '', year: new Date().getFullYear(), place: '', optionsText: '' })
 
 function resetNativeCreator(gameId) {
+  nativeCreatorTitle.value = ''
+  editingNativeId.value = null
   if (gameId === 'merburet') {
     merCreatorRounds.value = [
       { metric: '', left: '', right: '', answer: 'left' },
@@ -1643,6 +1866,11 @@ async function submitNativeCreator() {
   nativeCreatorError.value = ''
   const game = activeNativeGame.value
   if (!game) return
+  const gameTitle = game.id === 'kryssburet' ? cwCreatorForm.value.title.trim() : nativeCreatorTitle.value.trim()
+  if (!gameTitle) {
+    nativeCreatorError.value = 'Tittel må fylles ut.'
+    return
+  }
   const payload = buildNativeCreatorPayload(game.id)
   if (!payload) {
     nativeCreatorError.value = 'Fyll ut alle feltene.'
@@ -1650,13 +1878,19 @@ async function submitNativeCreator() {
   }
   nativeCreating.value = true
   try {
-    const data = await puzzleApi.createNative(game.gameName, {
+    const dto = {
       createdBy: displayName.value || 'Anonym',
+      title: gameTitle,
       payloadJson: JSON.stringify(payload),
-    })
+    }
+    const data = editingNativeId.value
+      ? await puzzleApi.updateNative(game.gameName, editingNativeId.value, dto)
+      : await puzzleApi.createNative(game.gameName, dto)
     nativePuzzles.value = {
       ...nativePuzzles.value,
-      [game.id]: [data, ...(nativePuzzles.value[game.id] ?? [])],
+      [game.id]: editingNativeId.value
+        ? (nativePuzzles.value[game.id] ?? []).map(p => p.id === data.id ? data : p)
+        : [data, ...(nativePuzzles.value[game.id] ?? [])],
     }
     loadNativePuzzle(game.id, data)
     resetNativeCreator(game.id)
@@ -1665,6 +1899,76 @@ async function submitNativeCreator() {
     nativeCreatorError.value = 'Noe gikk galt. Prøv igjen.'
   } finally {
     nativeCreating.value = false
+  }
+}
+
+function editNativePuzzle(p) {
+  if (!canManagePuzzle(p)) return
+  const payload = parseNativePayload(p)
+  if (!payload) return
+  editingNativeId.value = p.id
+  nativeCreatorTitle.value = puzzleDisplayTitle(p, activeNativeGame.value?.name || 'Spill')
+  if (activeGame.value === 'merburet') {
+    merCreatorRounds.value = (payload.rounds || []).map(r => ({
+      metric: r.metric || '',
+      left: r.left || '',
+      right: r.right || '',
+      answer: r.answer === 'right' ? 'right' : 'left',
+    }))
+  }
+  if (activeGame.value === 'latburet') {
+    songCreator.value = {
+      answer: payload.answer || payload.title || '',
+      artist: payload.artist || '',
+      title: payload.title || payload.answer || '',
+      trackId: payload.trackId || null,
+      previewUrl: payload.previewUrl || null,
+      searchQuery: `${payload.artist || ''} ${payload.title || payload.answer || ''}`.trim(),
+      searchResults: [],
+    }
+  }
+  if (activeGame.value === 'kryssburet') {
+    cwCreatorForm.value = {
+      title: p.title || payload.title || '',
+      rows: payload.rows || 7,
+      cols: payload.cols || 7,
+      clues: (payload.clues || []).map(c => ({
+        n: c.n,
+        dir: c.dir,
+        row: c.row,
+        col: c.col,
+        answer: c.answer || '',
+        clue: c.clue || '',
+        searchQuery: '',
+        searchResults: [],
+        trackId: c.trackId || null,
+        artist: '',
+        title: '',
+        previewUrl: c.previewUrl || null,
+      })),
+    }
+  }
+  if (activeGame.value === 'tidsburet') {
+    timeCreator.value = {
+      prompt: payload.prompt || '',
+      year: payload.year || new Date().getFullYear(),
+      place: payload.place || '',
+      optionsText: (payload.options || []).join(', '),
+    }
+  }
+  creatorOpen.value = true
+}
+
+async function deleteNativePuzzle(p) {
+  const game = activeNativeGame.value
+  if (!game || !canManagePuzzle(p) || !window.confirm('Slette dette spillet?')) return
+  await puzzleApi.deleteNative(game.gameName, p.id)
+  nativePuzzles.value = {
+    ...nativePuzzles.value,
+    [game.id]: (nativePuzzles.value[game.id] ?? []).filter(item => item.id !== p.id),
+  }
+  if (selectedNativeIds.value[game.id] === p.id && nativePuzzles.value[game.id]?.[0]) {
+    loadNativePuzzle(game.id, nativePuzzles.value[game.id][0])
   }
 }
 
@@ -1847,15 +2151,39 @@ onUnmounted(() => {
   border: 1px solid var(--line-soft);
   border-radius: var(--radius);
 }
+.puzzle-library-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.library-more {
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
 .puzzle-list {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
+.puzzle-pick-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 .puzzle-pick {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  min-width: 148px;
+  min-height: 78px;
   padding: 8px 14px;
   border: 1px solid var(--line-soft);
   border-radius: var(--radius);
@@ -1868,8 +2196,37 @@ onUnmounted(() => {
 .puzzle-pick:hover { border-color: var(--ink); color: var(--ink); }
 .puzzle-pick.active { border-color: var(--accent); color: var(--accent); background: var(--bg-soft); }
 .puzzle-pick.done { opacity: 0.55; }
+.puzzle-pick-title {
+  max-width: 160px;
+  color: var(--ink);
+  font-weight: 800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.puzzle-pick-by {
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .puzzle-pick-date { font-size: 10px; opacity: 0.6; margin-top: 2px; }
 .puzzle-pick-done { font-size: 10px; color: var(--accent); margin-top: 2px; }
+.puzzle-manage {
+  display: flex;
+  gap: 6px;
+}
+.puzzle-manage button {
+  border: 0;
+  background: transparent;
+  color: var(--ink-mute);
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.puzzle-manage button:hover { color: var(--accent-2); }
 
 /* ── Connections ─────────────────────────────── */
 .conn-top {
@@ -2171,6 +2528,38 @@ onUnmounted(() => {
   flex-direction: column;
   gap: 12px;
 }
+.songless-guess-wrap {
+  position: relative;
+  width: 100%;
+}
+.songless-suggestions {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  background: var(--bg);
+  box-shadow: 0 16px 34px rgba(18, 35, 29, 0.16);
+}
+.songless-suggestion {
+  width: 100%;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  text-align: left;
+  color: var(--ink);
+}
+.songless-suggestion:hover {
+  background: var(--paper);
+}
+.songless-suggestion span {
+  color: var(--ink-mute);
+  white-space: nowrap;
+}
 .songless-actions {
   display: flex;
   gap: 12px;
@@ -2280,6 +2669,10 @@ onUnmounted(() => {
 }
 .cw-play-btn:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); }
 .cw-play-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.cw-hint-btn {
+  padding: 10px 14px;
+  font-size: 11px;
+}
 .cw-submit-row {
   width: 100%;
   display: flex;

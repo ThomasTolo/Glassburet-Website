@@ -5,6 +5,8 @@ import com.glassburet.dto.ConnectionsPuzzleResponse;
 import com.glassburet.realtime.SiteUpdateBroadcaster;
 import com.glassburet.service.ConnectionsPuzzleService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,9 +41,30 @@ public class ConnectionsPuzzleController {
     }
 
     @PostMapping
-    public ResponseEntity<ConnectionsPuzzleResponse> create(@RequestBody ConnectionsPuzzleDto dto) {
+    public ResponseEntity<ConnectionsPuzzleResponse> create(@RequestBody ConnectionsPuzzleDto dto, Authentication authentication) {
+        dto.setCreatedBy(authentication.getName());
         ConnectionsPuzzleResponse puzzle = service.create(dto);
         siteUpdateBroadcaster.publish("puzzles");
         return ResponseEntity.ok(puzzle);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ConnectionsPuzzleResponse> update(@PathVariable Long id, @RequestBody ConnectionsPuzzleDto dto, Authentication authentication) {
+        ConnectionsPuzzleResponse puzzle = service.update(id, dto, authentication.getName(), canManageAll(authentication));
+        siteUpdateBroadcaster.publish("puzzles");
+        return ResponseEntity.ok(puzzle);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id, Authentication authentication) {
+        service.delete(id, authentication.getName(), canManageAll(authentication));
+        siteUpdateBroadcaster.publish("puzzles");
+        return ResponseEntity.noContent().build();
+    }
+
+    private boolean canManageAll(Authentication authentication) {
+        return authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .anyMatch(role -> role.equals("ROLE_ADMIN") || role.equals("ROLE_OWNER"));
     }
 }

@@ -5,6 +5,8 @@ import com.glassburet.model.WordlePuzzle;
 import com.glassburet.repository.WordlePuzzleRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -32,7 +34,26 @@ public class WordlePuzzleService {
         WordlePuzzle puzzle = new WordlePuzzle();
         puzzle.setWord(dto.getWord().toUpperCase().trim());
         puzzle.setCreatedBy(dto.getCreatedBy() != null ? dto.getCreatedBy() : "Anonym");
+        puzzle.setTitle(clean(dto.getTitle()));
         return repository.save(puzzle);
+    }
+
+    @Transactional
+    public WordlePuzzle update(Long id, WordlePuzzleDto dto, String ownerName, boolean canOverride) {
+        WordlePuzzle puzzle = repository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        requireEditable(puzzle, ownerName, canOverride);
+        puzzle.setWord(dto.getWord().toUpperCase().trim());
+        puzzle.setTitle(clean(dto.getTitle()));
+        return repository.save(puzzle);
+    }
+
+    @Transactional
+    public void delete(Long id, String ownerName, boolean canOverride) {
+        WordlePuzzle puzzle = repository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        requireEditable(puzzle, ownerName, canOverride);
+        repository.delete(puzzle);
     }
 
     @Transactional
@@ -47,6 +68,7 @@ public class WordlePuzzleService {
         WordlePuzzle puzzle = new WordlePuzzle();
         puzzle.setWord(DAILY_WORDS[idx]);
         puzzle.setCreatedBy("Glassburet");
+        puzzle.setTitle("Daglig Ordburet");
         puzzle.setIsDaily(true);
         puzzle.setPuzzleDate(today);
         return repository.save(puzzle);
@@ -58,5 +80,18 @@ public class WordlePuzzleService {
 
     public List<WordlePuzzle> getAll() {
         return repository.findAllByOrderByCreatedAtDesc();
+    }
+
+    private void requireEditable(WordlePuzzle puzzle, String ownerName, boolean canOverride) {
+        if (Boolean.TRUE.equals(puzzle.getIsDaily())) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
+        if (!canOverride && (ownerName == null || !ownerName.equals(puzzle.getCreatedBy()))) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
+    }
+
+    private String clean(String value) {
+        return value == null || value.isBlank() ? null : value.trim();
     }
 }

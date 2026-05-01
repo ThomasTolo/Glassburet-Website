@@ -15,6 +15,8 @@ public class ConnectionsPuzzle {
     @Column(nullable = false)
     private String createdBy;
 
+    private String title;
+
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
@@ -38,6 +40,8 @@ public class ConnectionsPuzzle {
     public Long getId() { return id; }
     public String getCreatedBy() { return createdBy; }
     public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
     public LocalDateTime getCreatedAt() { return createdAt; }
     public Boolean getIsDaily() { return isDaily; }
     public void setIsDaily(Boolean isDaily) { this.isDaily = isDaily; }

@@ -5,6 +5,8 @@ import com.glassburet.model.WordlePuzzle;
 import com.glassburet.realtime.SiteUpdateBroadcaster;
 import com.glassburet.service.WordlePuzzleService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,9 +41,30 @@ public class WordlePuzzleController {
     }
 
     @PostMapping
-    public ResponseEntity<WordlePuzzle> create(@RequestBody WordlePuzzleDto dto) {
+    public ResponseEntity<WordlePuzzle> create(@RequestBody WordlePuzzleDto dto, Authentication authentication) {
+        dto.setCreatedBy(authentication.getName());
         WordlePuzzle puzzle = service.create(dto);
         siteUpdateBroadcaster.publish("puzzles");
         return ResponseEntity.ok(puzzle);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<WordlePuzzle> update(@PathVariable Long id, @RequestBody WordlePuzzleDto dto, Authentication authentication) {
+        WordlePuzzle puzzle = service.update(id, dto, authentication.getName(), canManageAll(authentication));
+        siteUpdateBroadcaster.publish("puzzles");
+        return ResponseEntity.ok(puzzle);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id, Authentication authentication) {
+        service.delete(id, authentication.getName(), canManageAll(authentication));
+        siteUpdateBroadcaster.publish("puzzles");
+        return ResponseEntity.noContent().build();
+    }
+
+    private boolean canManageAll(Authentication authentication) {
+        return authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .anyMatch(role -> role.equals("ROLE_ADMIN") || role.equals("ROLE_OWNER"));
     }
 }

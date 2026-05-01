@@ -6,6 +6,8 @@ import com.glassburet.model.NativePuzzle;
 import com.glassburet.repository.NativePuzzleRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -141,8 +143,33 @@ public class NativePuzzleService {
         NativePuzzle puzzle = new NativePuzzle();
         puzzle.setGameName(gameName);
         puzzle.setCreatedBy(dto.getCreatedBy() != null && !dto.getCreatedBy().isBlank() ? dto.getCreatedBy() : "Anonym");
+        puzzle.setTitle(clean(dto.getTitle()));
         puzzle.setPayloadJson(dto.getPayloadJson());
         return repository.save(puzzle);
+    }
+
+    @Transactional
+    public NativePuzzle update(GameName gameName, Long id, NativePuzzleDto dto, String ownerName, boolean canOverride) {
+        NativePuzzle puzzle = repository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        if (puzzle.getGameName() != gameName) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        requireEditable(puzzle, ownerName, canOverride);
+        puzzle.setTitle(clean(dto.getTitle()));
+        puzzle.setPayloadJson(dto.getPayloadJson());
+        return repository.save(puzzle);
+    }
+
+    @Transactional
+    public void delete(GameName gameName, Long id, String ownerName, boolean canOverride) {
+        NativePuzzle puzzle = repository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        if (puzzle.getGameName() != gameName) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        requireEditable(puzzle, ownerName, canOverride);
+        repository.delete(puzzle);
     }
 
     private NativePuzzle createDaily(GameName gameName, LocalDate date) {
@@ -155,6 +182,7 @@ public class NativePuzzleService {
         NativePuzzle puzzle = new NativePuzzle();
         puzzle.setGameName(gameName);
         puzzle.setCreatedBy("Glassburet");
+        puzzle.setTitle(dailyTitle(gameName));
         puzzle.setIsDaily(true);
         puzzle.setPuzzleDate(date);
         puzzle.setPayloadJson(payloads[idx]);
@@ -181,5 +209,28 @@ public class NativePuzzleService {
         int idx = (int) (((dayIndex % payloads.length) + payloads.length) % payloads.length);
         puzzle.setPayloadJson(payloads[idx]);
         return repository.save(puzzle);
+    }
+
+    private void requireEditable(NativePuzzle puzzle, String ownerName, boolean canOverride) {
+        if (Boolean.TRUE.equals(puzzle.getIsDaily())) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
+        if (!canOverride && (ownerName == null || !ownerName.equals(puzzle.getCreatedBy()))) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
+    }
+
+    private String dailyTitle(GameName gameName) {
+        return switch (gameName) {
+            case MORE_OR_LESS -> "Daglig Merburet";
+            case SONGLESS -> "Daglig Låtburet";
+            case CROSSTUNES -> "Daglig Kryssburet";
+            case TIMEGUESSR -> "Daglig Tidsburet";
+            default -> "Daglig Spill";
+        };
+    }
+
+    private String clean(String value) {
+        return value == null || value.isBlank() ? null : value.trim();
     }
 }
