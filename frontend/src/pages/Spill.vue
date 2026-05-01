@@ -765,6 +765,9 @@ function puzzleCreatorLabel(puzzle) {
 
 function nativePuzzleDisplayTitle(puzzle) {
   const payload = parseNativePayload(puzzle)
+  if (puzzle?.isDaily) {
+    return puzzle?.title?.trim() || `Daglig ${activeNativeGame.value?.name || 'Spill'}`
+  }
   return puzzleDisplayTitle(puzzle, payload?.title || activeNativeGame.value?.name || 'Spill')
 }
 
