@@ -100,6 +100,7 @@
             Send inn ({{ connSelected.length }}/4)
           </button>
         </div>
+        <div v-if="connMessage" class="conn-message">{{ connMessage }}</div>
       </template>
 
       <div v-if="connGameState === 'won'" class="sp-result">
@@ -364,12 +365,28 @@
 
         <div v-if="activeGame === 'latburet'" class="native-game-body">
           <template v-if="activeNativeGameState !== 'completed' && !songDone">
-            <div class="clue-list">
-              <span v-for="clue in songPuzzle.clues.slice(0, songGuesses.length + 1)" :key="clue" class="clue-pill">{{ clue }}</span>
+            <div class="songless-steps">
+              <button
+                v-for="(duration, idx) in songDurations"
+                :key="duration"
+                :class="['songless-step', idx === songStep && 'active']"
+                :disabled="idx > songStep"
+                type="button"
+                @click="songStep = idx"
+              >
+                {{ songDurationLabel(duration) }}
+              </button>
             </div>
-            <form class="native-form" @submit.prevent="songSubmit">
-              <input v-model="songGuess" class="creator-input native-input" placeholder="Skriv tittel" />
-              <button class="conn-btn conn-btn-primary" type="submit">Gjett</button>
+            <button class="songless-play" type="button" :disabled="!songPuzzle.previewUrl || songStarting" @click="songTogglePreview">
+              {{ songPlaying ? '⏸' : '▶' }} {{ songDurationLabel(songCurrentDuration) }}
+            </button>
+            <p v-if="!songPuzzle.previewUrl" class="wrd-message">Ingen forhåndsvisning tilgjengelig for denne sangen</p>
+            <form class="songless-form" @submit.prevent="songSubmit">
+              <input v-model="songGuess" class="creator-input native-input" placeholder="Tittel på sangen..." />
+              <div class="songless-actions">
+                <button class="conn-btn" type="button" @click="songSkip">Hopp over</button>
+                <button class="conn-btn conn-btn-primary" type="submit">Gjett</button>
+              </div>
             </form>
             <p v-if="songMessage" class="wrd-message">{{ songMessage }}</p>
           </template>
@@ -383,17 +400,80 @@
         </div>
 
         <div v-if="activeGame === 'kryssburet'" class="native-game-body">
-          <form v-if="activeNativeGameState !== 'completed' && !crossDone" class="cross-form" @submit.prevent="crossSubmit">
-            <label v-for="(clue, idx) in crossPuzzle.clues" :key="clue.prompt" class="cross-row">
-              <span>{{ idx + 1 }}. {{ clue.prompt }}</span>
-              <input v-model="crossInputs[idx]" class="creator-input native-input" />
-            </label>
-            <button class="conn-btn conn-btn-primary" type="submit">Send inn</button>
-          </form>
-          <div v-if="activeNativeGameState !== 'completed' && crossDone" class="sp-result compact-result">
-            <div class="sp-result-icon">+</div>
-            <h3>{{ crossCorrect }} av {{ crossPuzzle.clues.length }} riktig</h3>
-            <p><strong>{{ crossScore }} poeng</strong></p>
+          <template v-if="cwPuzzle && !cwDone && activeNativeGameState !== 'completed'">
+            <div class="cw-layout">
+              <!-- Grid -->
+              <div class="cw-grid-wrap">
+                <div class="cw-grid" :style="{ gridTemplateColumns: `repeat(${cwPuzzle.cols}, 1fr)`, '--cw-cols': cwPuzzle.cols }">
+                  <div
+                    v-for="cell in cwGrid.flat()"
+                    :key="`${cell.row},${cell.col}`"
+                    :class="['cw-cell',
+                      cell.black && 'cw-black',
+                      !cell.black && cwSelectedCellKeys.has(`${cell.row},${cell.col}`) && 'cw-highlighted',
+                      !cell.black && cwActiveCell && cwActiveCell.row === cell.row && cwActiveCell.col === cell.col && 'cw-active',
+                    ]"
+                    @click="cwClickCell(cell.row, cell.col)"
+                  >
+                    <span v-if="cell.number" class="cw-num">{{ cell.number }}</span>
+                    <span v-if="!cell.black" class="cw-letter">{{ cwInput[`${cell.row},${cell.col}`] || '' }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Clue lists -->
+              <div class="cw-clues">
+                <div class="cw-clues-section">
+                  <h4 class="cw-clues-heading">Across</h4>
+                  <div
+                    v-for="clue in cwAcross"
+                    :key="`A${clue.n}`"
+                    :class="['cw-clue-row', cwSelected && cwSelected.n === clue.n && cwSelected.dir === 'A' && 'cw-clue-active']"
+                    @click="cwSelectClue(clue.n, 'A')"
+                  >
+                    <span :class="['cw-badge', `cw-badge-${(clue.n - 1) % 8}`]">{{ clue.n }}A</span>
+                    <span class="cw-clue-text">{{ clue.clue }}</span>
+                  </div>
+                </div>
+                <div class="cw-clues-section">
+                  <h4 class="cw-clues-heading">Down</h4>
+                  <div
+                    v-for="clue in cwDown"
+                    :key="`D${clue.n}`"
+                    :class="['cw-clue-row', cwSelected && cwSelected.n === clue.n && cwSelected.dir === 'D' && 'cw-clue-active']"
+                    @click="cwSelectClue(clue.n, 'D')"
+                  >
+                    <span :class="['cw-badge', `cw-badge-${(clue.n - 1) % 8}`]">{{ clue.n }}D</span>
+                    <span class="cw-clue-text">{{ clue.clue }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Player bar -->
+            <div v-if="cwCurrentClue" class="cw-player-bar">
+              <div class="cw-player-clue">
+                <span :class="['cw-badge', `cw-badge-${(cwCurrentClue.n - 1) % 8}`]">{{ cwCurrentClue.n }}{{ cwCurrentClue.dir }}</span>
+                <span class="cw-player-text">{{ cwCurrentClue.clue }}</span>
+              </div>
+              <div class="cw-player-controls">
+                <button class="cw-ctrl-btn" @click="cwPrevClue" title="Forrige">⏮</button>
+                <button class="cw-ctrl-btn cw-play-btn" :disabled="!cwCurrentClue.previewUrl" @click="cwTogglePreview">
+                  {{ cwPlaying ? '⏸' : '▶' }}
+                </button>
+                <button class="cw-ctrl-btn" @click="cwNextClue" title="Neste">⏭</button>
+              </div>
+            </div>
+            <div class="cw-submit-row">
+              <p v-if="cwMessage" class="wrd-message">{{ cwMessage }}</p>
+              <button class="conn-btn conn-btn-primary" type="button" @click="cwSubmit">Send inn</button>
+            </div>
+          </template>
+
+          <div v-if="cwDone && activeNativeGameState !== 'completed'" class="sp-result compact-result">
+            <div class="sp-result-icon">{{ cwWon ? '+' : '✕' }}</div>
+            <h3>{{ cwWon ? 'Løst!' : 'Ferdig' }}</h3>
+            <p><strong>{{ cwScore }} poeng</strong></p>
             <p v-if="nativeSubmitted.kryssburet" class="score-saved">✓ Poeng registrert!</p>
             <p v-else-if="!isAuthenticated" class="score-saved" style="color:var(--ink-mute)">Logg inn for å registrere poeng</p>
           </div>
@@ -452,15 +532,77 @@
             </template>
 
             <template v-if="activeGame === 'latburet'">
-              <input v-model="songCreator.answer" class="creator-input" placeholder="Tittel" required @input="songCreator.answer = songCreator.answer.toUpperCase()" />
-              <input v-for="idx in 3" :key="idx" v-model="songCreator.clues[idx - 1]" class="creator-input" :placeholder="`Hint ${idx}`" required />
+              <input v-model="songCreator.searchQuery" class="creator-input" placeholder="Søk sang" @keyup.enter.prevent="songCreatorSearch" />
+              <button type="button" class="conn-btn" @click="songCreatorSearch">Søk</button>
+              <div v-if="songCreator.searchResults.length" class="music-search-results">
+                <button type="button" v-for="r in songCreator.searchResults" :key="r.trackId" class="music-search-result" @click="songCreatorSelectTrack(r)">
+                  <strong>{{ r.artistName }}</strong> – {{ r.trackName }}
+                </button>
+              </div>
+              <p v-if="songCreator.trackId" style="font-size:12px;color:var(--accent);margin:0;">✓ {{ songCreator.artist }} – {{ songCreator.title }}</p>
             </template>
 
             <template v-if="activeGame === 'kryssburet'">
-              <div v-for="(clue, idx) in crossCreator.clues" :key="idx" class="creator-group">
-                <label class="creator-label">Hint {{ idx + 1 }}</label>
-                <input v-model="clue.prompt" class="creator-input" placeholder="Hint" required />
-                <input v-model="clue.answer" class="creator-input" placeholder="Svar" required @input="clue.answer = clue.answer.toUpperCase()" />
+              <div class="cw-creator-layout">
+                <div class="cw-creator-fields">
+                  <div class="creator-group">
+                    <input v-model="cwCreatorForm.title" class="creator-input" placeholder="Puslespilltittel" required />
+                    <div class="creator-words-row" style="grid-template-columns:1fr 1fr;">
+                      <label class="creator-label" style="display:flex;flex-direction:column;gap:4px;">
+                        Rader
+                        <input v-model.number="cwCreatorForm.rows" class="creator-input" type="number" min="3" max="15" />
+                      </label>
+                      <label class="creator-label" style="display:flex;flex-direction:column;gap:4px;">
+                        Kolonner
+                        <input v-model.number="cwCreatorForm.cols" class="creator-input" type="number" min="3" max="15" />
+                      </label>
+                    </div>
+                  </div>
+                  <div v-for="(clue, idx) in cwCreatorForm.clues" :key="idx" class="creator-group">
+                    <div class="creator-group-label">Ledetråd {{ idx + 1 }}</div>
+                    <div class="cw-creator-position-row">
+                      <input v-model.number="clue.n" class="creator-input" type="number" min="1" placeholder="Nr" />
+                      <select v-model="clue.dir" class="creator-input">
+                        <option value="A">Across</option>
+                        <option value="D">Down</option>
+                      </select>
+                      <input v-model.number="clue.row" class="creator-input" type="number" min="0" placeholder="Rad" />
+                      <input v-model.number="clue.col" class="creator-input" type="number" min="0" placeholder="Kol" />
+                    </div>
+                    <input v-model="clue.answer" class="creator-input" placeholder="SVAR" @input="clue.answer = clue.answer.toUpperCase()" required />
+                    <input v-model="clue.clue" class="creator-input" placeholder="Hinttekst" required />
+                    <div class="creator-words-row" style="grid-template-columns:1fr auto;">
+                      <input v-model="clue.searchQuery" class="creator-input" placeholder="Søk sang (for preview)" @keyup.enter.prevent="cwCreatorSearch(idx)" />
+                      <button type="button" class="conn-btn" @click="cwCreatorSearch(idx)">Søk</button>
+                    </div>
+                    <div v-if="clue.searchResults && clue.searchResults.length" class="music-search-results">
+                      <button type="button" v-for="r in clue.searchResults" :key="r.trackId" class="music-search-result" @click="cwCreatorSelectTrack(idx, r)">
+                        <strong>{{ r.artistName }}</strong> – {{ r.trackName }}
+                      </button>
+                    </div>
+                    <p v-if="clue.trackId" style="font-size:12px;color:var(--accent);margin:0;">✓ {{ clue.artist }} – {{ clue.title }}</p>
+                    <button type="button" class="conn-btn" style="align-self:flex-start;" @click="cwCreatorForm.clues.splice(idx, 1)">Fjern</button>
+                  </div>
+                  <button type="button" class="conn-btn" @click="cwCreatorAddClue">+ Legg til ledetråd</button>
+                </div>
+                <div class="cw-creator-preview">
+                  <div class="cw-creator-preview-head">
+                    <span class="eyebrow">Forhåndsvisning</span>
+                    <span>{{ cwCreatorFilledCells }} felt</span>
+                  </div>
+                  <div class="cw-creator-grid-wrap">
+                    <div class="cw-creator-grid" :style="{ gridTemplateColumns: `repeat(${cwCreatorCols}, 1fr)`, '--cw-cols': cwCreatorCols }">
+                      <div
+                        v-for="cell in cwCreatorGrid.flat()"
+                        :key="`preview-${cell.row},${cell.col}`"
+                        :class="['cw-creator-cell', cell.black && 'cw-black']"
+                      >
+                        <span v-if="cell.number" class="cw-num">{{ cell.number }}</span>
+                        <span v-if="!cell.black" class="cw-letter">{{ cell.answer }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </template>
 
@@ -488,7 +630,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { puzzleApi, scoreApi } from '../services/api'
 import { useLiveDateInfo } from '../composables/useLiveDateInfo'
 import { isAuthenticated, displayName } from '../services/authState'
@@ -581,7 +723,7 @@ function loadNativePuzzle(gameId, puzzle) {
   if (!payload) return
   if (gameId === 'merburet') applyMerPuzzle(payload)
   if (gameId === 'latburet') applySongPuzzle(payload)
-  if (gameId === 'kryssburet') applyCrossPuzzle(payload)
+  if (gameId === 'kryssburet') applyCwPuzzle(payload)
   if (gameId === 'tidsburet') applyTimePuzzle(payload)
 }
 
@@ -624,57 +766,345 @@ function merChoose(choice) {
 
 // ——— LÅTBURET ——————————————————————————————————————————
 
-const songPuzzle = ref({ answer: '', clues: [] })
+const songDurations = [0.1, 0.5, 1, 2, 4, 8]
+const songPuzzle = ref({ answer: '', artist: '', title: '', trackId: null, previewUrl: null })
 const songGuess = ref('')
 const songGuesses = ref([])
+const songStep = ref(0)
 const songDone = ref(false)
+const songWon = ref(false)
 const songMessage = ref('')
-const songScore = computed(() => songDone.value ? Math.max(0, 1000 - ((songGuesses.value.length - 1) * 200)) : 0)
+const songPlaying = ref(false)
+const songStarting = ref(false)
+let _songAudio = null
+let _songTimer = null
+let _songPlayToken = 0
 
-function applySongPuzzle(payload) {
-  songPuzzle.value = { answer: payload.answer ?? '', clues: Array.isArray(payload.clues) ? payload.clues : [] }
+const songCurrentDuration = computed(() => songDurations[Math.min(songStep.value, songDurations.length - 1)])
+const songScore = computed(() => songWon.value ? Math.max(0, 1000 - (songStep.value * 150)) : 0)
+
+async function applySongPuzzle(payload) {
+  songStopPreview()
+  const answer = (payload.answer ?? payload.title ?? '').toUpperCase()
+  let previewUrl = payload.previewUrl || null
+  if (!previewUrl && payload.trackId) {
+    try {
+      const res = await fetch(`https://itunes.apple.com/lookup?id=${payload.trackId}`)
+      const data = await res.json()
+      previewUrl = data.results?.[0]?.previewUrl || null
+    } catch {}
+  }
+  if (!previewUrl && answer) {
+    try {
+      const term = encodeURIComponent(`${payload.artist ?? ''} ${answer}`.trim())
+      const res = await fetch(`https://itunes.apple.com/search?term=${term}&media=music&limit=10`)
+      const data = await res.json()
+      const exact = (data.results || []).find(track => normalizeCwAudioTitle(track.trackName) === normalizeCwAudioTitle(answer))
+      previewUrl = exact?.previewUrl || null
+    } catch {}
+  }
+  songPuzzle.value = {
+    answer,
+    artist: payload.artist ?? '',
+    title: payload.title ?? answer,
+    trackId: payload.trackId || null,
+    previewUrl,
+  }
   songGuess.value = ''
   songGuesses.value = []
+  songStep.value = 0
   songDone.value = false
+  songWon.value = false
   songMessage.value = ''
 }
 
 function songSubmit() {
   if (songDone.value || !songGuess.value.trim()) return
-  const guess = songGuess.value.trim().toUpperCase()
+  const guess = songGuess.value.trim()
   songGuesses.value = [...songGuesses.value, guess]
   songGuess.value = ''
-  if (guess === songPuzzle.value.answer || songGuesses.value.length >= songPuzzle.value.clues.length) {
+  if (normalizeCwAudioTitle(guess) === normalizeCwAudioTitle(songPuzzle.value.answer)) {
+    songWon.value = true
     songDone.value = true
-    if (isAuthenticated.value) submitNativeScore('latburet', guess === songPuzzle.value.answer ? songScore.value : 0)
-  } else {
-    songMessage.value = 'Nytt hint låst opp'
-    setTimeout(() => { songMessage.value = '' }, 1200)
+    songStopPreview()
+    if (isAuthenticated.value) submitNativeScore('latburet', songScore.value)
+    return
+  }
+  if (songStep.value >= songDurations.length - 1) {
+    songDone.value = true
+    songStopPreview()
+    if (isAuthenticated.value) submitNativeScore('latburet', 0)
+    return
+  }
+  songStep.value++
+  songMessage.value = 'Lengre klipp låst opp'
+  setTimeout(() => { songMessage.value = '' }, 1200)
+}
+
+function songSkip() {
+  if (songDone.value) return
+  songGuesses.value = [...songGuesses.value, '']
+  if (songStep.value >= songDurations.length - 1) {
+    songDone.value = true
+    songStopPreview()
+    if (isAuthenticated.value) submitNativeScore('latburet', 0)
+    return
+  }
+  songStep.value++
+}
+
+async function songTogglePreview() {
+  if (!songPuzzle.value.previewUrl || songStarting.value) return
+  if (_songAudio && songPlaying.value) {
+    songStopPreview()
+    return
+  }
+  songStopPreview()
+  songStarting.value = true
+  const token = ++_songPlayToken
+  const audio = new Audio(songPuzzle.value.previewUrl)
+  _songAudio = audio
+  audio.currentTime = 0
+  const stopCurrent = () => {
+    if (token === _songPlayToken && _songAudio === audio) songStopPreview()
+  }
+  audio.addEventListener('ended', stopCurrent, { once: true })
+  try {
+    await audio.play()
+    if (token !== _songPlayToken || _songAudio !== audio) {
+      audio.pause()
+      return
+    }
+    songPlaying.value = true
+    _songTimer = setTimeout(stopCurrent, songCurrentDuration.value * 1000)
+  } catch {
+    if (token === _songPlayToken && _songAudio === audio) songStopPreview()
+  } finally {
+    if (token === _songPlayToken) songStarting.value = false
   }
 }
 
-// ——— KRYSSBURET ————————————————————————————————————————
-
-const crossPuzzle = ref({ clues: [] })
-const crossInputs = ref(['', '', '', ''])
-const crossDone = ref(false)
-const crossCorrect = ref(0)
-const crossScore = computed(() => crossCorrect.value * 250)
-
-function applyCrossPuzzle(payload) {
-  crossPuzzle.value = { clues: Array.isArray(payload.clues) ? payload.clues : [] }
-  crossInputs.value = crossPuzzle.value.clues.map(() => '')
-  crossDone.value = false
-  crossCorrect.value = 0
+function songStopPreview() {
+  _songPlayToken++
+  if (_songTimer) {
+    clearTimeout(_songTimer)
+    _songTimer = null
+  }
+  if (_songAudio) {
+    _songAudio.pause()
+    _songAudio.currentTime = 0
+    _songAudio = null
+  }
+  songStarting.value = false
+  songPlaying.value = false
 }
 
-function crossSubmit() {
-  if (crossDone.value) return
-  crossCorrect.value = crossPuzzle.value.clues.filter((clue, idx) => (
-    crossInputs.value[idx] || ''
-  ).trim().toUpperCase() === clue.answer).length
-  crossDone.value = true
-  if (isAuthenticated.value) submitNativeScore('kryssburet', crossScore.value)
+function songDurationLabel(duration) {
+  return `${duration % 1 === 0 ? duration.toFixed(0) : duration.toFixed(1)}s`
+}
+
+// ——— KRYSSBURET (CROSSWORD) ————————————————————————————
+
+const cwPuzzle     = ref(null)
+const cwGrid       = ref([])
+const cwInput      = ref({})
+const cwSelected   = ref(null)   // { n, dir }
+const cwActiveCell = ref(null)   // { row, col }
+const cwPlaying    = ref(false)
+const cwDone       = ref(false)
+const cwWon        = ref(false)
+const cwMessage    = ref('')
+let _cwAudio = null
+
+const cwAcross = computed(() => (cwPuzzle.value?.clues ?? []).filter(c => c.dir === 'A').sort((a, b) => a.n - b.n))
+const cwDown   = computed(() => (cwPuzzle.value?.clues ?? []).filter(c => c.dir === 'D').sort((a, b) => a.n - b.n))
+const cwCurrentClue = computed(() => {
+  if (!cwSelected.value || !cwPuzzle.value) return null
+  return cwPuzzle.value.clues.find(c => c.n === cwSelected.value.n && c.dir === cwSelected.value.dir) ?? null
+})
+const cwScore = computed(() => (cwWon.value ? 1000 : 0))
+const cwSelectedCellKeys = computed(() => {
+  const clue = cwCurrentClue.value
+  if (!clue) return new Set()
+  const keys = new Set()
+  for (let i = 0; i < clue.answer.length; i++) {
+    const r = clue.dir === 'D' ? clue.row + i : clue.row
+    const c = clue.dir === 'A' ? clue.col + i : clue.col
+    keys.add(`${r},${c}`)
+  }
+  return keys
+})
+
+function buildCwGrid(puzzle) {
+  const { rows, cols, clues } = puzzle
+  const grid = Array.from({ length: rows }, (_, r) =>
+    Array.from({ length: cols }, (_, c) => ({ row: r, col: c, black: true, number: null, answer: '', clueRefs: [] }))
+  )
+  for (const clue of clues) {
+    for (let i = 0; i < clue.answer.length; i++) {
+      const r = clue.dir === 'D' ? clue.row + i : clue.row
+      const c = clue.dir === 'A' ? clue.col + i : clue.col
+      if (r >= 0 && r < rows && c >= 0 && c < cols) {
+        grid[r][c].black = false
+        grid[r][c].answer = clue.answer[i]
+        grid[r][c].clueRefs.push({ n: clue.n, dir: clue.dir })
+      }
+    }
+    if (clue.row >= 0 && clue.row < rows && clue.col >= 0 && clue.col < cols) {
+      grid[clue.row][clue.col].number = clue.n
+    }
+  }
+  return grid
+}
+
+function getCluePositions(clue) {
+  const positions = []
+  for (let i = 0; i < clue.answer.length; i++) {
+    positions.push({
+      row: clue.dir === 'D' ? clue.row + i : clue.row,
+      col: clue.dir === 'A' ? clue.col + i : clue.col,
+    })
+  }
+  return positions
+}
+
+async function applyCwPuzzle(payload) {
+  if (_cwAudio) { _cwAudio.pause(); _cwAudio = null }
+  cwDone.value = false
+  cwWon.value = false
+  cwInput.value = {}
+  cwSelected.value = null
+  cwActiveCell.value = null
+  cwPlaying.value = false
+  cwMessage.value = ''
+  const clues = await Promise.all((payload.clues || []).map(async clue => {
+    let previewUrl = clue.previewUrl || null
+    if (!previewUrl && clue.trackId) {
+      try {
+        const res = await fetch(`https://itunes.apple.com/lookup?id=${clue.trackId}`)
+        const data = await res.json()
+        previewUrl = data.results?.[0]?.previewUrl || null
+      } catch {}
+    }
+    if (!previewUrl && clue.answer) {
+      try {
+        const res = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(clue.answer)}&media=music&limit=10`)
+        const data = await res.json()
+        const exact = (data.results || []).find(track => normalizeCwAudioTitle(track.trackName) === normalizeCwAudioTitle(clue.answer))
+        previewUrl = exact?.previewUrl || null
+      } catch {}
+    }
+    return { ...clue, previewUrl }
+  }))
+  cwPuzzle.value = { ...payload, clues }
+  cwGrid.value = buildCwGrid(cwPuzzle.value)
+  if (clues.length > 0) cwSelected.value = { n: clues[0].n, dir: clues[0].dir }
+}
+
+function normalizeCwAudioTitle(value) {
+  return String(value || '').toUpperCase().replace(/[^A-Z0-9]/g, '')
+}
+
+watch(cwSelected, (sel) => {
+  if (!sel || !cwPuzzle.value) return
+  const clue = cwPuzzle.value.clues.find(c => c.n === sel.n && c.dir === sel.dir)
+  if (!clue) return
+  const positions = getCluePositions(clue)
+  const firstUnfilled = positions.find(p => !cwInput.value[`${p.row},${p.col}`])
+  cwActiveCell.value = firstUnfilled || positions[0] || null
+})
+
+function cwSelectClue(n, dir) {
+  cwSelected.value = { n, dir }
+}
+
+function cwClickCell(row, col) {
+  const cell = cwGrid.value[row]?.[col]
+  if (!cell || cell.black) return
+  if (cwActiveCell.value?.row === row && cwActiveCell.value?.col === col) {
+    const refs = cell.clueRefs
+    if (refs.length > 1 && cwSelected.value) {
+      const idx = refs.findIndex(r => r.n === cwSelected.value.n && r.dir === cwSelected.value.dir)
+      cwSelected.value = { n: refs[(idx + 1) % refs.length].n, dir: refs[(idx + 1) % refs.length].dir }
+    }
+    return
+  }
+  cwActiveCell.value = { row, col }
+  const refs = cell.clueRefs
+  if (!refs.length) return
+  if (cwSelected.value) {
+    const sameDir = refs.find(r => r.dir === cwSelected.value.dir)
+    if (sameDir) { cwSelected.value = { n: sameDir.n, dir: sameDir.dir }; return }
+  }
+  cwSelected.value = { n: refs[0].n, dir: refs[0].dir }
+}
+
+function cwMoveCursor(delta) {
+  if (!cwCurrentClue.value || !cwActiveCell.value) return
+  const positions = getCluePositions(cwCurrentClue.value)
+  const idx = positions.findIndex(p => p.row === cwActiveCell.value.row && p.col === cwActiveCell.value.col)
+  const next = positions[idx + delta]
+  if (next) cwActiveCell.value = { row: next.row, col: next.col }
+}
+
+function cwCheckWin() {
+  const allCells = cwGrid.value.flatMap(r => r).filter(c => !c.black)
+  if (!allCells.every(c => cwInput.value[`${c.row},${c.col}`])) return
+  if (allCells.every(c => cwInput.value[`${c.row},${c.col}`] === c.answer)) {
+    cwDone.value = true
+    cwWon.value = true
+    if (isAuthenticated.value) submitNativeScore('kryssburet', 1000)
+  }
+}
+
+function cwStopPreview() {
+  if (_cwAudio) {
+    _cwAudio.pause()
+    _cwAudio = null
+  }
+  cwPlaying.value = false
+}
+
+function cwTogglePreview() {
+  const clue = cwCurrentClue.value
+  if (!clue?.previewUrl) return
+  if (_cwAudio && cwPlaying.value) {
+    cwStopPreview()
+    return
+  }
+  cwStopPreview()
+  _cwAudio = new Audio(clue.previewUrl)
+  _cwAudio.play()
+  cwPlaying.value = true
+  _cwAudio.addEventListener('ended', () => { cwPlaying.value = false; _cwAudio = null })
+}
+
+function cwSubmit() {
+  if (cwDone.value) return
+  const allCells = cwGrid.value.flatMap(r => r).filter(c => !c.black)
+  if (!allCells.every(c => cwInput.value[`${c.row},${c.col}`])) {
+    cwMessage.value = 'Fyll ut hele rutenettet før du sender inn.'
+    setTimeout(() => { cwMessage.value = '' }, 1600)
+    return
+  }
+  cwWon.value = allCells.every(c => cwInput.value[`${c.row},${c.col}`] === c.answer)
+  cwDone.value = true
+  cwStopPreview()
+  if (isAuthenticated.value) submitNativeScore('kryssburet', cwScore.value)
+}
+
+function cwPrevClue() {
+  if (!cwPuzzle.value || !cwSelected.value) return
+  const all = cwPuzzle.value.clues
+  const idx = all.findIndex(c => c.n === cwSelected.value.n && c.dir === cwSelected.value.dir)
+  if (idx > 0) { cwStopPreview(); cwSelected.value = { n: all[idx - 1].n, dir: all[idx - 1].dir } }
+}
+
+function cwNextClue() {
+  if (!cwPuzzle.value || !cwSelected.value) return
+  const all = cwPuzzle.value.clues
+  const idx = all.findIndex(c => c.n === cwSelected.value.n && c.dir === cwSelected.value.dir)
+  if (idx < all.length - 1) { cwStopPreview(); cwSelected.value = { n: all[idx + 1].n, dir: all[idx + 1].dir } }
 }
 
 // ——— TIDSBURET ——————————————————————————————————————————
@@ -725,6 +1155,7 @@ const connShuffled  = ref([])
 const connSelected  = ref([])
 const connSolved    = ref([])
 const connBadWords  = ref([])
+const connMessage   = ref('')
 const connMistakes  = ref(0)
 const connGameState = ref('playing')
 const connScoreSubmitted = ref(false)
@@ -745,6 +1176,7 @@ function connInit() {
   connSelected.value  = []
   connSolved.value    = []
   connBadWords.value  = []
+  connMessage.value   = ''
   connMistakes.value  = 0
   connGameState.value = 'playing'
   connScoreSubmitted.value = false
@@ -780,6 +1212,13 @@ function connSubmit() {
   } else {
     connBadWords.value = [...sel]
     connMistakes.value++
+    if (connPuzzle.value.groups.some(g =>
+      !connSolved.value.some(s => s.category === g.category) &&
+      sel.filter(w => g.words.includes(w)).length === 3
+    )) {
+      connMessage.value = 'Én unna'
+      setTimeout(() => { connMessage.value = '' }, 3000)
+    }
     setTimeout(() => {
       connBadWords.value = []
       connSelected.value = []
@@ -866,16 +1305,37 @@ function wrdLetterState(letter) {
   if (letter === 'ENTER' || letter === 'DEL') return ''
   let best = ''
   for (const guess of wrdGuesses.value) {
+    const states = wrdEvaluateGuess(guess)
     for (let i = 0; i < guess.length; i++) {
-      if (guess[i] === letter) {
-        if (wrdTarget.value[i] === letter) { best = 'correct'; break }
-        else if (wrdTarget.value.includes(letter) && best !== 'correct') best = 'present'
-        else if (best === '') best = 'absent'
-      }
+      if (guess[i] !== letter) continue
+      if (states[i] === 'correct') { best = 'correct'; break }
+      if (states[i] === 'present' && best !== 'correct') best = 'present'
+      if (states[i] === 'absent' && best === '') best = 'absent'
     }
     if (best === 'correct') break
   }
   return best
+}
+
+function wrdEvaluateGuess(guess) {
+  const states = Array(guess.length).fill('absent')
+  const remaining = {}
+  for (let i = 0; i < wrdTarget.value.length; i++) {
+    if (guess[i] === wrdTarget.value[i]) {
+      states[i] = 'correct'
+    } else {
+      remaining[wrdTarget.value[i]] = (remaining[wrdTarget.value[i]] || 0) + 1
+    }
+  }
+  for (let i = 0; i < guess.length; i++) {
+    if (states[i] === 'correct') continue
+    const letter = guess[i]
+    if (remaining[letter] > 0) {
+      states[i] = 'present'
+      remaining[letter]--
+    }
+  }
+  return states
 }
 
 function wrdCellLetter(row, col) {
@@ -888,9 +1348,7 @@ function wrdCellClass(row, col) {
   if (row < wrdGuesses.value.length) {
     const letter = wrdGuesses.value[row][col]
     if (!letter) return ''
-    if (wrdTarget.value[col] === letter) return 'correct'
-    if (wrdTarget.value.includes(letter)) return 'present'
-    return 'absent'
+    return wrdEvaluateGuess(wrdGuesses.value[row])[col]
   }
   if (row === wrdGuesses.value.length && wrdGameState.value === 'playing' && wrdCurrent.value[col]) return 'filled'
   return ''
@@ -1042,15 +1500,76 @@ const merCreatorRounds = ref([
   { metric: '', left: '', right: '', answer: 'left' },
   { metric: '', left: '', right: '', answer: 'left' },
 ])
-const songCreator = ref({ answer: '', clues: ['', '', ''] })
-const crossCreator = ref({
-  clues: [
-    { prompt: '', answer: '' },
-    { prompt: '', answer: '' },
-    { prompt: '', answer: '' },
-    { prompt: '', answer: '' },
-  ],
+const songCreator = ref({ answer: '', artist: '', title: '', trackId: null, previewUrl: null, searchQuery: '', searchResults: [] })
+const cwCreatorForm = ref({
+  title: '', rows: 7, cols: 7,
+  clues: [{ n: 1, dir: 'D', row: 0, col: 0, answer: '', clue: '', searchQuery: '', searchResults: [], trackId: null, artist: '', title: '', previewUrl: null }],
 })
+const cwCreatorRows = computed(() => Math.min(15, Math.max(3, Number(cwCreatorForm.value.rows) || 7)))
+const cwCreatorCols = computed(() => Math.min(15, Math.max(3, Number(cwCreatorForm.value.cols) || 7)))
+const cwCreatorGrid = computed(() => buildCwGrid({
+  rows: cwCreatorRows.value,
+  cols: cwCreatorCols.value,
+  clues: cwCreatorForm.value.clues
+    .map(clue => ({
+      n: Number(clue.n) || 0,
+      dir: clue.dir === 'D' ? 'D' : 'A',
+      row: Number(clue.row) || 0,
+      col: Number(clue.col) || 0,
+      answer: (clue.answer || '').trim().toUpperCase(),
+    }))
+    .filter(clue => clue.n > 0 && clue.answer),
+}))
+const cwCreatorFilledCells = computed(() => cwCreatorGrid.value.flat().filter(cell => !cell.black).length)
+
+async function songCreatorSearch() {
+  if (!songCreator.value.searchQuery.trim()) return
+  const q = encodeURIComponent(songCreator.value.searchQuery.trim())
+  try {
+    const res = await fetch(`https://itunes.apple.com/search?term=${q}&media=music&limit=5`)
+    const data = await res.json()
+    songCreator.value.searchResults = data.results || []
+  } catch {}
+}
+
+function songCreatorSelectTrack(track) {
+  songCreator.value = {
+    ...songCreator.value,
+    answer: track.trackName.toUpperCase(),
+    artist: track.artistName,
+    title: track.trackName.toUpperCase(),
+    trackId: track.trackId,
+    previewUrl: track.previewUrl || null,
+    searchResults: [],
+  }
+}
+
+async function cwCreatorSearch(idx) {
+  const clue = cwCreatorForm.value.clues[idx]
+  if (!clue?.searchQuery?.trim()) return
+  const q = encodeURIComponent(clue.searchQuery.trim())
+  try {
+    const res = await fetch(`https://itunes.apple.com/search?term=${q}&media=music&limit=5`)
+    const data = await res.json()
+    clue.searchResults = data.results || []
+  } catch {}
+}
+
+function cwCreatorSelectTrack(idx, track) {
+  const clue = cwCreatorForm.value.clues[idx]
+  clue.trackId = track.trackId
+  clue.artist = track.artistName
+  clue.title = track.trackName.toUpperCase()
+  clue.previewUrl = track.previewUrl || null
+  clue.searchResults = []
+}
+
+function cwCreatorAddClue() {
+  cwCreatorForm.value.clues.push({
+    n: cwCreatorForm.value.clues.length + 1, dir: 'A', row: 0, col: 0,
+    answer: '', clue: '', searchQuery: '', searchResults: [], trackId: null, artist: '', title: '', previewUrl: null,
+  })
+}
 const timeCreator = ref({ prompt: '', year: new Date().getFullYear(), place: '', optionsText: '' })
 
 function resetNativeCreator(gameId) {
@@ -1063,15 +1582,11 @@ function resetNativeCreator(gameId) {
       { metric: '', left: '', right: '', answer: 'left' },
     ]
   }
-  if (gameId === 'latburet') songCreator.value = { answer: '', clues: ['', '', ''] }
+  if (gameId === 'latburet') songCreator.value = { answer: '', artist: '', title: '', trackId: null, previewUrl: null, searchQuery: '', searchResults: [] }
   if (gameId === 'kryssburet') {
-    crossCreator.value = {
-      clues: [
-        { prompt: '', answer: '' },
-        { prompt: '', answer: '' },
-        { prompt: '', answer: '' },
-        { prompt: '', answer: '' },
-      ],
+    cwCreatorForm.value = {
+      title: '', rows: 7, cols: 7,
+      clues: [{ n: 1, dir: 'D', row: 0, col: 0, answer: '', clue: '', searchQuery: '', searchResults: [], trackId: null, artist: '', title: '', previewUrl: null }],
     }
   }
   if (gameId === 'tidsburet') timeCreator.value = { prompt: '', year: new Date().getFullYear(), place: '', optionsText: '' }
@@ -1090,20 +1605,25 @@ function buildNativeCreatorPayload(gameId) {
     }
   }
   if (gameId === 'latburet') {
-    if (!songCreator.value.answer.trim() || songCreator.value.clues.some(c => !c.trim())) return null
+    if (!songCreator.value.answer.trim()) return null
     return {
       answer: songCreator.value.answer.trim().toUpperCase(),
-      clues: songCreator.value.clues.map(c => c.trim()),
+      artist: songCreator.value.artist.trim(),
+      title: songCreator.value.title.trim().toUpperCase(),
+      trackId: songCreator.value.trackId || null,
+      previewUrl: songCreator.value.previewUrl || null,
     }
   }
   if (gameId === 'kryssburet') {
-    if (crossCreator.value.clues.some(c => !c.prompt.trim() || !c.answer.trim())) return null
-    return {
-      clues: crossCreator.value.clues.map(c => ({
-        prompt: c.prompt.trim(),
-        answer: c.answer.trim().toUpperCase(),
-      })),
-    }
+    const { title, rows, cols, clues } = cwCreatorForm.value
+    if (!title.trim()) return null
+    const cleanClues = clues.map(c => ({
+      n: c.n, dir: c.dir, row: c.row, col: c.col,
+      answer: c.answer.trim().toUpperCase(), clue: c.clue.trim(),
+      trackId: c.trackId || null, previewUrl: c.previewUrl || null,
+    }))
+    if (cleanClues.some(c => !c.answer || !c.clue)) return null
+    return { title: title.trim(), rows: Number(rows), cols: Number(cols), clues: cleanClues }
   }
   if (gameId === 'tidsburet') {
     const options = timeCreator.value.optionsText.split(',').map(o => o.trim()).filter(Boolean)
@@ -1151,11 +1671,30 @@ async function submitNativeCreator() {
 // ——— KEYBOARD HANDLER ——————————————————————————————————
 
 function handleKeydown(e) {
-  if (activeGame.value !== 'wordle' || creatorOpen.value) return
+  if (creatorOpen.value) return
   const k = e.key
-  if (k === 'Backspace')                { e.preventDefault(); wrdKeyPress('DEL') }
-  else if (k === 'Enter')               { e.preventDefault(); wrdKeyPress('ENTER') }
-  else if (/^[a-zA-ZæøåÆØÅ]$/.test(k)) { e.preventDefault(); wrdKeyPress(k.toUpperCase()) }
+  if (activeGame.value === 'wordle') {
+    if (k === 'Backspace')                { e.preventDefault(); wrdKeyPress('DEL') }
+    else if (k === 'Enter')               { e.preventDefault(); wrdKeyPress('ENTER') }
+    else if (/^[a-zA-ZæøåÆØÅ]$/.test(k)) { e.preventDefault(); wrdKeyPress(k.toUpperCase()) }
+  } else if (activeGame.value === 'kryssburet' && cwActiveCell.value && !cwDone.value) {
+    if (k === 'Backspace') {
+      e.preventDefault()
+      const key = `${cwActiveCell.value.row},${cwActiveCell.value.col}`
+      if (cwInput.value[key]) {
+        const next = { ...cwInput.value }
+        delete next[key]
+        cwInput.value = next
+      } else {
+        cwMoveCursor(-1)
+      }
+    } else if (/^[a-zA-ZæøåÆØÅ]$/.test(k)) {
+      e.preventDefault()
+      cwInput.value = { ...cwInput.value, [`${cwActiveCell.value.row},${cwActiveCell.value.col}`]: k.toUpperCase() }
+      cwCheckWin()
+      cwMoveCursor(1)
+    }
+  }
 }
 
 // ——— INIT ———————————————————————————————————————————————
@@ -1247,6 +1786,8 @@ onUnmounted(() => {
   window.removeEventListener('keydown', handleKeydown)
   if (unsubscribePuzzles) unsubscribePuzzles()
   if (unsubscribeScores) unsubscribeScores()
+  songStopPreview()
+  if (_cwAudio) { _cwAudio.pause(); _cwAudio = null }
 })
 </script>
 
@@ -1401,6 +1942,20 @@ onUnmounted(() => {
 .conn-word.shake { animation: shake 0.55s ease; }
 
 .conn-actions { display: flex; gap: 12px; justify-content: center; margin-top: 8px; }
+.conn-message {
+  width: fit-content;
+  margin: 14px auto 0;
+  padding: 10px 18px;
+  border: 1.5px solid var(--accent-2);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  box-shadow: 0 12px 28px rgba(18, 35, 29, 0.18);
+}
 .conn-btn {
   padding: 12px 24px;
   border: 1.5px solid var(--line-soft);
@@ -1569,6 +2124,58 @@ onUnmounted(() => {
   font-size: 11px;
   color: var(--ink-mute);
 }
+.songless-steps {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.songless-step {
+  min-width: 44px;
+  padding: 8px 10px;
+  border: 1px solid var(--line-soft);
+  border-radius: 6px;
+  font-family: var(--mono);
+  color: var(--ink-mute);
+}
+.songless-step.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--bg-soft);
+}
+.songless-step:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.songless-play {
+  min-width: 150px;
+  min-height: 72px;
+  padding: 18px 28px;
+  border: 2px solid var(--line-soft);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 18px;
+  color: var(--ink-soft);
+}
+.songless-play:not(:disabled):hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.songless-play:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.songless-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.songless-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
 .native-form {
   width: 100%;
   display: flex;
@@ -1576,21 +2183,183 @@ onUnmounted(() => {
   gap: 10px;
 }
 .native-input { text-align: center; }
-.cross-form {
+
+/* ── Crossword ───────────────────────────────── */
+.cw-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, auto) minmax(240px, 1fr);
+  gap: 28px;
+  align-items: start;
+  width: 100%;
+  text-align: left;
+}
+.cw-grid-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  overflow-x: auto;
+}
+.cw-grid {
+  display: grid;
+  gap: 2px;
+  border: 2px solid var(--ink);
+  background: var(--ink);
+  width: min(100%, calc(var(--cw-cols, 9) * 46px));
+}
+.cw-cell {
+  aspect-ratio: 1;
+  min-width: 28px;
+  background: var(--bg);
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  user-select: none;
+}
+.cw-cell.cw-black { background: var(--ink); cursor: default; }
+.cw-cell.cw-highlighted { background: #d4edff; }
+.cw-cell.cw-active { background: #a8d8f0; outline: 2px solid var(--accent); outline-offset: -2px; }
+.cw-num {
+  position: absolute; top: 2px; left: 3px;
+  font-family: var(--mono); font-size: 9px; font-weight: 600;
+  color: var(--ink-mute); line-height: 1;
+}
+.cw-letter {
+  font-family: var(--sans); font-size: 18px; font-weight: 700;
+  color: var(--ink); text-transform: uppercase;
+}
+.cw-clues {
+  display: flex; flex-direction: column; gap: 20px;
+  max-height: 360px; overflow-y: auto;
+}
+.cw-clues-section { display: flex; flex-direction: column; gap: 4px; }
+.cw-clues-heading {
+  font-family: var(--mono); font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--ink-mute); margin-bottom: 4px; font-weight: 600;
+}
+.cw-clue-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 5px 8px; border-radius: var(--radius);
+  cursor: pointer; transition: background 0.15s;
+}
+.cw-clue-row:hover { background: var(--paper); }
+.cw-clue-row.cw-clue-active { background: var(--paper); }
+.cw-badge {
+  flex-shrink: 0; min-width: 34px; height: 22px; border-radius: 4px;
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; padding: 0 4px;
+}
+.cw-badge-0 { background: #f59e0b; color: #fff; }
+.cw-badge-1 { background: #fbbf24; color: #fff; }
+.cw-badge-2 { background: #38bdf8; color: #fff; }
+.cw-badge-3 { background: #f87171; color: #fff; }
+.cw-badge-4 { background: #4ade80; color: #fff; }
+.cw-badge-5 { background: #2dd4bf; color: #fff; }
+.cw-badge-6 { background: #a78bfa; color: #fff; }
+.cw-badge-7 { background: #fb7185; color: #fff; }
+.cw-clue-text { font-size: 13px; color: var(--ink-soft); }
+
+.cw-player-bar {
+  width: 100%; margin-top: 20px;
+  padding: 14px 20px;
+  background: var(--bg); border: 1px solid var(--line-soft); border-radius: var(--radius);
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+}
+.cw-player-clue { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+.cw-player-text { font-size: 14px; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cw-player-controls { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.cw-ctrl-btn {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1.5px solid var(--line-soft); background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; cursor: pointer; transition: all 0.15s;
+}
+.cw-ctrl-btn:hover { border-color: var(--ink); background: var(--paper); }
+.cw-play-btn {
+  width: 46px; height: 46px;
+  background: var(--ink); color: var(--bg); border-color: var(--ink); font-size: 16px;
+}
+.cw-play-btn:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); }
+.cw-play-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.cw-submit-row {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.cross-row {
-  display: grid;
-  grid-template-columns: 1fr minmax(160px, 220px);
+  justify-content: flex-end;
   align-items: center;
   gap: 12px;
-  text-align: left;
-  font-size: 14px;
-  color: var(--ink-soft);
 }
+
+@media (max-width: 760px) {
+  .cw-layout { grid-template-columns: 1fr; }
+  .cw-clues { max-height: none; }
+  .cw-player-bar { flex-direction: column; align-items: stretch; }
+  .cw-player-controls { justify-content: center; }
+  .cw-submit-row { flex-direction: column; align-items: stretch; }
+}
+
+.music-search-results {
+  display: flex; flex-direction: column; gap: 4px; margin-top: 8px;
+}
+.music-search-result {
+  text-align: left; padding: 8px 12px;
+  border: 1px solid var(--line-soft); border-radius: var(--radius);
+  font-size: 13px; cursor: pointer; background: var(--bg); transition: background 0.15s;
+}
+.music-search-result:hover { background: var(--paper); }
+.cw-creator-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+  gap: 18px;
+  align-items: start;
+}
+.cw-creator-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+.cw-creator-position-row {
+  display: grid;
+  grid-template-columns: 60px 84px 60px 60px;
+  gap: 8px;
+}
+.cw-creator-preview {
+  position: sticky;
+  top: 18px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  padding: 14px;
+  background: var(--bg);
+}
+.cw-creator-preview-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+}
+.cw-creator-grid-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+.cw-creator-grid {
+  display: grid;
+  gap: 1px;
+  width: min(100%, calc(var(--cw-cols, 7) * 34px));
+  background: var(--ink);
+  border: 2px solid var(--ink);
+}
+.cw-creator-cell {
+  aspect-ratio: 1;
+  min-width: 22px;
+  background: var(--bg);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cw-creator-cell.cw-black { background: var(--ink); }
 .time-grid {
   width: 100%;
   display: grid;
@@ -1736,7 +2505,14 @@ onUnmounted(() => {
   .puzzle-list { flex-direction: column; }
   .choice-grid, .time-grid { grid-template-columns: 1fr; }
   .native-form { flex-direction: column; }
-  .cross-row { grid-template-columns: 1fr; }
+  .songless-actions { flex-direction: column; }
   .native-game-panel { padding: 32px 18px; }
+  .cw-layout { grid-template-columns: 1fr; }
+  .cw-cell { width: 36px; height: 36px; }
+  .cw-letter { font-size: 14px; }
+  .cw-clues { max-height: none; }
+  .cw-creator-layout { grid-template-columns: 1fr; }
+  .cw-creator-preview { position: static; }
+  .cw-creator-position-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 </style>
