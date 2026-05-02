@@ -504,7 +504,7 @@
                   {{ cwPlaying ? '⏸' : '▶' }}
                 </button>
                 <button class="cw-ctrl-btn" @click="cwNextClue" title="Neste">⏭</button>
-            <button class="conn-btn cw-hint-btn" type="button" disabled>Hint</button>
+                <button class="conn-btn cw-hint-btn" type="button" :disabled="!cwCurrentClue" @click="cwUseHint">Hint</button>
               </div>
             </div>
             <div class="cw-submit-row">
@@ -1194,11 +1194,25 @@ async function applyCwPuzzle(payload) {
     cwActiveCell.value = saved.activeCell || null
     cwDone.value = Boolean(saved.done)
     cwWon.value = Boolean(saved.won)
+    if (!cwActiveCell.value) cwPrimeActiveCell()
   }
 }
 
 function normalizeCwAudioTitle(value) {
   return String(value || '').toUpperCase().replace(/[^A-Z0-9]/g, '')
+}
+
+function cwPrimeActiveCell() {
+  if (!cwCurrentClue.value) return null
+  const positions = getCluePositions(cwCurrentClue.value)
+  if (cwActiveCell.value) {
+    const active = cwGrid.value[cwActiveCell.value.row]?.[cwActiveCell.value.col]
+    if (active && !active.black && positions.some(p => p.row === cwActiveCell.value.row && p.col === cwActiveCell.value.col)) {
+      return cwActiveCell.value
+    }
+  }
+  cwActiveCell.value = positions.find(p => !cwInput.value[`${p.row},${p.col}`]) || positions[0] || null
+  return cwActiveCell.value
 }
 
 watch(cwSelected, (sel) => {
@@ -1236,7 +1250,11 @@ function cwClickCell(row, col) {
   if (!refs.length) return
   if (cwSelected.value) {
     const sameDir = refs.find(r => r.dir === cwSelected.value.dir)
-    if (sameDir) { cwSelected.value = { n: sameDir.n, dir: sameDir.dir }; return }
+    if (sameDir) {
+      if (cwSelected.value.n !== sameDir.n || cwSelected.value.dir !== sameDir.dir) cwStopPreview()
+      cwSelected.value = { n: sameDir.n, dir: sameDir.dir }
+      return
+    }
   }
   cwStopPreview()
   cwSelected.value = { n: refs[0].n, dir: refs[0].dir }
@@ -1251,6 +1269,32 @@ function cwMoveCursor(delta) {
     cwStopPreview()
     cwActiveCell.value = { row: next.row, col: next.col }
   }
+}
+
+function cwMoveByArrow(key) {
+  if (cwDone.value) return
+  if (!cwPrimeActiveCell()) return
+  const moves = {
+    ArrowLeft: [0, -1],
+    ArrowRight: [0, 1],
+    ArrowUp: [-1, 0],
+    ArrowDown: [1, 0],
+  }
+  const move = moves[key]
+  if (!move) return
+  const [rowStep, colStep] = move
+  const nextRow = cwActiveCell.value.row + rowStep
+  const nextCol = cwActiveCell.value.col + colStep
+  const nextCell = cwGrid.value[nextRow]?.[nextCol]
+  if (!nextCell || nextCell.black) return
+  const refs = nextCell.clueRefs || []
+  const prevSelection = cwSelected.value
+  const sameSelection = prevSelection && refs.some(r => r.n === prevSelection.n && r.dir === prevSelection.dir)
+  if (!sameSelection) cwStopPreview()
+  cwActiveCell.value = { row: nextRow, col: nextCol }
+  if (!refs.length) return
+  const sameDir = prevSelection && refs.find(r => r.dir === prevSelection.dir)
+  cwSelected.value = sameDir ? { n: sameDir.n, dir: sameDir.dir } : { n: refs[0].n, dir: refs[0].dir }
 }
 
 async function cwCheckWin() {
@@ -1304,7 +1348,7 @@ async function cwSubmit() {
 }
 
 function cwUseHint() {
-  if (!cwActiveCell.value) return
+  if (!cwPrimeActiveCell()) return
   const cell = cwGrid.value[cwActiveCell.value.row]?.[cwActiveCell.value.col]
   if (!cell || cell.black || !cell.answer) return
   cwStopPreview()
@@ -2196,9 +2240,14 @@ function handleKeydown(e) {
     if (k === 'Backspace')                { e.preventDefault(); wrdKeyPress('DEL') }
     else if (k === 'Enter')               { e.preventDefault(); wrdKeyPress('ENTER') }
     else if (/^[a-zA-ZæøåÆØÅ]$/.test(k)) { e.preventDefault(); wrdKeyPress(k.toUpperCase()) }
-  } else if (activeGame.value === 'kryssburet' && cwActiveCell.value && !cwDone.value) {
+  } else if (activeGame.value === 'kryssburet' && !cwDone.value) {
+    if (k === 'ArrowLeft' || k === 'ArrowRight' || k === 'ArrowUp' || k === 'ArrowDown') {
+      e.preventDefault()
+      cwMoveByArrow(k)
+    }
     if (k === 'Backspace') {
       e.preventDefault()
+      if (!cwPrimeActiveCell()) return
       const key = `${cwActiveCell.value.row},${cwActiveCell.value.col}`
       if (cwInput.value[key]) {
         const next = { ...cwInput.value }
@@ -2210,6 +2259,7 @@ function handleKeydown(e) {
       }
     } else if (/^[a-zA-ZæøåÆØÅ]$/.test(k)) {
       e.preventDefault()
+      if (!cwPrimeActiveCell()) return
       cwInput.value = { ...cwInput.value, [`${cwActiveCell.value.row},${cwActiveCell.value.col}`]: k.toUpperCase() }
       saveNativeProgress('kryssburet', { input: cwInput.value, selected: cwSelected.value, activeCell: cwActiveCell.value, done: cwDone.value, won: cwWon.value })
       cwCheckWin()
