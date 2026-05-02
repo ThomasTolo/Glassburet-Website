@@ -10,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -73,6 +75,56 @@ public class ConnectionsPuzzleService {
          "Ukedager",            "MANDAG,TIRSDAG,ONSDAG,TORSDAG",
          "Farger på norsk flagg","RØD,BLÅ,HVIT,GUL",
          "Hobbyaktiviteter",    "GAMING,MALING,LØPING,LESING"},
+
+        {"Kaffebar",            "LATTE,MOCCA,CORTADO,ESPRESSO",
+         "IDE-verktøy",         "INTELLIJ,VSCODE,ECLIPSE,WEBSTORM",
+         "Kortspill",           "POKER,BRIDGE,VRIÅTTER,KABAL",
+         "Norske øyer",         "HITRA,SMØLA,SENJA,ANDØYA"},
+
+        {"Studentliv",          "FORELESNING,KOLLEN,EKSAMEN,KANTINE",
+         "HTTP-metoder",        "GET,POST,PUT,DELETE",
+         "Skandinaviske konger", "HARALD,CARL,FREDERIK,GUSTAV",
+         "Ting med hjul",       "SYKKEL,BIL,TOG,SPARKESYKKEL"},
+
+        {"Krydder",             "PEPPER,KANEL,KARDEMOMME,INGEFÆR",
+         "Musikksjangre",       "JAZZ,ROCK,POP,TECHNO",
+         "Programmeringsfeil",   "BUG,KRASJ,LOOP,NULL",
+         "Norske aviser",       "VG,DAGBLADET,AFTENPOSTEN,ADRESSEAVISEN"},
+
+        {"Verdenshav",          "STILLEHAVET,ATLANTERHAVET,INDIAHAVET,NORDISHAVET",
+         "Mobilapper",          "VIPPS,SNAPCHAT,SPOTIFY,INSTAGRAM",
+         "Skiutstyr",           "STAVER,SKI,SMØRING,BINDING",
+         "Måleenheter",         "METER,LITER,GRAM,SEKUND"},
+
+        {"Bakverk",             "BOLLE,BRØD,KAKE,VAFFEL",
+         "Konsollmerker",       "PLAYSTATION,XBOX,NINTENDO,SEGA",
+         "Norske daler",        "GUDBRANDSDAL,SETESDAL,NUMEDAL,ØSTERDAL",
+         "Kjemiske symboler",    "H,O,FE,NA"},
+
+        {"Kontorutstyr",        "PENN,TASTATUR,SKJERM,STOL",
+         "Fotballposisjoner",   "KEEPER,STOPPER,VING,SPISS",
+         "Klassiske komponister","BACH,MOZART,BEETHOVEN,GRIEG",
+         "Datasikkerhet",       "BRANNMUR,PHISHING,KRYPTERING,TOKEN"},
+
+        {"Norske innsjøer",     "MJØSA,RØSSVATNET,FEMUNDEN,TYRIFJORDEN",
+         "Sosiale roller",      "VERT,GJEST,NABO,VENN",
+         "Filmformater",        "KOMEDIE,DRAMA,THRILLER,DOKUMENTAR",
+         "Terminalkommandoer",  "LS,CD,MKDIR,RM"},
+
+        {"Frokostmat",          "EGG,GRØT,YOGHURT,BRØD",
+         "Nettverksutstyr",     "RUTER,SVITSJ,MODEM,AKSESSPUNKT",
+         "Nordiske hovedsteder", "OSLO,STOCKHOLM,KØBENHAVN,HELSINKI",
+         "Tegnsetting",         "KOMMA,PUNKTUM,KOLON,SEMIKOLON"},
+
+        {"Kroppsdeler",         "ARM,BEIN,HODE,HÅND",
+         "Værfenomener",        "TÅKE,HAGL,LYN,VIND",
+         "Databasebegreper",    "TABELL,INDEKS,SPØRRING,SKJEMA",
+         "Norske festivaler",   "ØYA,PSTEREO,BY:LARM,SLOTTSFJELL"},
+
+        {"Reiseord",            "BILLETT,PASS,KOFFERT,HOTELL",
+         "Kamerautstyr",        "LINSE,STATIV,BLITS,SENSOR",
+         "Mat fra havet",       "TORSK,LAKS,REKER,KRABBE",
+         "Unix-redigerere",     "VIM,EMACS,NANO,SED"},
     };
 
     @Transactional
@@ -138,6 +190,43 @@ public class ConnectionsPuzzleService {
         return repository.findAllByOrderByCreatedAtDesc().stream()
                 .map(this::toResponse)
                 .collect(java.util.stream.Collectors.toList());
+    }
+
+    public ConnectionsPuzzleResponse hideAnswers(ConnectionsPuzzleResponse response, String viewerName, boolean canOverride) {
+        if (response == null || canOverride || (viewerName != null && viewerName.equals(response.getCreatedBy()))) {
+            return response;
+        }
+        List<String> words = response.getGroups().stream()
+                .flatMap(group -> group.getWords().stream())
+                .collect(java.util.stream.Collectors.toCollection(ArrayList::new));
+        Collections.shuffle(words);
+        response.setWords(words);
+        response.setGroups(null);
+        return response;
+    }
+
+    public ConnectionsPuzzleResponse validateSelection(Long id, List<String> selected, String viewerName, boolean canOverride) {
+        ConnectionsPuzzleResponse response = repository.findById(id)
+                .map(this::toResponse)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        if (selected == null || selected.size() != 4) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        return response.getGroups().stream()
+                .filter(group -> selected.stream().allMatch(group.getWords()::contains))
+                .findFirst()
+                .map(group -> {
+                    ConnectionsPuzzleResponse result = new ConnectionsPuzzleResponse();
+                    result.setId(response.getId());
+                    result.setGroups(List.of(group));
+                    return result;
+                })
+                .orElseGet(() -> {
+                    ConnectionsPuzzleResponse result = new ConnectionsPuzzleResponse();
+                    result.setId(response.getId());
+                    result.setGroups(List.of());
+                    return result;
+                });
     }
 
     private ConnectionsPuzzleResponse toResponse(ConnectionsPuzzle p) {

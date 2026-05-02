@@ -42,6 +42,7 @@ class WordlePuzzleServiceTest {
     @Test
     void getDailyReturnsExistingOrCreatesNew() {
         WordlePuzzle existing = new WordlePuzzle();
+        existing.setWord("ABOUT");
         when(repository.findByPuzzleDateAndIsDailyTrue(LocalDate.now()))
                 .thenReturn(Optional.of(existing), Optional.empty());
         when(repository.save(any(WordlePuzzle.class))).thenAnswer(invocation -> invocation.getArgument(0));

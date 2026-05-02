@@ -15,6 +15,41 @@
         <p v-if="isAuthenticated" class="login-status">
           Logget inn som <strong>{{ displayName || 'ukjent' }}</strong>.
         </p>
+        <form v-if="isAuthenticated" class="login-form password-reset-form" @submit.prevent="submitPasswordReset">
+          <label class="login-field">
+            <span>Nåværende passord</span>
+            <div class="password-input-wrap">
+              <input v-model="resetCurrentPassword" :type="showResetCurrentPassword ? 'text' : 'password'" autocomplete="current-password" placeholder="••••••••" required />
+              <button class="password-toggle" type="button" @click="showResetCurrentPassword = !showResetCurrentPassword">
+                {{ showResetCurrentPassword ? 'Skjul' : 'Vis' }}
+              </button>
+            </div>
+          </label>
+          <label class="login-field">
+            <span>Nytt passord</span>
+            <div class="password-input-wrap">
+              <input v-model="resetNewPassword" :type="showResetNewPassword ? 'text' : 'password'" autocomplete="new-password" placeholder="••••••••" required />
+              <button class="password-toggle" type="button" @click="showResetNewPassword = !showResetNewPassword">
+                {{ showResetNewPassword ? 'Skjul' : 'Vis' }}
+              </button>
+            </div>
+          </label>
+          <label class="login-field">
+            <span>Gjenta nytt passord</span>
+            <div class="password-input-wrap">
+              <input v-model="resetConfirmPassword" :type="showResetConfirmPassword ? 'text' : 'password'" autocomplete="new-password" placeholder="••••••••" required />
+              <button class="password-toggle" type="button" @click="showResetConfirmPassword = !showResetConfirmPassword">
+                {{ showResetConfirmPassword ? 'Skjul' : 'Vis' }}
+              </button>
+            </div>
+          </label>
+          <div class="login-actions">
+            <button class="login-button" type="submit" :disabled="loading">
+              {{ loading ? 'Lagrer…' : 'Bytt passord' }}
+            </button>
+          </div>
+          <p v-if="resetMessage" class="login-success">{{ resetMessage }}</p>
+        </form>
 
         <div class="login-tabs">
           <button :class="['login-tab', mode === 'login' && 'active']" type="button" @click="switchMode('login')">Logg inn</button>
@@ -29,7 +64,12 @@
 
           <label class="login-field">
             <span>Passord</span>
-            <input v-model="password" type="password" autocomplete="current-password" placeholder="••••••••" required />
+            <div class="password-input-wrap">
+              <input v-model="password" :type="showLoginPassword ? 'text' : 'password'" autocomplete="current-password" placeholder="••••••••" required />
+              <button class="password-toggle" type="button" @click="showLoginPassword = !showLoginPassword">
+                {{ showLoginPassword ? 'Skjul' : 'Vis' }}
+              </button>
+            </div>
           </label>
 
           <div class="login-actions">
@@ -51,7 +91,22 @@
 
           <label class="login-field">
             <span>Passord</span>
-            <input v-model="regPassword" type="password" autocomplete="new-password" placeholder="••••••••" required />
+            <div class="password-input-wrap">
+              <input v-model="regPassword" :type="showRegPassword ? 'text' : 'password'" autocomplete="new-password" placeholder="••••••••" required />
+              <button class="password-toggle" type="button" @click="showRegPassword = !showRegPassword">
+                {{ showRegPassword ? 'Skjul' : 'Vis' }}
+              </button>
+            </div>
+          </label>
+
+          <label class="login-field">
+            <span>Gjenta passord</span>
+            <div class="password-input-wrap">
+              <input v-model="regConfirmPassword" :type="showRegConfirmPassword ? 'text' : 'password'" autocomplete="new-password" placeholder="••••••••" required />
+              <button class="password-toggle" type="button" @click="showRegConfirmPassword = !showRegConfirmPassword">
+                {{ showRegConfirmPassword ? 'Skjul' : 'Vis' }}
+              </button>
+            </div>
           </label>
 
           <div class="login-actions">
@@ -84,12 +139,24 @@ const name = ref('')
 const password = ref('')
 const regName = ref('')
 const regPassword = ref('')
+const regConfirmPassword = ref('')
+const resetCurrentPassword = ref('')
+const resetNewPassword = ref('')
+const resetConfirmPassword = ref('')
+const showLoginPassword = ref(false)
+const showRegPassword = ref(false)
+const showRegConfirmPassword = ref(false)
+const showResetCurrentPassword = ref(false)
+const showResetNewPassword = ref(false)
+const showResetConfirmPassword = ref(false)
 const loading = ref(false)
 const error = ref('')
+const resetMessage = ref('')
 
 function switchMode(next) {
   mode.value = next
   error.value = ''
+  resetMessage.value = ''
 }
 
 const redirectTo = computed(() => {
@@ -112,6 +179,7 @@ async function submitLogin() {
 
 async function submitRegister() {
   error.value = ''
+  resetMessage.value = ''
 
   if (regPassword.value.length < 8) {
     error.value = 'Passordet må være minst 8 tegn.'
@@ -119,6 +187,10 @@ async function submitRegister() {
   }
   if (!/\d/.test(regPassword.value)) {
     error.value = 'Passordet må inneholde minst ett tall.'
+    return
+  }
+  if (regPassword.value !== regConfirmPassword.value) {
+    error.value = 'Passordene må være like.'
     return
   }
 
@@ -144,6 +216,62 @@ async function submitRegister() {
       setAuthToken(data.token)
       await router.push(redirectTo.value)
     }
+  } catch {
+    error.value = 'Noe gikk galt. Prøv igjen.'
+  } finally {
+    loading.value = false
+  }
+}
+
+async function submitPasswordReset() {
+  error.value = ''
+  resetMessage.value = ''
+
+  if (resetNewPassword.value.length < 8) {
+    error.value = 'Passordet må være minst 8 tegn.'
+    return
+  }
+  if (!/\d/.test(resetNewPassword.value)) {
+    error.value = 'Passordet må inneholde minst ett tall.'
+    return
+  }
+  if (resetNewPassword.value !== resetConfirmPassword.value) {
+    error.value = 'Passordene må være like.'
+    return
+  }
+
+  loading.value = true
+  try {
+    const token = localStorage.getItem('token')
+    const res = await fetch(`${API_URL}/auth/password`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      body: JSON.stringify({
+        currentPassword: resetCurrentPassword.value,
+        newPassword: resetNewPassword.value,
+      }),
+    })
+    const data = await res.json().catch(() => ({}))
+    if (!res.ok) {
+      if (data.error === 'Current password is incorrect') {
+        error.value = 'Nåværende passord er feil.'
+      } else if (data.error === 'Password must be at least 8 characters') {
+        error.value = 'Passordet må være minst 8 tegn.'
+      } else if (data.error === 'Password must contain at least one number') {
+        error.value = 'Passordet må inneholde minst ett tall.'
+      } else {
+        error.value = 'Kunne ikke bytte passord.'
+      }
+      return
+    }
+    setAuthToken(data.token)
+    resetCurrentPassword.value = ''
+    resetNewPassword.value = ''
+    resetConfirmPassword.value = ''
+    resetMessage.value = 'Passordet er oppdatert.'
   } catch {
     error.value = 'Noe gikk galt. Prøv igjen.'
   } finally {
@@ -215,9 +343,40 @@ function logout() {
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.password-input-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.password-toggle {
+  min-width: 64px;
+  border: 1px solid var(--line-soft);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.password-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .login-field input:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 4px rgba(13, 59, 46, 0.1);
+}
+
+.password-reset-form {
+  margin-bottom: 22px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line-soft);
 }
 
 .login-actions {

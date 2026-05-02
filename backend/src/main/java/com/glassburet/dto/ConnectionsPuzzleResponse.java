@@ -11,6 +11,7 @@ public class ConnectionsPuzzleResponse {
     private String title;
     private LocalDateTime createdAt;
     private List<Group> groups;
+    private List<String> words;
     private boolean isDaily;
     private LocalDate puzzleDate;
 
@@ -24,6 +25,8 @@ public class ConnectionsPuzzleResponse {
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
     public List<Group> getGroups() { return groups; }
     public void setGroups(List<Group> groups) { this.groups = groups; }
+    public List<String> getWords() { return words; }
+    public void setWords(List<String> words) { this.words = words; }
     public boolean isIsDaily() { return isDaily; }
     public void setIsDaily(boolean isDaily) { this.isDaily = isDaily; }
     public LocalDate getPuzzleDate() { return puzzleDate; }

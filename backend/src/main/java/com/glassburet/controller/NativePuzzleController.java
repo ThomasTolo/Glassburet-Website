@@ -11,6 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/puzzles/native/{gameName}")
@@ -25,13 +26,20 @@ public class NativePuzzleController {
     }
 
     @GetMapping
-    public ResponseEntity<List<NativePuzzle>> getAll(@PathVariable GameName gameName) {
-        return ResponseEntity.ok(service.getAll(gameName));
+    public ResponseEntity<List<NativePuzzle>> getAll(@PathVariable GameName gameName, Authentication authentication) {
+        return ResponseEntity.ok(service.getAll(gameName).stream()
+                .map(puzzle -> service.hideAnswers(puzzle, authentication.getName(), canManageAll(authentication)))
+                .toList());
     }
 
     @GetMapping("/daily")
-    public ResponseEntity<NativePuzzle> getDaily(@PathVariable GameName gameName) {
-        return ResponseEntity.ok(service.getDaily(gameName));
+    public ResponseEntity<NativePuzzle> getDaily(@PathVariable GameName gameName, Authentication authentication) {
+        return ResponseEntity.ok(service.hideAnswers(service.getDaily(gameName), authentication.getName(), canManageAll(authentication)));
+    }
+
+    @PostMapping("/{id}/validate")
+    public ResponseEntity<Map<String, Object>> validate(@PathVariable GameName gameName, @PathVariable Long id, @RequestBody Map<String, Object> body) {
+        return ResponseEntity.ok(service.validate(gameName, id, body));
     }
 
     @PostMapping
