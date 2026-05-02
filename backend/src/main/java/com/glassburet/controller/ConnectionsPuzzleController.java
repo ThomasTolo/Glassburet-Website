@@ -10,6 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/puzzles/connections")
@@ -24,20 +25,28 @@ public class ConnectionsPuzzleController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ConnectionsPuzzleResponse>> getAll() {
-        return ResponseEntity.ok(service.getAll());
+    public ResponseEntity<List<ConnectionsPuzzleResponse>> getAll(Authentication authentication) {
+        return ResponseEntity.ok(service.getAll().stream()
+                .map(puzzle -> service.hideAnswers(puzzle, authentication.getName(), canManageAll(authentication)))
+                .toList());
     }
 
     @GetMapping("/daily")
-    public ResponseEntity<ConnectionsPuzzleResponse> getDaily() {
-        return ResponseEntity.ok(service.getDailyPuzzle());
+    public ResponseEntity<ConnectionsPuzzleResponse> getDaily(Authentication authentication) {
+        return ResponseEntity.ok(service.hideAnswers(service.getDailyPuzzle(), authentication.getName(), canManageAll(authentication)));
     }
 
     @GetMapping("/latest")
-    public ResponseEntity<ConnectionsPuzzleResponse> getLatest() {
+    public ResponseEntity<ConnectionsPuzzleResponse> getLatest(Authentication authentication) {
         return service.getLatest()
+                .map(puzzle -> service.hideAnswers(puzzle, authentication.getName(), canManageAll(authentication)))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.noContent().build());
+    }
+
+    @PostMapping("/{id}/validate")
+    public ResponseEntity<ConnectionsPuzzleResponse> validate(@PathVariable Long id, @RequestBody Map<String, List<String>> body, Authentication authentication) {
+        return ResponseEntity.ok(service.validateSelection(id, body.get("words"), authentication.getName(), canManageAll(authentication)));
     }
 
     @PostMapping

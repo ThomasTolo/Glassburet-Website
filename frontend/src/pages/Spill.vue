@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section v-if="isAuthenticated">
     <div class="page-header">
       <div>
         <span class="eyebrow">Daglige spill · 6 tilgjengelig</span>
@@ -124,17 +124,7 @@
       <div v-if="connGameState === 'lost'" class="sp-result">
         <div class="sp-result-icon">😔</div>
         <h3>For mange feil</h3>
-        <p>Her var fasiten:</p>
-        <div class="conn-solved" style="margin-top: 12px">
-          <div
-            v-for="group in connPuzzle.groups"
-            :key="group.category"
-            :class="['conn-group-solved', `diff-${group.difficulty}`]"
-          >
-            <strong>{{ group.category }}</strong>
-            <span>{{ group.words.join(' · ') }}</span>
-          </div>
-        </div>
+        <p>Fasit vises ikke i nettleseren før den er løst.</p>
         <p v-if="connScoreSubmitted" class="score-saved">✓ Poeng registrert!</p>
         <p v-else-if="!isAuthenticated" class="score-saved" style="color:var(--ink-mute)">Logg inn for å registrere poeng</p>
       </div>
@@ -266,7 +256,7 @@
       <div v-if="wrdGameState === 'won'" class="sp-result">
         <div class="sp-result-icon">🟩</div>
         <h3>Imponerende!</h3>
-        <p>Du gjettet <strong>{{ wrdTarget }}</strong> på {{ wrdGuesses.length }} forsøk! <strong>{{ wrdScore }} poeng</strong></p>
+        <p>Du gjettet <strong>{{ wrdGuesses[wrdGuesses.length - 1] }}</strong> på {{ wrdGuesses.length }} forsøk! <strong>{{ wrdScore }} poeng</strong></p>
         <p v-if="wrdScoreSubmitted" class="score-saved">✓ Poeng registrert!</p>
         <p v-else-if="!isAuthenticated" class="score-saved" style="color:var(--ink-mute)">Logg inn for å registrere poeng</p>
       </div>
@@ -274,7 +264,7 @@
       <div v-if="wrdGameState === 'lost'" class="sp-result">
         <div class="sp-result-icon">😔</div>
         <h3>Bedre lykke neste gang!</h3>
-        <p>Ordet var <strong>{{ wrdTarget }}</strong></p>
+        <p>Ordet vises ikke i nettleseren før spillet er ferdig validert.</p>
         <p v-if="wrdScoreSubmitted" class="score-saved">✓ Poeng registrert!</p>
         <p v-else-if="!isAuthenticated" class="score-saved" style="color:var(--ink-mute)">Logg inn for å registrere poeng</p>
       </div>
@@ -514,7 +504,7 @@
                   {{ cwPlaying ? '⏸' : '▶' }}
                 </button>
                 <button class="cw-ctrl-btn" @click="cwNextClue" title="Neste">⏭</button>
-                <button class="conn-btn cw-hint-btn" type="button" :disabled="!cwActiveCell" @click="cwUseHint">Hint</button>
+            <button class="conn-btn cw-hint-btn" type="button" disabled>Hint</button>
               </div>
             </div>
             <div class="cw-submit-row">
@@ -533,30 +523,37 @@
         </div>
 
         <div v-if="activeGame === 'tidsburet'" class="native-game-body">
-          <template v-if="activeNativeGameState !== 'completed' && !timeDone">
+          <template v-if="activeNativeGameState !== 'completed'">
             <h3 class="native-prompt">{{ timePuzzle.prompt }}</h3>
-            <div class="time-grid">
-              <label class="creator-label">
-                År
-                <input v-model.number="timeYear" class="creator-input native-input" type="number" min="1800" max="2026" />
-              </label>
-              <label class="creator-label">
-                Sted
-                <select v-model="timePlace" class="creator-input native-input">
-                  <option value="" disabled>Velg sted</option>
-                  <option v-for="place in timePuzzle.options" :key="place" :value="place">{{ place }}</option>
-                </select>
-              </label>
+            <div class="time-play-layout">
+              <div class="time-photo-col">
+                <img v-if="timePuzzle.imageUrl" class="time-photo" :src="timePuzzle.imageUrl" alt="" />
+                <p v-if="timeDone && timePuzzle.attribution" class="time-attribution">{{ timePuzzle.attribution }}</p>
+              </div>
+              <div class="time-control-col">
+                <div ref="timeMapEl" class="time-map"></div>
+                <template v-if="!timeDone">
+                  <div class="time-grid">
+                    <label class="creator-label">
+                      År
+                      <input v-model.number="timeYear" class="creator-input native-input" type="number" min="1800" max="2026" @input="saveTimeProgress" />
+                    </label>
+                  </div>
+                  <button class="conn-btn conn-btn-primary" :disabled="!timeGuess" @click="timeSubmit">Send inn</button>
+                </template>
+                <div v-else class="time-result-card">
+                  <div class="sp-result-icon">◷</div>
+                  <h3>{{ timeResult.year }} · {{ timeResult.locationName }}</h3>
+                  <p>{{ timeResult.distanceKm }} km unna</p>
+                  <p>{{ timeResult.yearScore }} årspoeng · {{ timeResult.locationScore }} kartpoeng</p>
+                  <p><strong>{{ timeScore }} poeng</strong></p>
+                  <button class="conn-btn conn-btn-primary" type="button" @click="finishTimeResult">
+                    Ferdig
+                  </button>
+                </div>
+              </div>
             </div>
-            <button class="conn-btn conn-btn-primary" :disabled="!timePlace" @click="timeSubmit">Send inn</button>
           </template>
-          <div v-if="activeNativeGameState !== 'completed' && timeDone" class="sp-result compact-result">
-            <div class="sp-result-icon">◷</div>
-            <h3>{{ timePuzzle.year }} · {{ timePuzzle.place }}</h3>
-            <p><strong>{{ timeScore }} poeng</strong></p>
-            <p v-if="nativeSubmitted.tidsburet" class="score-saved">✓ Poeng registrert!</p>
-            <p v-else-if="!isAuthenticated" class="score-saved" style="color:var(--ink-mute)">Logg inn for å registrere poeng</p>
-          </div>
         </div>
 
         <div class="creator-wrap native-creator">
@@ -665,11 +662,16 @@
 
             <template v-if="activeGame === 'tidsburet'">
               <input v-model="timeCreator.prompt" class="creator-input" placeholder="Historisk spor" required />
+              <input v-model="timeCreator.imageUrl" class="creator-input" placeholder="Bilde-URL" required />
               <div class="creator-words-row">
                 <input v-model.number="timeCreator.year" class="creator-input" type="number" placeholder="År" required />
-                <input v-model="timeCreator.place" class="creator-input" placeholder="Riktig sted" required />
+                <input v-model="timeCreator.locationName" class="creator-input" placeholder="Stedsnavn" required />
               </div>
-              <input v-model="timeCreator.optionsText" class="creator-input" placeholder="Valg, separert med komma" required />
+              <div class="creator-words-row">
+                <input v-model.number="timeCreator.lat" class="creator-input" type="number" step="0.0001" placeholder="Latitude" required />
+                <input v-model.number="timeCreator.lng" class="creator-input" type="number" step="0.0001" placeholder="Longitude" required />
+              </div>
+              <input v-model="timeCreator.attribution" class="creator-input" placeholder="Fotokreditering / lisens" required />
             </template>
 
             <div class="creator-actions">
@@ -684,10 +686,17 @@
       </div>
     </div>
   </section>
+  <section v-else class="sp-login-required">
+    <h1 class="section-title">Logg inn for å spille</h1>
+    <p class="sp-sub">Spillene er kun tilgjengelige for medlemmer.</p>
+    <RouterLink class="conn-btn conn-btn-primary" to="/login">Logg inn</RouterLink>
+  </section>
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
+import L from 'leaflet'
+import 'leaflet/dist/leaflet.css'
 import { puzzleApi, scoreApi } from '../services/api'
 import { useLiveDateInfo } from '../composables/useLiveDateInfo'
 import { isAuthenticated, displayName, isAdminOrAbove } from '../services/authState'
@@ -748,6 +757,33 @@ const activeNativeGameState = computed(() => {
   return id && activeNativeCompletedIds.value.includes(id) ? 'completed' : 'playing'
 })
 
+const PROGRESS_KEY_PREFIX = 'glassburet:spill-progress'
+
+function progressKey(gameId, puzzleId) {
+  if (!displayName.value || !puzzleId) return null
+  return `${PROGRESS_KEY_PREFIX}:${displayName.value}:${gameId}:${puzzleId}`
+}
+
+function loadProgress(gameId, puzzleId) {
+  const key = progressKey(gameId, puzzleId)
+  if (!key) return null
+  try {
+    return JSON.parse(localStorage.getItem(key))
+  } catch {
+    return null
+  }
+}
+
+function saveProgress(gameId, puzzleId, data) {
+  const key = progressKey(gameId, puzzleId)
+  if (key) localStorage.setItem(key, JSON.stringify(data))
+}
+
+function clearProgress(gameId, puzzleId) {
+  const key = progressKey(gameId, puzzleId)
+  if (key) localStorage.removeItem(key)
+}
+
 function toggleNativeLibrary() {
   nativeLibraryExpanded.value = {
     ...nativeLibraryExpanded.value,
@@ -788,6 +824,7 @@ async function submitNativeScore(gameId, scoreValue) {
       puzzleId: selectedNativeIds.value[gameId],
     })
     nativeSubmitted.value = { ...nativeSubmitted.value, [gameId]: true }
+    clearProgress(gameId, selectedNativeIds.value[gameId])
     const completed = await scoreApi.getCompleted(displayName.value, game.gameName)
     completedNativeIds.value = { ...completedNativeIds.value, [gameId]: completed }
     if (selectedNativeIds.value[gameId] && !completed.includes(selectedNativeIds.value[gameId])) {
@@ -819,6 +856,10 @@ function loadNativePuzzle(gameId, puzzle) {
   if (gameId === 'tidsburet') applyTimePuzzle(payload)
 }
 
+function saveNativeProgress(gameId, data) {
+  saveProgress(gameId, selectedNativeIds.value[gameId], data)
+}
+
 // ——— MERBURET ——————————————————————————————————————————
 
 const merRounds = ref([])
@@ -835,11 +876,18 @@ function applyMerPuzzle(payload) {
   merCorrect.value = 0
   merDone.value = false
   merMessage.value = ''
+  const saved = loadProgress('merburet', selectedNativeIds.value.merburet)
+  if (saved) {
+    merIndex.value = Math.min(Number(saved.index) || 0, Math.max(0, merRounds.value.length - 1))
+    merCorrect.value = Number(saved.correct) || 0
+    merDone.value = Boolean(saved.done)
+  }
 }
 
-function merChoose(choice) {
+async function merChoose(choice) {
   if (merDone.value) return
-  if (choice === merCurrent.value.answer) {
+  const result = await puzzleApi.validateNative('MORE_OR_LESS', selectedNativeIds.value.merburet, { index: merIndex.value, choice })
+  if (result.correct) {
     merCorrect.value++
     merMessage.value = 'Riktig'
   } else {
@@ -849,10 +897,12 @@ function merChoose(choice) {
     merMessage.value = ''
     if (merIndex.value >= merRounds.value.length - 1) {
       merDone.value = true
+      saveNativeProgress('merburet', { index: merIndex.value, correct: merCorrect.value, done: merDone.value })
       if (isAuthenticated.value) submitNativeScore('merburet', merScore.value)
       return
     }
     merIndex.value++
+    saveNativeProgress('merburet', { index: merIndex.value, correct: merCorrect.value, done: merDone.value })
   }, 450)
 }
 
@@ -911,28 +961,41 @@ async function applySongPuzzle(payload) {
   songDone.value = false
   songWon.value = false
   songMessage.value = ''
+  const saved = loadProgress('latburet', selectedNativeIds.value.latburet)
+  if (saved) {
+    songGuess.value = saved.guess || ''
+    songGuesses.value = Array.isArray(saved.guesses) ? saved.guesses : []
+    songStep.value = Number(saved.step) || 0
+    songDone.value = Boolean(saved.done)
+    songWon.value = Boolean(saved.won)
+  }
 }
 
-function songSubmit() {
+async function songSubmit() {
   if (songDone.value || !songGuess.value.trim()) return
   const guess = songGuess.value.trim()
   songGuesses.value = [...songGuesses.value, guess]
   songGuess.value = ''
   songSuggestions.value = []
-  if (normalizeCwAudioTitle(guess) === normalizeCwAudioTitle(songPuzzle.value.answer)) {
+  const result = await puzzleApi.validateNative('SONGLESS', selectedNativeIds.value.latburet, { guess })
+  if (result.correct) {
+    songPuzzle.value = { ...songPuzzle.value, answer: result.answer || guess }
     songWon.value = true
     songDone.value = true
     songStopPreview()
+    saveNativeProgress('latburet', { guess: songGuess.value, guesses: songGuesses.value, step: songStep.value, done: songDone.value, won: songWon.value })
     if (isAuthenticated.value) submitNativeScore('latburet', songScore.value)
     return
   }
   if (songStep.value >= songDurations.length - 1) {
     songDone.value = true
     songStopPreview()
+    saveNativeProgress('latburet', { guess: songGuess.value, guesses: songGuesses.value, step: songStep.value, done: songDone.value, won: songWon.value })
     if (isAuthenticated.value) submitNativeScore('latburet', 0)
     return
   }
   songStep.value++
+  saveNativeProgress('latburet', { guess: songGuess.value, guesses: songGuesses.value, step: songStep.value, done: songDone.value, won: songWon.value })
   songMessage.value = 'Lengre klipp låst opp'
   setTimeout(() => { songMessage.value = '' }, 1200)
 }
@@ -944,10 +1007,12 @@ function songSkip() {
   if (songStep.value >= songDurations.length - 1) {
     songDone.value = true
     songStopPreview()
+    saveNativeProgress('latburet', { guess: songGuess.value, guesses: songGuesses.value, step: songStep.value, done: songDone.value, won: songWon.value })
     if (isAuthenticated.value) submitNativeScore('latburet', 0)
     return
   }
   songStep.value++
+  saveNativeProgress('latburet', { guess: songGuess.value, guesses: songGuesses.value, step: songStep.value, done: songDone.value, won: songWon.value })
 }
 
 function songSearchSuggestions() {
@@ -1047,7 +1112,8 @@ const cwSelectedCellKeys = computed(() => {
   const clue = cwCurrentClue.value
   if (!clue) return new Set()
   const keys = new Set()
-  for (let i = 0; i < clue.answer.length; i++) {
+  const length = clue.answer?.length || clue.length || 0
+  for (let i = 0; i < length; i++) {
     const r = clue.dir === 'D' ? clue.row + i : clue.row
     const c = clue.dir === 'A' ? clue.col + i : clue.col
     keys.add(`${r},${c}`)
@@ -1061,12 +1127,13 @@ function buildCwGrid(puzzle) {
     Array.from({ length: cols }, (_, c) => ({ row: r, col: c, black: true, number: null, answer: '', clueRefs: [] }))
   )
   for (const clue of clues) {
-    for (let i = 0; i < clue.answer.length; i++) {
+    const length = clue.answer?.length || clue.length || 0
+    for (let i = 0; i < length; i++) {
       const r = clue.dir === 'D' ? clue.row + i : clue.row
       const c = clue.dir === 'A' ? clue.col + i : clue.col
       if (r >= 0 && r < rows && c >= 0 && c < cols) {
         grid[r][c].black = false
-        grid[r][c].answer = clue.answer[i]
+        grid[r][c].answer = clue.answer?.[i] || ''
         grid[r][c].clueRefs.push({ n: clue.n, dir: clue.dir })
       }
     }
@@ -1079,7 +1146,8 @@ function buildCwGrid(puzzle) {
 
 function getCluePositions(clue) {
   const positions = []
-  for (let i = 0; i < clue.answer.length; i++) {
+  const length = clue.answer?.length || clue.length || 0
+  for (let i = 0; i < length; i++) {
     positions.push({
       row: clue.dir === 'D' ? clue.row + i : clue.row,
       col: clue.dir === 'A' ? clue.col + i : clue.col,
@@ -1119,6 +1187,14 @@ async function applyCwPuzzle(payload) {
   cwPuzzle.value = { ...payload, clues }
   cwGrid.value = buildCwGrid(cwPuzzle.value)
   if (clues.length > 0) cwSelected.value = { n: clues[0].n, dir: clues[0].dir }
+  const saved = loadProgress('kryssburet', selectedNativeIds.value.kryssburet)
+  if (saved) {
+    cwInput.value = saved.input || {}
+    cwSelected.value = saved.selected || cwSelected.value
+    cwActiveCell.value = saved.activeCell || null
+    cwDone.value = Boolean(saved.done)
+    cwWon.value = Boolean(saved.won)
+  }
 }
 
 function normalizeCwAudioTitle(value) {
@@ -1132,6 +1208,10 @@ watch(cwSelected, (sel) => {
   const positions = getCluePositions(clue)
   const firstUnfilled = positions.find(p => !cwInput.value[`${p.row},${p.col}`])
   cwActiveCell.value = firstUnfilled || positions[0] || null
+})
+
+watch(activeGame, (game) => {
+  if (game === 'tidsburet') nextTick(initTimeMap)
 })
 
 function cwSelectClue(n, dir) {
@@ -1173,12 +1253,14 @@ function cwMoveCursor(delta) {
   }
 }
 
-function cwCheckWin() {
+async function cwCheckWin() {
   const allCells = cwGrid.value.flatMap(r => r).filter(c => !c.black)
   if (!allCells.every(c => cwInput.value[`${c.row},${c.col}`])) return
-  if (allCells.every(c => cwInput.value[`${c.row},${c.col}`] === c.answer)) {
+  const result = await puzzleApi.validateNative('CROSSTUNES', selectedNativeIds.value.kryssburet, { input: cwInput.value })
+  if (result.correct) {
     cwDone.value = true
     cwWon.value = true
+    saveNativeProgress('kryssburet', { input: cwInput.value, selected: cwSelected.value, activeCell: cwActiveCell.value, done: cwDone.value, won: cwWon.value })
     if (isAuthenticated.value) submitNativeScore('kryssburet', 1000)
   }
 }
@@ -1205,7 +1287,7 @@ function cwTogglePreview() {
   _cwAudio.addEventListener('ended', () => { cwPlaying.value = false; _cwAudio = null })
 }
 
-function cwSubmit() {
+async function cwSubmit() {
   if (cwDone.value) return
   const allCells = cwGrid.value.flatMap(r => r).filter(c => !c.black)
   if (!allCells.every(c => cwInput.value[`${c.row},${c.col}`])) {
@@ -1213,9 +1295,11 @@ function cwSubmit() {
     setTimeout(() => { cwMessage.value = '' }, 1600)
     return
   }
-  cwWon.value = allCells.every(c => cwInput.value[`${c.row},${c.col}`] === c.answer)
+  const result = await puzzleApi.validateNative('CROSSTUNES', selectedNativeIds.value.kryssburet, { input: cwInput.value })
+  cwWon.value = Boolean(result.correct)
   cwDone.value = true
   cwStopPreview()
+  saveNativeProgress('kryssburet', { input: cwInput.value, selected: cwSelected.value, activeCell: cwActiveCell.value, done: cwDone.value, won: cwWon.value })
   if (isAuthenticated.value) submitNativeScore('kryssburet', cwScore.value)
 }
 
@@ -1228,6 +1312,7 @@ function cwUseHint() {
     ...cwInput.value,
     [`${cell.row},${cell.col}`]: cell.answer,
   }
+  saveNativeProgress('kryssburet', { input: cwInput.value, selected: cwSelected.value, activeCell: cwActiveCell.value, done: cwDone.value, won: cwWon.value })
   cwCheckWin()
 }
 
@@ -1247,33 +1332,105 @@ function cwNextClue() {
 
 // ——— TIDSBURET ——————————————————————————————————————————
 
-const timePuzzle = ref({ prompt: '', year: 2000, place: '', options: [] })
+const timePuzzle = ref({ prompt: '', imageUrl: '', attribution: '' })
 const timeYear = ref(2000)
-const timePlace = ref('')
+const timeGuess = ref(null)
 const timeDone = ref(false)
+const timeResult = ref({ year: '', locationName: '', distanceKm: 0, yearScore: 0, locationScore: 0 })
+const timeMapEl = ref(null)
+let _timeMap = null
+let _timeGuessMarker = null
+let _timeAnswerMarker = null
 const timeScore = computed(() => {
   if (!timeDone.value) return 0
-  const yearPoints = Math.max(0, 500 - Math.abs(Number(timeYear.value) - timePuzzle.value.year) * 20)
-  const placePoints = timePlace.value === timePuzzle.value.place ? 500 : 0
-  return yearPoints + placePoints
+  return timeResult.value.score || 0
 })
 
 function applyTimePuzzle(payload) {
   timePuzzle.value = {
     prompt: payload.prompt ?? '',
-    year: Number(payload.year) || 2000,
-    place: payload.place ?? '',
-    options: Array.isArray(payload.options) ? payload.options : [],
+    imageUrl: payload.imageUrl ?? '',
+    attribution: payload.attribution ?? '',
   }
   timeYear.value = 2000
-  timePlace.value = ''
+  timeGuess.value = null
   timeDone.value = false
+  timeResult.value = { year: '', locationName: '', distanceKm: 0, yearScore: 0, locationScore: 0 }
+  const saved = loadProgress('tidsburet', selectedNativeIds.value.tidsburet)
+  if (saved) {
+    timeYear.value = Number(saved.year) || 2000
+    timeGuess.value = saved.guess || null
+    timeDone.value = Boolean(saved.done)
+    timeResult.value = saved.result || timeResult.value
+  }
+  nextTick(initTimeMap)
 }
 
-function timeSubmit() {
-  if (timeDone.value || !timePlace.value) return
+async function timeSubmit() {
+  if (timeDone.value || !timeGuess.value) return
+  const result = await puzzleApi.validateNative('TIMEGUESSR', selectedNativeIds.value.tidsburet, {
+    year: timeYear.value,
+    lat: timeGuess.value.lat,
+    lng: timeGuess.value.lng,
+  })
+  timeResult.value = result
   timeDone.value = true
-  if (isAuthenticated.value) submitNativeScore('tidsburet', timeScore.value)
+  showTimeAnswerMarker()
+  saveTimeProgress()
+}
+
+function saveTimeProgress() {
+  saveNativeProgress('tidsburet', { year: timeYear.value, guess: timeGuess.value, done: timeDone.value, result: timeResult.value })
+}
+
+function finishTimeResult() {
+  if (isAuthenticated.value && !nativeSubmitted.value.tidsburet) {
+    submitNativeScore('tidsburet', timeScore.value)
+  }
+}
+
+function initTimeMap() {
+  if (activeGame.value !== 'tidsburet' || !timeMapEl.value) return
+  if (!_timeMap) {
+    _timeMap = L.map(timeMapEl.value, { worldCopyJump: true }).setView([20, 0], 2)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; OpenStreetMap contributors',
+    }).addTo(_timeMap)
+    _timeMap.on('click', event => {
+      if (timeDone.value) return
+      timeGuess.value = { lat: event.latlng.lat, lng: event.latlng.lng }
+      setTimeGuessMarker()
+      saveTimeProgress()
+    })
+  }
+  setTimeout(() => _timeMap?.invalidateSize(), 50)
+  setTimeGuessMarker()
+  if (timeDone.value) showTimeAnswerMarker()
+}
+
+function setTimeGuessMarker() {
+  if (!_timeMap) return
+  if (_timeGuessMarker) _timeGuessMarker.remove()
+  if (timeGuess.value) {
+    _timeGuessMarker = L.circleMarker([timeGuess.value.lat, timeGuess.value.lng], {
+      radius: 7,
+      color: '#c64a3f',
+      fillColor: '#c64a3f',
+      fillOpacity: 0.85,
+    }).addTo(_timeMap)
+  }
+}
+
+function showTimeAnswerMarker() {
+  if (!_timeMap || !Number.isFinite(Number(timeResult.value.lat)) || !Number.isFinite(Number(timeResult.value.lng))) return
+  if (_timeAnswerMarker) _timeAnswerMarker.remove()
+  _timeAnswerMarker = L.circleMarker([timeResult.value.lat, timeResult.value.lng], {
+    radius: 8,
+    color: '#0d3b2e',
+    fillColor: '#0d3b2e',
+    fillOpacity: 0.85,
+  }).addTo(_timeMap)
 }
 
 // ——— CONNECTIONS ——————————————————————————————————————
@@ -1309,7 +1466,7 @@ const connScore = computed(() => {
 })
 
 function connInit() {
-  const all = connPuzzle.value.groups.flatMap(g => g.words)
+  const all = connPuzzle.value.words?.length ? connPuzzle.value.words : connPuzzle.value.groups.flatMap(g => g.words)
   connShuffled.value  = [...all].sort(() => Math.random() - 0.5)
   connSelected.value  = []
   connSolved.value    = []
@@ -1322,6 +1479,7 @@ function connInit() {
 
 function connShuffle() {
   connShuffled.value = [...connShuffled.value].sort(() => Math.random() - 0.5)
+  saveConnProgress()
 }
 
 function connToggle(word) {
@@ -1330,55 +1488,52 @@ function connToggle(word) {
   } else if (connSelected.value.length < 4) {
     connSelected.value = [...connSelected.value, word]
   }
+  saveConnProgress()
 }
 
-function connSubmit() {
+async function connSubmit() {
   if (connSelected.value.length !== 4) return
   const sel = connSelected.value
-  const match = connPuzzle.value.groups.find(g =>
-    sel.every(w => g.words.includes(w)) &&
-    !connSolved.value.some(s => s.category === g.category)
-  )
+  const validation = await puzzleApi.validateConnections(selectedConnId.value, sel)
+  const match = validation.groups?.[0]
   if (match) {
     connSolved.value    = [...connSolved.value, match]
     connShuffled.value  = connShuffled.value.filter(w => !match.words.includes(w))
     connSelected.value  = []
     if (connSolved.value.length === 4) {
       connGameState.value = 'won'
+      saveConnProgress()
       if (isAuthenticated.value && !connScoreSubmitted.value) submitConnScore()
     }
   } else {
     connBadWords.value = [...sel]
     connMistakes.value++
-    if (connPuzzle.value.groups.some(g =>
-      !connSolved.value.some(s => s.category === g.category) &&
-      sel.filter(w => g.words.includes(w)).length === 3
-    )) {
-      connMessage.value = 'Én unna'
-      setTimeout(() => { connMessage.value = '' }, 3000)
-    }
     setTimeout(() => {
       connBadWords.value = []
       connSelected.value = []
       if (connMistakes.value >= 4) {
         connGameState.value = 'lost'
+        saveConnProgress()
         if (isAuthenticated.value && !connScoreSubmitted.value) submitConnScore()
       }
     }, 600)
   }
+  saveConnProgress()
 }
 
 function applyConnectionsPuzzle(data) {
   connPuzzle.value = {
     createdBy: data.createdBy,
     title: data.title,
-    groups: data.groups.map(g => ({
+    groups: (data.groups || []).map(g => ({
       category:   g.category,
       words:      g.words,
       difficulty: g.difficulty,
     })),
+    words: data.words || [],
   }
   connInit()
+  restoreConnProgress()
 }
 
 function loadConnPuzzle(p) {
@@ -1388,6 +1543,29 @@ function loadConnPuzzle(p) {
     return
   }
   applyConnectionsPuzzle(p)
+}
+
+function saveConnProgress() {
+  saveProgress('connections', selectedConnId.value, {
+    shuffled: connShuffled.value,
+    selected: connSelected.value,
+    solvedCategories: connSolved.value.map(group => group.category),
+    mistakes: connMistakes.value,
+    gameState: connGameState.value,
+  })
+}
+
+function restoreConnProgress() {
+  const saved = loadProgress('connections', selectedConnId.value)
+  if (!saved) return
+  const groupsByCategory = new Map(connPuzzle.value.groups.map(group => [group.category, group]))
+  connShuffled.value = Array.isArray(saved.shuffled) ? saved.shuffled : connShuffled.value
+  connSelected.value = Array.isArray(saved.selected) ? saved.selected : []
+  connSolved.value = Array.isArray(saved.solvedCategories)
+    ? saved.solvedCategories.map(category => groupsByCategory.get(category)).filter(Boolean)
+    : []
+  connMistakes.value = Number(saved.mistakes) || 0
+  connGameState.value = saved.gameState || 'playing'
 }
 
 async function submitConnScore() {
@@ -1403,6 +1581,7 @@ async function submitConnScore() {
       puzzleId: selectedConnId.value,
     })
     connScoreSubmitted.value = true
+    clearProgress('connections', selectedConnId.value)
     const completed = await scoreApi.getCompleted(displayName.value, 'CONNECTIONS')
     completedConnIds.value = completed
     if (selectedConnId.value && !completedConnIds.value.includes(selectedConnId.value)) {
@@ -1422,6 +1601,7 @@ const formatPuzzleDate = (dateString) => {
 const wrdTarget    = ref('')
 const wrdCreatedBy = ref(null)
 const wrdGuesses   = ref([])
+const wrdGuessStates = ref({})
 const wrdCurrent   = ref('')
 const wrdGameState = ref('playing')
 const wrdMessage   = ref('')
@@ -1457,24 +1637,7 @@ function wrdLetterState(letter) {
 }
 
 function wrdEvaluateGuess(guess) {
-  const states = Array(guess.length).fill('absent')
-  const remaining = {}
-  for (let i = 0; i < wrdTarget.value.length; i++) {
-    if (guess[i] === wrdTarget.value[i]) {
-      states[i] = 'correct'
-    } else {
-      remaining[wrdTarget.value[i]] = (remaining[wrdTarget.value[i]] || 0) + 1
-    }
-  }
-  for (let i = 0; i < guess.length; i++) {
-    if (states[i] === 'correct') continue
-    const letter = guess[i]
-    if (remaining[letter] > 0) {
-      states[i] = 'present'
-      remaining[letter]--
-    }
-  }
-  return states
+  return wrdGuessStates.value[guess] || Array(guess.length).fill('absent')
 }
 
 function wrdCellLetter(row, col) {
@@ -1493,7 +1656,7 @@ function wrdCellClass(row, col) {
   return ''
 }
 
-function wrdKeyPress(key) {
+async function wrdKeyPress(key) {
   if (wrdGameState.value !== 'playing') return
   if (key === 'DEL') {
     wrdCurrent.value = wrdCurrent.value.slice(0, -1)
@@ -1504,18 +1667,35 @@ function wrdKeyPress(key) {
       return
     }
     const guess = wrdCurrent.value
+    let validation
+    try {
+      validation = await puzzleApi.validateWordle(selectedWrdId.value, guess)
+    } catch {
+      wrdMessage.value = 'Ikke i ordlisten'
+      setTimeout(() => { wrdMessage.value = '' }, 1500)
+      return
+    }
+    if (validation.validWord === false) {
+      wrdMessage.value = validation.message || 'Ikke i ordlisten'
+      setTimeout(() => { wrdMessage.value = '' }, 1500)
+      return
+    }
+    wrdGuessStates.value = { ...wrdGuessStates.value, [guess]: validation.states || [] }
     wrdGuesses.value = [...wrdGuesses.value, guess]
     wrdCurrent.value = ''
-    if (guess === wrdTarget.value) {
+    if (validation.correct) {
       wrdGameState.value = 'won'
+      saveWrdProgress()
       if (isAuthenticated.value && !wrdScoreSubmitted.value) submitWrdScore()
     } else if (wrdGuesses.value.length >= 6) {
       wrdGameState.value = 'lost'
+      saveWrdProgress()
       if (isAuthenticated.value && !wrdScoreSubmitted.value) submitWrdScore()
     }
   } else if (/^[A-ZÆØÅ]$/.test(key) && wrdCurrent.value.length < 5) {
     wrdCurrent.value += key
   }
+  saveWrdProgress()
 }
 
 function loadWrdPuzzle(p) {
@@ -1527,10 +1707,30 @@ function loadWrdPuzzle(p) {
   wrdTarget.value    = p.word
   wrdCreatedBy.value = p.createdBy
   wrdGuesses.value   = []
+  wrdGuessStates.value = {}
   wrdCurrent.value   = ''
   wrdGameState.value = 'playing'
   wrdMessage.value   = ''
   wrdScoreSubmitted.value = false
+  restoreWrdProgress()
+}
+
+function saveWrdProgress() {
+  saveProgress('wordle', selectedWrdId.value, {
+    guesses: wrdGuesses.value,
+    states: wrdGuessStates.value,
+    current: wrdCurrent.value,
+    gameState: wrdGameState.value,
+  })
+}
+
+function restoreWrdProgress() {
+  const saved = loadProgress('wordle', selectedWrdId.value)
+  if (!saved) return
+  wrdGuesses.value = Array.isArray(saved.guesses) ? saved.guesses : []
+  wrdGuessStates.value = saved.states || {}
+  wrdCurrent.value = saved.current || ''
+  wrdGameState.value = saved.gameState || 'playing'
 }
 
 async function submitWrdScore() {
@@ -1546,6 +1746,7 @@ async function submitWrdScore() {
       puzzleId: selectedWrdId.value,
     })
     wrdScoreSubmitted.value = true
+    clearProgress('wordle', selectedWrdId.value)
     const completed = await scoreApi.getCompleted(displayName.value, 'WORDLE')
     completedWrdIds.value = completed
     if (selectedWrdId.value && !completedWrdIds.value.includes(selectedWrdId.value)) {
@@ -1690,7 +1891,7 @@ async function submitWrdCreator() {
     creatorOpen.value  = false
     resetWrdCreator()
   } catch {
-    wrdCreatorError.value = 'Noe gikk galt. Prøv igjen.'
+    wrdCreatorError.value = 'Ordet må finnes i ordlisten.'
   } finally {
     wrdCreating.value = false
   }
@@ -1794,7 +1995,7 @@ function cwCreatorAddClue() {
     answer: '', clue: '', searchQuery: '', searchResults: [], trackId: null, artist: '', title: '', previewUrl: null,
   })
 }
-const timeCreator = ref({ prompt: '', year: new Date().getFullYear(), place: '', optionsText: '' })
+const timeCreator = ref({ prompt: '', imageUrl: '', year: new Date().getFullYear(), locationName: '', lat: 0, lng: 0, attribution: '' })
 
 function resetNativeCreator(gameId) {
   nativeCreatorTitle.value = ''
@@ -1815,7 +2016,7 @@ function resetNativeCreator(gameId) {
       clues: [{ n: 1, dir: 'D', row: 0, col: 0, answer: '', clue: '', searchQuery: '', searchResults: [], trackId: null, artist: '', title: '', previewUrl: null }],
     }
   }
-  if (gameId === 'tidsburet') timeCreator.value = { prompt: '', year: new Date().getFullYear(), place: '', optionsText: '' }
+  if (gameId === 'tidsburet') timeCreator.value = { prompt: '', imageUrl: '', year: new Date().getFullYear(), locationName: '', lat: 0, lng: 0, attribution: '' }
 }
 
 function buildNativeCreatorPayload(gameId) {
@@ -1852,14 +2053,22 @@ function buildNativeCreatorPayload(gameId) {
     return { title: title.trim(), rows: Number(rows), cols: Number(cols), clues: cleanClues }
   }
   if (gameId === 'tidsburet') {
-    const options = timeCreator.value.optionsText.split(',').map(o => o.trim()).filter(Boolean)
-    if (!timeCreator.value.prompt.trim() || !timeCreator.value.place.trim() || !timeCreator.value.year || options.length < 2) return null
-    if (!options.includes(timeCreator.value.place.trim())) options.unshift(timeCreator.value.place.trim())
+    if (
+      !timeCreator.value.prompt.trim() ||
+      !timeCreator.value.imageUrl.trim() ||
+      !timeCreator.value.locationName.trim() ||
+      !timeCreator.value.year ||
+      !Number.isFinite(Number(timeCreator.value.lat)) ||
+      !Number.isFinite(Number(timeCreator.value.lng))
+    ) return null
     return {
       prompt: timeCreator.value.prompt.trim(),
+      imageUrl: timeCreator.value.imageUrl.trim(),
       year: Number(timeCreator.value.year),
-      place: timeCreator.value.place.trim(),
-      options,
+      lat: Number(timeCreator.value.lat),
+      lng: Number(timeCreator.value.lng),
+      locationName: timeCreator.value.locationName.trim(),
+      attribution: timeCreator.value.attribution.trim(),
     }
   }
   return null
@@ -1954,9 +2163,12 @@ function editNativePuzzle(p) {
   if (activeGame.value === 'tidsburet') {
     timeCreator.value = {
       prompt: payload.prompt || '',
+      imageUrl: payload.imageUrl || '',
       year: payload.year || new Date().getFullYear(),
-      place: payload.place || '',
-      optionsText: (payload.options || []).join(', '),
+      locationName: payload.locationName || payload.place || '',
+      lat: payload.lat || 0,
+      lng: payload.lng || 0,
+      attribution: payload.attribution || '',
     }
   }
   creatorOpen.value = true
@@ -1992,12 +2204,14 @@ function handleKeydown(e) {
         const next = { ...cwInput.value }
         delete next[key]
         cwInput.value = next
+        saveNativeProgress('kryssburet', { input: cwInput.value, selected: cwSelected.value, activeCell: cwActiveCell.value, done: cwDone.value, won: cwWon.value })
       } else {
         cwMoveCursor(-1)
       }
     } else if (/^[a-zA-ZæøåÆØÅ]$/.test(k)) {
       e.preventDefault()
       cwInput.value = { ...cwInput.value, [`${cwActiveCell.value.row},${cwActiveCell.value.col}`]: k.toUpperCase() }
+      saveNativeProgress('kryssburet', { input: cwInput.value, selected: cwSelected.value, activeCell: cwActiveCell.value, done: cwDone.value, won: cwWon.value })
       cwCheckWin()
       cwMoveCursor(1)
     }
@@ -2064,10 +2278,10 @@ async function loadPuzzleLibrary({ applyDaily = false } = {}) {
     }
   }
 
-  if (applyDaily && dailyConnResult.status === 'fulfilled' && dailyConnResult.value?.groups) {
+  if (applyDaily && dailyConnResult.status === 'fulfilled' && dailyConnResult.value?.id) {
     loadConnPuzzle(dailyConnResult.value)
   }
-  if (applyDaily && dailyWrdResult.status === 'fulfilled' && dailyWrdResult.value?.word) {
+  if (applyDaily && dailyWrdResult.status === 'fulfilled' && dailyWrdResult.value?.id) {
     loadWrdPuzzle(dailyWrdResult.value)
   }
   if (applyDaily) {
@@ -2081,6 +2295,7 @@ let unsubscribePuzzles = null
 let unsubscribeScores = null
 
 onMounted(async () => {
+  if (!isAuthenticated.value) return
   connInit()
   window.addEventListener('keydown', handleKeydown)
   await loadCompletedPuzzles()
@@ -2095,6 +2310,7 @@ onUnmounted(() => {
   if (unsubscribeScores) unsubscribeScores()
   songStopPreview()
   if (_cwAudio) { _cwAudio.pause(); _cwAudio = null }
+  if (_timeMap) { _timeMap.remove(); _timeMap = null }
 })
 </script>
 
@@ -2122,6 +2338,15 @@ onUnmounted(() => {
 
 .sp-panel { max-width: 700px; margin: 0 auto; }
 .sp-sub { color: var(--ink-mute); font-size: 13px; margin-top: 8px; }
+.sp-login-required {
+  display: grid;
+  justify-items: start;
+  gap: 16px;
+  padding: 72px 0 160px;
+}
+.sp-login-required .sp-sub {
+  margin: 0;
+}
 .puzzle-by { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--accent-3); margin-left: 8px; }
 .source-button {
   display: inline-flex;
@@ -2759,8 +2984,61 @@ onUnmounted(() => {
 .time-grid {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 12px;
+}
+.time-play-layout {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+  align-items: end;
+  gap: 22px;
+}
+.time-photo-col,
+.time-control-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.time-control-col {
+  align-items: stretch;
+}
+.time-photo {
+  width: 100%;
+  max-height: min(58vh, 520px);
+  object-fit: contain;
+  border-radius: var(--radius);
+  border: 1px solid var(--line-soft);
+  background: var(--paper);
+}
+.time-attribution {
+  align-self: flex-start;
+  margin: -8px 0 0;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-mute);
+}
+.time-map {
+  width: 100%;
+  height: 260px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.time-result-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  background: var(--paper);
+  text-align: center;
+}
+.time-result-card h3,
+.time-result-card p {
+  margin: 0;
 }
 .compact-result { width: 100%; margin: 0; padding: 32px 24px; }
 
@@ -2903,6 +3181,8 @@ onUnmounted(() => {
   .native-form { flex-direction: column; }
   .songless-actions { flex-direction: column; }
   .native-game-panel { padding: 32px 18px; }
+  .time-play-layout { grid-template-columns: 1fr; }
+  .time-map { height: 320px; }
   .cw-layout { grid-template-columns: 1fr; }
   .cw-cell { width: 36px; height: 36px; }
   .cw-letter { font-size: 14px; }

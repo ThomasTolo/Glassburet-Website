@@ -32,7 +32,15 @@ function decodeTokenPayload(token) {
 const token = ref(readStoredToken())
 
 const currentUser = computed(() => decodeTokenPayload(token.value))
-const isAuthenticated = computed(() => Boolean(token.value))
+const isAuthenticated = computed(() => {
+  if (!token.value || !currentUser.value) {
+    return false
+  }
+  if (currentUser.value.exp && currentUser.value.exp * 1000 <= Date.now()) {
+    return false
+  }
+  return true
+})
 const isAdmin = computed(() => currentUser.value?.role === 'ROLE_ADMIN')
 const isOwner = computed(() => currentUser.value?.role === 'ROLE_OWNER')
 const isAdminOrAbove = computed(() => isAdmin.value || isOwner.value)

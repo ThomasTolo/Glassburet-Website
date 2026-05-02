@@ -10,6 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/puzzles/wordle")
@@ -24,20 +25,28 @@ public class WordlePuzzleController {
     }
 
     @GetMapping
-    public ResponseEntity<List<WordlePuzzle>> getAll() {
-        return ResponseEntity.ok(service.getAll());
+    public ResponseEntity<List<Map<String, Object>>> getAll(Authentication authentication) {
+        return ResponseEntity.ok(service.getAll().stream()
+                .map(puzzle -> service.toResponse(puzzle, authentication.getName(), canManageAll(authentication)))
+                .toList());
     }
 
     @GetMapping("/daily")
-    public ResponseEntity<WordlePuzzle> getDaily() {
-        return ResponseEntity.ok(service.getDailyPuzzle());
+    public ResponseEntity<Map<String, Object>> getDaily(Authentication authentication) {
+        return ResponseEntity.ok(service.toResponse(service.getDailyPuzzle(), authentication.getName(), canManageAll(authentication)));
     }
 
     @GetMapping("/latest")
-    public ResponseEntity<WordlePuzzle> getLatest() {
+    public ResponseEntity<Map<String, Object>> getLatest(Authentication authentication) {
         return service.getLatest()
+                .map(puzzle -> service.toResponse(puzzle, authentication.getName(), canManageAll(authentication)))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.noContent().build());
+    }
+
+    @PostMapping("/{id}/validate")
+    public ResponseEntity<Map<String, Object>> validate(@PathVariable Long id, @RequestBody Map<String, String> body) {
+        return ResponseEntity.ok(service.validateGuess(id, body.get("guess")));
     }
 
     @PostMapping

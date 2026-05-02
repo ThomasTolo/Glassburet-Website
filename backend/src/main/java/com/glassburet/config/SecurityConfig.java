@@ -28,6 +28,7 @@ public class SecurityConfig {
                 // Auth endpoints
                 .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
+                .requestMatchers(HttpMethod.PUT, "/api/auth/password").authenticated()
                 .requestMatchers(HttpMethod.GET, "/api/auth/members").hasRole("OWNER")
                 .requestMatchers(HttpMethod.PUT, "/api/auth/members/**").hasRole("OWNER")
 
@@ -60,7 +61,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/scores").authenticated()
                 .requestMatchers(HttpMethod.GET, "/api/scores/completed").authenticated()
 
-                // Puzzles — create (authenticated), list/latest (public)
+                // Puzzles
+                .requestMatchers(HttpMethod.GET, "/api/puzzles/**").authenticated()
                 .requestMatchers(HttpMethod.POST, "/api/puzzles/**").authenticated()
                 .requestMatchers(HttpMethod.PUT, "/api/puzzles/**").authenticated()
                 .requestMatchers(HttpMethod.DELETE, "/api/puzzles/**").authenticated()
