@@ -34,27 +34,59 @@ public class NativePuzzleService {
             {"8", "A", "8", "3", "ALONE", "Heart title", "725786574", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/48/6c/2a/486c2a0b-1857-5653-64d1-d8719b1b9930/mzaf_14556555269457036172.plus.aac.p.m4a"}
     };
 
+    private static final Map<String, String[]> CROSSTUNES_TRACKS = Map.ofEntries(
+            Map.entry("ALISON", new String[] {"1440754025", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/61/52/05/61520551-603b-b37c-2cb4-2cdeea74729f/mzaf_10550634966909878016.plus.aac.p.m4a"}),
+            Map.entry("JOLENE", new String[] {"1062400330", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/43/ef/95/43ef956b-4a1c-8ab1-a843-4ac691dc45d9/mzaf_17631698820105622615.plus.aac.p.m4a"}),
+            Map.entry("HELLO", new String[] {"1544494392", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/93/22/22/93222271-8d55-d923-e0ff-b2964a5abefe/mzaf_3513742103157153222.plus.aac.p.m4a"}),
+            Map.entry("ROSIE", new String[] {"1224353520", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/a5/46/2f/a5462fc3-79e9-d991-aff9-cdd0cbbf555e/mzaf_13748652213036176965.plus.aac.p.m4a"}),
+            Map.entry("RHIANNON", new String[] {"202271847", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/5d/5d/bd/5d5dbd1c-b805-2691-2f0c-ddd95549dac9/mzaf_14838277598453356300.plus.aac.p.m4a"}),
+            Map.entry("MANDY", new String[] {"268158573", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/8b/16/b9/8b16b989-264b-033b-f389-9de691bf1fdb/mzaf_1406154666072817897.plus.aac.p.m4a"}),
+            Map.entry("MARY", new String[] {"1893042685", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/7f/c9/56/7fc95643-8824-1aa5-b458-585e710c9477/mzaf_15722900914944089820.plus.aac.p.m4a"}),
+            Map.entry("ALONE", new String[] {"725786574", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/48/6c/2a/486c2a0b-1857-5653-64d1-d8719b1b9930/mzaf_14556555269457036172.plus.aac.p.m4a"}),
+            Map.entry("TOXIC", new String[] {"251948354", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ae/c4/7f/aec47f56-842d-49b4-558b-7a7523fd6728/mzaf_6693111381462300599.plus.aac.p.m4a"}),
+            Map.entry("ANGIE", new String[] {"1440853240", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/4a/84/7b/4a847b2f-fd51-c39b-81cf-cd8b849fbf27/mzaf_7857761594354895852.plus.aac.p.m4a"}),
+            Map.entry("GLORY", new String[] {"1845330351", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f2/07/5f/f2075fb4-20c9-c105-58fa-68ec0cd93d47/mzaf_15170793594316375777.plus.aac.p.m4a"}),
+            Map.entry("GOLD", new String[] {"1094908777", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/77/15/e5/7715e5d7-9a18-8b9c-b148-8c1ec1fb624e/mzaf_2773184009064834378.plus.aac.p.m4a"}),
+            Map.entry("OCEAN", new String[] {"1460193258", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/eb/1d/72/eb1d7234-ed15-2d3a-c145-7cb7fa855486/mzaf_17307725212739337953.plus.aac.p.m4a"}),
+            Map.entry("KARMA", new String[] {"1438765304", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/97/89/6d/97896d6d-1e08-b831-e685-a61faa0cdae6/mzaf_14303216261588655727.plus.aac.p.m4a"}),
+            Map.entry("CREEP", new String[] {"3631572", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/db/94/26/db942665-ed75-81f8-56a2-c56f932a08a5/mzaf_13888681328881594670.plus.aac.p.m4a"}),
+            Map.entry("SUGAR", new String[] {"1440855562", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/1b/3f/68/1b3f68e0-3c42-f367-cd0f-e46c746e0668/mzaf_15052021441666328650.plus.aac.p.m4a"}),
+            Map.entry("STAY", new String[] {"1893979836", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/8d/78/34/8d78344c-0320-f8e1-d529-913093a6a21e/mzaf_18435624136577366366.plus.aac.p.m4a"}),
+            Map.entry("LOVER", new String[] {"1468058173", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/e0/db/47/e0db47b0-7f70-0631-0414-cd4777d2fb3e/mzaf_6362891154838442638.plus.aac.p.m4a"}),
+            Map.entry("LOLA", new String[] {"1439223877", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/5f/81/2c/5f812cf0-1435-a725-5349-56b34a6a07b8/mzaf_8573111346585329968.plus.aac.p.m4a"}),
+            Map.entry("HURT", new String[] {"1452875626", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/2c/0d/06/2c0d06a0-ba56-5a16-1091-76e741f8af52/mzaf_191467376579052128.plus.aac.p.m4a"}),
+            Map.entry("UNDER", new String[] {"318171823", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/60/99/61/609961b8-be88-08f8-8186-7b345e80c0a6/mzaf_476599030946563973.plus.aac.p.m4a"}),
+            Map.entry("DREAM", new String[] {"1733343795", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/1c/9b/49/1c9b49f3-2b53-e391-1c48-1ee6e38be1c3/mzaf_14795753782534610143.plus.aac.p.m4a"}),
+            Map.entry("DUSK", new String[] {"1631695756", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/15/ac/db/15acdbec-6668-7c93-5578-384c801df18c/mzaf_8086401622190909660.plus.aac.p.m4a"}),
+            Map.entry("BILLS", new String[] {"984692613", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/e2/7b/55/e27b550a-8935-71dd-726d-76f5c0b6a1eb/mzaf_12024165614510124683.plus.aac.p.m4a"}),
+            Map.entry("CURE", new String[] {"1371940922", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/c2/a6/f5/c2a6f572-0a49-07cf-9e70-dd09e0b86716/mzaf_14063829218423713062.plus.aac.p.m4a"}),
+            Map.entry("BETH", new String[] {"1440658685", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/dd/3b/b1/dd3bb1dc-fa6d-5d14-209b-9b79ea6c927c/mzaf_2600195680972869259.plus.aac.p.m4a"}),
+            Map.entry("EVERY", new String[] {"1566730751", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/d2/b5/17/d2b5173c-c959-3168-2355-127a5354a83b/mzaf_11109802302051222397.plus.aac.p.m4a"}),
+            Map.entry("SARA", new String[] {"202272717", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/39/e4/b3/39e4b36e-3764-6eeb-763b-91f19bad255d/mzaf_5052466419199190225.plus.aac.p.m4a"}),
+            Map.entry("AMEN", new String[] {"1807395909", "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/5a/9e/ec/5a9eecab-ea05-6c57-d81f-ca82d240f111/mzaf_1862283405686231206.plus.aac.p.m4a"})
+    );
+
     private static final String[] CROSSTUNES_DAILY_PAYLOADS = new String[] {
-            crosstunesInterlockPayload("Kryssburet 01", "ALISON", "JOLENE", "HELLO", "ROSIE", "RHIANNON", "MANDY", "MARY", "ALONE"),
-            crosstunesInterlockPayload("Kryssburet 02", "ALISON", "JOLENE", "TOXIC", "ANGIE", "RHIANNON", "GLORY", "GOLD", "OCEAN"),
-            crosstunesInterlockPayload("Kryssburet 03", "ALISON", "JOLENE", "KARMA", "CREEP", "RHIANNON", "SUGAR", "STAY", "TOXIC"),
-            crosstunesInterlockPayload("Kryssburet 04", "ALISON", "JOLENE", "CREEP", "GLORY", "RHIANNON", "LOVER", "LOLA", "OCEAN"),
-            crosstunesInterlockPayload("Kryssburet 05", "ALISON", "JOLENE", "ANGIE", "TOXIC", "RHIANNON", "HELLO", "HURT", "UNDER"),
-            crosstunesInterlockPayload("Kryssburet 06", "ALISON", "JOLENE", "HELLO", "KARMA", "RHIANNON", "DREAM", "DUSK", "UNDER"),
-            crosstunesInterlockPayload("Kryssburet 07", "ALISON", "JOLENE", "GLORY", "CREEP", "RHIANNON", "MANDY", "MARY", "ANGIE"),
-            crosstunesInterlockPayload("Kryssburet 08", "ALISON", "JOLENE", "TOXIC", "ROSIE", "RHIANNON", "ANGIE", "ABBA", "BILLS"),
-            crosstunesInterlockPayload("Kryssburet 09", "ALISON", "JOLENE", "HELLO", "ANGIE", "RHIANNON", "CREEP", "CURE", "UNDER"),
-            crosstunesInterlockPayload("Kryssburet 10", "ALISON", "JOLENE", "KARMA", "GLORY", "RHIANNON", "BILLS", "BETH", "EVERY"),
-            crosstunesInterlockPayload("Kryssburet 11", "ALISON", "JOLENE", "CREEP", "TOXIC", "RHIANNON", "SUGAR", "SARA", "ALONE"),
-            crosstunesInterlockPayload("Kryssburet 12", "ALISON", "JOLENE", "HELLO", "SARA", "RHIANNON", "INTRO", "IRIS", "ROSIE"),
-            crosstunesInterlockPayload("Kryssburet 13", "ALISON", "JOLENE", "TOXIC", "ROSIE", "RHIANNON", "LOVER", "LUCY", "UNDER"),
-            crosstunesInterlockPayload("Kryssburet 14", "ALISON", "JOLENE", "ANGIE", "HELLO", "RHIANNON", "GLORY", "GOLD", "OCEAN"),
-            crosstunesInterlockPayload("Kryssburet 15", "ALISON", "JOLENE", "GLORY", "CREEP", "RHIANNON", "SUGAR", "STAY", "TOXIC"),
-            crosstunesInterlockPayload("Kryssburet 16", "ALISON", "JOLENE", "KARMA", "ANGIE", "RHIANNON", "LOVER", "LOLA", "OCEAN"),
-            crosstunesInterlockPayload("Kryssburet 17", "ALISON", "JOLENE", "TOXIC", "SARA", "RHIANNON", "HELLO", "HURT", "UNDER"),
-            crosstunesInterlockPayload("Kryssburet 18", "ALISON", "JOLENE", "HELLO", "ROSIE", "RHIANNON", "DREAM", "DUSK", "UNDER"),
-            crosstunesInterlockPayload("Kryssburet 19", "ALISON", "JOLENE", "CREEP", "ANGIE", "RHIANNON", "ANGIE", "ABBA", "BILLS"),
-            crosstunesInterlockPayload("Kryssburet 20", "ALISON", "JOLENE", "GLORY", "HELLO", "RHIANNON", "MANDY", "MARY", "ALONE")
+            crosstunesInterlockPayload("Kryssburet 01", 0, "ALISON", "JOLENE", "HELLO", "ROSIE", "RHIANNON", "MANDY", "MARY", "ALONE"),
+            crosstunesInterlockPayload("Kryssburet 02", 1, "ALISON", "JOLENE", "TOXIC", "ANGIE", "RHIANNON", "GLORY", "GOLD", "OCEAN"),
+            crosstunesInterlockPayload("Kryssburet 03", 2, "ALISON", "JOLENE", "KARMA", "CREEP", "RHIANNON", "SUGAR", "STAY", "TOXIC"),
+            crosstunesInterlockPayload("Kryssburet 04", 3, "ALISON", "JOLENE", "CREEP", "GLORY", "RHIANNON", "LOVER", "LOLA", "OCEAN"),
+            crosstunesInterlockPayload("Kryssburet 05", 4, "ALISON", "JOLENE", "ANGIE", "TOXIC", "RHIANNON", "HELLO", "HURT", "UNDER"),
+            crosstunesInterlockPayload("Kryssburet 06", 5, "ALISON", "JOLENE", "HELLO", "KARMA", "RHIANNON", "DREAM", "DUSK", "UNDER"),
+            crosstunesInterlockPayload("Kryssburet 07", 6, "ALISON", "JOLENE", "GLORY", "CREEP", "RHIANNON", "MANDY", "MARY", "ANGIE"),
+            crosstunesInterlockPayload("Kryssburet 08", 7, "ALISON", "JOLENE", "TOXIC", "ROSIE", "RHIANNON", "ANGIE", "AMEN", "MANDY"),
+            crosstunesInterlockPayload("Kryssburet 09", 0, "ALISON", "JOLENE", "HELLO", "ANGIE", "RHIANNON", "CREEP", "CURE", "UNDER"),
+            crosstunesInterlockPayload("Kryssburet 10", 1, "ALISON", "JOLENE", "KARMA", "GLORY", "RHIANNON", "BILLS", "BETH", "EVERY"),
+            crosstunesInterlockPayload("Kryssburet 11", 2, "ALISON", "JOLENE", "CREEP", "TOXIC", "RHIANNON", "SUGAR", "STAY", "TOXIC"),
+            crosstunesInterlockPayload("Kryssburet 12", 3, "ALISON", "JOLENE", "HELLO", "SARA", "RHIANNON", "GLORY", "GOLD", "OCEAN"),
+            crosstunesInterlockPayload("Kryssburet 13", 4, "ALISON", "JOLENE", "TOXIC", "ROSIE", "RHIANNON", "LOVER", "LOLA", "OCEAN"),
+            crosstunesInterlockPayload("Kryssburet 14", 5, "ALISON", "JOLENE", "ANGIE", "HELLO", "RHIANNON", "HELLO", "HURT", "UNDER"),
+            crosstunesInterlockPayload("Kryssburet 15", 6, "ALISON", "JOLENE", "GLORY", "CREEP", "RHIANNON", "DREAM", "DUSK", "UNDER"),
+            crosstunesInterlockPayload("Kryssburet 16", 7, "ALISON", "JOLENE", "KARMA", "ANGIE", "RHIANNON", "MANDY", "MARY", "ALONE"),
+            crosstunesInterlockPayload("Kryssburet 17", 0, "ALISON", "JOLENE", "TOXIC", "SARA", "RHIANNON", "ANGIE", "AMEN", "MANDY"),
+            crosstunesInterlockPayload("Kryssburet 18", 1, "ALISON", "JOLENE", "HELLO", "ROSIE", "RHIANNON", "CREEP", "CURE", "UNDER"),
+            crosstunesInterlockPayload("Kryssburet 19", 2, "ALISON", "JOLENE", "CREEP", "ANGIE", "RHIANNON", "BILLS", "BETH", "EVERY"),
+            crosstunesInterlockPayload("Kryssburet 20", 3, "ALISON", "JOLENE", "GLORY", "HELLO", "RHIANNON", "MANDY", "MARY", "ALONE")
     };
 
     private static final String[] SONGLESS_DAILY_PAYLOADS = new String[] {
@@ -247,7 +279,7 @@ public class NativePuzzleService {
 
     private static String crosstunesPayload(String title, String[][] clues) {
         StringBuilder json = new StringBuilder();
-        json.append("{\"dailySet\":20,\"dailySetVersion\":4,\"title\":\"")
+        json.append("{\"dailySet\":20,\"dailySetVersion\":5,\"title\":\"")
                 .append(jsonEscape(title))
                 .append("\",\"rows\":11,\"cols\":12,\"clues\":[");
         for (int i = 0; i < clues.length; i++) {
@@ -278,16 +310,37 @@ public class NativePuzzleService {
     }
 
     private static String crosstunesInterlockPayload(String title, String... answers) {
-        return crosstunesPayload(title, new String[][] {
-                {"1", "D", "0", "5", answers[0], "Song title"},
-                {"2", "A", "1", "3", answers[1], "Song title"},
-                {"3", "D", "2", "8", answers[2], "Song title"},
-                {"4", "A", "3", "3", answers[3], "Song title"},
-                {"5", "A", "5", "0", answers[4], "Song title"},
-                {"6", "A", "7", "3", answers[5], "Song title"},
-                {"7", "D", "7", "3", answers[6], "Song title"},
-                {"8", "A", "8", "3", answers[7], "Song title"}
-        });
+        return crosstunesInterlockPayload(title, 0, answers);
+    }
+
+    private static String crosstunesInterlockPayload(String title, int firstClueOffset, String... answers) {
+        String[][] clues = new String[][] {
+                crosstunesClue("1", "D", "0", "5", answers[0]),
+                crosstunesClue("2", "A", "1", "3", answers[1]),
+                crosstunesClue("3", "D", "2", "8", answers[2]),
+                crosstunesClue("4", "A", "3", "3", answers[3]),
+                crosstunesClue("5", "A", "5", "0", answers[4]),
+                crosstunesClue("6", "A", "7", "3", answers[5]),
+                crosstunesClue("7", "D", "7", "3", answers[6]),
+                crosstunesClue("8", "A", "8", "3", answers[7])
+        };
+        int offset = ((firstClueOffset % clues.length) + clues.length) % clues.length;
+        if (offset == 0) {
+            return crosstunesPayload(title, clues);
+        }
+        String[][] rotated = new String[clues.length][];
+        for (int i = 0; i < clues.length; i++) {
+            rotated[i] = clues[(i + offset) % clues.length];
+        }
+        return crosstunesPayload(title, rotated);
+    }
+
+    private static String[] crosstunesClue(String n, String dir, String row, String col, String answer) {
+        String[] track = CROSSTUNES_TRACKS.get(answer);
+        if (track == null) {
+            return new String[] {n, dir, row, col, answer, "Song title"};
+        }
+        return new String[] {n, dir, row, col, answer, "Song title", track[0], track[1]};
     }
 
     private static String crosstunesRowsPayload(String title, String[][] clues) {
@@ -423,7 +476,7 @@ public class NativePuzzleService {
     }
 
     private NativePuzzle refreshCrosstunesDailyIfNeeded(GameName gameName, NativePuzzle puzzle, LocalDate date) {
-        if (gameName != GameName.CROSSTUNES || puzzle.getPayloadJson() == null || puzzle.getPayloadJson().contains("\"dailySetVersion\":4")) {
+        if (gameName != GameName.CROSSTUNES || puzzle.getPayloadJson() == null || puzzle.getPayloadJson().contains("\"dailySetVersion\":5")) {
             return puzzle;
         }
         String[] payloads = DAILY_PAYLOADS.get(gameName);
