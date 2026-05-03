@@ -2,12 +2,14 @@ package com.glassburet.service;
 
 import com.glassburet.dto.ConnectionsPuzzleDto;
 import com.glassburet.dto.ConnectionsPuzzleResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.glassburet.model.ConnectionsPuzzle;
 import com.glassburet.repository.ConnectionsPuzzleRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
@@ -24,6 +26,9 @@ class ConnectionsPuzzleServiceTest {
 
     @Mock
     private ConnectionsPuzzleRepository repository;
+
+    @Spy
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @InjectMocks
     private ConnectionsPuzzleService service;

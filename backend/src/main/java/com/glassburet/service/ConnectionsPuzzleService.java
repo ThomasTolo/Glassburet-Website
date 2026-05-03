@@ -2,13 +2,17 @@ package com.glassburet.service;
 
 import com.glassburet.dto.ConnectionsPuzzleDto;
 import com.glassburet.dto.ConnectionsPuzzleResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.glassburet.model.ConnectionsPuzzle;
 import com.glassburet.repository.ConnectionsPuzzleRepository;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,118 +23,35 @@ import java.util.Optional;
 @Service
 public class ConnectionsPuzzleService {
 
-    private final ConnectionsPuzzleRepository repository;
+    private static final String DAILY_RESOURCE_PATH = "games/connections/daily.json";
 
-    public ConnectionsPuzzleService(ConnectionsPuzzleRepository repository) {
+    private final ConnectionsPuzzleRepository repository;
+    private final ObjectMapper objectMapper;
+    private final List<ConnectionsPuzzleDto> dailyPuzzles;
+
+    public ConnectionsPuzzleService(ConnectionsPuzzleRepository repository, ObjectMapper objectMapper) {
         this.repository = repository;
+        this.objectMapper = objectMapper;
+        this.dailyPuzzles = loadDailyPuzzles();
     }
 
-    private static final String[][] DAILY_PUZZLES = {
-        {"Noe å drikke",        "KAFFE,TE,SAFT,BRUS",
-         "Programmeringsspråk", "PYTHON,JAVA,SWIFT,RUBY",
-         "Nordiske land",       "NORGE,SVERIGE,FINLAND,ISLAND",
-         "Dyr i norsk natur",   "ÆLG,BJØRN,ULV,REV"},
-
-        {"Norske byer",         "OSLO,BERGEN,TROMSØ,STAVANGER",
-         "Instrumenter",        "GITAR,PIANO,FIOLIN,TROMMER",
-         "Vanlige mattyper",    "PIZZA,TACO,SUSHI,BURGER",
-         "Primærfarger",        "RØD,BLÅ,GRØNN,GUL"},
-
-        {"Frontendrammeverk",   "REACT,VUE,ANGULAR,SVELTE",
-         "Databaser",           "POSTGRES,MYSQL,MONGODB,REDIS",
-         "Git-kommandoer",      "PUSH,PULL,MERGE,COMMIT",
-         "Skyplattformer",      "AWS,AZURE,GCP,HEROKU"},
-
-        {"Norske fjorder",      "SOGNE,HARDANGER,GEIRANGER,LYSE",
-         "Årstider",            "VINTER,VÅR,SOMMER,HØST",
-         "Planeter",            "MARS,VENUS,JUPITER,SATURN",
-         "Norsk tradisjonskost","BRUNOST,LUTEFISK,RAKFISK,LEFSE"},
-
-        {"Datastrukturer",      "LISTE,STAKK,KØ,TRE",
-         "Agile begreper",      "SPRINT,BACKLOG,STANDUP,REVIEW",
-         "Nettlesere",          "CHROME,FIREFOX,SAFARI,EDGE",
-         "Operativsystemer",    "WINDOWS,LINUX,MACOS,ANDROID"},
-
-        {"Norske fotballag",    "VIKING,BRANN,ROSENBORG,VÅLERENGA",
-         "Treningsformer",      "YOGA,PILATES,CROSSFIT,SVØMMING",
-         "Vintersport",         "LANGRENN,SLALOM,SKIFLYGING,SKISKYTING",
-         "Norske idrettsstjerner","NORTHUG,KLÆBO,HAALAND,WARHOLM"},
-
-        {"Rom i huset",         "KJØKKEN,STUE,SOVEROM,BAD",
-         "Klesstykker",         "JAKKE,BUKSE,SKJORTE,GENSER",
-         "Vær",                 "REGN,SNØ,TORDEN,SOL",
-         "Norsk slang for bra", "KULT,DIGG,BALLA,FETT"},
-
-        {"Glassburet-sider",    "GALLERI,POENG,HJEM,AKTIVITETER",
-         "Frukt",               "EPLE,BANAN,APPELSIN,PÆRE",
-         "Programmeringsbegreper","KLASSE,OBJEKT,METODE,LØKKE",
-         "Norske artister",     "AURORA,SIGRID,YLVIS,ASTRID"},
-
-        {"Kjøkkenredskaper",    "KNIV,GAFFEL,SKJE,STEKEPANNE",
-         "Matematikkbegreper",  "ALGEBRA,GEOMETRI,KALKULUS,STATISTIKK",
-         "Studiesteder i Norge","NTNU,UIO,UIB,UIS",
-         "Nettverksprotokoller","HTTP,TCP,UDP,DNS"},
-
-        {"Norsk natur",         "FJORD,FJELL,SKOG,ELVER",
-         "Ukedager",            "MANDAG,TIRSDAG,ONSDAG,TORSDAG",
-         "Farger på norsk flagg","RØD,BLÅ,HVIT,GUL",
-         "Hobbyaktiviteter",    "GAMING,MALING,LØPING,LESING"},
-
-        {"Kaffebar",            "LATTE,MOCCA,CORTADO,ESPRESSO",
-         "IDE-verktøy",         "INTELLIJ,VSCODE,ECLIPSE,WEBSTORM",
-         "Kortspill",           "POKER,BRIDGE,VRIÅTTER,KABAL",
-         "Norske øyer",         "HITRA,SMØLA,SENJA,ANDØYA"},
-
-        {"Studentliv",          "FORELESNING,KOLLEN,EKSAMEN,KANTINE",
-         "HTTP-metoder",        "GET,POST,PUT,DELETE",
-         "Skandinaviske konger", "HARALD,CARL,FREDERIK,GUSTAV",
-         "Ting med hjul",       "SYKKEL,BIL,TOG,SPARKESYKKEL"},
-
-        {"Krydder",             "PEPPER,KANEL,KARDEMOMME,INGEFÆR",
-         "Musikksjangre",       "JAZZ,ROCK,POP,TECHNO",
-         "Programmeringsfeil",   "BUG,KRASJ,LOOP,NULL",
-         "Norske aviser",       "VG,DAGBLADET,AFTENPOSTEN,ADRESSEAVISEN"},
-
-        {"Verdenshav",          "STILLEHAVET,ATLANTERHAVET,INDIAHAVET,NORDISHAVET",
-         "Mobilapper",          "VIPPS,SNAPCHAT,SPOTIFY,INSTAGRAM",
-         "Skiutstyr",           "STAVER,SKI,SMØRING,BINDING",
-         "Måleenheter",         "METER,LITER,GRAM,SEKUND"},
-
-        {"Bakverk",             "BOLLE,BRØD,KAKE,VAFFEL",
-         "Konsollmerker",       "PLAYSTATION,XBOX,NINTENDO,SEGA",
-         "Norske daler",        "GUDBRANDSDAL,SETESDAL,NUMEDAL,ØSTERDAL",
-         "Kjemiske symboler",    "H,O,FE,NA"},
-
-        {"Kontorutstyr",        "PENN,TASTATUR,SKJERM,STOL",
-         "Fotballposisjoner",   "KEEPER,STOPPER,VING,SPISS",
-         "Klassiske komponister","BACH,MOZART,BEETHOVEN,GRIEG",
-         "Datasikkerhet",       "BRANNMUR,PHISHING,KRYPTERING,TOKEN"},
-
-        {"Norske innsjøer",     "MJØSA,RØSSVATNET,FEMUNDEN,TYRIFJORDEN",
-         "Sosiale roller",      "VERT,GJEST,NABO,VENN",
-         "Filmformater",        "KOMEDIE,DRAMA,THRILLER,DOKUMENTAR",
-         "Terminalkommandoer",  "LS,CD,MKDIR,RM"},
-
-        {"Frokostmat",          "EGG,GRØT,YOGHURT,BRØD",
-         "Nettverksutstyr",     "RUTER,SVITSJ,MODEM,AKSESSPUNKT",
-         "Nordiske hovedsteder", "OSLO,STOCKHOLM,KØBENHAVN,HELSINKI",
-         "Tegnsetting",         "KOMMA,PUNKTUM,KOLON,SEMIKOLON"},
-
-        {"Kroppsdeler",         "ARM,BEIN,HODE,HÅND",
-         "Værfenomener",        "TÅKE,HAGL,LYN,VIND",
-         "Databasebegreper",    "TABELL,INDEKS,SPØRRING,SKJEMA",
-         "Norske festivaler",   "ØYA,PSTEREO,BY:LARM,SLOTTSFJELL"},
-
-        {"Reiseord",            "BILLETT,PASS,KOFFERT,HOTELL",
-         "Kamerautstyr",        "LINSE,STATIV,BLITS,SENSOR",
-         "Mat fra havet",       "TORSK,LAKS,REKER,KRABBE",
-         "Unix-redigerere",     "VIM,EMACS,NANO,SED"},
-    };
+    private List<ConnectionsPuzzleDto> loadDailyPuzzles() {
+        ClassPathResource resource = new ClassPathResource(DAILY_RESOURCE_PATH);
+        if (!resource.exists()) {
+            return List.of();
+        }
+        try (InputStream input = resource.getInputStream()) {
+            return objectMapper.readValue(
+                    input,
+                    objectMapper.getTypeFactory().constructCollectionType(List.class, ConnectionsPuzzleDto.class)
+            );
+        } catch (IOException e) {
+            throw new IllegalStateException("Failed to load daily Connections puzzles: " + DAILY_RESOURCE_PATH, e);
+        }
+    }
 
     @Transactional
     public ConnectionsPuzzleResponse create(ConnectionsPuzzleDto dto) {
-        List<ConnectionsPuzzleDto.GroupDto> groups = dto.getGroups();
-
         ConnectionsPuzzle puzzle = new ConnectionsPuzzle();
         puzzle.setCreatedBy(dto.getCreatedBy() != null ? dto.getCreatedBy() : "Anonym");
         applyDto(puzzle, dto);
@@ -161,25 +82,23 @@ public class ConnectionsPuzzleService {
         Optional<ConnectionsPuzzle> existing = repository.findByPuzzleDateAndIsDailyTrue(today);
         if (existing.isPresent()) return toResponse(existing.get());
 
-        long dayIndex = today.toEpochDay() - LocalDate.of(2026, 1, 1).toEpochDay();
-        int idx = (int) (((dayIndex % DAILY_PUZZLES.length) + DAILY_PUZZLES.length) % DAILY_PUZZLES.length);
-        String[] p = DAILY_PUZZLES[idx];
-
         ConnectionsPuzzle puzzle = new ConnectionsPuzzle();
         puzzle.setCreatedBy("Glassburet");
         puzzle.setTitle("Daglig Tankeburet");
         puzzle.setIsDaily(true);
         puzzle.setPuzzleDate(today);
-        puzzle.setGroup0Category(p[0]);
-        puzzle.setGroup0Words(p[1]);
-        puzzle.setGroup1Category(p[2]);
-        puzzle.setGroup1Words(p[3]);
-        puzzle.setGroup2Category(p[4]);
-        puzzle.setGroup2Words(p[5]);
-        puzzle.setGroup3Category(p[6]);
-        puzzle.setGroup3Words(p[7]);
+        applyGroups(puzzle, dailyPuzzleFor(today).getGroups());
 
         return toResponse(repository.save(puzzle));
+    }
+
+    private ConnectionsPuzzleDto dailyPuzzleFor(LocalDate date) {
+        if (dailyPuzzles.isEmpty()) {
+            throw new IllegalArgumentException("No daily Connections puzzles configured");
+        }
+        long dayIndex = date.toEpochDay() - LocalDate.of(2026, 1, 1).toEpochDay();
+        int idx = (int) (((dayIndex % dailyPuzzles.size()) + dailyPuzzles.size()) % dailyPuzzles.size());
+        return dailyPuzzles.get(idx);
     }
 
     public Optional<ConnectionsPuzzleResponse> getLatest() {
@@ -251,8 +170,11 @@ public class ConnectionsPuzzleService {
     }
 
     private void applyDto(ConnectionsPuzzle puzzle, ConnectionsPuzzleDto dto) {
-        List<ConnectionsPuzzleDto.GroupDto> groups = dto.getGroups();
         puzzle.setTitle(clean(dto.getTitle()));
+        applyGroups(puzzle, dto.getGroups());
+    }
+
+    private void applyGroups(ConnectionsPuzzle puzzle, List<ConnectionsPuzzleDto.GroupDto> groups) {
         puzzle.setGroup0Category(groups.get(0).getCategory());
         puzzle.setGroup0Words(String.join(",", groups.get(0).getWords()));
         puzzle.setGroup1Category(groups.get(1).getCategory());

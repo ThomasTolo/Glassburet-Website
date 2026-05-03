@@ -55,7 +55,7 @@
       <div class="puzzle-library">
         <div class="puzzle-library-head">
           <span class="eyebrow">Velg puzzle</span>
-          <button v-if="allConnPuzzles.length > LIBRARY_LIMIT" type="button" class="library-more" @click="connLibraryExpanded = !connLibraryExpanded">
+          <button v-if="allConnPuzzles.length > STANDARD_LIBRARY_COLLAPSED_LIMIT" type="button" class="library-more" @click="connLibraryExpanded = !connLibraryExpanded">
             {{ connLibraryExpanded ? 'Vis færre' : 'Vis mer' }}
           </button>
         </div>
@@ -216,7 +216,7 @@
       <div class="puzzle-library">
         <div class="puzzle-library-head">
           <span class="eyebrow">Velg ord</span>
-          <button v-if="allWrdPuzzles.length > LIBRARY_LIMIT" type="button" class="library-more" @click="wrdLibraryExpanded = !wrdLibraryExpanded">
+          <button v-if="allWrdPuzzles.length > STANDARD_LIBRARY_COLLAPSED_LIMIT" type="button" class="library-more" @click="wrdLibraryExpanded = !wrdLibraryExpanded">
             {{ wrdLibraryExpanded ? 'Vis færre' : 'Vis mer' }}
           </button>
         </div>
@@ -343,7 +343,7 @@
         <div class="puzzle-library native-library">
           <div class="puzzle-library-head">
             <span class="eyebrow">Velg spill</span>
-            <button v-if="activeNativePuzzles.length > LIBRARY_LIMIT" type="button" class="library-more" @click="toggleNativeLibrary">
+            <button v-if="activeNativePuzzles.length > NATIVE_LIBRARY_COLLAPSED_LIMIT" type="button" class="library-more" @click="toggleNativeLibrary">
               {{ nativeLibraryExpanded[activeGame] ? 'Vis færre' : 'Vis mer' }}
             </button>
           </div>
@@ -398,9 +398,8 @@
                 v-for="(duration, idx) in songDurations"
                 :key="duration"
                 :class="['songless-step', idx === songStep && 'active']"
-                :disabled="idx > songStep"
+                :disabled="idx !== songStep"
                 type="button"
-                @click="songStep = idx"
               >
                 {{ songDurationLabel(duration) }}
               </button>
@@ -446,9 +445,9 @@
             <div class="cw-layout">
               <!-- Grid -->
               <div class="cw-grid-wrap">
-                <div class="cw-grid" :style="{ gridTemplateColumns: `repeat(${cwPuzzle.cols}, 1fr)`, '--cw-cols': cwPuzzle.cols }">
+                <div class="cw-grid" :style="{ '--cw-cols': cwVisibleCols }">
                   <div
-                    v-for="cell in cwGrid.flat()"
+                    v-for="cell in cwVisibleGrid.flat()"
                     :key="`${cell.row},${cell.col}`"
                     :class="['cw-cell',
                       cell.black && 'cw-black',
@@ -525,6 +524,7 @@
         <div v-if="activeGame === 'tidsburet'" class="native-game-body">
           <template v-if="activeNativeGameState !== 'completed'">
             <h3 class="native-prompt">{{ timePuzzle.prompt }}</h3>
+            <p v-if="timeRoundTotal > 1" class="sp-sub">Runde {{ timeRoundIndex + 1 }} av {{ timeRoundTotal }}</p>
             <div class="time-play-layout">
               <div class="time-photo-col">
                 <img v-if="timePuzzle.imageUrl" class="time-photo" :src="timePuzzle.imageUrl" alt="" />
@@ -546,9 +546,9 @@
                   <h3>{{ timeResult.year }} · {{ timeResult.locationName }}</h3>
                   <p>{{ timeResult.distanceKm }} km unna</p>
                   <p>{{ timeResult.yearScore }} årspoeng · {{ timeResult.locationScore }} kartpoeng</p>
-                  <p><strong>{{ timeScore }} poeng</strong></p>
+                  <p><strong>{{ timeResult.score || 0 }} poeng denne runden · {{ timeScore }} totalt</strong></p>
                   <button class="conn-btn conn-btn-primary" type="button" @click="finishTimeResult">
-                    Ferdig
+                    {{ timeRoundIndex < timeRoundTotal - 1 ? 'Neste' : 'Ferdig' }}
                   </button>
                 </div>
               </div>
@@ -745,13 +745,14 @@ const completedNativeIds = ref({ merburet: [], latburet: [], kryssburet: [], tid
 const nativeSubmitted = ref({})
 const activeNativePuzzles = computed(() => nativePuzzles.value[activeGame.value] ?? [])
 const activeNativeCompletedIds = computed(() => completedNativeIds.value[activeGame.value] ?? [])
-const LIBRARY_LIMIT = 6
+const STANDARD_LIBRARY_COLLAPSED_LIMIT = 4
+const NATIVE_LIBRARY_COLLAPSED_LIMIT = 3
 const connLibraryExpanded = ref(false)
 const wrdLibraryExpanded = ref(false)
 const nativeLibraryExpanded = ref({})
-const visibleConnPuzzles = computed(() => connLibraryExpanded.value ? allConnPuzzles.value : allConnPuzzles.value.slice(0, LIBRARY_LIMIT))
-const visibleWrdPuzzles = computed(() => wrdLibraryExpanded.value ? allWrdPuzzles.value : allWrdPuzzles.value.slice(0, LIBRARY_LIMIT))
-const visibleNativePuzzles = computed(() => nativeLibraryExpanded.value[activeGame.value] ? activeNativePuzzles.value : activeNativePuzzles.value.slice(0, LIBRARY_LIMIT))
+const visibleConnPuzzles = computed(() => connLibraryExpanded.value ? allConnPuzzles.value : allConnPuzzles.value.slice(0, STANDARD_LIBRARY_COLLAPSED_LIMIT))
+const visibleWrdPuzzles = computed(() => wrdLibraryExpanded.value ? allWrdPuzzles.value : allWrdPuzzles.value.slice(0, STANDARD_LIBRARY_COLLAPSED_LIMIT))
+const visibleNativePuzzles = computed(() => nativeLibraryExpanded.value[activeGame.value] ? activeNativePuzzles.value : activeNativePuzzles.value.slice(0, NATIVE_LIBRARY_COLLAPSED_LIMIT))
 const activeNativeGameState = computed(() => {
   const id = selectedNativeIds.value[activeGame.value]
   return id && activeNativeCompletedIds.value.includes(id) ? 'completed' : 'playing'
@@ -908,7 +909,7 @@ async function merChoose(choice) {
 
 // ——— LÅTBURET ——————————————————————————————————————————
 
-const songDurations = [0.1, 0.5, 1, 2, 4, 8]
+const songDurations = [0.5, 1, 2, 4, 8, 10]
 const songPuzzle = ref({ answer: '', artist: '', title: '', trackId: null, previewUrl: null })
 const songGuess = ref('')
 const songGuesses = ref([])
@@ -1108,6 +1109,8 @@ const cwCurrentClue = computed(() => {
   return cwPuzzle.value.clues.find(c => c.n === cwSelected.value.n && c.dir === cwSelected.value.dir) ?? null
 })
 const cwScore = computed(() => (cwWon.value ? 1000 : 0))
+const cwVisibleGrid = computed(() => cropCwGrid(cwGrid.value))
+const cwVisibleCols = computed(() => cwVisibleGrid.value[0]?.length || cwPuzzle.value?.cols || 9)
 const cwSelectedCellKeys = computed(() => {
   const clue = cwCurrentClue.value
   if (!clue) return new Set()
@@ -1142,6 +1145,16 @@ function buildCwGrid(puzzle) {
     }
   }
   return grid
+}
+
+function cropCwGrid(grid) {
+  const filled = grid.flat().filter(cell => !cell.black)
+  if (!filled.length) return grid
+  const minRow = Math.max(0, Math.min(...filled.map(cell => cell.row)) - 1)
+  const maxRow = Math.min(grid.length - 1, Math.max(...filled.map(cell => cell.row)) + 1)
+  const minCol = Math.max(0, Math.min(...filled.map(cell => cell.col)) - 1)
+  const maxCol = Math.min((grid[0]?.length || 1) - 1, Math.max(...filled.map(cell => cell.col)) + 1)
+  return grid.slice(minRow, maxRow + 1).map(row => row.slice(minCol, maxCol + 1))
 }
 
 function getCluePositions(clue) {
@@ -1377,6 +1390,10 @@ function cwNextClue() {
 // ——— TIDSBURET ——————————————————————————————————————————
 
 const timePuzzle = ref({ prompt: '', imageUrl: '', attribution: '' })
+const timeRounds = ref([])
+const timeRoundIndex = ref(0)
+const timeRoundInputs = ref([])
+const timeRoundResults = ref([])
 const timeYear = ref(2000)
 const timeGuess = ref(null)
 const timeDone = ref(false)
@@ -1385,52 +1402,83 @@ const timeMapEl = ref(null)
 let _timeMap = null
 let _timeGuessMarker = null
 let _timeAnswerMarker = null
-const timeScore = computed(() => {
-  if (!timeDone.value) return 0
-  return timeResult.value.score || 0
-})
+const timeRoundTotal = computed(() => Math.max(1, timeRounds.value.length))
+const timeScore = computed(() => timeRoundResults.value.reduce((sum, result) => sum + (Number(result?.score) || 0), 0))
 
 function applyTimePuzzle(payload) {
-  timePuzzle.value = {
-    prompt: payload.prompt ?? '',
-    imageUrl: payload.imageUrl ?? '',
-    attribution: payload.attribution ?? '',
-  }
-  timeYear.value = 2000
-  timeGuess.value = null
-  timeDone.value = false
-  timeResult.value = { year: '', locationName: '', distanceKm: 0, yearScore: 0, locationScore: 0 }
+  timeRounds.value = Array.isArray(payload.rounds) && payload.rounds.length ? payload.rounds : [payload]
+  timeRoundIndex.value = 0
+  timeRoundInputs.value = []
+  timeRoundResults.value = []
   const saved = loadProgress('tidsburet', selectedNativeIds.value.tidsburet)
   if (saved) {
-    timeYear.value = Number(saved.year) || 2000
-    timeGuess.value = saved.guess || null
-    timeDone.value = Boolean(saved.done)
-    timeResult.value = saved.result || timeResult.value
+    timeRoundIndex.value = Math.min(Number(saved.roundIndex) || 0, timeRounds.value.length - 1)
+    timeRoundInputs.value = Array.isArray(saved.inputs) ? saved.inputs : [{ year: saved.year, guess: saved.guess }]
+    timeRoundResults.value = Array.isArray(saved.results) ? saved.results : (saved.result ? [saved.result] : [])
   }
+  applyTimeRound()
   nextTick(initTimeMap)
 }
 
 async function timeSubmit() {
   if (timeDone.value || !timeGuess.value) return
   const result = await puzzleApi.validateNative('TIMEGUESSR', selectedNativeIds.value.tidsburet, {
+    roundIndex: timeRoundIndex.value,
     year: timeYear.value,
     lat: timeGuess.value.lat,
     lng: timeGuess.value.lng,
   })
   timeResult.value = result
   timeDone.value = true
+  timeRoundResults.value = setAt(timeRoundResults.value, timeRoundIndex.value, result)
+  timeRoundInputs.value = setAt(timeRoundInputs.value, timeRoundIndex.value, { year: timeYear.value, guess: timeGuess.value })
   showTimeAnswerMarker()
   saveTimeProgress()
 }
 
 function saveTimeProgress() {
-  saveNativeProgress('tidsburet', { year: timeYear.value, guess: timeGuess.value, done: timeDone.value, result: timeResult.value })
+  timeRoundInputs.value = setAt(timeRoundInputs.value, timeRoundIndex.value, { year: timeYear.value, guess: timeGuess.value })
+  saveNativeProgress('tidsburet', {
+    roundIndex: timeRoundIndex.value,
+    inputs: timeRoundInputs.value,
+    results: timeRoundResults.value,
+  })
 }
 
 function finishTimeResult() {
+  if (timeRoundIndex.value < timeRoundTotal.value - 1) {
+    timeRoundIndex.value += 1
+    applyTimeRound()
+    saveTimeProgress()
+    return
+  }
   if (isAuthenticated.value && !nativeSubmitted.value.tidsburet) {
     submitNativeScore('tidsburet', timeScore.value)
   }
+}
+
+function applyTimeRound() {
+  const round = timeRounds.value[timeRoundIndex.value] || {}
+  const input = timeRoundInputs.value[timeRoundIndex.value] || {}
+  const result = timeRoundResults.value[timeRoundIndex.value] || null
+  timePuzzle.value = {
+    prompt: round.prompt ?? '',
+    imageUrl: round.imageUrl ?? '',
+    attribution: round.attribution ?? '',
+  }
+  timeYear.value = Number(input.year) || 2000
+  timeGuess.value = input.guess || null
+  timeDone.value = Boolean(result)
+  timeResult.value = result || { year: '', locationName: '', distanceKm: 0, yearScore: 0, locationScore: 0, score: 0 }
+  if (_timeGuessMarker) { _timeGuessMarker.remove(); _timeGuessMarker = null }
+  if (_timeAnswerMarker) { _timeAnswerMarker.remove(); _timeAnswerMarker = null }
+  nextTick(initTimeMap)
+}
+
+function setAt(items, index, value) {
+  const next = [...items]
+  next[index] = value
+  return next
 }
 
 function initTimeMap() {
@@ -2854,8 +2902,8 @@ onUnmounted(() => {
 /* ── Crossword ───────────────────────────────── */
 .cw-layout {
   display: grid;
-  grid-template-columns: minmax(280px, auto) minmax(240px, 1fr);
-  gap: 28px;
+  grid-template-columns: minmax(0, 1fr) minmax(150px, 176px);
+  gap: 22px;
   align-items: start;
   width: 100%;
   text-align: left;
@@ -2864,18 +2912,20 @@ onUnmounted(() => {
   display: flex;
   justify-content: center;
   width: 100%;
-  overflow-x: auto;
+  min-width: 0;
+  overflow: hidden;
 }
 .cw-grid {
   display: grid;
+  grid-template-columns: repeat(var(--cw-cols, 9), minmax(0, 1fr));
   gap: 2px;
   border: 2px solid var(--ink);
   background: var(--ink);
-  width: min(100%, calc(var(--cw-cols, 9) * 46px));
+  width: min(100%, calc(var(--cw-cols, 9) * clamp(60px, 4.8vw, 76px)));
 }
 .cw-cell {
   aspect-ratio: 1;
-  min-width: 28px;
+  min-width: 0;
   background: var(--bg);
   position: relative;
   display: flex; align-items: center; justify-content: center;
@@ -2895,24 +2945,24 @@ onUnmounted(() => {
   color: var(--ink); text-transform: uppercase;
 }
 .cw-clues {
-  display: flex; flex-direction: column; gap: 20px;
-  max-height: 360px; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 16px;
+  max-height: 520px; overflow-y: auto;
 }
-.cw-clues-section { display: flex; flex-direction: column; gap: 4px; }
+.cw-clues-section { display: flex; flex-direction: column; gap: 3px; }
 .cw-clues-heading {
-  font-family: var(--mono); font-size: 11px; text-transform: uppercase;
+  font-family: var(--mono); font-size: 10px; text-transform: uppercase;
   letter-spacing: 0.12em; color: var(--ink-mute); margin-bottom: 4px; font-weight: 600;
 }
 .cw-clue-row {
-  display: flex; align-items: center; gap: 10px;
-  padding: 5px 8px; border-radius: var(--radius);
+  display: flex; align-items: center; gap: 8px;
+  padding: 4px 6px; border-radius: var(--radius);
   cursor: pointer; transition: background 0.15s;
 }
 .cw-clue-row:hover { background: var(--paper); }
 .cw-clue-row.cw-clue-active { background: var(--paper); }
 .cw-badge {
-  flex-shrink: 0; min-width: 34px; height: 22px; border-radius: 4px;
-  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  flex-shrink: 0; min-width: 30px; height: 20px; border-radius: 4px;
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
   display: flex; align-items: center; justify-content: center; padding: 0 4px;
 }
 .cw-badge-0 { background: #f59e0b; color: #fff; }
@@ -2923,7 +2973,7 @@ onUnmounted(() => {
 .cw-badge-5 { background: #2dd4bf; color: #fff; }
 .cw-badge-6 { background: #a78bfa; color: #fff; }
 .cw-badge-7 { background: #fb7185; color: #fff; }
-.cw-clue-text { font-size: 13px; color: var(--ink-soft); }
+.cw-clue-text { font-size: 12px; color: var(--ink-soft); line-height: 1.2; }
 
 .cw-player-bar {
   width: 100%; margin-top: 20px;
@@ -3234,7 +3284,6 @@ onUnmounted(() => {
   .time-play-layout { grid-template-columns: 1fr; }
   .time-map { height: 320px; }
   .cw-layout { grid-template-columns: 1fr; }
-  .cw-cell { width: 36px; height: 36px; }
   .cw-letter { font-size: 14px; }
   .cw-clues { max-height: none; }
   .cw-creator-layout { grid-template-columns: 1fr; }

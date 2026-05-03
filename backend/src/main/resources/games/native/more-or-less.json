@@ -1,0 +1,1362 @@
+[
+  {
+    "rounds": [
+      {
+        "metric": "Hvilket land har hoyest BNP per innbygger?",
+        "left": "Luxembourg",
+        "right": "Portugal",
+        "answer": "left"
+      },
+      {
+        "metric": "Hvilken database ble forst lansert?",
+        "left": "PostgreSQL",
+        "right": "MongoDB",
+        "answer": "left"
+      },
+      {
+        "metric": "Hvilken protokoll kom forst?",
+        "left": "HTTP/1.1",
+        "right": "HTTP/2",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyest kokepunkt?",
+        "left": "Jern",
+        "right": "Aluminium",
+        "answer": "left"
+      },
+      {
+        "metric": "Hvilken hovedstad ligger lengst sor?",
+        "left": "Canberra",
+        "right": "Wellington",
+        "answer": "right"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er storst i areal?",
+        "left": "Mongolia",
+        "right": "Thailand",
+        "answer": "left"
+      },
+      {
+        "metric": "Hvilken planet har flest kjente maner?",
+        "left": "Saturn",
+        "right": "Mars",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er eldst?",
+        "left": "Unix",
+        "right": "MS-DOS",
+        "answer": "left"
+      },
+      {
+        "metric": "Hvilken algoritme har lavest gjennomsnittlig soketid i balansert tre?",
+        "left": "Binarsoketre",
+        "right": "Lineart sok",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har flest bits?",
+        "left": "IPv6-adresse",
+        "right": "IPv4-adresse",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er dypest?",
+        "left": "Marianergropen",
+        "right": "Puerto Rico-gropen",
+        "answer": "left"
+      },
+      {
+        "metric": "Hvilket grunnstoff har hoyest atomnummer?",
+        "left": "Uran",
+        "right": "Karbon",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyest frekvens?",
+        "left": "Synlig lys",
+        "right": "FM-radio",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er lengst?",
+        "left": "Transsibirske jernbane",
+        "right": "Bergensbanen",
+        "answer": "left"
+      },
+      {
+        "metric": "Hvilken standard er nyest?",
+        "left": "TLS 1.3",
+        "right": "TLS 1.2",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva har storst datamengde?",
+        "left": "1 tebibyte",
+        "right": "1 terabyte",
+        "answer": "left"
+      },
+      {
+        "metric": "Hvilket fjell er hoyest?",
+        "left": "Aconcagua",
+        "right": "Kilimanjaro",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er mest salt?",
+        "left": "Dodehavet",
+        "right": "Atlanterhavet",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva kom forst?",
+        "left": "C",
+        "right": "Java",
+        "answer": "left"
+      },
+      {
+        "metric": "Hvilken by ligger lengst ost?",
+        "left": "Tokyo",
+        "right": "Seoul",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva har flest kromosomer?",
+        "left": "Potet",
+        "right": "Menneske",
+        "answer": "left"
+      },
+      {
+        "metric": "Hvilken enhet er storst?",
+        "left": "Petabyte",
+        "right": "Terabyte",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er kaldest?",
+        "left": "Flytende nitrogen",
+        "right": "Torr-is",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har lengst omlopstid?",
+        "left": "Neptun",
+        "right": "Jupiter",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er eldre?",
+        "left": "TCP",
+        "right": "QUIC",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hvilket land har flest tidssoner?",
+        "left": "Frankrike",
+        "right": "Russland",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyest smeltepunkt?",
+        "left": "Wolfram",
+        "right": "Gull",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er lengst unna solen?",
+        "left": "Neptun",
+        "right": "Uranus",
+        "answer": "left"
+      },
+      {
+        "metric": "Hvilken sortering er stabil i vanlig implementasjon?",
+        "left": "Merge sort",
+        "right": "Quick sort",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har flest primtall under seg?",
+        "left": "1000",
+        "right": "100",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er mer energieffektivt per passasjerkilometer?",
+        "left": "Tog",
+        "right": "Privatbil",
+        "answer": "left"
+      },
+      {
+        "metric": "Hvilket spraks runtime kom forst?",
+        "left": "Java",
+        "right": "Node.js",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er hoyest opplosning?",
+        "left": "8K",
+        "right": "4K",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er storst?",
+        "left": "Grønland",
+        "right": "Madagaskar",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er tyngst per kubikkcentimeter?",
+        "left": "Osmium",
+        "right": "Bly",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hvilket land har flest offisielle sprak?",
+        "left": "Sør-Afrika",
+        "right": "Norge",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har lengst halveringstid?",
+        "left": "Uran-238",
+        "right": "Karbon-14",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva kom sist?",
+        "left": "HTML5",
+        "right": "XHTML 1.0",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er raskest i vakuum?",
+        "left": "Lys",
+        "right": "Lyd",
+        "answer": "left"
+      },
+      {
+        "metric": "Hvilket hav er minst?",
+        "left": "Nordishavet",
+        "right": "Indiahavet",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er hoyest?",
+        "left": "Denali",
+        "right": "Mont Blanc",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har flest noder i en full binar trehoyde 8?",
+        "left": "255",
+        "right": "127",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har storst vinkel?",
+        "left": "Radian",
+        "right": "Grad",
+        "answer": "left"
+      },
+      {
+        "metric": "Hvilken valuta er eldre?",
+        "left": "Britisk pund",
+        "right": "Euro",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er mest viskost?",
+        "left": "Honning",
+        "right": "Vann",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er storst tidsenhet?",
+        "left": "Megasekund",
+        "right": "Kilosekund",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyest lydhastighet?",
+        "left": "Stal",
+        "right": "Luft",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er lengst?",
+        "left": "Ekvator",
+        "right": "Meridian fra pol til pol",
+        "answer": "left"
+      },
+      {
+        "metric": "Hvilket format er tapsfritt?",
+        "left": "FLAC",
+        "right": "MP3",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har flest mulige verdier?",
+        "left": "64-bit integer",
+        "right": "32-bit integer",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er eldst?",
+        "left": "Fortran",
+        "right": "Python",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har storst radius?",
+        "left": "Solen",
+        "right": "Jupiter",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva tar lengst lysreise?",
+        "left": "Solen til Pluto",
+        "right": "Solen til Jorda",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er mest basisk?",
+        "left": "Ammoniakk",
+        "right": "Sitronjuice",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyest baudrate?",
+        "left": "USB 3.2",
+        "right": "RS-232",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er storst i Europa?",
+        "left": "Volga",
+        "right": "Glomma",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er eldre?",
+        "left": "ASCII",
+        "right": "Unicode",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er hoyest?",
+        "left": "Mauna Kea fra havbunn",
+        "right": "Mount Everest over havet",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har flere stjerner?",
+        "left": "Melkeveien",
+        "right": "Pleiadene",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er nyere?",
+        "left": "Rust",
+        "right": "Go",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er dypere?",
+        "left": "Baikalsjoen",
+        "right": "Mjosas dypeste punkt",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er mer tettpakket?",
+        "left": "SSD",
+        "right": "Hullkort",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyest pH?",
+        "left": "Bakepulverlosning",
+        "right": "Kaffe",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har lengst levetid?",
+        "left": "Eik",
+        "right": "Tulipan",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva kom forst?",
+        "left": "Linux-kjernen",
+        "right": "Kubernetes",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er storst?",
+        "left": "Andromedagalaksen",
+        "right": "Manen",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyest temperatur?",
+        "left": "Lynkanal",
+        "right": "Stekeovn",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er lengst?",
+        "left": "Nilen",
+        "right": "Themsen",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er mer sjeldent?",
+        "left": "Total solformorkelse et gitt sted",
+        "right": "Fullmane",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har flest landgrenser?",
+        "left": "Kina",
+        "right": "Norge",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva har hoyest toppfart?",
+        "left": "SR-71",
+        "right": "Boeing 747",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er eldst?",
+        "left": "Sumerisk skrift",
+        "right": "Latin",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er storst?",
+        "left": "Amazonas-regnskogen",
+        "right": "Nordmarka",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har flest isotoper?",
+        "left": "Tinn",
+        "right": "Hydrogen",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er vanskeligst a faktorisere?",
+        "left": "2048-bit RSA",
+        "right": "128-bit RSA",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva har hoyest varmekapasitet?",
+        "left": "Vann",
+        "right": "Jern",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er lengst fra Oslo?",
+        "left": "Sydney",
+        "right": "London",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er mer radioaktivt?",
+        "left": "Radium",
+        "right": "Kobber",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyere atmosfaeretrykk?",
+        "left": "Venus",
+        "right": "Mars",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er nyere?",
+        "left": "HTTP/3",
+        "right": "WebSocket",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er mer komprimert?",
+        "left": "gzip-fil",
+        "right": "ren tekstfil",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyest masse?",
+        "left": "Noytronstjerne",
+        "right": "Jorda",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er lengst?",
+        "left": "Panamakanalen",
+        "right": "Nidelva gjennom Trondheim",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er eldre?",
+        "left": "Morsekode",
+        "right": "QR-kode",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er storst?",
+        "left": "1 parsec",
+        "right": "1 lysar",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva har hoyest frekvens?",
+        "left": "Rontgenstraling",
+        "right": "Mikrobolger",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er mer presist?",
+        "left": "Atomur",
+        "right": "Mekanisk klokke",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyest befolkning?",
+        "left": "Indonesia",
+        "right": "Norge",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er raskest?",
+        "left": "NVMe SSD",
+        "right": "SATA HDD",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har storst omkrets?",
+        "left": "Jorda",
+        "right": "Mars",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er eldst?",
+        "left": "BASIC",
+        "right": "JavaScript",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er tyngst?",
+        "left": "En kubikkmeter betong",
+        "right": "En kubikkmeter kork",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har flere nuller?",
+        "left": "Billion pa engelsk",
+        "right": "Million",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er lengst?",
+        "left": "Great Wall of China",
+        "right": "Golden Gate Bridge",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er mer surt?",
+        "left": "Eddik",
+        "right": "Melk",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva har hoyere kokepunkt?",
+        "left": "Saltvann",
+        "right": "Rent vann",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er nyere?",
+        "left": "Vue 3",
+        "right": "AngularJS",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er storst?",
+        "left": "Sahara",
+        "right": "Island",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyest orbitfart?",
+        "left": "Merkur",
+        "right": "Neptun",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er eldre?",
+        "left": "PostgreSQL",
+        "right": "SQLite",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er mer nøyaktig?",
+        "left": "GPS med RTK",
+        "right": "Vanlig kompass",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har flere protoner?",
+        "left": "Gull",
+        "right": "Sølv",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er lengst?",
+        "left": "Amazonas",
+        "right": "Akerselva",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyest teoretisk båndbredde?",
+        "left": "Thunderbolt 4",
+        "right": "USB 2.0",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er eldre?",
+        "left": "ARPANET",
+        "right": "World Wide Web",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er storst?",
+        "left": "Jupiter",
+        "right": "Merkur",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har lengre halveringstid?",
+        "left": "Plutonium-239",
+        "right": "Radon-222",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er mer isolerende?",
+        "left": "Vakuum",
+        "right": "Aluminium",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyest fjell?",
+        "left": "Nepal",
+        "right": "Nederland",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er nyere?",
+        "left": "Kotlin",
+        "right": "Java",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er dypest?",
+        "left": "Tonga-gropen",
+        "right": "Sognefjorden",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er storst?",
+        "left": "Asia",
+        "right": "Europa",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har flere bits?",
+        "left": "SHA-256 hash",
+        "right": "MD5 hash",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er eldre?",
+        "left": "QR-kode",
+        "right": "NFC",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er lengst?",
+        "left": "Donau",
+        "right": "Akerselva",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva har hoyest varmeledning?",
+        "left": "Kobber",
+        "right": "Tre",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er mer massivt?",
+        "left": "Sola",
+        "right": "Jorda",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har flere innbyggere?",
+        "left": "Lagos",
+        "right": "Bergen",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er nyere?",
+        "left": "IPv6",
+        "right": "IPv4",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er hoyest?",
+        "left": "K2",
+        "right": "Kilimanjaro",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva har hoyere tetthet?",
+        "left": "Gull",
+        "right": "Vann",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er lengst?",
+        "left": "E6",
+        "right": "Ring 3",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er eldre?",
+        "left": "Git",
+        "right": "GitHub",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er storst?",
+        "left": "Stillehavet",
+        "right": "Middelhavet",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyest toppfart?",
+        "left": "Maglev-tog",
+        "right": "Trikk",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er mer energirikt per gram?",
+        "left": "Fett",
+        "right": "Karbohydrat",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har flere byte?",
+        "left": "1 GiB",
+        "right": "1 GB",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er eldre?",
+        "left": "Bluetooth",
+        "right": "AirDrop",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er lengst?",
+        "left": "Tour de France",
+        "right": "Birkebeinerrennet",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er hoyere?",
+        "left": "Burj Khalifa",
+        "right": "Eiffeltarnet",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er mer sjeldent?",
+        "left": "Skuddsekund",
+        "right": "Skuddar",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har flere kjerner typisk?",
+        "left": "Server-CPU",
+        "right": "Mikrokontroller",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er nyest?",
+        "left": "Java 21",
+        "right": "Java 8",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er storst?",
+        "left": "Canada",
+        "right": "Tyskland",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyest trykk?",
+        "left": "Marianergropen",
+        "right": "Havoverflaten",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er raskest?",
+        "left": "Lys i fiber",
+        "right": "Lyd i luft",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er eldre?",
+        "left": "Email",
+        "right": "Slack",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er mer kompleks?",
+        "left": "Kvantemekanikk",
+        "right": "Gangingstabellen",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har flest sider?",
+        "left": "Dodekaeder",
+        "right": "Terning",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er lengst?",
+        "left": "Silkeveien",
+        "right": "Karl Johan",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er hoyere?",
+        "left": "Mauna Loa",
+        "right": "Galdhopiggen",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er nyere?",
+        "left": "React hooks",
+        "right": "jQuery",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har mer minne?",
+        "left": "L3-cache",
+        "right": "CPU-register",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er tyngre?",
+        "left": "Saturn V",
+        "right": "Personbil",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er storst?",
+        "left": "Afrika",
+        "right": "Norge",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er raskest?",
+        "left": "PCIe 5.0",
+        "right": "PCIe 3.0",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er eldre?",
+        "left": "COBOL",
+        "right": "Ruby",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har flere offisielle land?",
+        "left": "FN",
+        "right": "EU",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er mer nøyaktig?",
+        "left": "Laserinterferometer",
+        "right": "Tommelstokk",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er lengst?",
+        "left": "Mississippi",
+        "right": "Nidelva",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er hoyest?",
+        "left": "Olympus Mons",
+        "right": "Mount Everest",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har mer energi?",
+        "left": "Gammastrale",
+        "right": "Radiobolge",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er nyere?",
+        "left": "WebAssembly",
+        "right": "Java applets",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har flest mulige IPv4-adresser?",
+        "left": "/8-nett",
+        "right": "/24-nett",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er eldre?",
+        "left": "DNS",
+        "right": "TikTok",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er storst?",
+        "left": "Mjøsa",
+        "right": "Sognsvann",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyest bitrate?",
+        "left": "Blu-ray",
+        "right": "CD-lyd",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er mer stabilt?",
+        "left": "Lagrange-punkt L4",
+        "right": "Lav jordbane",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er lengst?",
+        "left": "Atlanterhavet",
+        "right": "Oslofjorden",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er hoyere?",
+        "left": "Annapurna",
+        "right": "Ben Nevis",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er nyere?",
+        "left": "Docker",
+        "right": "Make",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er mer presist?",
+        "left": "Nanosekund",
+        "right": "Millisekund",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har flere data?",
+        "left": "Human genome",
+        "right": "Tweet",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er eldre?",
+        "left": "Vulkan API",
+        "right": "WebGPU",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er storst?",
+        "left": "Nord-Amerika",
+        "right": "Grønland",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er raskest?",
+        "left": "Supersonisk fly",
+        "right": "Passasjerferge",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er mer kompakt?",
+        "left": "QR-kode",
+        "right": "Strekkode for samme data",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er lengst?",
+        "left": "Rhinen",
+        "right": "Akerselva",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyest fjell?",
+        "left": "Argentina",
+        "right": "Sverige",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er nyere?",
+        "left": "Svelte",
+        "right": "Backbone.js",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er tyngst?",
+        "left": "En liter kvikksolv",
+        "right": "En liter vann",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er storst?",
+        "left": "Brasil",
+        "right": "Norge",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er eldre?",
+        "left": "Wikipedia",
+        "right": "ChatGPT",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyere frekvens?",
+        "left": "Ultrafiolett",
+        "right": "Infrarodt",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er mer sikkert?",
+        "left": "Passkey",
+        "right": "Passord123",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er lengst?",
+        "left": "Pan-American Highway",
+        "right": "E18",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har flest satellitter?",
+        "left": "Jupiter",
+        "right": "Merkur",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er nyere?",
+        "left": "TypeScript",
+        "right": "JavaScript",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er dypere?",
+        "left": "Java Trench",
+        "right": "Nordsjøen",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er storst?",
+        "left": "1 mol karbonatomer",
+        "right": "1 dusin karbonatomer",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er eldre?",
+        "left": "LaTeX",
+        "right": "Markdown",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har flere mulige kombinasjoner?",
+        "left": "SHA-256",
+        "right": "Fire sifre",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er eldre?",
+        "left": "Telegraf",
+        "right": "Telefon",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er storst?",
+        "left": "Antarktis",
+        "right": "Danmark",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyere banehastighet?",
+        "left": "ISS",
+        "right": "Passasjerfly",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er mer presist?",
+        "left": "Mikrometer",
+        "right": "Centimeter",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyest energi per foton?",
+        "left": "Ultrafiolett",
+        "right": "Synlig rodt lys",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er lengst?",
+        "left": "Suezkanalen",
+        "right": "Akerselva",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er eldre?",
+        "left": "Relasjonsmodell",
+        "right": "NoSQL-begrepet",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har storst masse?",
+        "left": "Jupiter",
+        "right": "Mars",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er mer sjeldent?",
+        "left": "Primtall over 100",
+        "right": "Partall over 100",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyere opplosning?",
+        "left": "Hubble-bilde",
+        "right": "Webkamera fra 2001",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er storst?",
+        "left": "1 nanometer i meter?",
+        "right": "1 pikometer i meter?",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er eldre?",
+        "left": "TCP/IP",
+        "right": "HTTP",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har hoyere tetthet?",
+        "left": "Bly",
+        "right": "Aluminium",
+        "answer": "left"
+      }
+    ]
+  },
+  {
+    "rounds": [
+      {
+        "metric": "Hva er lengst?",
+        "left": "Den kinesiske mur",
+        "right": "Brooklyn Bridge",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er mer robust mot kollisjoner?",
+        "left": "SHA-256",
+        "right": "MD5",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva har flere minutter?",
+        "left": "Skuddar",
+        "right": "Vanlig ar",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er hoyere?",
+        "left": "Aconcagua",
+        "right": "Galdhopiggen",
+        "answer": "left"
+      },
+      {
+        "metric": "Hva er nyere?",
+        "left": "Kubernetes",
+        "right": "Docker",
+        "answer": "left"
+      }
+    ]
+  }
+]

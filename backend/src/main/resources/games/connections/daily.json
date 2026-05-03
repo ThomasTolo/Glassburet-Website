@@ -1,0 +1,1602 @@
+[
+  {
+    "groups": [
+      {
+        "category": "Kryptografiske primitiver",
+        "words": [
+          "HASH",
+          "SALT",
+          "NONCE",
+          "CIPHER"
+        ]
+      },
+      {
+        "category": "Latinske juridiske uttrykk",
+        "words": [
+          "HABEAS",
+          "MENSREA",
+          "IPSO",
+          "PRIMA"
+        ]
+      },
+      {
+        "category": "Databases isolasjonsniva",
+        "words": [
+          "READCOMMITTED",
+          "REPEATABLEREAD",
+          "SERIALIZABLE",
+          "READUNCOMMITTED"
+        ]
+      },
+      {
+        "category": "Norrone guder",
+        "words": [
+          "ODIN",
+          "FRIGG",
+          "TYR",
+          "BALDER"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Unix signaler",
+        "words": [
+          "SIGTERM",
+          "SIGKILL",
+          "SIGHUP",
+          "SIGINT"
+        ]
+      },
+      {
+        "category": "Klassiske retoriske grep",
+        "words": [
+          "ETHOS",
+          "PATHOS",
+          "LOGOS",
+          "KAIROS"
+        ]
+      },
+      {
+        "category": "Kjemiske buffere",
+        "words": [
+          "ACETAT",
+          "FOSFAT",
+          "CITRAT",
+          "BORAT"
+        ]
+      },
+      {
+        "category": "Kompilatordeler",
+        "words": [
+          "LEKSER",
+          "PARSER",
+          "OPTIMIZER",
+          "LINKER"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Topologiske begreper",
+        "words": [
+          "TORUS",
+          "KNOT",
+          "GENUS",
+          "MANIFOLD"
+        ]
+      },
+      {
+        "category": "Europeiske mikro-stater",
+        "words": [
+          "ANDORRA",
+          "MONACO",
+          "SANMARINO",
+          "LIECHTENSTEIN"
+        ]
+      },
+      {
+        "category": "HTTP statusfamilier",
+        "words": [
+          "INFORMATIONAL",
+          "SUCCESS",
+          "REDIRECT",
+          "CLIENTERROR"
+        ]
+      },
+      {
+        "category": "Norske malformer og normer",
+        "words": [
+          "BOKMAL",
+          "NYNORSK",
+          "RIKSMAL",
+          "HOGNORSK"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Kvantetall",
+        "words": [
+          "N",
+          "L",
+          "M",
+          "SPIN"
+        ]
+      },
+      {
+        "category": "Design patterns",
+        "words": [
+          "FACTORY",
+          "OBSERVER",
+          "STRATEGY",
+          "ADAPTER"
+        ]
+      },
+      {
+        "category": "Filosofiske retninger",
+        "words": [
+          "STOISISME",
+          "EMPIRISME",
+          "NIHILISME",
+          "IDEALISME"
+        ]
+      },
+      {
+        "category": "Lydformater",
+        "words": [
+          "FLAC",
+          "ALAC",
+          "OPUS",
+          "VORBIS"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Algoritmiske kompleksiteter",
+        "words": [
+          "LOGN",
+          "NLOGN",
+          "NSQUARED",
+          "FACTORIAL"
+        ]
+      },
+      {
+        "category": "Arkitekturperioder",
+        "words": [
+          "ROMANSK",
+          "GOTISK",
+          "BAROKK",
+          "BAUHAUS"
+        ]
+      },
+      {
+        "category": "CSS layoutmodeller",
+        "words": [
+          "FLEXBOX",
+          "GRID",
+          "BLOCK",
+          "INLINE"
+        ]
+      },
+      {
+        "category": "Statistiske mal",
+        "words": [
+          "MEDIAN",
+          "VARIANS",
+          "KVARTIL",
+          "KURTOSE"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Databaseindekser",
+        "words": [
+          "BTREE",
+          "HASH",
+          "GIN",
+          "GIST"
+        ]
+      },
+      {
+        "category": "Rettsinstanser Norge",
+        "words": [
+          "TINGRETT",
+          "LAGMANNSRETT",
+          "HOYESTERETT",
+          "FORLIKSRADET"
+        ]
+      },
+      {
+        "category": "Satellittnavigasjon",
+        "words": [
+          "GPS",
+          "GLONASS",
+          "GALILEO",
+          "BEIDOU"
+        ]
+      },
+      {
+        "category": "Funksjonell programmering",
+        "words": [
+          "MONADE",
+          "FOLD",
+          "CURRY",
+          "LAMBDA"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Klassiske chiffer",
+        "words": [
+          "CAESAR",
+          "VIGENERE",
+          "ENIGMA",
+          "PLAYFAIR"
+        ]
+      },
+      {
+        "category": "Geologiske tidsperioder",
+        "words": [
+          "KAMBRIUM",
+          "DEVON",
+          "JURA",
+          "KRITT"
+        ]
+      },
+      {
+        "category": "Nettverkslag",
+        "words": [
+          "FYSISK",
+          "LENKE",
+          "NETTVERK",
+          "TRANSPORT"
+        ]
+      },
+      {
+        "category": "Matematiske bevisformer",
+        "words": [
+          "INDUKSJON",
+          "KONTRAPOSISJON",
+          "MOTBEVIS",
+          "KONSTRUKSJON"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "OAuth begreper",
+        "words": [
+          "CLIENT",
+          "SCOPE",
+          "TOKEN",
+          "REDIRECTURI"
+        ]
+      },
+      {
+        "category": "Norske nobelprisvinnere",
+        "words": [
+          "BJORNSON",
+          "HAMSUN",
+          "UNDSET",
+          "FOSSE"
+        ]
+      },
+      {
+        "category": "Prosessorarkitektur",
+        "words": [
+          "RISC",
+          "CISC",
+          "PIPELINE",
+          "CACHE"
+        ]
+      },
+      {
+        "category": "Astronomiske objekter",
+        "words": [
+          "KVASAR",
+          "PULSAR",
+          "NEBULA",
+          "MAGNETAR"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Kubernetes objekter",
+        "words": [
+          "POD",
+          "SERVICE",
+          "INGRESS",
+          "CONFIGMAP"
+        ]
+      },
+      {
+        "category": "Sannsynlighetsfordelinger",
+        "words": [
+          "NORMAL",
+          "POISSON",
+          "BINOMISK",
+          "EKSPONENSIAL"
+        ]
+      },
+      {
+        "category": "Tekstredigerere",
+        "words": [
+          "VIM",
+          "EMACS",
+          "NANO",
+          "HELIX"
+        ]
+      },
+      {
+        "category": "Kunstteknikker",
+        "words": [
+          "FRESKO",
+          "TEMPERA",
+          "AKVARELL",
+          "ETSING"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "TLS elementer",
+        "words": [
+          "CERTIFICATE",
+          "HANDSHAKE",
+          "CIPHER",
+          "SESSION"
+        ]
+      },
+      {
+        "category": "Lingvistiske kasus",
+        "words": [
+          "NOMINATIV",
+          "AKKUSATIV",
+          "DATIV",
+          "GENITIV"
+        ]
+      },
+      {
+        "category": "CI/CD steg",
+        "words": [
+          "LINT",
+          "BUILD",
+          "TEST",
+          "DEPLOY"
+        ]
+      },
+      {
+        "category": "Molekylaerbiologi",
+        "words": [
+          "MRNA",
+          "TRNA",
+          "RIBOSOM",
+          "KODON"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Finansielle derivater",
+        "words": [
+          "OPSJON",
+          "FUTURE",
+          "SWAP",
+          "FORWARD"
+        ]
+      },
+      {
+        "category": "Operativsystemkonsepter",
+        "words": [
+          "SCHEDULER",
+          "SYSCALL",
+          "KERNEL",
+          "THREAD"
+        ]
+      },
+      {
+        "category": "Kartprojeksjoner",
+        "words": [
+          "MERCATOR",
+          "PETERS",
+          "ROBINSON",
+          "LAMBERT"
+        ]
+      },
+      {
+        "category": "Norske grunnlovsaar",
+        "words": [
+          "EIDSVOLL",
+          "RIKSFORSAMLING",
+          "GRUNNLOV",
+          "UNION"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Objektorienterte prinsipper",
+        "words": [
+          "ARV",
+          "POLYMORFI",
+          "INNKAPSLING",
+          "ABSTRAKSJON"
+        ]
+      },
+      {
+        "category": "Kognitiv bias",
+        "words": [
+          "ANCHORING",
+          "FRAMING",
+          "HALO",
+          "RECENCY"
+        ]
+      },
+      {
+        "category": "Pakkeformater",
+        "words": [
+          "DEB",
+          "RPM",
+          "APK",
+          "MSI"
+        ]
+      },
+      {
+        "category": "Meteorologiske skyer",
+        "words": [
+          "CIRRUS",
+          "STRATUS",
+          "CUMULUS",
+          "NIMBUS"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Nettverksverktøy",
+        "words": [
+          "PING",
+          "TRACEROUTE",
+          "DIG",
+          "NETSTAT"
+        ]
+      },
+      {
+        "category": "Musikkmodi",
+        "words": [
+          "DORISK",
+          "FRYGISK",
+          "LYDISK",
+          "MIKSOLYDISK"
+        ]
+      },
+      {
+        "category": "Romsonder",
+        "words": [
+          "VOYAGER",
+          "CASSINI",
+          "ROSETTA",
+          "JUNO"
+        ]
+      },
+      {
+        "category": "Regnskapsbegreper",
+        "words": [
+          "AKTIVA",
+          "PASSIVA",
+          "EGENKAPITAL",
+          "AVSKRIVNING"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Sikkerhetangrep",
+        "words": [
+          "XSS",
+          "CSRF",
+          "SSRF",
+          "SQLI"
+        ]
+      },
+      {
+        "category": "Norske fjellomrader",
+        "words": [
+          "JOTUNHEIMEN",
+          "RONDANE",
+          "DOVREFJELL",
+          "HARDANGERVIDDA"
+        ]
+      },
+      {
+        "category": "Programmeringsparadigmer",
+        "words": [
+          "IMPERATIV",
+          "DEKLARATIV",
+          "FUNKSJONELL",
+          "LOGISK"
+        ]
+      },
+      {
+        "category": "Fargeprofiler",
+        "words": [
+          "SRGB",
+          "ADOBERGB",
+          "DISPLAYP3",
+          "PROPHOTO"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Klassiske databaser",
+        "words": [
+          "ORACLE",
+          "DB2",
+          "INGRES",
+          "SYBASE"
+        ]
+      },
+      {
+        "category": "Kroppens hormoner",
+        "words": [
+          "INSULIN",
+          "ADRENALIN",
+          "KORTISOL",
+          "MELATONIN"
+        ]
+      },
+      {
+        "category": "Regex begreper",
+        "words": [
+          "LOOKAHEAD",
+          "CAPTURE",
+          "ANCHOR",
+          "QUANTIFIER"
+        ]
+      },
+      {
+        "category": "Typografiske enheter",
+        "words": [
+          "PUNKT",
+          "PICA",
+          "EM",
+          "EN"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Distribuerte systemer",
+        "words": [
+          "CONSENSUS",
+          "QUORUM",
+          "REPLICA",
+          "PARTITION"
+        ]
+      },
+      {
+        "category": "Antikke filosofer",
+        "words": [
+          "PLATON",
+          "ARISTOTELES",
+          "SOKRATES",
+          "EPIKUR"
+        ]
+      },
+      {
+        "category": "Git objekter",
+        "words": [
+          "COMMIT",
+          "TREE",
+          "BLOB",
+          "TAG"
+        ]
+      },
+      {
+        "category": "Optiske fenomener",
+        "words": [
+          "REFRAKSJON",
+          "DIFFRAKSJON",
+          "POLARISASJON",
+          "INTERFERENS"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "API stiler",
+        "words": [
+          "REST",
+          "GRAPHQL",
+          "GRPC",
+          "SOAP"
+        ]
+      },
+      {
+        "category": "Norske polfarere",
+        "words": [
+          "NANSEN",
+          "AMUNDSEN",
+          "SVERDRUP",
+          "WISTING"
+        ]
+      },
+      {
+        "category": "Maskinlaeringstermer",
+        "words": [
+          "EPOCH",
+          "FEATURE",
+          "LABEL",
+          "GRADIENT"
+        ]
+      },
+      {
+        "category": "Formelle sprak",
+        "words": [
+          "REGULAR",
+          "CONTEXTFREE",
+          "RECURSIVE",
+          "DECIDABLE"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Docker begreper",
+        "words": [
+          "IMAGE",
+          "LAYER",
+          "VOLUME",
+          "NETWORK"
+        ]
+      },
+      {
+        "category": "Klassiske romanformer",
+        "words": [
+          "EPISTOLARY",
+          "PICARESQUE",
+          "DYSTOPI",
+          "BILDUNGSROMAN"
+        ]
+      },
+      {
+        "category": "Elektriske enheter",
+        "words": [
+          "VOLT",
+          "AMPERE",
+          "OHM",
+          "WATT"
+        ]
+      },
+      {
+        "category": "Datavisualisering",
+        "words": [
+          "HISTOGRAM",
+          "HEATMAP",
+          "BOXPLOT",
+          "SCATTERPLOT"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Programvarelisenser",
+        "words": [
+          "MIT",
+          "APACHE",
+          "GPL",
+          "BSD"
+        ]
+      },
+      {
+        "category": "Medisinske bildetyper",
+        "words": [
+          "MR",
+          "CT",
+          "PET",
+          "ULTRALYD"
+        ]
+      },
+      {
+        "category": "CPU instruksjoner",
+        "words": [
+          "LOAD",
+          "STORE",
+          "JUMP",
+          "COMPARE"
+        ]
+      },
+      {
+        "category": "Sosiologiske begreper",
+        "words": [
+          "NORM",
+          "ROLLE",
+          "STATUS",
+          "HABITUS"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Kroppens hormoner",
+        "words": [
+          "INSULIN",
+          "ADRENALIN",
+          "KORTISOL",
+          "MELATONIN"
+        ]
+      },
+      {
+        "category": "API stiler",
+        "words": [
+          "REST",
+          "GRAPHQL",
+          "GRPC",
+          "SOAP"
+        ]
+      },
+      {
+        "category": "Kryptografiske primitiver",
+        "words": [
+          "HASH",
+          "SALT",
+          "NONCE",
+          "CIPHER"
+        ]
+      },
+      {
+        "category": "Kvantetall",
+        "words": [
+          "N",
+          "L",
+          "M",
+          "SPIN"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Distribuerte systemer",
+        "words": [
+          "CONSENSUS",
+          "QUORUM",
+          "REPLICA",
+          "PARTITION"
+        ]
+      },
+      {
+        "category": "Formelle sprak",
+        "words": [
+          "REGULAR",
+          "CONTEXTFREE",
+          "RECURSIVE",
+          "DECIDABLE"
+        ]
+      },
+      {
+        "category": "Norrone guder",
+        "words": [
+          "ODIN",
+          "FRIGG",
+          "TYR",
+          "BALDER"
+        ]
+      },
+      {
+        "category": "Lydformater",
+        "words": [
+          "FLAC",
+          "ALAC",
+          "OPUS",
+          "VORBIS"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Optiske fenomener",
+        "words": [
+          "REFRAKSJON",
+          "DIFFRAKSJON",
+          "POLARISASJON",
+          "INTERFERENS"
+        ]
+      },
+      {
+        "category": "Elektriske enheter",
+        "words": [
+          "VOLT",
+          "AMPERE",
+          "OHM",
+          "WATT"
+        ]
+      },
+      {
+        "category": "Kjemiske buffere",
+        "words": [
+          "ACETAT",
+          "FOSFAT",
+          "CITRAT",
+          "BORAT"
+        ]
+      },
+      {
+        "category": "CSS layoutmodeller",
+        "words": [
+          "FLEXBOX",
+          "GRID",
+          "BLOCK",
+          "INLINE"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Maskinlaeringstermer",
+        "words": [
+          "EPOCH",
+          "FEATURE",
+          "LABEL",
+          "GRADIENT"
+        ]
+      },
+      {
+        "category": "Medisinske bildetyper",
+        "words": [
+          "MR",
+          "CT",
+          "PET",
+          "ULTRALYD"
+        ]
+      },
+      {
+        "category": "Europeiske mikro-stater",
+        "words": [
+          "ANDORRA",
+          "MONACO",
+          "SANMARINO",
+          "LIECHTENSTEIN"
+        ]
+      },
+      {
+        "category": "Rettsinstanser Norge",
+        "words": [
+          "TINGRETT",
+          "LAGMANNSRETT",
+          "HOYESTERETT",
+          "FORLIKSRADET"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Klassiske romanformer",
+        "words": [
+          "EPISTOLARY",
+          "PICARESQUE",
+          "DYSTOPI",
+          "BILDUNGSROMAN"
+        ]
+      },
+      {
+        "category": "Kryptografiske primitiver",
+        "words": [
+          "HASH",
+          "SALT",
+          "NONCE",
+          "CIPHER"
+        ]
+      },
+      {
+        "category": "Kvantetall",
+        "words": [
+          "N",
+          "L",
+          "M",
+          "SPIN"
+        ]
+      },
+      {
+        "category": "Klassiske chiffer",
+        "words": [
+          "CAESAR",
+          "VIGENERE",
+          "ENIGMA",
+          "PLAYFAIR"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Programvarelisenser",
+        "words": [
+          "MIT",
+          "APACHE",
+          "GPL",
+          "BSD"
+        ]
+      },
+      {
+        "category": "Norrone guder",
+        "words": [
+          "ODIN",
+          "FRIGG",
+          "TYR",
+          "BALDER"
+        ]
+      },
+      {
+        "category": "Lydformater",
+        "words": [
+          "FLAC",
+          "ALAC",
+          "OPUS",
+          "VORBIS"
+        ]
+      },
+      {
+        "category": "Matematiske bevisformer",
+        "words": [
+          "INDUKSJON",
+          "KONTRAPOSISJON",
+          "MOTBEVIS",
+          "KONSTRUKSJON"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Sosiologiske begreper",
+        "words": [
+          "NORM",
+          "ROLLE",
+          "STATUS",
+          "HABITUS"
+        ]
+      },
+      {
+        "category": "Kjemiske buffere",
+        "words": [
+          "ACETAT",
+          "FOSFAT",
+          "CITRAT",
+          "BORAT"
+        ]
+      },
+      {
+        "category": "CSS layoutmodeller",
+        "words": [
+          "FLEXBOX",
+          "GRID",
+          "BLOCK",
+          "INLINE"
+        ]
+      },
+      {
+        "category": "Prosessorarkitektur",
+        "words": [
+          "RISC",
+          "CISC",
+          "PIPELINE",
+          "CACHE"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Databases isolasjonsniva",
+        "words": [
+          "READCOMMITTED",
+          "REPEATABLEREAD",
+          "SERIALIZABLE",
+          "READUNCOMMITTED"
+        ]
+      },
+      {
+        "category": "Europeiske mikro-stater",
+        "words": [
+          "ANDORRA",
+          "MONACO",
+          "SANMARINO",
+          "LIECHTENSTEIN"
+        ]
+      },
+      {
+        "category": "Rettsinstanser Norge",
+        "words": [
+          "TINGRETT",
+          "LAGMANNSRETT",
+          "HOYESTERETT",
+          "FORLIKSRADET"
+        ]
+      },
+      {
+        "category": "Sannsynlighetsfordelinger",
+        "words": [
+          "NORMAL",
+          "POISSON",
+          "BINOMISK",
+          "EKSPONENSIAL"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Klassiske retoriske grep",
+        "words": [
+          "ETHOS",
+          "PATHOS",
+          "LOGOS",
+          "KAIROS"
+        ]
+      },
+      {
+        "category": "Kvantetall",
+        "words": [
+          "N",
+          "L",
+          "M",
+          "SPIN"
+        ]
+      },
+      {
+        "category": "Klassiske chiffer",
+        "words": [
+          "CAESAR",
+          "VIGENERE",
+          "ENIGMA",
+          "PLAYFAIR"
+        ]
+      },
+      {
+        "category": "TLS elementer",
+        "words": [
+          "CERTIFICATE",
+          "HANDSHAKE",
+          "CIPHER",
+          "SESSION"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Topologiske begreper",
+        "words": [
+          "TORUS",
+          "KNOT",
+          "GENUS",
+          "MANIFOLD"
+        ]
+      },
+      {
+        "category": "Lydformater",
+        "words": [
+          "FLAC",
+          "ALAC",
+          "OPUS",
+          "VORBIS"
+        ]
+      },
+      {
+        "category": "Matematiske bevisformer",
+        "words": [
+          "INDUKSJON",
+          "KONTRAPOSISJON",
+          "MOTBEVIS",
+          "KONSTRUKSJON"
+        ]
+      },
+      {
+        "category": "Molekylaerbiologi",
+        "words": [
+          "MRNA",
+          "TRNA",
+          "RIBOSOM",
+          "KODON"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Norske malformer og normer",
+        "words": [
+          "BOKMAL",
+          "NYNORSK",
+          "RIKSMAL",
+          "HOGNORSK"
+        ]
+      },
+      {
+        "category": "CSS layoutmodeller",
+        "words": [
+          "FLEXBOX",
+          "GRID",
+          "BLOCK",
+          "INLINE"
+        ]
+      },
+      {
+        "category": "Prosessorarkitektur",
+        "words": [
+          "RISC",
+          "CISC",
+          "PIPELINE",
+          "CACHE"
+        ]
+      },
+      {
+        "category": "Kartprojeksjoner",
+        "words": [
+          "MERCATOR",
+          "PETERS",
+          "ROBINSON",
+          "LAMBERT"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Filosofiske retninger",
+        "words": [
+          "STOISISME",
+          "EMPIRISME",
+          "NIHILISME",
+          "IDEALISME"
+        ]
+      },
+      {
+        "category": "Rettsinstanser Norge",
+        "words": [
+          "TINGRETT",
+          "LAGMANNSRETT",
+          "HOYESTERETT",
+          "FORLIKSRADET"
+        ]
+      },
+      {
+        "category": "Sannsynlighetsfordelinger",
+        "words": [
+          "NORMAL",
+          "POISSON",
+          "BINOMISK",
+          "EKSPONENSIAL"
+        ]
+      },
+      {
+        "category": "Kognitiv bias",
+        "words": [
+          "ANCHORING",
+          "FRAMING",
+          "HALO",
+          "RECENCY"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Arkitekturperioder",
+        "words": [
+          "ROMANSK",
+          "GOTISK",
+          "BAROKK",
+          "BAUHAUS"
+        ]
+      },
+      {
+        "category": "Klassiske chiffer",
+        "words": [
+          "CAESAR",
+          "VIGENERE",
+          "ENIGMA",
+          "PLAYFAIR"
+        ]
+      },
+      {
+        "category": "TLS elementer",
+        "words": [
+          "CERTIFICATE",
+          "HANDSHAKE",
+          "CIPHER",
+          "SESSION"
+        ]
+      },
+      {
+        "category": "Nettverksverktøy",
+        "words": [
+          "PING",
+          "TRACEROUTE",
+          "DIG",
+          "NETSTAT"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Databaseindekser",
+        "words": [
+          "BTREE",
+          "HASH",
+          "GIN",
+          "GIST"
+        ]
+      },
+      {
+        "category": "Matematiske bevisformer",
+        "words": [
+          "INDUKSJON",
+          "KONTRAPOSISJON",
+          "MOTBEVIS",
+          "KONSTRUKSJON"
+        ]
+      },
+      {
+        "category": "Molekylaerbiologi",
+        "words": [
+          "MRNA",
+          "TRNA",
+          "RIBOSOM",
+          "KODON"
+        ]
+      },
+      {
+        "category": "Regnskapsbegreper",
+        "words": [
+          "AKTIVA",
+          "PASSIVA",
+          "EGENKAPITAL",
+          "AVSKRIVNING"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Funksjonell programmering",
+        "words": [
+          "MONADE",
+          "FOLD",
+          "CURRY",
+          "LAMBDA"
+        ]
+      },
+      {
+        "category": "Prosessorarkitektur",
+        "words": [
+          "RISC",
+          "CISC",
+          "PIPELINE",
+          "CACHE"
+        ]
+      },
+      {
+        "category": "Kartprojeksjoner",
+        "words": [
+          "MERCATOR",
+          "PETERS",
+          "ROBINSON",
+          "LAMBERT"
+        ]
+      },
+      {
+        "category": "Programmeringsparadigmer",
+        "words": [
+          "IMPERATIV",
+          "DEKLARATIV",
+          "FUNKSJONELL",
+          "LOGISK"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Nettverkslag",
+        "words": [
+          "FYSISK",
+          "LENKE",
+          "NETTVERK",
+          "TRANSPORT"
+        ]
+      },
+      {
+        "category": "Sannsynlighetsfordelinger",
+        "words": [
+          "NORMAL",
+          "POISSON",
+          "BINOMISK",
+          "EKSPONENSIAL"
+        ]
+      },
+      {
+        "category": "Kognitiv bias",
+        "words": [
+          "ANCHORING",
+          "FRAMING",
+          "HALO",
+          "RECENCY"
+        ]
+      },
+      {
+        "category": "Kroppens hormoner",
+        "words": [
+          "INSULIN",
+          "ADRENALIN",
+          "KORTISOL",
+          "MELATONIN"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Norske nobelprisvinnere",
+        "words": [
+          "BJORNSON",
+          "HAMSUN",
+          "UNDSET",
+          "FOSSE"
+        ]
+      },
+      {
+        "category": "TLS elementer",
+        "words": [
+          "CERTIFICATE",
+          "HANDSHAKE",
+          "CIPHER",
+          "SESSION"
+        ]
+      },
+      {
+        "category": "Nettverksverktøy",
+        "words": [
+          "PING",
+          "TRACEROUTE",
+          "DIG",
+          "NETSTAT"
+        ]
+      },
+      {
+        "category": "Distribuerte systemer",
+        "words": [
+          "CONSENSUS",
+          "QUORUM",
+          "REPLICA",
+          "PARTITION"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Kubernetes objekter",
+        "words": [
+          "POD",
+          "SERVICE",
+          "INGRESS",
+          "CONFIGMAP"
+        ]
+      },
+      {
+        "category": "Molekylaerbiologi",
+        "words": [
+          "MRNA",
+          "TRNA",
+          "RIBOSOM",
+          "KODON"
+        ]
+      },
+      {
+        "category": "Regnskapsbegreper",
+        "words": [
+          "AKTIVA",
+          "PASSIVA",
+          "EGENKAPITAL",
+          "AVSKRIVNING"
+        ]
+      },
+      {
+        "category": "Optiske fenomener",
+        "words": [
+          "REFRAKSJON",
+          "DIFFRAKSJON",
+          "POLARISASJON",
+          "INTERFERENS"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Kunstteknikker",
+        "words": [
+          "FRESKO",
+          "TEMPERA",
+          "AKVARELL",
+          "ETSING"
+        ]
+      },
+      {
+        "category": "Kartprojeksjoner",
+        "words": [
+          "MERCATOR",
+          "PETERS",
+          "ROBINSON",
+          "LAMBERT"
+        ]
+      },
+      {
+        "category": "Programmeringsparadigmer",
+        "words": [
+          "IMPERATIV",
+          "DEKLARATIV",
+          "FUNKSJONELL",
+          "LOGISK"
+        ]
+      },
+      {
+        "category": "Maskinlaeringstermer",
+        "words": [
+          "EPOCH",
+          "FEATURE",
+          "LABEL",
+          "GRADIENT"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "CI/CD steg",
+        "words": [
+          "LINT",
+          "BUILD",
+          "TEST",
+          "DEPLOY"
+        ]
+      },
+      {
+        "category": "Kognitiv bias",
+        "words": [
+          "ANCHORING",
+          "FRAMING",
+          "HALO",
+          "RECENCY"
+        ]
+      },
+      {
+        "category": "Kroppens hormoner",
+        "words": [
+          "INSULIN",
+          "ADRENALIN",
+          "KORTISOL",
+          "MELATONIN"
+        ]
+      },
+      {
+        "category": "Klassiske romanformer",
+        "words": [
+          "EPISTOLARY",
+          "PICARESQUE",
+          "DYSTOPI",
+          "BILDUNGSROMAN"
+        ]
+      }
+    ]
+  },
+  {
+    "groups": [
+      {
+        "category": "Operativsystemkonsepter",
+        "words": [
+          "SCHEDULER",
+          "SYSCALL",
+          "KERNEL",
+          "THREAD"
+        ]
+      },
+      {
+        "category": "Nettverksverktøy",
+        "words": [
+          "PING",
+          "TRACEROUTE",
+          "DIG",
+          "NETSTAT"
+        ]
+      },
+      {
+        "category": "Distribuerte systemer",
+        "words": [
+          "CONSENSUS",
+          "QUORUM",
+          "REPLICA",
+          "PARTITION"
+        ]
+      },
+      {
+        "category": "Programvarelisenser",
+        "words": [
+          "MIT",
+          "APACHE",
+          "GPL",
+          "BSD"
+        ]
+      }
+    ]
+  }
+]

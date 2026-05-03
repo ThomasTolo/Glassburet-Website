@@ -1,6 +1,7 @@
 package com.glassburet.service;
 
 import com.glassburet.dto.NativePuzzleDto;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.glassburet.model.GameName;
 import com.glassburet.model.NativePuzzle;
 import com.glassburet.repository.NativePuzzleRepository;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
@@ -25,6 +27,9 @@ class NativePuzzleServiceTest {
 
     @Mock
     private NativePuzzleRepository repository;
+
+    @Spy
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @InjectMocks
     private NativePuzzleService service;

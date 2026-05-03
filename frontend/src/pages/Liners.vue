@@ -160,6 +160,17 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+.liner {
+  --liner-action-color: rgba(20,32,28,0.58);
+  --liner-action-line: rgba(20,32,28,0.22);
+  overflow: visible;
+}
+.liner-1,
+.liner-3,
+.liner-5 {
+  --liner-action-color: rgba(255,255,255,0.68);
+  --liner-action-line: rgba(255,255,255,0.24);
+}
 .liner-inner { cursor: pointer; }
 .liner-footer {
   display: flex;
@@ -167,30 +178,32 @@ onUnmounted(() => {
   justify-content: space-between;
   margin-top: 10px;
   padding-top: 8px;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid var(--liner-action-line);
+  position: relative;
+  z-index: 1;
 }
 .like-btn {
   font-family: var(--mono);
   font-size: 12px;
   padding: 3px 10px;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid var(--liner-action-line);
   border-radius: 999px;
-  color: rgba(255,255,255,0.6);
+  color: var(--liner-action-color);
   transition: all 0.2s;
 }
-.like-btn:hover, .like-btn.liked { color: #fff; border-color: rgba(255,255,255,0.6); }
+.like-btn:hover, .like-btn.liked { color: currentColor; border-color: currentColor; }
 .admin-controls { display: flex; gap: 6px; }
 .btn-icon {
   font-family: var(--mono);
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba(255,255,255,0.5);
-  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--liner-action-color);
+  border: 1px solid var(--liner-action-line);
   border-radius: 4px;
   padding: 3px 8px;
 }
-.btn-icon:hover { color: #fff; border-color: rgba(255,255,255,0.6); }
+.btn-icon:hover { color: currentColor; border-color: currentColor; }
 .btn-danger:hover { color: #f88; border-color: #f88; }
 .admin-bar {
   margin-bottom: 32px;
