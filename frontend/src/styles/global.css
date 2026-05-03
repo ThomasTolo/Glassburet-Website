@@ -383,41 +383,142 @@ p.lede { font-size: 17px; line-height: 1.55; color: var(--ink-soft); max-width: 
 .quote-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 24px;
+  grid-auto-flow: dense;
+  grid-auto-rows: auto;
+  gap: 22px;
 }
 .quote-card {
   grid-column: span 4;
-  background: var(--paper);
-  border: 1px solid var(--line-soft);
-  padding: 28px;
+  grid-row: span 3;
+  min-height: 280px;
+  background: var(--quote-bg, var(--paper));
+  color: var(--quote-fg, var(--ink));
+  border: 1px solid var(--quote-line, var(--line-soft));
+  padding: clamp(24px, 3vw, 42px);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: visible;
   transition: all 0.3s ease;
 }
-.quote-card.featured { grid-column: span 8; background: var(--ink); color: var(--bg); }
-.quote-card.featured .quote-text { font-size: 36px; }
-.quote-card.tall { grid-column: span 4; grid-row: span 2; }
-.quote-card.wide { grid-column: span 6; }
-.quote-card:hover { border-color: var(--ink); }
-.quote-card.featured:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.quote-card::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid var(--quote-inner-line, transparent);
+  pointer-events: none;
+}
+.quote-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.quote-shape-hero { grid-column: span 7; grid-row: span 6; min-height: 580px; }
+.quote-shape-wide { grid-column: span 6; grid-row: span 3; min-height: 280px; }
+.quote-shape-stack { grid-column: span 6; grid-row: span 3; min-height: 280px; }
+.quote-shape-spotlight { grid-column: span 4; grid-row: span 4; min-height: 360px; }
+.quote-shape-small { grid-column: span 4; grid-row: span 3; min-height: 280px; }
+.quote-shape-tall { grid-column: span 4; grid-row: span 5; min-height: 460px; }
+.quote-card.featured { grid-column: span 7; grid-row: span 6; }
+.quote-tone-forest {
+  --quote-bg: #0d3b2e;
+  --quote-fg: #f4f1ea;
+  --quote-muted: rgba(244,241,234,0.66);
+  --quote-line: rgba(244,241,234,0.36);
+  --quote-inner-line: rgba(244,241,234,0.1);
+}
+.quote-tone-paper {
+  --quote-bg: #fbf9f4;
+  --quote-fg: #14201c;
+  --quote-muted: #6b7872;
+  --quote-line: #c9c1ae;
+  --quote-inner-line: rgba(20,32,28,0.06);
+}
+.quote-tone-rust {
+  --quote-bg: #c93808;
+  --quote-fg: #fff8ee;
+  --quote-muted: rgba(255,248,238,0.68);
+  --quote-line: rgba(255,248,238,0.38);
+  --quote-inner-line: rgba(255,248,238,0.12);
+}
+.quote-tone-cream {
+  --quote-bg: #f1dfb8;
+  --quote-fg: #14201c;
+  --quote-muted: rgba(20,32,28,0.58);
+  --quote-line: rgba(20,32,28,0.24);
+  --quote-inner-line: rgba(20,32,28,0.08);
+}
+.quote-tone-ink {
+  --quote-bg: #14201c;
+  --quote-fg: #f4f1ea;
+  --quote-muted: rgba(244,241,234,0.58);
+  --quote-line: rgba(244,241,234,0.26);
+  --quote-inner-line: rgba(244,241,234,0.08);
+}
+.quote-tone-gold {
+  --quote-bg: #d4a72c;
+  --quote-fg: #14201c;
+  --quote-muted: rgba(20,32,28,0.62);
+  --quote-line: rgba(20,32,28,0.24);
+  --quote-inner-line: rgba(20,32,28,0.08);
+}
+.quote-tone-sage {
+  --quote-bg: #758177;
+  --quote-fg: #fbf9f4;
+  --quote-muted: rgba(251,249,244,0.68);
+  --quote-line: rgba(251,249,244,0.32);
+  --quote-inner-line: rgba(251,249,244,0.1);
+}
+.quote-tone-clay {
+  --quote-bg: #a95535;
+  --quote-fg: #fff8ee;
+  --quote-muted: rgba(255,248,238,0.68);
+  --quote-line: rgba(255,248,238,0.32);
+  --quote-inner-line: rgba(255,248,238,0.1);
+}
 
 .quote-text {
   font-family: var(--serif);
   font-style: italic;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 1.25;
-  letter-spacing: -0.015em;
-  margin: 16px 0 20px;
+  font-weight: 600;
+  font-size: clamp(28px, 3vw, 46px);
+  line-height: 1.08;
+  letter-spacing: 0;
+  margin: 0;
+  max-width: 15ch;
+  position: relative;
+  z-index: 1;
+}
+.quote-short .quote-text {
+  font-size: clamp(34px, 5vw, 74px);
+  max-width: 11ch;
+}
+.quote-shape-wide .quote-text,
+.quote-shape-stack .quote-text {
+  max-width: 24ch;
+}
+.quote-shape-small .quote-text {
+  font-size: clamp(26px, 2.6vw, 40px);
+  max-width: 14ch;
+}
+.quote-long .quote-text {
+  font-size: clamp(24px, 2.4vw, 38px);
+  max-width: 18ch;
+}
+.quote-very-long .quote-text {
+  font-size: clamp(22px, 2vw, 32px);
+  line-height: 1.14;
+  max-width: 22ch;
 }
 .quote-foot {
   display: flex; justify-content: space-between; align-items: center;
-  padding-top: 16px;
-  border-top: 1px solid var(--line-soft);
+  gap: 18px;
+  margin-top: 30px;
+  padding-top: 18px;
+  border-top: 1px solid var(--quote-line, var(--line-soft));
   font-family: var(--mono); font-size: 11px;
   text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--ink-mute);
+  color: var(--quote-muted, var(--ink-mute));
+  position: relative;
+  z-index: 1;
 }
-.featured .quote-foot { border-top-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); }
 
 .quote-day-tag {
   font-family: var(--mono); font-size: 10px;
@@ -425,6 +526,21 @@ p.lede { font-size: 17px; line-height: 1.55; color: var(--ink-soft); max-width: 
   padding: 4px 10px; border-radius: 2px;
   text-transform: uppercase; letter-spacing: 0.12em;
   display: inline-block;
+  align-self: flex-start;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 1;
+}
+.quote-number {
+  position: absolute;
+  top: 22px;
+  right: 24px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(24px, 2.4vw, 36px);
+  font-weight: 600;
+  color: var(--quote-muted, var(--ink-mute));
+  opacity: 0.62;
 }
 
 /* ================= ONE LINERS ================= */

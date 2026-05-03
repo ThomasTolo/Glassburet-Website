@@ -38,7 +38,7 @@
 
       <RouterLink to="/poeng" class="card card-5 card-accent">
         <div class="card-head">
-          <span class="eyebrow">Dagens leder</span>
+          <span class="eyebrow">Sammenlagt leder</span>
           <div class="card-arrow">→</div>
         </div>
         <div class="stat-big"><em>{{ leaderboard[0]?.memberName || '-' }}</em></div>
@@ -152,7 +152,7 @@ const loadHome = async () => {
   }
 
   try {
-    const lb = await scoreApi.getLeaderboard('weekly')
+    const lb = await scoreApi.getLeaderboard('alltime')
     leaderboard.value = Array.isArray(lb) ? lb : []
   } catch {
     leaderboard.value = []

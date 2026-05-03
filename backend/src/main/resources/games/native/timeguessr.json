@@ -1,0 +1,2202 @@
+[
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "Barricades at Brandenburg Gate. Place the pin and year.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Barricades_at_the_Brandenburg_Gate_1961.jpg",
+        "lat": 52.5163,
+        "lng": 13.3777,
+        "year": 1961,
+        "locationName": "Brandenburger Tor, Berlin",
+        "attribution": "U.S. National Archives / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A nuclear plant after a catastrophic accident.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Chernobyl_Disaster.jpg",
+        "lat": 51.389,
+        "lng": 30.099,
+        "year": 1986,
+        "locationName": "Chernobyl Nuclear Power Plant, Ukraine",
+        "attribution": "IAEA Imagebank / CC BY-SA"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A tower bridge stands over the Thames.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tower_Bridge_London_Feb_2006.jpg",
+        "lat": 51.5055,
+        "lng": -0.0754,
+        "year": 2006,
+        "locationName": "Tower Bridge, London",
+        "attribution": "Diliff / CC BY-SA"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A landmark speech near a reflecting pool.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Martin_Luther_King_-_March_on_Washington.jpg",
+        "lat": 38.8893,
+        "lng": -77.0502,
+        "year": 1963,
+        "locationName": "Lincoln Memorial, Washington DC",
+        "attribution": "U.S. Information Agency / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous tower before modern skyscrapers took over.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Empire_State_Building_1931.jpg",
+        "lat": 40.7484,
+        "lng": -73.9857,
+        "year": 1931,
+        "locationName": "Empire State Building, New York",
+        "attribution": "Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A lunar mission lifts off from this launch complex.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Launch_of_Apollo_11_(S69-40640).jpg",
+        "lat": 28.6083,
+        "lng": -80.6041,
+        "year": 1969,
+        "locationName": "Launch Complex 39A, Kennedy Space Center",
+        "attribution": "NASA / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A canal opening changed global shipping.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Panama_Canal_opening_1914.jpg",
+        "lat": 9.08,
+        "lng": -79.68,
+        "year": 1914,
+        "locationName": "Panama Canal, Panama",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A mountain railway station below the Alps.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Zermatt_from_the_air.jpg",
+        "lat": 46.0207,
+        "lng": 7.7491,
+        "year": 1960,
+        "locationName": "Zermatt, Switzerland",
+        "attribution": "Public domain / Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous archaeological discovery in Egypt.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tutankhamun_tomb_opening.jpg",
+        "lat": 25.7402,
+        "lng": 32.6014,
+        "year": 1922,
+        "locationName": "Valley of the Kings, Luxor",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "Sunbeams cross a grand terminal concourse.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Grand_Central_rays_of_light.jpg",
+        "lat": 40.7527,
+        "lng": -73.9772,
+        "year": 1941,
+        "locationName": "Grand Central Terminal, New York",
+        "attribution": "New York City Municipal Archives / Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A wall comes down in a divided European city.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Berlinermauer.jpg",
+        "lat": 52.5163,
+        "lng": 13.3777,
+        "year": 1989,
+        "locationName": "Berlin Wall, Berlin",
+        "attribution": "Lear 21 / CC BY-SA"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A sea liner leaves port before a doomed voyage.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/RMS_Titanic_3.jpg",
+        "lat": 50.897,
+        "lng": -1.404,
+        "year": 1912,
+        "locationName": "Southampton, England",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A wartime conference site on the Black Sea.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Yalta_Conference_(Churchill,_Roosevelt,_Stalin)_(B%26W).jpg",
+        "lat": 44.467,
+        "lng": 34.143,
+        "year": 1945,
+        "locationName": "Yalta, Crimea",
+        "attribution": "U.S. National Archives / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A railway ceremony joins a continent.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_spike_1869.jpg",
+        "lat": 41.617,
+        "lng": -112.551,
+        "year": 1869,
+        "locationName": "Promontory Summit, Utah",
+        "attribution": "Andrew J. Russell / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous airship disaster at its landing field.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hindenburg_disaster,_1937.jpg",
+        "lat": 40.0333,
+        "lng": -74.3533,
+        "year": 1937,
+        "locationName": "Lakehurst, New Jersey",
+        "attribution": "Murray Becker / Associated Press / Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A giant dam under construction in the desert.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoover_Dam_construction_1934.jpg",
+        "lat": 36.0156,
+        "lng": -114.7378,
+        "year": 1934,
+        "locationName": "Hoover Dam, Nevada/Arizona",
+        "attribution": "Bureau of Reclamation / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A canal-side Dutch city in the early modern transport age.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Amsterdam_-_Canals.jpg",
+        "lat": 52.3676,
+        "lng": 4.9041,
+        "year": 1900,
+        "locationName": "Amsterdam, Netherlands",
+        "attribution": "Public domain / Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A polar expedition ship trapped in ice.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Endurance_Final_Sinking.jpg",
+        "lat": -68,
+        "lng": -52,
+        "year": 1915,
+        "locationName": "Weddell Sea, Antarctica",
+        "attribution": "Frank Hurley / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "Barricades at Brandenburg Gate. Place the pin and year.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Barricades_at_the_Brandenburg_Gate_1961.jpg",
+        "lat": 52.5163,
+        "lng": 13.3777,
+        "year": 1961,
+        "locationName": "Brandenburger Tor, Berlin",
+        "attribution": "U.S. National Archives / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A nuclear plant after a catastrophic accident.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Chernobyl_Disaster.jpg",
+        "lat": 51.389,
+        "lng": 30.099,
+        "year": 1986,
+        "locationName": "Chernobyl Nuclear Power Plant, Ukraine",
+        "attribution": "IAEA Imagebank / CC BY-SA"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous square during student-led protests.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiananmen_Square_protests,_1989.jpg",
+        "lat": 39.9033,
+        "lng": 116.3976,
+        "year": 1989,
+        "locationName": "Tiananmen Square, Beijing",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A space shuttle launch from Florida.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/STS-1_launch.jpg",
+        "lat": 28.6083,
+        "lng": -80.6041,
+        "year": 1981,
+        "locationName": "Kennedy Space Center, Florida",
+        "attribution": "NASA / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous island prison in San Francisco Bay.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Alcatraz_Island_photo_D_Ramey_Logan.jpg",
+        "lat": 37.8267,
+        "lng": -122.423,
+        "year": 1963,
+        "locationName": "Alcatraz Island, San Francisco",
+        "attribution": "D. Ramey Logan / CC BY-SA"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A lunar mission lifts off from this launch complex.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Launch_of_Apollo_11_(S69-40640).jpg",
+        "lat": 28.6083,
+        "lng": -80.6041,
+        "year": 1969,
+        "locationName": "Launch Complex 39A, Kennedy Space Center",
+        "attribution": "NASA / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A canal opening changed global shipping.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Panama_Canal_opening_1914.jpg",
+        "lat": 9.08,
+        "lng": -79.68,
+        "year": 1914,
+        "locationName": "Panama Canal, Panama",
+        "attribution": "Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous opera house in its harbour setting.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Sydney_Opera_House_Sails.jpg",
+        "lat": -33.8568,
+        "lng": 151.2153,
+        "year": 1973,
+        "locationName": "Sydney Opera House, Australia",
+        "attribution": "Public domain / Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A revolutionary crowd in a Caribbean capital.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Fidel_Castro_-_MATS_Terminal_Washington_1959.jpg",
+        "lat": 23.1136,
+        "lng": -82.3666,
+        "year": 1959,
+        "locationName": "Havana, Cuba",
+        "attribution": "Library of Congress / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A palace balcony moment after a war ends.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/VE_Day_Celebrations_in_London,_8_May_1945_H41849.jpg",
+        "lat": 51.5014,
+        "lng": -0.1419,
+        "year": 1945,
+        "locationName": "Buckingham Palace, London",
+        "attribution": "Imperial War Museum / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A wall comes down in a divided European city.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Berlinermauer.jpg",
+        "lat": 52.5163,
+        "lng": 13.3777,
+        "year": 1989,
+        "locationName": "Berlin Wall, Berlin",
+        "attribution": "Lear 21 / CC BY-SA"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A sea liner leaves port before a doomed voyage.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/RMS_Titanic_3.jpg",
+        "lat": 50.897,
+        "lng": -1.404,
+        "year": 1912,
+        "locationName": "Southampton, England",
+        "attribution": "Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A monumental arch in Paris.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Arc_de_Triomphe,_Paris_21_October_2010.jpg",
+        "lat": 48.8738,
+        "lng": 2.295,
+        "year": 2010,
+        "locationName": "Arc de Triomphe, Paris",
+        "attribution": "Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A dramatic volcanic eruption in Washington state.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/MSH80_eruption_mount_st_helens_05-18-80.jpg",
+        "lat": 46.1912,
+        "lng": -122.1944,
+        "year": 1980,
+        "locationName": "Mount St. Helens, Washington",
+        "attribution": "USGS / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A tower shines during a world exposition.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_illuminated_at_Paris_Exposition,_1900_LCCN2002699778.jpg",
+        "lat": 48.8584,
+        "lng": 2.2945,
+        "year": 1900,
+        "locationName": "Eiffeltårnet, Paris",
+        "attribution": "Library of Congress / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A giant dam under construction in the desert.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoover_Dam_construction_1934.jpg",
+        "lat": 36.0156,
+        "lng": -114.7378,
+        "year": 1934,
+        "locationName": "Hoover Dam, Nevada/Arizona",
+        "attribution": "Bureau of Reclamation / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A canal-side Dutch city in the early modern transport age.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Amsterdam_-_Canals.jpg",
+        "lat": 52.3676,
+        "lng": 4.9041,
+        "year": 1900,
+        "locationName": "Amsterdam, Netherlands",
+        "attribution": "Public domain / Wikimedia Commons"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A landmark speech near a reflecting pool.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Martin_Luther_King_-_March_on_Washington.jpg",
+        "lat": 38.8893,
+        "lng": -77.0502,
+        "year": 1963,
+        "locationName": "Lincoln Memorial, Washington DC",
+        "attribution": "U.S. Information Agency / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous tower before modern skyscrapers took over.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Empire_State_Building_1931.jpg",
+        "lat": 40.7484,
+        "lng": -73.9857,
+        "year": 1931,
+        "locationName": "Empire State Building, New York",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A suspension bridge rises over a bay.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Construction_of_the_Golden_Gate_Bridge_3c22793u.jpg",
+        "lat": 37.8199,
+        "lng": -122.4783,
+        "year": 1934,
+        "locationName": "Golden Gate Bridge, San Francisco",
+        "attribution": "Library of Congress / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous square during student-led protests.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiananmen_Square_protests,_1989.jpg",
+        "lat": 39.9033,
+        "lng": 116.3976,
+        "year": 1989,
+        "locationName": "Tiananmen Square, Beijing",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A space shuttle launch from Florida.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/STS-1_launch.jpg",
+        "lat": 28.6083,
+        "lng": -80.6041,
+        "year": 1981,
+        "locationName": "Kennedy Space Center, Florida",
+        "attribution": "NASA / Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous archaeological discovery in Egypt.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tutankhamun_tomb_opening.jpg",
+        "lat": 25.7402,
+        "lng": 32.6014,
+        "year": 1922,
+        "locationName": "Valley of the Kings, Luxor",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "Sunbeams cross a grand terminal concourse.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Grand_Central_rays_of_light.jpg",
+        "lat": 40.7527,
+        "lng": -73.9772,
+        "year": 1941,
+        "locationName": "Grand Central Terminal, New York",
+        "attribution": "New York City Municipal Archives / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A royal coronation procession in London.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Coronation_of_Queen_Elizabeth_II_XVI.jpg",
+        "lat": 51.5014,
+        "lng": -0.1419,
+        "year": 1953,
+        "locationName": "Buckingham Palace, London",
+        "attribution": "UK Government / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous opera house in its harbour setting.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Sydney_Opera_House_Sails.jpg",
+        "lat": -33.8568,
+        "lng": 151.2153,
+        "year": 1973,
+        "locationName": "Sydney Opera House, Australia",
+        "attribution": "Public domain / Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A revolutionary crowd in a Caribbean capital.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Fidel_Castro_-_MATS_Terminal_Washington_1959.jpg",
+        "lat": 23.1136,
+        "lng": -82.3666,
+        "year": 1959,
+        "locationName": "Havana, Cuba",
+        "attribution": "Library of Congress / Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A railway ceremony joins a continent.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_spike_1869.jpg",
+        "lat": 41.617,
+        "lng": -112.551,
+        "year": 1869,
+        "locationName": "Promontory Summit, Utah",
+        "attribution": "Andrew J. Russell / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous airship disaster at its landing field.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hindenburg_disaster,_1937.jpg",
+        "lat": 40.0333,
+        "lng": -74.3533,
+        "year": 1937,
+        "locationName": "Lakehurst, New Jersey",
+        "attribution": "Murray Becker / Associated Press / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A city skyline after a devastating earthquake and fire.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/San_Francisco_in_ruin_edit2.jpg",
+        "lat": 37.7749,
+        "lng": -122.4194,
+        "year": 1906,
+        "locationName": "San Francisco, California",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A monumental arch in Paris.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Arc_de_Triomphe,_Paris_21_October_2010.jpg",
+        "lat": 48.8738,
+        "lng": 2.295,
+        "year": 2010,
+        "locationName": "Arc de Triomphe, Paris",
+        "attribution": "Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A dramatic volcanic eruption in Washington state.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/MSH80_eruption_mount_st_helens_05-18-80.jpg",
+        "lat": 46.1912,
+        "lng": -122.1944,
+        "year": 1980,
+        "locationName": "Mount St. Helens, Washington",
+        "attribution": "USGS / Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "Barricades at Brandenburg Gate. Place the pin and year.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Barricades_at_the_Brandenburg_Gate_1961.jpg",
+        "lat": 52.5163,
+        "lng": 13.3777,
+        "year": 1961,
+        "locationName": "Brandenburger Tor, Berlin",
+        "attribution": "U.S. National Archives / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A nuclear plant after a catastrophic accident.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Chernobyl_Disaster.jpg",
+        "lat": 51.389,
+        "lng": 30.099,
+        "year": 1986,
+        "locationName": "Chernobyl Nuclear Power Plant, Ukraine",
+        "attribution": "IAEA Imagebank / CC BY-SA"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A tower bridge stands over the Thames.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tower_Bridge_London_Feb_2006.jpg",
+        "lat": 51.5055,
+        "lng": -0.0754,
+        "year": 2006,
+        "locationName": "Tower Bridge, London",
+        "attribution": "Diliff / CC BY-SA"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A landmark speech near a reflecting pool.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Martin_Luther_King_-_March_on_Washington.jpg",
+        "lat": 38.8893,
+        "lng": -77.0502,
+        "year": 1963,
+        "locationName": "Lincoln Memorial, Washington DC",
+        "attribution": "U.S. Information Agency / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous tower before modern skyscrapers took over.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Empire_State_Building_1931.jpg",
+        "lat": 40.7484,
+        "lng": -73.9857,
+        "year": 1931,
+        "locationName": "Empire State Building, New York",
+        "attribution": "Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A lunar mission lifts off from this launch complex.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Launch_of_Apollo_11_(S69-40640).jpg",
+        "lat": 28.6083,
+        "lng": -80.6041,
+        "year": 1969,
+        "locationName": "Launch Complex 39A, Kennedy Space Center",
+        "attribution": "NASA / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A canal opening changed global shipping.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Panama_Canal_opening_1914.jpg",
+        "lat": 9.08,
+        "lng": -79.68,
+        "year": 1914,
+        "locationName": "Panama Canal, Panama",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A mountain railway station below the Alps.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Zermatt_from_the_air.jpg",
+        "lat": 46.0207,
+        "lng": 7.7491,
+        "year": 1960,
+        "locationName": "Zermatt, Switzerland",
+        "attribution": "Public domain / Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous archaeological discovery in Egypt.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tutankhamun_tomb_opening.jpg",
+        "lat": 25.7402,
+        "lng": 32.6014,
+        "year": 1922,
+        "locationName": "Valley of the Kings, Luxor",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "Sunbeams cross a grand terminal concourse.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Grand_Central_rays_of_light.jpg",
+        "lat": 40.7527,
+        "lng": -73.9772,
+        "year": 1941,
+        "locationName": "Grand Central Terminal, New York",
+        "attribution": "New York City Municipal Archives / Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A wall comes down in a divided European city.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Berlinermauer.jpg",
+        "lat": 52.5163,
+        "lng": 13.3777,
+        "year": 1989,
+        "locationName": "Berlin Wall, Berlin",
+        "attribution": "Lear 21 / CC BY-SA"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A sea liner leaves port before a doomed voyage.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/RMS_Titanic_3.jpg",
+        "lat": 50.897,
+        "lng": -1.404,
+        "year": 1912,
+        "locationName": "Southampton, England",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A wartime conference site on the Black Sea.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Yalta_Conference_(Churchill,_Roosevelt,_Stalin)_(B%26W).jpg",
+        "lat": 44.467,
+        "lng": 34.143,
+        "year": 1945,
+        "locationName": "Yalta, Crimea",
+        "attribution": "U.S. National Archives / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A railway ceremony joins a continent.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_spike_1869.jpg",
+        "lat": 41.617,
+        "lng": -112.551,
+        "year": 1869,
+        "locationName": "Promontory Summit, Utah",
+        "attribution": "Andrew J. Russell / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous airship disaster at its landing field.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hindenburg_disaster,_1937.jpg",
+        "lat": 40.0333,
+        "lng": -74.3533,
+        "year": 1937,
+        "locationName": "Lakehurst, New Jersey",
+        "attribution": "Murray Becker / Associated Press / Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A giant dam under construction in the desert.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoover_Dam_construction_1934.jpg",
+        "lat": 36.0156,
+        "lng": -114.7378,
+        "year": 1934,
+        "locationName": "Hoover Dam, Nevada/Arizona",
+        "attribution": "Bureau of Reclamation / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A canal-side Dutch city in the early modern transport age.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Amsterdam_-_Canals.jpg",
+        "lat": 52.3676,
+        "lng": 4.9041,
+        "year": 1900,
+        "locationName": "Amsterdam, Netherlands",
+        "attribution": "Public domain / Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A polar expedition ship trapped in ice.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Endurance_Final_Sinking.jpg",
+        "lat": -68,
+        "lng": -52,
+        "year": 1915,
+        "locationName": "Weddell Sea, Antarctica",
+        "attribution": "Frank Hurley / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "Barricades at Brandenburg Gate. Place the pin and year.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Barricades_at_the_Brandenburg_Gate_1961.jpg",
+        "lat": 52.5163,
+        "lng": 13.3777,
+        "year": 1961,
+        "locationName": "Brandenburger Tor, Berlin",
+        "attribution": "U.S. National Archives / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A nuclear plant after a catastrophic accident.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Chernobyl_Disaster.jpg",
+        "lat": 51.389,
+        "lng": 30.099,
+        "year": 1986,
+        "locationName": "Chernobyl Nuclear Power Plant, Ukraine",
+        "attribution": "IAEA Imagebank / CC BY-SA"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous square during student-led protests.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiananmen_Square_protests,_1989.jpg",
+        "lat": 39.9033,
+        "lng": 116.3976,
+        "year": 1989,
+        "locationName": "Tiananmen Square, Beijing",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A space shuttle launch from Florida.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/STS-1_launch.jpg",
+        "lat": 28.6083,
+        "lng": -80.6041,
+        "year": 1981,
+        "locationName": "Kennedy Space Center, Florida",
+        "attribution": "NASA / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous island prison in San Francisco Bay.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Alcatraz_Island_photo_D_Ramey_Logan.jpg",
+        "lat": 37.8267,
+        "lng": -122.423,
+        "year": 1963,
+        "locationName": "Alcatraz Island, San Francisco",
+        "attribution": "D. Ramey Logan / CC BY-SA"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A lunar mission lifts off from this launch complex.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Launch_of_Apollo_11_(S69-40640).jpg",
+        "lat": 28.6083,
+        "lng": -80.6041,
+        "year": 1969,
+        "locationName": "Launch Complex 39A, Kennedy Space Center",
+        "attribution": "NASA / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A canal opening changed global shipping.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Panama_Canal_opening_1914.jpg",
+        "lat": 9.08,
+        "lng": -79.68,
+        "year": 1914,
+        "locationName": "Panama Canal, Panama",
+        "attribution": "Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous opera house in its harbour setting.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Sydney_Opera_House_Sails.jpg",
+        "lat": -33.8568,
+        "lng": 151.2153,
+        "year": 1973,
+        "locationName": "Sydney Opera House, Australia",
+        "attribution": "Public domain / Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A revolutionary crowd in a Caribbean capital.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Fidel_Castro_-_MATS_Terminal_Washington_1959.jpg",
+        "lat": 23.1136,
+        "lng": -82.3666,
+        "year": 1959,
+        "locationName": "Havana, Cuba",
+        "attribution": "Library of Congress / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A palace balcony moment after a war ends.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/VE_Day_Celebrations_in_London,_8_May_1945_H41849.jpg",
+        "lat": 51.5014,
+        "lng": -0.1419,
+        "year": 1945,
+        "locationName": "Buckingham Palace, London",
+        "attribution": "Imperial War Museum / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A wall comes down in a divided European city.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Berlinermauer.jpg",
+        "lat": 52.5163,
+        "lng": 13.3777,
+        "year": 1989,
+        "locationName": "Berlin Wall, Berlin",
+        "attribution": "Lear 21 / CC BY-SA"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A sea liner leaves port before a doomed voyage.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/RMS_Titanic_3.jpg",
+        "lat": 50.897,
+        "lng": -1.404,
+        "year": 1912,
+        "locationName": "Southampton, England",
+        "attribution": "Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A monumental arch in Paris.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Arc_de_Triomphe,_Paris_21_October_2010.jpg",
+        "lat": 48.8738,
+        "lng": 2.295,
+        "year": 2010,
+        "locationName": "Arc de Triomphe, Paris",
+        "attribution": "Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A dramatic volcanic eruption in Washington state.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/MSH80_eruption_mount_st_helens_05-18-80.jpg",
+        "lat": 46.1912,
+        "lng": -122.1944,
+        "year": 1980,
+        "locationName": "Mount St. Helens, Washington",
+        "attribution": "USGS / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A tower shines during a world exposition.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_illuminated_at_Paris_Exposition,_1900_LCCN2002699778.jpg",
+        "lat": 48.8584,
+        "lng": 2.2945,
+        "year": 1900,
+        "locationName": "Eiffeltårnet, Paris",
+        "attribution": "Library of Congress / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A giant dam under construction in the desert.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoover_Dam_construction_1934.jpg",
+        "lat": 36.0156,
+        "lng": -114.7378,
+        "year": 1934,
+        "locationName": "Hoover Dam, Nevada/Arizona",
+        "attribution": "Bureau of Reclamation / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A canal-side Dutch city in the early modern transport age.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Amsterdam_-_Canals.jpg",
+        "lat": 52.3676,
+        "lng": 4.9041,
+        "year": 1900,
+        "locationName": "Amsterdam, Netherlands",
+        "attribution": "Public domain / Wikimedia Commons"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A landmark speech near a reflecting pool.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Martin_Luther_King_-_March_on_Washington.jpg",
+        "lat": 38.8893,
+        "lng": -77.0502,
+        "year": 1963,
+        "locationName": "Lincoln Memorial, Washington DC",
+        "attribution": "U.S. Information Agency / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous tower before modern skyscrapers took over.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Empire_State_Building_1931.jpg",
+        "lat": 40.7484,
+        "lng": -73.9857,
+        "year": 1931,
+        "locationName": "Empire State Building, New York",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A suspension bridge rises over a bay.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Construction_of_the_Golden_Gate_Bridge_3c22793u.jpg",
+        "lat": 37.8199,
+        "lng": -122.4783,
+        "year": 1934,
+        "locationName": "Golden Gate Bridge, San Francisco",
+        "attribution": "Library of Congress / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous square during student-led protests.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiananmen_Square_protests,_1989.jpg",
+        "lat": 39.9033,
+        "lng": 116.3976,
+        "year": 1989,
+        "locationName": "Tiananmen Square, Beijing",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A space shuttle launch from Florida.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/STS-1_launch.jpg",
+        "lat": 28.6083,
+        "lng": -80.6041,
+        "year": 1981,
+        "locationName": "Kennedy Space Center, Florida",
+        "attribution": "NASA / Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous archaeological discovery in Egypt.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tutankhamun_tomb_opening.jpg",
+        "lat": 25.7402,
+        "lng": 32.6014,
+        "year": 1922,
+        "locationName": "Valley of the Kings, Luxor",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "Sunbeams cross a grand terminal concourse.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Grand_Central_rays_of_light.jpg",
+        "lat": 40.7527,
+        "lng": -73.9772,
+        "year": 1941,
+        "locationName": "Grand Central Terminal, New York",
+        "attribution": "New York City Municipal Archives / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A royal coronation procession in London.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Coronation_of_Queen_Elizabeth_II_XVI.jpg",
+        "lat": 51.5014,
+        "lng": -0.1419,
+        "year": 1953,
+        "locationName": "Buckingham Palace, London",
+        "attribution": "UK Government / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous opera house in its harbour setting.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Sydney_Opera_House_Sails.jpg",
+        "lat": -33.8568,
+        "lng": 151.2153,
+        "year": 1973,
+        "locationName": "Sydney Opera House, Australia",
+        "attribution": "Public domain / Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A revolutionary crowd in a Caribbean capital.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Fidel_Castro_-_MATS_Terminal_Washington_1959.jpg",
+        "lat": 23.1136,
+        "lng": -82.3666,
+        "year": 1959,
+        "locationName": "Havana, Cuba",
+        "attribution": "Library of Congress / Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A railway ceremony joins a continent.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_spike_1869.jpg",
+        "lat": 41.617,
+        "lng": -112.551,
+        "year": 1869,
+        "locationName": "Promontory Summit, Utah",
+        "attribution": "Andrew J. Russell / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous airship disaster at its landing field.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hindenburg_disaster,_1937.jpg",
+        "lat": 40.0333,
+        "lng": -74.3533,
+        "year": 1937,
+        "locationName": "Lakehurst, New Jersey",
+        "attribution": "Murray Becker / Associated Press / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A city skyline after a devastating earthquake and fire.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/San_Francisco_in_ruin_edit2.jpg",
+        "lat": 37.7749,
+        "lng": -122.4194,
+        "year": 1906,
+        "locationName": "San Francisco, California",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A monumental arch in Paris.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Arc_de_Triomphe,_Paris_21_October_2010.jpg",
+        "lat": 48.8738,
+        "lng": 2.295,
+        "year": 2010,
+        "locationName": "Arc de Triomphe, Paris",
+        "attribution": "Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A dramatic volcanic eruption in Washington state.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/MSH80_eruption_mount_st_helens_05-18-80.jpg",
+        "lat": 46.1912,
+        "lng": -122.1944,
+        "year": 1980,
+        "locationName": "Mount St. Helens, Washington",
+        "attribution": "USGS / Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "Barricades at Brandenburg Gate. Place the pin and year.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Barricades_at_the_Brandenburg_Gate_1961.jpg",
+        "lat": 52.5163,
+        "lng": 13.3777,
+        "year": 1961,
+        "locationName": "Brandenburger Tor, Berlin",
+        "attribution": "U.S. National Archives / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A nuclear plant after a catastrophic accident.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Chernobyl_Disaster.jpg",
+        "lat": 51.389,
+        "lng": 30.099,
+        "year": 1986,
+        "locationName": "Chernobyl Nuclear Power Plant, Ukraine",
+        "attribution": "IAEA Imagebank / CC BY-SA"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A tower bridge stands over the Thames.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tower_Bridge_London_Feb_2006.jpg",
+        "lat": 51.5055,
+        "lng": -0.0754,
+        "year": 2006,
+        "locationName": "Tower Bridge, London",
+        "attribution": "Diliff / CC BY-SA"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A landmark speech near a reflecting pool.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Martin_Luther_King_-_March_on_Washington.jpg",
+        "lat": 38.8893,
+        "lng": -77.0502,
+        "year": 1963,
+        "locationName": "Lincoln Memorial, Washington DC",
+        "attribution": "U.S. Information Agency / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous tower before modern skyscrapers took over.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Empire_State_Building_1931.jpg",
+        "lat": 40.7484,
+        "lng": -73.9857,
+        "year": 1931,
+        "locationName": "Empire State Building, New York",
+        "attribution": "Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A lunar mission lifts off from this launch complex.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Launch_of_Apollo_11_(S69-40640).jpg",
+        "lat": 28.6083,
+        "lng": -80.6041,
+        "year": 1969,
+        "locationName": "Launch Complex 39A, Kennedy Space Center",
+        "attribution": "NASA / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A canal opening changed global shipping.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Panama_Canal_opening_1914.jpg",
+        "lat": 9.08,
+        "lng": -79.68,
+        "year": 1914,
+        "locationName": "Panama Canal, Panama",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A mountain railway station below the Alps.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Zermatt_from_the_air.jpg",
+        "lat": 46.0207,
+        "lng": 7.7491,
+        "year": 1960,
+        "locationName": "Zermatt, Switzerland",
+        "attribution": "Public domain / Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous archaeological discovery in Egypt.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tutankhamun_tomb_opening.jpg",
+        "lat": 25.7402,
+        "lng": 32.6014,
+        "year": 1922,
+        "locationName": "Valley of the Kings, Luxor",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "Sunbeams cross a grand terminal concourse.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Grand_Central_rays_of_light.jpg",
+        "lat": 40.7527,
+        "lng": -73.9772,
+        "year": 1941,
+        "locationName": "Grand Central Terminal, New York",
+        "attribution": "New York City Municipal Archives / Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A wall comes down in a divided European city.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Berlinermauer.jpg",
+        "lat": 52.5163,
+        "lng": 13.3777,
+        "year": 1989,
+        "locationName": "Berlin Wall, Berlin",
+        "attribution": "Lear 21 / CC BY-SA"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A sea liner leaves port before a doomed voyage.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/RMS_Titanic_3.jpg",
+        "lat": 50.897,
+        "lng": -1.404,
+        "year": 1912,
+        "locationName": "Southampton, England",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A wartime conference site on the Black Sea.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Yalta_Conference_(Churchill,_Roosevelt,_Stalin)_(B%26W).jpg",
+        "lat": 44.467,
+        "lng": 34.143,
+        "year": 1945,
+        "locationName": "Yalta, Crimea",
+        "attribution": "U.S. National Archives / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A railway ceremony joins a continent.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_spike_1869.jpg",
+        "lat": 41.617,
+        "lng": -112.551,
+        "year": 1869,
+        "locationName": "Promontory Summit, Utah",
+        "attribution": "Andrew J. Russell / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous airship disaster at its landing field.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hindenburg_disaster,_1937.jpg",
+        "lat": 40.0333,
+        "lng": -74.3533,
+        "year": 1937,
+        "locationName": "Lakehurst, New Jersey",
+        "attribution": "Murray Becker / Associated Press / Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A giant dam under construction in the desert.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoover_Dam_construction_1934.jpg",
+        "lat": 36.0156,
+        "lng": -114.7378,
+        "year": 1934,
+        "locationName": "Hoover Dam, Nevada/Arizona",
+        "attribution": "Bureau of Reclamation / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A canal-side Dutch city in the early modern transport age.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Amsterdam_-_Canals.jpg",
+        "lat": 52.3676,
+        "lng": 4.9041,
+        "year": 1900,
+        "locationName": "Amsterdam, Netherlands",
+        "attribution": "Public domain / Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A polar expedition ship trapped in ice.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Endurance_Final_Sinking.jpg",
+        "lat": -68,
+        "lng": -52,
+        "year": 1915,
+        "locationName": "Weddell Sea, Antarctica",
+        "attribution": "Frank Hurley / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "Barricades at Brandenburg Gate. Place the pin and year.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Barricades_at_the_Brandenburg_Gate_1961.jpg",
+        "lat": 52.5163,
+        "lng": 13.3777,
+        "year": 1961,
+        "locationName": "Brandenburger Tor, Berlin",
+        "attribution": "U.S. National Archives / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A nuclear plant after a catastrophic accident.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Chernobyl_Disaster.jpg",
+        "lat": 51.389,
+        "lng": 30.099,
+        "year": 1986,
+        "locationName": "Chernobyl Nuclear Power Plant, Ukraine",
+        "attribution": "IAEA Imagebank / CC BY-SA"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous square during student-led protests.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiananmen_Square_protests,_1989.jpg",
+        "lat": 39.9033,
+        "lng": 116.3976,
+        "year": 1989,
+        "locationName": "Tiananmen Square, Beijing",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A space shuttle launch from Florida.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/STS-1_launch.jpg",
+        "lat": 28.6083,
+        "lng": -80.6041,
+        "year": 1981,
+        "locationName": "Kennedy Space Center, Florida",
+        "attribution": "NASA / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous island prison in San Francisco Bay.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Alcatraz_Island_photo_D_Ramey_Logan.jpg",
+        "lat": 37.8267,
+        "lng": -122.423,
+        "year": 1963,
+        "locationName": "Alcatraz Island, San Francisco",
+        "attribution": "D. Ramey Logan / CC BY-SA"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A lunar mission lifts off from this launch complex.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Launch_of_Apollo_11_(S69-40640).jpg",
+        "lat": 28.6083,
+        "lng": -80.6041,
+        "year": 1969,
+        "locationName": "Launch Complex 39A, Kennedy Space Center",
+        "attribution": "NASA / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A canal opening changed global shipping.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Panama_Canal_opening_1914.jpg",
+        "lat": 9.08,
+        "lng": -79.68,
+        "year": 1914,
+        "locationName": "Panama Canal, Panama",
+        "attribution": "Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous opera house in its harbour setting.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Sydney_Opera_House_Sails.jpg",
+        "lat": -33.8568,
+        "lng": 151.2153,
+        "year": 1973,
+        "locationName": "Sydney Opera House, Australia",
+        "attribution": "Public domain / Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A revolutionary crowd in a Caribbean capital.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Fidel_Castro_-_MATS_Terminal_Washington_1959.jpg",
+        "lat": 23.1136,
+        "lng": -82.3666,
+        "year": 1959,
+        "locationName": "Havana, Cuba",
+        "attribution": "Library of Congress / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A palace balcony moment after a war ends.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/VE_Day_Celebrations_in_London,_8_May_1945_H41849.jpg",
+        "lat": 51.5014,
+        "lng": -0.1419,
+        "year": 1945,
+        "locationName": "Buckingham Palace, London",
+        "attribution": "Imperial War Museum / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A wall comes down in a divided European city.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Berlinermauer.jpg",
+        "lat": 52.5163,
+        "lng": 13.3777,
+        "year": 1989,
+        "locationName": "Berlin Wall, Berlin",
+        "attribution": "Lear 21 / CC BY-SA"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A sea liner leaves port before a doomed voyage.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/RMS_Titanic_3.jpg",
+        "lat": 50.897,
+        "lng": -1.404,
+        "year": 1912,
+        "locationName": "Southampton, England",
+        "attribution": "Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A monumental arch in Paris.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Arc_de_Triomphe,_Paris_21_October_2010.jpg",
+        "lat": 48.8738,
+        "lng": 2.295,
+        "year": 2010,
+        "locationName": "Arc de Triomphe, Paris",
+        "attribution": "Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A dramatic volcanic eruption in Washington state.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/MSH80_eruption_mount_st_helens_05-18-80.jpg",
+        "lat": 46.1912,
+        "lng": -122.1944,
+        "year": 1980,
+        "locationName": "Mount St. Helens, Washington",
+        "attribution": "USGS / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A tower shines during a world exposition.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_illuminated_at_Paris_Exposition,_1900_LCCN2002699778.jpg",
+        "lat": 48.8584,
+        "lng": 2.2945,
+        "year": 1900,
+        "locationName": "Eiffeltårnet, Paris",
+        "attribution": "Library of Congress / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A giant dam under construction in the desert.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoover_Dam_construction_1934.jpg",
+        "lat": 36.0156,
+        "lng": -114.7378,
+        "year": 1934,
+        "locationName": "Hoover Dam, Nevada/Arizona",
+        "attribution": "Bureau of Reclamation / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A canal-side Dutch city in the early modern transport age.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Amsterdam_-_Canals.jpg",
+        "lat": 52.3676,
+        "lng": 4.9041,
+        "year": 1900,
+        "locationName": "Amsterdam, Netherlands",
+        "attribution": "Public domain / Wikimedia Commons"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A landmark speech near a reflecting pool.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Martin_Luther_King_-_March_on_Washington.jpg",
+        "lat": 38.8893,
+        "lng": -77.0502,
+        "year": 1963,
+        "locationName": "Lincoln Memorial, Washington DC",
+        "attribution": "U.S. Information Agency / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous tower before modern skyscrapers took over.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Empire_State_Building_1931.jpg",
+        "lat": 40.7484,
+        "lng": -73.9857,
+        "year": 1931,
+        "locationName": "Empire State Building, New York",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A suspension bridge rises over a bay.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Construction_of_the_Golden_Gate_Bridge_3c22793u.jpg",
+        "lat": 37.8199,
+        "lng": -122.4783,
+        "year": 1934,
+        "locationName": "Golden Gate Bridge, San Francisco",
+        "attribution": "Library of Congress / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous square during student-led protests.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiananmen_Square_protests,_1989.jpg",
+        "lat": 39.9033,
+        "lng": 116.3976,
+        "year": 1989,
+        "locationName": "Tiananmen Square, Beijing",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A space shuttle launch from Florida.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/STS-1_launch.jpg",
+        "lat": 28.6083,
+        "lng": -80.6041,
+        "year": 1981,
+        "locationName": "Kennedy Space Center, Florida",
+        "attribution": "NASA / Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous archaeological discovery in Egypt.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tutankhamun_tomb_opening.jpg",
+        "lat": 25.7402,
+        "lng": 32.6014,
+        "year": 1922,
+        "locationName": "Valley of the Kings, Luxor",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "Sunbeams cross a grand terminal concourse.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Grand_Central_rays_of_light.jpg",
+        "lat": 40.7527,
+        "lng": -73.9772,
+        "year": 1941,
+        "locationName": "Grand Central Terminal, New York",
+        "attribution": "New York City Municipal Archives / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A royal coronation procession in London.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Coronation_of_Queen_Elizabeth_II_XVI.jpg",
+        "lat": 51.5014,
+        "lng": -0.1419,
+        "year": 1953,
+        "locationName": "Buckingham Palace, London",
+        "attribution": "UK Government / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous opera house in its harbour setting.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Sydney_Opera_House_Sails.jpg",
+        "lat": -33.8568,
+        "lng": 151.2153,
+        "year": 1973,
+        "locationName": "Sydney Opera House, Australia",
+        "attribution": "Public domain / Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A revolutionary crowd in a Caribbean capital.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Fidel_Castro_-_MATS_Terminal_Washington_1959.jpg",
+        "lat": 23.1136,
+        "lng": -82.3666,
+        "year": 1959,
+        "locationName": "Havana, Cuba",
+        "attribution": "Library of Congress / Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A railway ceremony joins a continent.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_spike_1869.jpg",
+        "lat": 41.617,
+        "lng": -112.551,
+        "year": 1869,
+        "locationName": "Promontory Summit, Utah",
+        "attribution": "Andrew J. Russell / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous airship disaster at its landing field.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hindenburg_disaster,_1937.jpg",
+        "lat": 40.0333,
+        "lng": -74.3533,
+        "year": 1937,
+        "locationName": "Lakehurst, New Jersey",
+        "attribution": "Murray Becker / Associated Press / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A city skyline after a devastating earthquake and fire.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/San_Francisco_in_ruin_edit2.jpg",
+        "lat": 37.7749,
+        "lng": -122.4194,
+        "year": 1906,
+        "locationName": "San Francisco, California",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A monumental arch in Paris.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Arc_de_Triomphe,_Paris_21_October_2010.jpg",
+        "lat": 48.8738,
+        "lng": 2.295,
+        "year": 2010,
+        "locationName": "Arc de Triomphe, Paris",
+        "attribution": "Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A dramatic volcanic eruption in Washington state.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/MSH80_eruption_mount_st_helens_05-18-80.jpg",
+        "lat": 46.1912,
+        "lng": -122.1944,
+        "year": 1980,
+        "locationName": "Mount St. Helens, Washington",
+        "attribution": "USGS / Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "Barricades at Brandenburg Gate. Place the pin and year.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Barricades_at_the_Brandenburg_Gate_1961.jpg",
+        "lat": 52.5163,
+        "lng": 13.3777,
+        "year": 1961,
+        "locationName": "Brandenburger Tor, Berlin",
+        "attribution": "U.S. National Archives / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A nuclear plant after a catastrophic accident.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Chernobyl_Disaster.jpg",
+        "lat": 51.389,
+        "lng": 30.099,
+        "year": 1986,
+        "locationName": "Chernobyl Nuclear Power Plant, Ukraine",
+        "attribution": "IAEA Imagebank / CC BY-SA"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A tower bridge stands over the Thames.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tower_Bridge_London_Feb_2006.jpg",
+        "lat": 51.5055,
+        "lng": -0.0754,
+        "year": 2006,
+        "locationName": "Tower Bridge, London",
+        "attribution": "Diliff / CC BY-SA"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A landmark speech near a reflecting pool.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Martin_Luther_King_-_March_on_Washington.jpg",
+        "lat": 38.8893,
+        "lng": -77.0502,
+        "year": 1963,
+        "locationName": "Lincoln Memorial, Washington DC",
+        "attribution": "U.S. Information Agency / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous tower before modern skyscrapers took over.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Empire_State_Building_1931.jpg",
+        "lat": 40.7484,
+        "lng": -73.9857,
+        "year": 1931,
+        "locationName": "Empire State Building, New York",
+        "attribution": "Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A lunar mission lifts off from this launch complex.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Launch_of_Apollo_11_(S69-40640).jpg",
+        "lat": 28.6083,
+        "lng": -80.6041,
+        "year": 1969,
+        "locationName": "Launch Complex 39A, Kennedy Space Center",
+        "attribution": "NASA / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A canal opening changed global shipping.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Panama_Canal_opening_1914.jpg",
+        "lat": 9.08,
+        "lng": -79.68,
+        "year": 1914,
+        "locationName": "Panama Canal, Panama",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A mountain railway station below the Alps.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Zermatt_from_the_air.jpg",
+        "lat": 46.0207,
+        "lng": 7.7491,
+        "year": 1960,
+        "locationName": "Zermatt, Switzerland",
+        "attribution": "Public domain / Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous archaeological discovery in Egypt.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tutankhamun_tomb_opening.jpg",
+        "lat": 25.7402,
+        "lng": 32.6014,
+        "year": 1922,
+        "locationName": "Valley of the Kings, Luxor",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "Sunbeams cross a grand terminal concourse.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Grand_Central_rays_of_light.jpg",
+        "lat": 40.7527,
+        "lng": -73.9772,
+        "year": 1941,
+        "locationName": "Grand Central Terminal, New York",
+        "attribution": "New York City Municipal Archives / Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A wall comes down in a divided European city.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Berlinermauer.jpg",
+        "lat": 52.5163,
+        "lng": 13.3777,
+        "year": 1989,
+        "locationName": "Berlin Wall, Berlin",
+        "attribution": "Lear 21 / CC BY-SA"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A sea liner leaves port before a doomed voyage.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/RMS_Titanic_3.jpg",
+        "lat": 50.897,
+        "lng": -1.404,
+        "year": 1912,
+        "locationName": "Southampton, England",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A wartime conference site on the Black Sea.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Yalta_Conference_(Churchill,_Roosevelt,_Stalin)_(B%26W).jpg",
+        "lat": 44.467,
+        "lng": 34.143,
+        "year": 1945,
+        "locationName": "Yalta, Crimea",
+        "attribution": "U.S. National Archives / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A railway ceremony joins a continent.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_spike_1869.jpg",
+        "lat": 41.617,
+        "lng": -112.551,
+        "year": 1869,
+        "locationName": "Promontory Summit, Utah",
+        "attribution": "Andrew J. Russell / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous airship disaster at its landing field.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hindenburg_disaster,_1937.jpg",
+        "lat": 40.0333,
+        "lng": -74.3533,
+        "year": 1937,
+        "locationName": "Lakehurst, New Jersey",
+        "attribution": "Murray Becker / Associated Press / Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A giant dam under construction in the desert.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoover_Dam_construction_1934.jpg",
+        "lat": 36.0156,
+        "lng": -114.7378,
+        "year": 1934,
+        "locationName": "Hoover Dam, Nevada/Arizona",
+        "attribution": "Bureau of Reclamation / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A canal-side Dutch city in the early modern transport age.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Amsterdam_-_Canals.jpg",
+        "lat": 52.3676,
+        "lng": 4.9041,
+        "year": 1900,
+        "locationName": "Amsterdam, Netherlands",
+        "attribution": "Public domain / Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A polar expedition ship trapped in ice.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Endurance_Final_Sinking.jpg",
+        "lat": -68,
+        "lng": -52,
+        "year": 1915,
+        "locationName": "Weddell Sea, Antarctica",
+        "attribution": "Frank Hurley / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "Barricades at Brandenburg Gate. Place the pin and year.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Barricades_at_the_Brandenburg_Gate_1961.jpg",
+        "lat": 52.5163,
+        "lng": 13.3777,
+        "year": 1961,
+        "locationName": "Brandenburger Tor, Berlin",
+        "attribution": "U.S. National Archives / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A nuclear plant after a catastrophic accident.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Chernobyl_Disaster.jpg",
+        "lat": 51.389,
+        "lng": 30.099,
+        "year": 1986,
+        "locationName": "Chernobyl Nuclear Power Plant, Ukraine",
+        "attribution": "IAEA Imagebank / CC BY-SA"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous square during student-led protests.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiananmen_Square_protests,_1989.jpg",
+        "lat": 39.9033,
+        "lng": 116.3976,
+        "year": 1989,
+        "locationName": "Tiananmen Square, Beijing",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A space shuttle launch from Florida.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/STS-1_launch.jpg",
+        "lat": 28.6083,
+        "lng": -80.6041,
+        "year": 1981,
+        "locationName": "Kennedy Space Center, Florida",
+        "attribution": "NASA / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous island prison in San Francisco Bay.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Alcatraz_Island_photo_D_Ramey_Logan.jpg",
+        "lat": 37.8267,
+        "lng": -122.423,
+        "year": 1963,
+        "locationName": "Alcatraz Island, San Francisco",
+        "attribution": "D. Ramey Logan / CC BY-SA"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A lunar mission lifts off from this launch complex.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Launch_of_Apollo_11_(S69-40640).jpg",
+        "lat": 28.6083,
+        "lng": -80.6041,
+        "year": 1969,
+        "locationName": "Launch Complex 39A, Kennedy Space Center",
+        "attribution": "NASA / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A canal opening changed global shipping.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Panama_Canal_opening_1914.jpg",
+        "lat": 9.08,
+        "lng": -79.68,
+        "year": 1914,
+        "locationName": "Panama Canal, Panama",
+        "attribution": "Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous opera house in its harbour setting.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Sydney_Opera_House_Sails.jpg",
+        "lat": -33.8568,
+        "lng": 151.2153,
+        "year": 1973,
+        "locationName": "Sydney Opera House, Australia",
+        "attribution": "Public domain / Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A revolutionary crowd in a Caribbean capital.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Fidel_Castro_-_MATS_Terminal_Washington_1959.jpg",
+        "lat": 23.1136,
+        "lng": -82.3666,
+        "year": 1959,
+        "locationName": "Havana, Cuba",
+        "attribution": "Library of Congress / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A palace balcony moment after a war ends.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/VE_Day_Celebrations_in_London,_8_May_1945_H41849.jpg",
+        "lat": 51.5014,
+        "lng": -0.1419,
+        "year": 1945,
+        "locationName": "Buckingham Palace, London",
+        "attribution": "Imperial War Museum / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A wall comes down in a divided European city.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Berlinermauer.jpg",
+        "lat": 52.5163,
+        "lng": 13.3777,
+        "year": 1989,
+        "locationName": "Berlin Wall, Berlin",
+        "attribution": "Lear 21 / CC BY-SA"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A sea liner leaves port before a doomed voyage.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/RMS_Titanic_3.jpg",
+        "lat": 50.897,
+        "lng": -1.404,
+        "year": 1912,
+        "locationName": "Southampton, England",
+        "attribution": "Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A monumental arch in Paris.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Arc_de_Triomphe,_Paris_21_October_2010.jpg",
+        "lat": 48.8738,
+        "lng": 2.295,
+        "year": 2010,
+        "locationName": "Arc de Triomphe, Paris",
+        "attribution": "Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A dramatic volcanic eruption in Washington state.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/MSH80_eruption_mount_st_helens_05-18-80.jpg",
+        "lat": 46.1912,
+        "lng": -122.1944,
+        "year": 1980,
+        "locationName": "Mount St. Helens, Washington",
+        "attribution": "USGS / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A tower shines during a world exposition.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_illuminated_at_Paris_Exposition,_1900_LCCN2002699778.jpg",
+        "lat": 48.8584,
+        "lng": 2.2945,
+        "year": 1900,
+        "locationName": "Eiffeltårnet, Paris",
+        "attribution": "Library of Congress / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A giant dam under construction in the desert.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoover_Dam_construction_1934.jpg",
+        "lat": 36.0156,
+        "lng": -114.7378,
+        "year": 1934,
+        "locationName": "Hoover Dam, Nevada/Arizona",
+        "attribution": "Bureau of Reclamation / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A canal-side Dutch city in the early modern transport age.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Amsterdam_-_Canals.jpg",
+        "lat": 52.3676,
+        "lng": 4.9041,
+        "year": 1900,
+        "locationName": "Amsterdam, Netherlands",
+        "attribution": "Public domain / Wikimedia Commons"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A landmark speech near a reflecting pool.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Martin_Luther_King_-_March_on_Washington.jpg",
+        "lat": 38.8893,
+        "lng": -77.0502,
+        "year": 1963,
+        "locationName": "Lincoln Memorial, Washington DC",
+        "attribution": "U.S. Information Agency / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous tower before modern skyscrapers took over.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Empire_State_Building_1931.jpg",
+        "lat": 40.7484,
+        "lng": -73.9857,
+        "year": 1931,
+        "locationName": "Empire State Building, New York",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A suspension bridge rises over a bay.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Construction_of_the_Golden_Gate_Bridge_3c22793u.jpg",
+        "lat": 37.8199,
+        "lng": -122.4783,
+        "year": 1934,
+        "locationName": "Golden Gate Bridge, San Francisco",
+        "attribution": "Library of Congress / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous square during student-led protests.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiananmen_Square_protests,_1989.jpg",
+        "lat": 39.9033,
+        "lng": 116.3976,
+        "year": 1989,
+        "locationName": "Tiananmen Square, Beijing",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A space shuttle launch from Florida.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/STS-1_launch.jpg",
+        "lat": 28.6083,
+        "lng": -80.6041,
+        "year": 1981,
+        "locationName": "Kennedy Space Center, Florida",
+        "attribution": "NASA / Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous archaeological discovery in Egypt.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tutankhamun_tomb_opening.jpg",
+        "lat": 25.7402,
+        "lng": 32.6014,
+        "year": 1922,
+        "locationName": "Valley of the Kings, Luxor",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "Sunbeams cross a grand terminal concourse.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Grand_Central_rays_of_light.jpg",
+        "lat": 40.7527,
+        "lng": -73.9772,
+        "year": 1941,
+        "locationName": "Grand Central Terminal, New York",
+        "attribution": "New York City Municipal Archives / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A royal coronation procession in London.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Coronation_of_Queen_Elizabeth_II_XVI.jpg",
+        "lat": 51.5014,
+        "lng": -0.1419,
+        "year": 1953,
+        "locationName": "Buckingham Palace, London",
+        "attribution": "UK Government / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous opera house in its harbour setting.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Sydney_Opera_House_Sails.jpg",
+        "lat": -33.8568,
+        "lng": 151.2153,
+        "year": 1973,
+        "locationName": "Sydney Opera House, Australia",
+        "attribution": "Public domain / Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A revolutionary crowd in a Caribbean capital.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Fidel_Castro_-_MATS_Terminal_Washington_1959.jpg",
+        "lat": 23.1136,
+        "lng": -82.3666,
+        "year": 1959,
+        "locationName": "Havana, Cuba",
+        "attribution": "Library of Congress / Public domain"
+      }
+    ]
+  },
+  {
+    "timeguessrVersion": 4,
+    "rounds": [
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A railway ceremony joins a continent.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_spike_1869.jpg",
+        "lat": 41.617,
+        "lng": -112.551,
+        "year": 1869,
+        "locationName": "Promontory Summit, Utah",
+        "attribution": "Andrew J. Russell / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A famous airship disaster at its landing field.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hindenburg_disaster,_1937.jpg",
+        "lat": 40.0333,
+        "lng": -74.3533,
+        "year": 1937,
+        "locationName": "Lakehurst, New Jersey",
+        "attribution": "Murray Becker / Associated Press / Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A city skyline after a devastating earthquake and fire.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/San_Francisco_in_ruin_edit2.jpg",
+        "lat": 37.7749,
+        "lng": -122.4194,
+        "year": 1906,
+        "locationName": "San Francisco, California",
+        "attribution": "Public domain"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A monumental arch in Paris.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Arc_de_Triomphe,_Paris_21_October_2010.jpg",
+        "lat": 48.8738,
+        "lng": 2.295,
+        "year": 2010,
+        "locationName": "Arc de Triomphe, Paris",
+        "attribution": "Wikimedia Commons"
+      },
+      {
+        "timeguessrVersion": 4,
+        "prompt": "A dramatic volcanic eruption in Washington state.",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/MSH80_eruption_mount_st_helens_05-18-80.jpg",
+        "lat": 46.1912,
+        "lng": -122.1944,
+        "year": 1980,
+        "locationName": "Mount St. Helens, Washington",
+        "attribution": "USGS / Public domain"
+      }
+    ]
+  }
+]

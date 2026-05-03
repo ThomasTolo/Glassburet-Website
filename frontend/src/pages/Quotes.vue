@@ -34,9 +34,10 @@
     </div>
 
     <div class="quote-grid">
-      <article v-for="(quote, idx) in quotes" :key="quote.id" :class="['quote-card', isToday(quote.createdAt) ? 'featured' : '', idx === 1 ? 'tall' : '', idx > 2 && (idx - 3) % 3 === 0 ? 'wide' : '']">
+      <article v-for="(quote, idx) in quotes" :key="quote.id" :class="quoteArtClasses(quote, idx)">
+        <span class="quote-number">№ {{ String(idx + 1).padStart(2, '0') }}</span>
         <span v-if="isToday(quote.createdAt)" class="quote-day-tag">⭐ DAGENS</span>
-        <p class="quote-text" :style="{ 'font-size': isToday(quote.createdAt) ? '44px' : 'inherit' }">{{ quote.text }}</p>
+        <p class="quote-text">"{{ quote.text }}"</p>
         <div class="quote-foot">
           <span>— {{ quote.author }}</span>
           <span v-if="quote.createdAt">{{ formatDate(quote.createdAt) }}</span>
@@ -94,6 +95,21 @@ const { dateLabel, semesterLabel } = useLiveDateInfo({ intervalMs: 60000 })
 const editingQuote = ref(null)
 const editForm = ref({ text: '', author: '', featured: false, createdAt: null })
 const saving = ref(false)
+const quoteTones = ['forest', 'paper', 'rust', 'cream', 'ink', 'gold', 'sage', 'clay']
+const quoteShapes = ['hero', 'wide', 'stack', 'spotlight', 'small', 'tall', 'wide', 'small']
+
+const quoteArtClasses = (quote, idx) => {
+  const textLength = quote.text?.length || 0
+  return [
+    'quote-card',
+    `quote-tone-${quoteTones[idx % quoteTones.length]}`,
+    `quote-shape-${quoteShapes[idx % quoteShapes.length]}`,
+    textLength <= 52 ? 'quote-short' : '',
+    textLength > 90 ? 'quote-long' : '',
+    textLength > 140 ? 'quote-very-long' : '',
+    isToday(quote.createdAt) ? 'featured' : '',
+  ]
+}
 
 const formatDate = (dateString) => {
   if (!dateString) return ''
@@ -268,14 +284,16 @@ onUnmounted(() => {
 .quote-actions {
   margin-top: 12px;
   padding-top: 10px;
-  border-top: 1px solid var(--line-soft);
+  border-top: 1px solid var(--quote-line, var(--line-soft));
+  position: relative;
+  z-index: 1;
 }
 .like-btn {
   font-family: var(--mono);
   font-size: 13px;
-  color: var(--ink-mute);
+  color: var(--quote-muted, var(--ink-mute));
   padding: 4px 10px;
-  border: 1px solid var(--line-soft);
+  border: 1px solid var(--quote-line, var(--line-soft));
   border-radius: 999px;
   transition: all 0.2s;
 }
@@ -285,18 +303,20 @@ onUnmounted(() => {
   display: flex;
   gap: 8px;
   margin-top: 8px;
+  position: relative;
+  z-index: 1;
 }
 .btn-icon {
   font-family: var(--mono);
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--ink-mute);
-  border: 1px solid var(--line-soft);
+  color: var(--quote-muted, var(--ink-mute));
+  border: 1px solid var(--quote-line, var(--line-soft));
   border-radius: 4px;
   padding: 3px 8px;
 }
-.btn-icon:hover { color: var(--ink); border-color: var(--ink); }
+.btn-icon:hover { color: var(--quote-fg, var(--ink)); border-color: var(--quote-fg, var(--ink)); }
 .btn-danger:hover { color: var(--accent-2); border-color: var(--accent-2); }
 .modal-overlay {
   position: fixed;

@@ -48,7 +48,7 @@ export function useLiveDateInfo(options = {}) {
   const clockLabel = computed(() => formatClockLabel(now.value))
   const semesterDayNumber = computed(() => getSemesterDayNumber(now.value))
   const semesterLabel = computed(() => `DAG ${semesterDayNumber.value} / SEMESTERET`)
-  const issueLabel = computed(() => `Utgave ${semesterDayNumber.value} · Vår 2026`)
+  const issueLabel = computed(() => `Dag ${semesterDayNumber.value} · Vår 2026`)
 
   return {
     now,
