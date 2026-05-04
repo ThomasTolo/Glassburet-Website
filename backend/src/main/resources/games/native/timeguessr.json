@@ -15,7 +15,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A nuclear plant after a catastrophic accident.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Chernobyl_Disaster.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/IAEA_02790015_%285613115146%29.jpg",
         "lat": 51.389,
         "lng": 30.099,
         "year": 1986,
@@ -45,7 +45,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A famous tower before modern skyscrapers took over.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Empire_State_Building_1931.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg",
         "lat": 40.7484,
         "lng": -73.9857,
         "year": 1931,
@@ -70,7 +70,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A canal opening changed global shipping.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Panama_Canal_opening_1914.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Opening_of_the_Panama_Canal_SS_Ancon_approaching_Gamboa_Looking_north_Aug_15%2C_1914_-_DPLA_-_0c0baedc6b427a89406d5779c16b4205.jpg",
         "lat": 9.08,
         "lng": -79.68,
         "year": 1914,
@@ -79,21 +79,21 @@
       },
       {
         "timeguessrVersion": 4,
-        "prompt": "A mountain railway station below the Alps.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Zermatt_from_the_air.jpg",
+        "prompt": "A car-free mountain village stands beneath a famous Alpine peak.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/17/Zermatt_and_Matterhorn.jpg",
         "lat": 46.0207,
         "lng": 7.7491,
-        "year": 1960,
+        "year": 2010,
         "locationName": "Zermatt, Switzerland",
-        "attribution": "Public domain / Wikimedia Commons"
+        "attribution": "Wikimedia Commons / CC BY-SA"
       },
       {
         "timeguessrVersion": 4,
         "prompt": "A famous archaeological discovery in Egypt.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tutankhamun_tomb_opening.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Tourists_outside_Tutankhamun%27s_tomb%2C_February_1923.jpg",
         "lat": 25.7402,
         "lng": 32.6014,
-        "year": 1922,
+        "year": 1923,
         "locationName": "Valley of the Kings, Luxor",
         "attribution": "Public domain"
       },
@@ -145,7 +145,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A railway ceremony joins a continent.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_spike_1869.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Golden_Spike_ceremony%2C_Promontory%2C_Utah%2C_May_10%2C_1869.jpg",
         "lat": 41.617,
         "lng": -112.551,
         "year": 1869,
@@ -170,22 +170,22 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A giant dam under construction in the desert.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoover_Dam_construction_1934.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Damupstream.jpg",
         "lat": 36.0156,
         "lng": -114.7378,
-        "year": 1934,
+        "year": 1935,
         "locationName": "Hoover Dam, Nevada/Arizona",
         "attribution": "Bureau of Reclamation / Public domain"
       },
       {
         "timeguessrVersion": 4,
-        "prompt": "A canal-side Dutch city in the early modern transport age.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Amsterdam_-_Canals.jpg",
+        "prompt": "Canals and gabled houses define the heart of this Dutch capital.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Amsterdam_Canals.jpg",
         "lat": 52.3676,
         "lng": 4.9041,
-        "year": 1900,
+        "year": 2005,
         "locationName": "Amsterdam, Netherlands",
-        "attribution": "Public domain / Wikimedia Commons"
+        "attribution": "Wikimedia Commons / CC BY"
       },
       {
         "timeguessrVersion": 4,
@@ -210,7 +210,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A nuclear plant after a catastrophic accident.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Chernobyl_Disaster.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/IAEA_02790015_%285613115146%29.jpg",
         "lat": 51.389,
         "lng": 30.099,
         "year": 1986,
@@ -224,18 +224,18 @@
     "rounds": [
       {
         "timeguessrVersion": 4,
-        "prompt": "A famous square during student-led protests.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiananmen_Square_protests,_1989.jpg",
+        "prompt": "China's most famous square, framed by an imperial red gate.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/49/Gate_of_Heavenly_Peace%2C_Tiananmen_-_panoramio.jpg",
         "lat": 39.9033,
         "lng": 116.3976,
-        "year": 1989,
+        "year": 2009,
         "locationName": "Tiananmen Square, Beijing",
-        "attribution": "Public domain"
+        "attribution": "Wikimedia Commons / CC BY-SA"
       },
       {
         "timeguessrVersion": 4,
         "prompt": "A space shuttle launch from Florida.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/STS-1_launch.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Space_Shuttle_Columbia_launching.jpg",
         "lat": 28.6083,
         "lng": -80.6041,
         "year": 1981,
@@ -265,7 +265,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A canal opening changed global shipping.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Panama_Canal_opening_1914.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Opening_of_the_Panama_Canal_SS_Ancon_approaching_Gamboa_Looking_north_Aug_15%2C_1914_-_DPLA_-_0c0baedc6b427a89406d5779c16b4205.jpg",
         "lat": 9.08,
         "lng": -79.68,
         "year": 1914,
@@ -299,12 +299,12 @@
       },
       {
         "timeguessrVersion": 4,
-        "prompt": "A palace balcony moment after a war ends.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/VE_Day_Celebrations_in_London,_8_May_1945_H41849.jpg",
-        "lat": 51.5014,
-        "lng": -0.1419,
+        "prompt": "A wartime leader waves to jubilant crowds celebrating the end of the war in Europe.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/51/Winston_Churchill_waves_to_crowds_in_Whitehall_in_London_as_they_celebrate_VE_Day%2C_8_May_1945._H41849.jpg",
+        "lat": 51.503,
+        "lng": -0.1274,
         "year": 1945,
-        "locationName": "Buckingham Palace, London",
+        "locationName": "Whitehall, London",
         "attribution": "Imperial War Museum / Public domain"
       },
       {
@@ -365,22 +365,22 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A giant dam under construction in the desert.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoover_Dam_construction_1934.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Damupstream.jpg",
         "lat": 36.0156,
         "lng": -114.7378,
-        "year": 1934,
+        "year": 1935,
         "locationName": "Hoover Dam, Nevada/Arizona",
         "attribution": "Bureau of Reclamation / Public domain"
       },
       {
         "timeguessrVersion": 4,
-        "prompt": "A canal-side Dutch city in the early modern transport age.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Amsterdam_-_Canals.jpg",
+        "prompt": "Canals and gabled houses define the heart of this Dutch capital.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Amsterdam_Canals.jpg",
         "lat": 52.3676,
         "lng": 4.9041,
-        "year": 1900,
+        "year": 2005,
         "locationName": "Amsterdam, Netherlands",
-        "attribution": "Public domain / Wikimedia Commons"
+        "attribution": "Wikimedia Commons / CC BY"
       }
     ]
   },
@@ -400,7 +400,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A famous tower before modern skyscrapers took over.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Empire_State_Building_1931.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg",
         "lat": 40.7484,
         "lng": -73.9857,
         "year": 1931,
@@ -419,18 +419,18 @@
       },
       {
         "timeguessrVersion": 4,
-        "prompt": "A famous square during student-led protests.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiananmen_Square_protests,_1989.jpg",
+        "prompt": "China's most famous square, framed by an imperial red gate.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/49/Gate_of_Heavenly_Peace%2C_Tiananmen_-_panoramio.jpg",
         "lat": 39.9033,
         "lng": 116.3976,
-        "year": 1989,
+        "year": 2009,
         "locationName": "Tiananmen Square, Beijing",
-        "attribution": "Public domain"
+        "attribution": "Wikimedia Commons / CC BY-SA"
       },
       {
         "timeguessrVersion": 4,
         "prompt": "A space shuttle launch from Florida.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/STS-1_launch.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Space_Shuttle_Columbia_launching.jpg",
         "lat": 28.6083,
         "lng": -80.6041,
         "year": 1981,
@@ -445,10 +445,10 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A famous archaeological discovery in Egypt.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tutankhamun_tomb_opening.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Tourists_outside_Tutankhamun%27s_tomb%2C_February_1923.jpg",
         "lat": 25.7402,
         "lng": 32.6014,
-        "year": 1922,
+        "year": 1923,
         "locationName": "Valley of the Kings, Luxor",
         "attribution": "Public domain"
       },
@@ -465,7 +465,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A royal coronation procession in London.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Coronation_of_Queen_Elizabeth_II_XVI.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/Coronation_of_Queen_Elizabeth_II_4.jpg",
         "lat": 51.5014,
         "lng": -0.1419,
         "year": 1953,
@@ -500,7 +500,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A railway ceremony joins a continent.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_spike_1869.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Golden_Spike_ceremony%2C_Promontory%2C_Utah%2C_May_10%2C_1869.jpg",
         "lat": 41.617,
         "lng": -112.551,
         "year": 1869,
@@ -565,7 +565,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A nuclear plant after a catastrophic accident.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Chernobyl_Disaster.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/IAEA_02790015_%285613115146%29.jpg",
         "lat": 51.389,
         "lng": 30.099,
         "year": 1986,
@@ -595,7 +595,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A famous tower before modern skyscrapers took over.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Empire_State_Building_1931.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg",
         "lat": 40.7484,
         "lng": -73.9857,
         "year": 1931,
@@ -620,7 +620,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A canal opening changed global shipping.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Panama_Canal_opening_1914.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Opening_of_the_Panama_Canal_SS_Ancon_approaching_Gamboa_Looking_north_Aug_15%2C_1914_-_DPLA_-_0c0baedc6b427a89406d5779c16b4205.jpg",
         "lat": 9.08,
         "lng": -79.68,
         "year": 1914,
@@ -629,21 +629,21 @@
       },
       {
         "timeguessrVersion": 4,
-        "prompt": "A mountain railway station below the Alps.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Zermatt_from_the_air.jpg",
+        "prompt": "A car-free mountain village stands beneath a famous Alpine peak.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/17/Zermatt_and_Matterhorn.jpg",
         "lat": 46.0207,
         "lng": 7.7491,
-        "year": 1960,
+        "year": 2010,
         "locationName": "Zermatt, Switzerland",
-        "attribution": "Public domain / Wikimedia Commons"
+        "attribution": "Wikimedia Commons / CC BY-SA"
       },
       {
         "timeguessrVersion": 4,
         "prompt": "A famous archaeological discovery in Egypt.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tutankhamun_tomb_opening.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Tourists_outside_Tutankhamun%27s_tomb%2C_February_1923.jpg",
         "lat": 25.7402,
         "lng": 32.6014,
-        "year": 1922,
+        "year": 1923,
         "locationName": "Valley of the Kings, Luxor",
         "attribution": "Public domain"
       },
@@ -695,7 +695,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A railway ceremony joins a continent.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_spike_1869.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Golden_Spike_ceremony%2C_Promontory%2C_Utah%2C_May_10%2C_1869.jpg",
         "lat": 41.617,
         "lng": -112.551,
         "year": 1869,
@@ -720,22 +720,22 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A giant dam under construction in the desert.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoover_Dam_construction_1934.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Damupstream.jpg",
         "lat": 36.0156,
         "lng": -114.7378,
-        "year": 1934,
+        "year": 1935,
         "locationName": "Hoover Dam, Nevada/Arizona",
         "attribution": "Bureau of Reclamation / Public domain"
       },
       {
         "timeguessrVersion": 4,
-        "prompt": "A canal-side Dutch city in the early modern transport age.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Amsterdam_-_Canals.jpg",
+        "prompt": "Canals and gabled houses define the heart of this Dutch capital.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Amsterdam_Canals.jpg",
         "lat": 52.3676,
         "lng": 4.9041,
-        "year": 1900,
+        "year": 2005,
         "locationName": "Amsterdam, Netherlands",
-        "attribution": "Public domain / Wikimedia Commons"
+        "attribution": "Wikimedia Commons / CC BY"
       },
       {
         "timeguessrVersion": 4,
@@ -760,7 +760,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A nuclear plant after a catastrophic accident.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Chernobyl_Disaster.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/IAEA_02790015_%285613115146%29.jpg",
         "lat": 51.389,
         "lng": 30.099,
         "year": 1986,
@@ -774,18 +774,18 @@
     "rounds": [
       {
         "timeguessrVersion": 4,
-        "prompt": "A famous square during student-led protests.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiananmen_Square_protests,_1989.jpg",
+        "prompt": "China's most famous square, framed by an imperial red gate.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/49/Gate_of_Heavenly_Peace%2C_Tiananmen_-_panoramio.jpg",
         "lat": 39.9033,
         "lng": 116.3976,
-        "year": 1989,
+        "year": 2009,
         "locationName": "Tiananmen Square, Beijing",
-        "attribution": "Public domain"
+        "attribution": "Wikimedia Commons / CC BY-SA"
       },
       {
         "timeguessrVersion": 4,
         "prompt": "A space shuttle launch from Florida.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/STS-1_launch.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Space_Shuttle_Columbia_launching.jpg",
         "lat": 28.6083,
         "lng": -80.6041,
         "year": 1981,
@@ -815,7 +815,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A canal opening changed global shipping.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Panama_Canal_opening_1914.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Opening_of_the_Panama_Canal_SS_Ancon_approaching_Gamboa_Looking_north_Aug_15%2C_1914_-_DPLA_-_0c0baedc6b427a89406d5779c16b4205.jpg",
         "lat": 9.08,
         "lng": -79.68,
         "year": 1914,
@@ -849,12 +849,12 @@
       },
       {
         "timeguessrVersion": 4,
-        "prompt": "A palace balcony moment after a war ends.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/VE_Day_Celebrations_in_London,_8_May_1945_H41849.jpg",
-        "lat": 51.5014,
-        "lng": -0.1419,
+        "prompt": "A wartime leader waves to jubilant crowds celebrating the end of the war in Europe.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/51/Winston_Churchill_waves_to_crowds_in_Whitehall_in_London_as_they_celebrate_VE_Day%2C_8_May_1945._H41849.jpg",
+        "lat": 51.503,
+        "lng": -0.1274,
         "year": 1945,
-        "locationName": "Buckingham Palace, London",
+        "locationName": "Whitehall, London",
         "attribution": "Imperial War Museum / Public domain"
       },
       {
@@ -915,22 +915,22 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A giant dam under construction in the desert.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoover_Dam_construction_1934.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Damupstream.jpg",
         "lat": 36.0156,
         "lng": -114.7378,
-        "year": 1934,
+        "year": 1935,
         "locationName": "Hoover Dam, Nevada/Arizona",
         "attribution": "Bureau of Reclamation / Public domain"
       },
       {
         "timeguessrVersion": 4,
-        "prompt": "A canal-side Dutch city in the early modern transport age.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Amsterdam_-_Canals.jpg",
+        "prompt": "Canals and gabled houses define the heart of this Dutch capital.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Amsterdam_Canals.jpg",
         "lat": 52.3676,
         "lng": 4.9041,
-        "year": 1900,
+        "year": 2005,
         "locationName": "Amsterdam, Netherlands",
-        "attribution": "Public domain / Wikimedia Commons"
+        "attribution": "Wikimedia Commons / CC BY"
       }
     ]
   },
@@ -950,7 +950,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A famous tower before modern skyscrapers took over.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Empire_State_Building_1931.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg",
         "lat": 40.7484,
         "lng": -73.9857,
         "year": 1931,
@@ -969,18 +969,18 @@
       },
       {
         "timeguessrVersion": 4,
-        "prompt": "A famous square during student-led protests.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiananmen_Square_protests,_1989.jpg",
+        "prompt": "China's most famous square, framed by an imperial red gate.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/49/Gate_of_Heavenly_Peace%2C_Tiananmen_-_panoramio.jpg",
         "lat": 39.9033,
         "lng": 116.3976,
-        "year": 1989,
+        "year": 2009,
         "locationName": "Tiananmen Square, Beijing",
-        "attribution": "Public domain"
+        "attribution": "Wikimedia Commons / CC BY-SA"
       },
       {
         "timeguessrVersion": 4,
         "prompt": "A space shuttle launch from Florida.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/STS-1_launch.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Space_Shuttle_Columbia_launching.jpg",
         "lat": 28.6083,
         "lng": -80.6041,
         "year": 1981,
@@ -995,10 +995,10 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A famous archaeological discovery in Egypt.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tutankhamun_tomb_opening.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Tourists_outside_Tutankhamun%27s_tomb%2C_February_1923.jpg",
         "lat": 25.7402,
         "lng": 32.6014,
-        "year": 1922,
+        "year": 1923,
         "locationName": "Valley of the Kings, Luxor",
         "attribution": "Public domain"
       },
@@ -1015,7 +1015,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A royal coronation procession in London.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Coronation_of_Queen_Elizabeth_II_XVI.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/Coronation_of_Queen_Elizabeth_II_4.jpg",
         "lat": 51.5014,
         "lng": -0.1419,
         "year": 1953,
@@ -1050,7 +1050,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A railway ceremony joins a continent.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_spike_1869.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Golden_Spike_ceremony%2C_Promontory%2C_Utah%2C_May_10%2C_1869.jpg",
         "lat": 41.617,
         "lng": -112.551,
         "year": 1869,
@@ -1115,7 +1115,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A nuclear plant after a catastrophic accident.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Chernobyl_Disaster.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/IAEA_02790015_%285613115146%29.jpg",
         "lat": 51.389,
         "lng": 30.099,
         "year": 1986,
@@ -1145,7 +1145,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A famous tower before modern skyscrapers took over.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Empire_State_Building_1931.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg",
         "lat": 40.7484,
         "lng": -73.9857,
         "year": 1931,
@@ -1170,7 +1170,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A canal opening changed global shipping.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Panama_Canal_opening_1914.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Opening_of_the_Panama_Canal_SS_Ancon_approaching_Gamboa_Looking_north_Aug_15%2C_1914_-_DPLA_-_0c0baedc6b427a89406d5779c16b4205.jpg",
         "lat": 9.08,
         "lng": -79.68,
         "year": 1914,
@@ -1179,21 +1179,21 @@
       },
       {
         "timeguessrVersion": 4,
-        "prompt": "A mountain railway station below the Alps.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Zermatt_from_the_air.jpg",
+        "prompt": "A car-free mountain village stands beneath a famous Alpine peak.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/17/Zermatt_and_Matterhorn.jpg",
         "lat": 46.0207,
         "lng": 7.7491,
-        "year": 1960,
+        "year": 2010,
         "locationName": "Zermatt, Switzerland",
-        "attribution": "Public domain / Wikimedia Commons"
+        "attribution": "Wikimedia Commons / CC BY-SA"
       },
       {
         "timeguessrVersion": 4,
         "prompt": "A famous archaeological discovery in Egypt.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tutankhamun_tomb_opening.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Tourists_outside_Tutankhamun%27s_tomb%2C_February_1923.jpg",
         "lat": 25.7402,
         "lng": 32.6014,
-        "year": 1922,
+        "year": 1923,
         "locationName": "Valley of the Kings, Luxor",
         "attribution": "Public domain"
       },
@@ -1245,7 +1245,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A railway ceremony joins a continent.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_spike_1869.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Golden_Spike_ceremony%2C_Promontory%2C_Utah%2C_May_10%2C_1869.jpg",
         "lat": 41.617,
         "lng": -112.551,
         "year": 1869,
@@ -1270,22 +1270,22 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A giant dam under construction in the desert.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoover_Dam_construction_1934.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Damupstream.jpg",
         "lat": 36.0156,
         "lng": -114.7378,
-        "year": 1934,
+        "year": 1935,
         "locationName": "Hoover Dam, Nevada/Arizona",
         "attribution": "Bureau of Reclamation / Public domain"
       },
       {
         "timeguessrVersion": 4,
-        "prompt": "A canal-side Dutch city in the early modern transport age.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Amsterdam_-_Canals.jpg",
+        "prompt": "Canals and gabled houses define the heart of this Dutch capital.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Amsterdam_Canals.jpg",
         "lat": 52.3676,
         "lng": 4.9041,
-        "year": 1900,
+        "year": 2005,
         "locationName": "Amsterdam, Netherlands",
-        "attribution": "Public domain / Wikimedia Commons"
+        "attribution": "Wikimedia Commons / CC BY"
       },
       {
         "timeguessrVersion": 4,
@@ -1310,7 +1310,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A nuclear plant after a catastrophic accident.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Chernobyl_Disaster.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/IAEA_02790015_%285613115146%29.jpg",
         "lat": 51.389,
         "lng": 30.099,
         "year": 1986,
@@ -1324,18 +1324,18 @@
     "rounds": [
       {
         "timeguessrVersion": 4,
-        "prompt": "A famous square during student-led protests.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiananmen_Square_protests,_1989.jpg",
+        "prompt": "China's most famous square, framed by an imperial red gate.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/49/Gate_of_Heavenly_Peace%2C_Tiananmen_-_panoramio.jpg",
         "lat": 39.9033,
         "lng": 116.3976,
-        "year": 1989,
+        "year": 2009,
         "locationName": "Tiananmen Square, Beijing",
-        "attribution": "Public domain"
+        "attribution": "Wikimedia Commons / CC BY-SA"
       },
       {
         "timeguessrVersion": 4,
         "prompt": "A space shuttle launch from Florida.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/STS-1_launch.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Space_Shuttle_Columbia_launching.jpg",
         "lat": 28.6083,
         "lng": -80.6041,
         "year": 1981,
@@ -1365,7 +1365,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A canal opening changed global shipping.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Panama_Canal_opening_1914.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Opening_of_the_Panama_Canal_SS_Ancon_approaching_Gamboa_Looking_north_Aug_15%2C_1914_-_DPLA_-_0c0baedc6b427a89406d5779c16b4205.jpg",
         "lat": 9.08,
         "lng": -79.68,
         "year": 1914,
@@ -1399,12 +1399,12 @@
       },
       {
         "timeguessrVersion": 4,
-        "prompt": "A palace balcony moment after a war ends.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/VE_Day_Celebrations_in_London,_8_May_1945_H41849.jpg",
-        "lat": 51.5014,
-        "lng": -0.1419,
+        "prompt": "A wartime leader waves to jubilant crowds celebrating the end of the war in Europe.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/51/Winston_Churchill_waves_to_crowds_in_Whitehall_in_London_as_they_celebrate_VE_Day%2C_8_May_1945._H41849.jpg",
+        "lat": 51.503,
+        "lng": -0.1274,
         "year": 1945,
-        "locationName": "Buckingham Palace, London",
+        "locationName": "Whitehall, London",
         "attribution": "Imperial War Museum / Public domain"
       },
       {
@@ -1465,22 +1465,22 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A giant dam under construction in the desert.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoover_Dam_construction_1934.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Damupstream.jpg",
         "lat": 36.0156,
         "lng": -114.7378,
-        "year": 1934,
+        "year": 1935,
         "locationName": "Hoover Dam, Nevada/Arizona",
         "attribution": "Bureau of Reclamation / Public domain"
       },
       {
         "timeguessrVersion": 4,
-        "prompt": "A canal-side Dutch city in the early modern transport age.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Amsterdam_-_Canals.jpg",
+        "prompt": "Canals and gabled houses define the heart of this Dutch capital.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Amsterdam_Canals.jpg",
         "lat": 52.3676,
         "lng": 4.9041,
-        "year": 1900,
+        "year": 2005,
         "locationName": "Amsterdam, Netherlands",
-        "attribution": "Public domain / Wikimedia Commons"
+        "attribution": "Wikimedia Commons / CC BY"
       }
     ]
   },
@@ -1500,7 +1500,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A famous tower before modern skyscrapers took over.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Empire_State_Building_1931.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg",
         "lat": 40.7484,
         "lng": -73.9857,
         "year": 1931,
@@ -1519,18 +1519,18 @@
       },
       {
         "timeguessrVersion": 4,
-        "prompt": "A famous square during student-led protests.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiananmen_Square_protests,_1989.jpg",
+        "prompt": "China's most famous square, framed by an imperial red gate.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/49/Gate_of_Heavenly_Peace%2C_Tiananmen_-_panoramio.jpg",
         "lat": 39.9033,
         "lng": 116.3976,
-        "year": 1989,
+        "year": 2009,
         "locationName": "Tiananmen Square, Beijing",
-        "attribution": "Public domain"
+        "attribution": "Wikimedia Commons / CC BY-SA"
       },
       {
         "timeguessrVersion": 4,
         "prompt": "A space shuttle launch from Florida.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/STS-1_launch.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Space_Shuttle_Columbia_launching.jpg",
         "lat": 28.6083,
         "lng": -80.6041,
         "year": 1981,
@@ -1545,10 +1545,10 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A famous archaeological discovery in Egypt.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tutankhamun_tomb_opening.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Tourists_outside_Tutankhamun%27s_tomb%2C_February_1923.jpg",
         "lat": 25.7402,
         "lng": 32.6014,
-        "year": 1922,
+        "year": 1923,
         "locationName": "Valley of the Kings, Luxor",
         "attribution": "Public domain"
       },
@@ -1565,7 +1565,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A royal coronation procession in London.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Coronation_of_Queen_Elizabeth_II_XVI.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/Coronation_of_Queen_Elizabeth_II_4.jpg",
         "lat": 51.5014,
         "lng": -0.1419,
         "year": 1953,
@@ -1600,7 +1600,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A railway ceremony joins a continent.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_spike_1869.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Golden_Spike_ceremony%2C_Promontory%2C_Utah%2C_May_10%2C_1869.jpg",
         "lat": 41.617,
         "lng": -112.551,
         "year": 1869,
@@ -1665,7 +1665,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A nuclear plant after a catastrophic accident.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Chernobyl_Disaster.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/IAEA_02790015_%285613115146%29.jpg",
         "lat": 51.389,
         "lng": 30.099,
         "year": 1986,
@@ -1695,7 +1695,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A famous tower before modern skyscrapers took over.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Empire_State_Building_1931.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg",
         "lat": 40.7484,
         "lng": -73.9857,
         "year": 1931,
@@ -1720,7 +1720,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A canal opening changed global shipping.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Panama_Canal_opening_1914.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Opening_of_the_Panama_Canal_SS_Ancon_approaching_Gamboa_Looking_north_Aug_15%2C_1914_-_DPLA_-_0c0baedc6b427a89406d5779c16b4205.jpg",
         "lat": 9.08,
         "lng": -79.68,
         "year": 1914,
@@ -1729,21 +1729,21 @@
       },
       {
         "timeguessrVersion": 4,
-        "prompt": "A mountain railway station below the Alps.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Zermatt_from_the_air.jpg",
+        "prompt": "A car-free mountain village stands beneath a famous Alpine peak.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/17/Zermatt_and_Matterhorn.jpg",
         "lat": 46.0207,
         "lng": 7.7491,
-        "year": 1960,
+        "year": 2010,
         "locationName": "Zermatt, Switzerland",
-        "attribution": "Public domain / Wikimedia Commons"
+        "attribution": "Wikimedia Commons / CC BY-SA"
       },
       {
         "timeguessrVersion": 4,
         "prompt": "A famous archaeological discovery in Egypt.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tutankhamun_tomb_opening.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Tourists_outside_Tutankhamun%27s_tomb%2C_February_1923.jpg",
         "lat": 25.7402,
         "lng": 32.6014,
-        "year": 1922,
+        "year": 1923,
         "locationName": "Valley of the Kings, Luxor",
         "attribution": "Public domain"
       },
@@ -1795,7 +1795,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A railway ceremony joins a continent.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_spike_1869.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Golden_Spike_ceremony%2C_Promontory%2C_Utah%2C_May_10%2C_1869.jpg",
         "lat": 41.617,
         "lng": -112.551,
         "year": 1869,
@@ -1820,22 +1820,22 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A giant dam under construction in the desert.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoover_Dam_construction_1934.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Damupstream.jpg",
         "lat": 36.0156,
         "lng": -114.7378,
-        "year": 1934,
+        "year": 1935,
         "locationName": "Hoover Dam, Nevada/Arizona",
         "attribution": "Bureau of Reclamation / Public domain"
       },
       {
         "timeguessrVersion": 4,
-        "prompt": "A canal-side Dutch city in the early modern transport age.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Amsterdam_-_Canals.jpg",
+        "prompt": "Canals and gabled houses define the heart of this Dutch capital.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Amsterdam_Canals.jpg",
         "lat": 52.3676,
         "lng": 4.9041,
-        "year": 1900,
+        "year": 2005,
         "locationName": "Amsterdam, Netherlands",
-        "attribution": "Public domain / Wikimedia Commons"
+        "attribution": "Wikimedia Commons / CC BY"
       },
       {
         "timeguessrVersion": 4,
@@ -1860,7 +1860,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A nuclear plant after a catastrophic accident.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Chernobyl_Disaster.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/IAEA_02790015_%285613115146%29.jpg",
         "lat": 51.389,
         "lng": 30.099,
         "year": 1986,
@@ -1874,18 +1874,18 @@
     "rounds": [
       {
         "timeguessrVersion": 4,
-        "prompt": "A famous square during student-led protests.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiananmen_Square_protests,_1989.jpg",
+        "prompt": "China's most famous square, framed by an imperial red gate.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/49/Gate_of_Heavenly_Peace%2C_Tiananmen_-_panoramio.jpg",
         "lat": 39.9033,
         "lng": 116.3976,
-        "year": 1989,
+        "year": 2009,
         "locationName": "Tiananmen Square, Beijing",
-        "attribution": "Public domain"
+        "attribution": "Wikimedia Commons / CC BY-SA"
       },
       {
         "timeguessrVersion": 4,
         "prompt": "A space shuttle launch from Florida.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/STS-1_launch.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Space_Shuttle_Columbia_launching.jpg",
         "lat": 28.6083,
         "lng": -80.6041,
         "year": 1981,
@@ -1915,7 +1915,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A canal opening changed global shipping.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Panama_Canal_opening_1914.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Opening_of_the_Panama_Canal_SS_Ancon_approaching_Gamboa_Looking_north_Aug_15%2C_1914_-_DPLA_-_0c0baedc6b427a89406d5779c16b4205.jpg",
         "lat": 9.08,
         "lng": -79.68,
         "year": 1914,
@@ -1949,12 +1949,12 @@
       },
       {
         "timeguessrVersion": 4,
-        "prompt": "A palace balcony moment after a war ends.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/VE_Day_Celebrations_in_London,_8_May_1945_H41849.jpg",
-        "lat": 51.5014,
-        "lng": -0.1419,
+        "prompt": "A wartime leader waves to jubilant crowds celebrating the end of the war in Europe.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/51/Winston_Churchill_waves_to_crowds_in_Whitehall_in_London_as_they_celebrate_VE_Day%2C_8_May_1945._H41849.jpg",
+        "lat": 51.503,
+        "lng": -0.1274,
         "year": 1945,
-        "locationName": "Buckingham Palace, London",
+        "locationName": "Whitehall, London",
         "attribution": "Imperial War Museum / Public domain"
       },
       {
@@ -2015,22 +2015,22 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A giant dam under construction in the desert.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Hoover_Dam_construction_1934.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Damupstream.jpg",
         "lat": 36.0156,
         "lng": -114.7378,
-        "year": 1934,
+        "year": 1935,
         "locationName": "Hoover Dam, Nevada/Arizona",
         "attribution": "Bureau of Reclamation / Public domain"
       },
       {
         "timeguessrVersion": 4,
-        "prompt": "A canal-side Dutch city in the early modern transport age.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Amsterdam_-_Canals.jpg",
+        "prompt": "Canals and gabled houses define the heart of this Dutch capital.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Amsterdam_Canals.jpg",
         "lat": 52.3676,
         "lng": 4.9041,
-        "year": 1900,
+        "year": 2005,
         "locationName": "Amsterdam, Netherlands",
-        "attribution": "Public domain / Wikimedia Commons"
+        "attribution": "Wikimedia Commons / CC BY"
       }
     ]
   },
@@ -2050,7 +2050,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A famous tower before modern skyscrapers took over.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Empire_State_Building_1931.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg",
         "lat": 40.7484,
         "lng": -73.9857,
         "year": 1931,
@@ -2069,18 +2069,18 @@
       },
       {
         "timeguessrVersion": 4,
-        "prompt": "A famous square during student-led protests.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiananmen_Square_protests,_1989.jpg",
+        "prompt": "China's most famous square, framed by an imperial red gate.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/49/Gate_of_Heavenly_Peace%2C_Tiananmen_-_panoramio.jpg",
         "lat": 39.9033,
         "lng": 116.3976,
-        "year": 1989,
+        "year": 2009,
         "locationName": "Tiananmen Square, Beijing",
-        "attribution": "Public domain"
+        "attribution": "Wikimedia Commons / CC BY-SA"
       },
       {
         "timeguessrVersion": 4,
         "prompt": "A space shuttle launch from Florida.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/STS-1_launch.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Space_Shuttle_Columbia_launching.jpg",
         "lat": 28.6083,
         "lng": -80.6041,
         "year": 1981,
@@ -2095,10 +2095,10 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A famous archaeological discovery in Egypt.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tutankhamun_tomb_opening.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Tourists_outside_Tutankhamun%27s_tomb%2C_February_1923.jpg",
         "lat": 25.7402,
         "lng": 32.6014,
-        "year": 1922,
+        "year": 1923,
         "locationName": "Valley of the Kings, Luxor",
         "attribution": "Public domain"
       },
@@ -2115,7 +2115,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A royal coronation procession in London.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Coronation_of_Queen_Elizabeth_II_XVI.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/Coronation_of_Queen_Elizabeth_II_4.jpg",
         "lat": 51.5014,
         "lng": -0.1419,
         "year": 1953,
@@ -2150,7 +2150,7 @@
       {
         "timeguessrVersion": 4,
         "prompt": "A railway ceremony joins a continent.",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_spike_1869.jpg",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Golden_Spike_ceremony%2C_Promontory%2C_Utah%2C_May_10%2C_1869.jpg",
         "lat": 41.617,
         "lng": -112.551,
         "year": 1869,

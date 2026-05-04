@@ -2,7 +2,7 @@
   <section v-if="isAuthenticated">
     <div class="page-header">
       <div>
-        <span class="eyebrow">Daglige spill · 6 tilgjengelig</span>
+        <span class="eyebrow">Daglige spill · 7 tilgjengelig</span>
         <h1 class="display" style="font-size: clamp(40px, 6vw, 84px); margin: 12px 0 16px;">
           Dagens <em>spill</em>.
         </h1>
@@ -11,7 +11,7 @@
       <div class="page-header-meta">
         {{ dateLabel }}<br />
         {{ semesterLabel }}<br />
-        6 SPILL I DAG
+        7 SPILL I DAG
       </div>
     </div>
 
@@ -43,11 +43,20 @@
           </p>
           <a class="source-button" href="https://www.nytimes.com/games/connections" target="_blank" rel="noopener noreferrer">Inspirasjon</a>
         </div>
-        <div class="conn-mistakes-box">
-          <span class="eyebrow">Feil igjen</span>
-          <div class="mistake-dots">
-            <span v-for="i in 4" :key="i" :class="['mdot', i <= (4 - connMistakes) ? 'active' : '']" />
+        <div class="game-side-tools">
+          <button class="ab-help-btn" type="button" @click="toggleGameHelp('connections')" :class="{ active: isGameHelpOpen('connections') }">?</button>
+          <div class="conn-mistakes-box">
+            <span class="eyebrow">Feil igjen</span>
+            <div class="mistake-dots">
+              <span v-for="i in 4" :key="i" :class="['mdot', i <= (4 - connMistakes) ? 'active' : '']" />
+            </div>
           </div>
+        </div>
+      </div>
+      <div v-if="isGameHelpOpen('connections')" class="ab-help-panel game-help-panel">
+        <div v-for="row in gameHelp.connections" :key="row.title" class="ab-help-row">
+          <span :class="['ab-attr', 'ab-help-tile', row.status && `ab-${row.status}`]">{{ row.title }}</span>
+          <span class="ab-help-text">{{ row.text }}</span>
         </div>
       </div>
 
@@ -205,10 +214,19 @@
           </p>
           <a class="source-button" href="https://www.nytimes.com/games/wordle/index.html" target="_blank" rel="noopener noreferrer">Inspirasjon</a>
         </div>
-        <div class="wrd-legend">
-          <div class="wrd-legend-item"><span class="wrd-sq correct" /> Riktig posisjon</div>
-          <div class="wrd-legend-item"><span class="wrd-sq present" /> Feil posisjon</div>
-          <div class="wrd-legend-item"><span class="wrd-sq absent" /> Ikke i ordet</div>
+        <div class="game-side-tools">
+          <button class="ab-help-btn" type="button" @click="toggleGameHelp('wordle')" :class="{ active: isGameHelpOpen('wordle') }">?</button>
+          <div class="wrd-legend">
+            <div class="wrd-legend-item"><span class="wrd-sq correct" /> Riktig posisjon</div>
+            <div class="wrd-legend-item"><span class="wrd-sq present" /> Feil posisjon</div>
+            <div class="wrd-legend-item"><span class="wrd-sq absent" /> Ikke i ordet</div>
+          </div>
+        </div>
+      </div>
+      <div v-if="isGameHelpOpen('wordle')" class="ab-help-panel game-help-panel">
+        <div v-for="row in gameHelp.wordle" :key="row.title" class="ab-help-row">
+          <span :class="['ab-attr', 'ab-help-tile', row.status && `ab-${row.status}`]">{{ row.title }}</span>
+          <span class="ab-help-text">{{ row.text }}</span>
         </div>
       </div>
 
@@ -334,11 +352,20 @@
     <div v-if="activeNativeGame" class="sp-panel">
       <div class="native-game-panel">
         <div class="native-game-icon">{{ activeNativeGame.icon }}</div>
-        <h2 class="section-title">{{ activeNativeGame.name }}</h2>
+        <div class="native-title-row">
+          <h2 class="section-title">{{ activeNativeGame.name }}</h2>
+          <button class="ab-help-btn" type="button" @click="toggleGameHelp(activeGame)" :class="{ active: isGameHelpOpen(activeGame) }">?</button>
+        </div>
         <p class="sp-sub">
           {{ activeNativeGame.description }}
         </p>
         <a class="source-button" :href="activeNativeGame.url" target="_blank" rel="noopener noreferrer">Inspirasjon</a>
+        <div v-if="isGameHelpOpen(activeGame)" class="ab-help-panel game-help-panel native-help-panel">
+          <div v-for="row in gameHelp[activeGame]" :key="row.title" class="ab-help-row">
+            <span :class="['ab-attr', 'ab-help-tile', row.status && `ab-${row.status}`]">{{ row.title }}</span>
+            <span class="ab-help-text">{{ row.text }}</span>
+          </div>
+        </div>
 
         <div class="puzzle-library native-library">
           <div class="puzzle-library-head">
@@ -556,7 +583,101 @@
           </template>
         </div>
 
-        <div class="creator-wrap native-creator">
+        <div v-if="activeGame === 'artistburet'" class="native-game-body ab-body">
+          <template v-if="activeNativeGameState !== 'completed'">
+
+            <!-- Top bar with counter + help -->
+            <div class="ab-top-bar">
+              <p class="ab-counter">{{ MAX_ARTIST_GUESSES - artistGuesses.length }} av {{ MAX_ARTIST_GUESSES }} forsøk igjen</p>
+            </div>
+
+            <!-- Guess cards -->
+            <div class="ab-guesses">
+              <div v-for="(g, idx) in artistGuesses" :key="idx" class="ab-guess-card">
+                <div class="ab-guess-header">
+                  <div class="ab-avatar" :class="{ 'ab-avatar-won': g.correct }">{{ artistInitials(g.name) }}</div>
+                  <span class="ab-artist-name">{{ g.name }}</span>
+                  <span v-if="g.correct" class="ab-correct-badge">✓</span>
+                </div>
+                <div class="ab-attrs">
+                  <div :class="['ab-attr', `ab-${g.debutStatus}`]">
+                    <span class="ab-attr-label">ÅR</span>
+                    <span class="ab-attr-val">{{ g.debut }}<span v-if="g.debutStatus !== 'match'" class="ab-dir">{{ g.debutDirection === 'up' ? ' ↑' : ' ↓' }}</span></span>
+                  </div>
+                  <div :class="['ab-attr', `ab-${g.membersStatus}`]">
+                    <span class="ab-attr-label">ANTALL</span>
+                    <span class="ab-attr-val">{{ g.members }}</span>
+                  </div>
+                  <div :class="['ab-attr', `ab-${g.popularityStatus}`]">
+                    <span class="ab-attr-label">POPULARITET</span>
+                    <span class="ab-attr-val">#{{ g.popularity }}<span v-if="g.popularityStatus !== 'match'" class="ab-dir">{{ g.popularityDirection === 'up' ? ' ↑' : ' ↓' }}</span></span>
+                  </div>
+                  <div :class="['ab-attr', `ab-${g.genderStatus}`]">
+                    <span class="ab-attr-label">KJØNN</span>
+                    <span class="ab-attr-val">{{ g.gender }}</span>
+                  </div>
+                  <div :class="['ab-attr', `ab-${g.genreStatus}`]">
+                    <span class="ab-attr-label">SJANGER</span>
+                    <span class="ab-attr-val">{{ g.genre }}</span>
+                  </div>
+                  <div :class="['ab-attr', `ab-${g.countryStatus}`]">
+                    <span class="ab-attr-label">LAND</span>
+                    <span class="ab-attr-val ab-flag">{{ flagEmoji(g.country) }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Input -->
+            <div v-if="!artistDone" class="ab-input-wrap">
+              <div class="ab-input-row">
+                <div class="ab-input-container">
+                  <input
+                    v-model="artistInput"
+                    class="creator-input ab-search-input"
+                    placeholder="Skriv artistnavn..."
+                    autocomplete="off"
+                    @input="artistSearchSuggestions"
+                    @keyup.enter.prevent="artistSubmit"
+                    @blur="artistDeferHideSuggestions"
+                  />
+                  <div v-if="artistSuggestions.length" class="ab-suggestions">
+                    <button
+                      v-for="s in artistSuggestions"
+                      :key="s.name"
+                      type="button"
+                      class="ab-suggestion"
+                      @mousedown.prevent="artistSelectSuggestion(s)"
+                    >
+                      <span class="ab-sug-initials">{{ artistInitials(s.name) }}</span>
+                      <span>{{ s.name }}</span>
+                    </button>
+                  </div>
+                </div>
+                <button class="conn-btn conn-btn-primary" type="button" @click="artistSubmit">Gjett</button>
+              </div>
+              <p v-if="artistAlreadyGuessed" class="wrd-message">Allerede gjettet!</p>
+              <p v-if="artistNotFound" class="wrd-message">Fant ikke artisten i listen.</p>
+            </div>
+
+            <!-- Done -->
+            <div v-if="artistDone" class="sp-result compact-result">
+              <div class="sp-result-icon">{{ artistWon ? '♪' : '✕' }}</div>
+              <h3>{{ artistWon ? `${artistAnswer.name}!` : `Svaret var: ${artistAnswer.name}` }}</h3>
+              <p><strong>{{ artistScore }} poeng</strong></p>
+              <p v-if="nativeSubmitted.artistburet" class="score-saved">✓ Poeng registrert!</p>
+              <p v-else-if="!isAuthenticated" class="score-saved" style="color:var(--ink-mute)">Logg inn for å registrere poeng</p>
+            </div>
+          </template>
+
+          <div v-if="activeNativeGameState === 'completed'" class="sp-result compact-result">
+            <div class="sp-result-icon">✓</div>
+            <h3>Allerede fullført</h3>
+            <p>Du har allerede spilt dette spillet i dag.</p>
+          </div>
+        </div>
+
+        <div v-if="activeGame !== 'artistburet'" class="creator-wrap native-creator">
           <template v-if="isAuthenticated">
             <button class="creator-toggle" @click="toggleCreator">
               <span class="creator-toggle-icon">{{ creatorOpen ? '−' : '+' }}</span>
@@ -704,6 +825,55 @@ import { subscribeToUpdates } from '../services/realtime'
 
 const activeGame = ref('connections')
 const { dateLabel, semesterLabel } = useLiveDateInfo({ intervalMs: 60000 })
+const gameHelpOpen = ref({})
+const gameHelp = {
+  connections: [
+    { title: 'MÅL', text: 'Finn fire grupper med fire ord som hører sammen.' },
+    { title: 'SPILL', text: 'Velg nøyaktig fire ord og send inn. Riktige grupper låses og fjernes fra brettet.' },
+    { title: 'FEIL', text: 'Feil gruppe koster ett forsøk. Fire feil avslutter spillet.' },
+    { title: 'POENG', text: 'Du får 1000 poeng minus 125 for hver feil. Tapt spill gir 0 poeng.' },
+  ],
+  wordle: [
+    { title: 'MÅL', text: 'Gjett det fem bokstaver lange ordet på maks seks forsøk.' },
+    { title: 'GRØNN', status: 'match', text: 'Riktig bokstav på riktig plass.' },
+    { title: 'GUL', status: 'close', text: 'Riktig bokstav, men feil plass.' },
+    { title: 'GRÅ', status: 'no-match', text: 'Bokstaven er ikke i ordet.' },
+    { title: 'ORD', text: 'Gjetningen må være et gyldig ord i ordlisten.' },
+    { title: 'POENG', text: 'Du får 1000 poeng minus 125 for hvert forsøk brukt før riktig svar. Seks feil gir 0 poeng.' },
+  ],
+  merburet: [
+    { title: 'MÅL', text: 'Velg siden som har riktig størst tallverdi i hver duell.' },
+    { title: 'RUNDER', text: 'Du spiller alle rundene i valgt spill. Etter hvert svar går spillet automatisk videre.' },
+    { title: 'POENG', text: 'Hvert riktig svar gir 200 poeng. Feil svar gir 0 poeng for den runden.' },
+  ],
+  latburet: [
+    { title: 'MÅL', text: 'Finn sangtittelen ved å lytte til korte klipp.' },
+    { title: 'KLIPP', text: 'Du starter med 0,5 sekunder. Feil svar eller hopp over låser opp lengre klipp: 1, 2, 4, 8 og 10 sekunder.' },
+    { title: 'SVAR', text: 'Skriv eller velg sangtittel fra forslagene. Bare tittelen sjekkes.' },
+    { title: 'POENG', text: 'Riktig svar gir opptil 1000 poeng, minus 150 for hvert lengre klipp som er låst opp. Bom på siste nivå gir 0 poeng.' },
+  ],
+  kryssburet: [
+    { title: 'MÅL', text: 'Fyll inn hele musikk-kryssordet med riktige sangtitler.' },
+    { title: 'SPILL', text: 'Klikk på en rute eller ledetråd for å velge ord. Spill av lydklippet når det finnes.' },
+    { title: 'HINT', text: 'Hint fyller inn aktiv bokstav i valgt ord.' },
+    { title: 'POENG', text: 'Et komplett riktig kryssord gir 1000 poeng. Innsending med feil gir 0 poeng.' },
+  ],
+  tidsburet: [
+    { title: 'MÅL', text: 'Gjett både årstall og sted for bildet eller hendelsen.' },
+    { title: 'KART', text: 'Sett markøren på kartet og skriv inn år før du sender inn.' },
+    { title: 'POENG', text: 'Hver runde gir opptil 500 årspoeng og 500 kartpoeng. År mister 20 poeng per år unna, kart mister 1 poeng per 10 km unna.' },
+    { title: 'TOTALT', text: 'Har spillet flere runder, summeres poengene fra alle rundene.' },
+  ],
+  artistburet: [
+    { title: 'MÅL', text: 'Gjett dagens artist eller gruppe på maks 10 forsøk.' },
+    { title: 'HINT', text: 'Etter hver gjetning får du treff på debutår, antall medlemmer, popularitet, kjønn, sjanger og land.' },
+    { title: 'GRØNN', status: 'match', text: 'Attributtet matcher riktig artist.' },
+    { title: 'GUL', status: 'close', text: 'Nær match: debutår innen ±5 år eller popularitet innen ±50 plasser.' },
+    { title: 'GRÅ', status: 'no-match', text: 'Attributtet matcher ikke riktig artist.' },
+    { title: 'PILER', text: 'Pil opp eller ned viser retningen mot riktig debutår eller popularitetsrangering.' },
+    { title: 'POENG', text: 'Riktig på første forsøk gir 1000 poeng. Hvert ekstra forsøk trekker 100 poeng. Ingen riktig gjetning på 10 forsøk gir 0 poeng.' },
+  ],
+}
 const nativeGames = [
   {
     id: 'merburet',
@@ -737,11 +907,19 @@ const nativeGames = [
     url: 'https://timeguessr.com',
     icon: '◷',
   },
+  {
+    id: 'artistburet',
+    name: 'Artistburet',
+    description: 'Gjett dagens artist på 10 forsøk ved hjelp av hint.',
+    gameName: 'ARTISTBURET',
+    url: 'https://spotle.io',
+    icon: '♪',
+  },
 ]
 const activeNativeGame = computed(() => nativeGames.find(game => game.id === activeGame.value))
-const nativePuzzles = ref({ merburet: [], latburet: [], kryssburet: [], tidsburet: [] })
+const nativePuzzles = ref({ merburet: [], latburet: [], kryssburet: [], tidsburet: [], artistburet: [] })
 const selectedNativeIds = ref({})
-const completedNativeIds = ref({ merburet: [], latburet: [], kryssburet: [], tidsburet: [] })
+const completedNativeIds = ref({ merburet: [], latburet: [], kryssburet: [], tidsburet: [], artistburet: [] })
 const nativeSubmitted = ref({})
 const activeNativePuzzles = computed(() => nativePuzzles.value[activeGame.value] ?? [])
 const activeNativeCompletedIds = computed(() => completedNativeIds.value[activeGame.value] ?? [])
@@ -757,6 +935,17 @@ const activeNativeGameState = computed(() => {
   const id = selectedNativeIds.value[activeGame.value]
   return id && activeNativeCompletedIds.value.includes(id) ? 'completed' : 'playing'
 })
+
+function toggleGameHelp(gameId) {
+  gameHelpOpen.value = {
+    ...gameHelpOpen.value,
+    [gameId]: !gameHelpOpen.value[gameId],
+  }
+}
+
+function isGameHelpOpen(gameId) {
+  return Boolean(gameHelpOpen.value[gameId])
+}
 
 const PROGRESS_KEY_PREFIX = 'glassburet:spill-progress'
 
@@ -855,6 +1044,7 @@ function loadNativePuzzle(gameId, puzzle) {
   if (gameId === 'latburet') applySongPuzzle(payload)
   if (gameId === 'kryssburet') applyCwPuzzle(payload)
   if (gameId === 'tidsburet') applyTimePuzzle(payload)
+  if (gameId === 'artistburet') applyArtistPuzzle(payload)
 }
 
 function saveNativeProgress(gameId, data) {
@@ -1288,26 +1478,33 @@ function cwMoveByArrow(key) {
   if (cwDone.value) return
   if (!cwPrimeActiveCell()) return
   const moves = {
-    ArrowLeft: [0, -1],
-    ArrowRight: [0, 1],
-    ArrowUp: [-1, 0],
-    ArrowDown: [1, 0],
+    ArrowLeft: [0, -1, 'A'],
+    ArrowRight: [0, 1, 'A'],
+    ArrowUp: [-1, 0, 'D'],
+    ArrowDown: [1, 0, 'D'],
   }
   const move = moves[key]
   if (!move) return
-  const [rowStep, colStep] = move
-  const nextRow = cwActiveCell.value.row + rowStep
-  const nextCol = cwActiveCell.value.col + colStep
-  const nextCell = cwGrid.value[nextRow]?.[nextCol]
-  if (!nextCell || nextCell.black) return
+  const [rowStep, colStep, preferredDir] = move
+  let nextRow = cwActiveCell.value.row + rowStep
+  let nextCol = cwActiveCell.value.col + colStep
+  let nextCell = cwGrid.value[nextRow]?.[nextCol]
+  while (nextCell && nextCell.black) {
+    nextRow += rowStep
+    nextCol += colStep
+    nextCell = cwGrid.value[nextRow]?.[nextCol]
+  }
+  if (!nextCell) return
   const refs = nextCell.clueRefs || []
   const prevSelection = cwSelected.value
   const sameSelection = prevSelection && refs.some(r => r.n === prevSelection.n && r.dir === prevSelection.dir)
   if (!sameSelection) cwStopPreview()
   cwActiveCell.value = { row: nextRow, col: nextCol }
   if (!refs.length) return
+  const preferred = refs.find(r => r.dir === preferredDir)
   const sameDir = prevSelection && refs.find(r => r.dir === prevSelection.dir)
-  cwSelected.value = sameDir ? { n: sameDir.n, dir: sameDir.dir } : { n: refs[0].n, dir: refs[0].dir }
+  const nextSelection = preferred || sameDir || refs[0]
+  cwSelected.value = { n: nextSelection.n, dir: nextSelection.dir }
 }
 
 async function cwCheckWin() {
@@ -1523,6 +1720,115 @@ function showTimeAnswerMarker() {
     fillColor: '#0d3b2e',
     fillOpacity: 0.85,
   }).addTo(_timeMap)
+}
+
+// ——— ARTISTBURET ——————————————————————————————————————
+
+const artistPool = ref([])
+const artistAnswer = ref({})
+const artistGuesses = ref([])
+const artistDone = ref(false)
+const artistWon = ref(false)
+const artistInput = ref('')
+const artistSuggestions = ref([])
+const artistAlreadyGuessed = ref(false)
+const artistNotFound = ref(false)
+const MAX_ARTIST_GUESSES = 10
+let _artistSuggestTimer = null
+
+const artistScore = computed(() => {
+  if (!artistWon.value) return 0
+  return Math.max(0, 1000 - ((artistGuesses.value.length - 1) * 100))
+})
+
+function artistInitials(name) {
+  if (!name) return '?'
+  return name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()
+}
+
+function flagEmoji(countryCode) {
+  if (!countryCode || countryCode.length !== 2) return ''
+  return String.fromCodePoint(...countryCode.toUpperCase().split('').map(c => c.charCodeAt(0) + 127397))
+}
+
+function applyArtistPuzzle(payload) {
+  artistPool.value = Array.isArray(payload.artists) ? payload.artists : []
+  artistAnswer.value = {
+    name: payload.answer,
+    debut: payload.debut,
+    members: payload.members,
+    gender: payload.gender,
+    genre: payload.genre,
+    country: payload.country,
+    popularity: payload.popularity,
+  }
+  artistGuesses.value = []
+  artistDone.value = false
+  artistWon.value = false
+  artistInput.value = ''
+  artistSuggestions.value = []
+  artistAlreadyGuessed.value = false
+  artistNotFound.value = false
+  const saved = loadProgress('artistburet', selectedNativeIds.value.artistburet)
+  if (saved) {
+    artistGuesses.value = Array.isArray(saved.guesses) ? saved.guesses : []
+    artistDone.value = Boolean(saved.done)
+    artistWon.value = Boolean(saved.won)
+  }
+}
+
+function artistSearchSuggestions() {
+  if (_artistSuggestTimer) clearTimeout(_artistSuggestTimer)
+  const query = artistInput.value.trim().toLowerCase()
+  if (query.length < 1) { artistSuggestions.value = []; return }
+  _artistSuggestTimer = setTimeout(() => {
+    const used = new Set(artistGuesses.value.map(g => g.name?.toLowerCase()))
+    artistSuggestions.value = artistPool.value
+      .filter(a => a.name.toLowerCase().includes(query) && !used.has(a.name.toLowerCase()))
+      .slice(0, 6)
+  }, 80)
+}
+
+function artistSelectSuggestion(artist) {
+  artistInput.value = artist.name
+  artistSuggestions.value = []
+}
+
+function artistDeferHideSuggestions() {
+  setTimeout(() => { artistSuggestions.value = [] }, 180)
+}
+
+async function artistSubmit() {
+  if (artistDone.value) return
+  const name = artistInput.value.trim()
+  if (!name) return
+  artistAlreadyGuessed.value = false
+  artistNotFound.value = false
+  if (artistGuesses.value.some(g => g.name?.toLowerCase() === name.toLowerCase())) {
+    artistAlreadyGuessed.value = true
+    return
+  }
+  artistInput.value = ''
+  artistSuggestions.value = []
+  const result = await puzzleApi.validateNative('ARTISTBURET', selectedNativeIds.value.artistburet, { guess: name })
+  if (result.notFound) {
+    artistNotFound.value = true
+    return
+  }
+  artistGuesses.value = [...artistGuesses.value, result]
+  saveNativeProgress('artistburet', { guesses: artistGuesses.value, done: artistDone.value, won: artistWon.value })
+  if (result.correct) {
+    artistWon.value = true
+    artistDone.value = true
+    saveNativeProgress('artistburet', { guesses: artistGuesses.value, done: artistDone.value, won: artistWon.value })
+    if (isAuthenticated.value) submitNativeScore('artistburet', artistScore.value)
+    return
+  }
+  if (artistGuesses.value.length >= MAX_ARTIST_GUESSES) {
+    artistDone.value = true
+    saveNativeProgress('artistburet', { guesses: artistGuesses.value, done: artistDone.value, won: artistWon.value })
+    if (isAuthenticated.value) submitNativeScore('artistburet', 0)
+  }
 }
 
 // ——— CONNECTIONS ——————————————————————————————————————
@@ -2305,7 +2611,7 @@ function handleKeydown(e) {
       } else {
         cwMoveCursor(-1)
       }
-    } else if (/^[a-zA-ZæøåÆØÅ]$/.test(k)) {
+    } else if (/^[a-zA-ZæøåÆØÅ0-9]$/.test(k)) {
       e.preventDefault()
       if (!cwPrimeActiveCell()) return
       cwInput.value = { ...cwInput.value, [`${cwActiveCell.value.row},${cwActiveCell.value.col}`]: k.toUpperCase() }
@@ -2561,6 +2867,12 @@ onUnmounted(() => {
   align-items: flex-start;
   margin-bottom: 28px;
 }
+.game-side-tools {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 14px;
+}
 .conn-mistakes-box { text-align: right; }
 .mistake-dots { display: flex; gap: 8px; justify-content: flex-end; margin-top: 10px; }
 .mdot {
@@ -2762,6 +3074,15 @@ onUnmounted(() => {
   font-family: var(--serif);
   font-size: 32px;
   color: var(--accent-2);
+}
+.native-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.native-title-row .section-title {
+  margin: 0;
 }
 .native-game-body {
   width: 100%;
@@ -3289,5 +3610,225 @@ onUnmounted(() => {
   .cw-creator-layout { grid-template-columns: 1fr; }
   .cw-creator-preview { position: static; }
   .cw-creator-position-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ── Artistburet ─────────────────────────────── */
+.ab-body { padding-top: 4px; }
+
+.ab-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.ab-counter {
+  flex: 1;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.ab-help-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line-soft);
+  background: var(--bg);
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-mute);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+.ab-help-btn:hover, .ab-help-btn.active { border-color: var(--accent); color: var(--accent); }
+
+.ab-help-panel {
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.game-help-panel {
+  width: 100%;
+  max-width: 720px;
+  text-align: left;
+}
+.native-help-panel {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+.ab-help-row { display: flex; align-items: center; gap: 12px; }
+.ab-help-tile {
+  min-width: 68px;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+  flex-shrink: 0;
+}
+.ab-help-text { font-size: 13px; color: var(--ink-mute); }
+.ab-help-note {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+  margin-top: 4px;
+  letter-spacing: 0.06em;
+}
+
+/* Guess cards */
+.ab-guesses { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.ab-guess-card {
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.ab-guess-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line-soft);
+  background: var(--paper);
+}
+.ab-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  border: 2px solid var(--line-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-mute);
+  flex-shrink: 0;
+}
+.ab-avatar.ab-avatar-won { border-color: #1e7a4a; color: #1e7a4a; }
+.ab-artist-name {
+  font-size: 15px;
+  font-weight: 700;
+  flex: 1;
+}
+.ab-correct-badge {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: #1e7a4a;
+  font-weight: 700;
+}
+
+/* Attribute grid */
+.ab-attrs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+.ab-attr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 14px 8px;
+  border-right: 1px solid rgba(0,0,0,0.06);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  background: var(--bg-soft);
+  text-align: center;
+}
+.ab-attr:nth-child(3n) { border-right: 0; }
+.ab-attr:nth-last-child(-n+3) { border-bottom: 0; }
+.ab-attr-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-mute);
+  opacity: 0.75;
+}
+.ab-attr-val {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.ab-flag { font-size: 22px; line-height: 1; }
+.ab-dir { font-size: 12px; }
+
+/* Color states */
+.ab-match { background: #1e7a4a !important; }
+.ab-match .ab-attr-label { color: rgba(255,255,255,0.7); opacity: 1; }
+.ab-match .ab-attr-val { color: #fff; }
+.ab-close { background: #b87d1c !important; }
+.ab-close .ab-attr-label { color: rgba(255,255,255,0.7); opacity: 1; }
+.ab-close .ab-attr-val { color: #fff; }
+.ab-no-match { background: var(--bg-soft); }
+
+/* Input */
+.ab-input-wrap { margin-bottom: 8px; }
+.ab-input-row { display: flex; gap: 10px; align-items: flex-start; }
+.ab-input-container { position: relative; flex: 1; }
+.ab-search-input { font-size: 15px; padding: 12px 16px; }
+.ab-suggestions {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--bg);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  z-index: 20;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+.ab-suggestion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 11px 14px;
+  border: 0;
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.ab-suggestion:hover { background: var(--paper); }
+.ab-sug-initials {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  border: 1px solid var(--line-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .ab-attrs { grid-template-columns: repeat(3, 1fr); }
+  .ab-attr { padding: 10px 4px; }
+  .ab-attr-val { font-size: 12px; }
+  .ab-flag { font-size: 18px; }
+  .ab-artist-name { font-size: 13px; }
 }
 </style>

@@ -32,7 +32,8 @@ public class NativePuzzleService {
             GameName.MORE_OR_LESS, "games/native/more-or-less.json",
             GameName.SONGLESS, "games/native/songless.json",
             GameName.CROSSTUNES, "games/native/crosstunes.json",
-            GameName.TIMEGUESSR, "games/native/timeguessr.json"
+            GameName.TIMEGUESSR, "games/native/timeguessr.json",
+            GameName.ARTISTBURET, "games/native/artistburet.json"
     );
 
     private final Map<GameName, List<String>> dailyPayloads;
@@ -52,11 +53,26 @@ public class NativePuzzleService {
             }
             try (InputStream input = resource.getInputStream()) {
                 JsonNode root = objectMapper.readTree(input);
+                List<String> gamePayloads = new ArrayList<>();
                 if (root.isArray()) {
-                    List<String> gamePayloads = new ArrayList<>();
                     for (JsonNode payload : root) {
                         gamePayloads.add(objectMapper.writeValueAsString(payload));
                     }
+                } else if (root.has("daily")) {
+                    // Compact format: { "pool": [...], "daily": [...] }
+                    // Inject pool into each daily entry so validate can access it.
+                    JsonNode pool = root.path("pool");
+                    for (JsonNode daily : root.withArray("daily")) {
+                        if (daily.isObject()) {
+                            ObjectNode combined = (ObjectNode) daily.deepCopy();
+                            if (!pool.isMissingNode()) {
+                                combined.set("artists", pool);
+                            }
+                            gamePayloads.add(objectMapper.writeValueAsString(combined));
+                        }
+                    }
+                }
+                if (!gamePayloads.isEmpty()) {
                     payloads.put(entry.getKey(), gamePayloads);
                 }
             } catch (IOException e) {
@@ -86,6 +102,7 @@ public class NativePuzzleService {
                 .map(puzzle -> refreshCrosstunesDailyIfNeeded(gameName, puzzle, today))
                 .map(puzzle -> refreshSonglessDailyIfNeeded(gameName, puzzle, today))
                 .map(puzzle -> refreshTimeguessrDailyIfNeeded(gameName, puzzle, today))
+                .map(puzzle -> refreshArtistburetDailyIfNeeded(gameName, puzzle, today))
                 .orElseGet(() -> createDaily(gameName, today));
     }
 
@@ -135,7 +152,7 @@ public class NativePuzzleService {
     }
 
     private NativePuzzle refreshCrosstunesDailyIfNeeded(GameName gameName, NativePuzzle puzzle, LocalDate date) {
-        if (gameName != GameName.CROSSTUNES || puzzle.getPayloadJson() == null || puzzle.getPayloadJson().contains("\"dailySetVersion\":8")) {
+        if (gameName != GameName.CROSSTUNES || puzzle.getPayloadJson() == null || puzzle.getPayloadJson().contains("\"dailySetVersion\":9")) {
             return puzzle;
         }
         puzzle.setPayloadJson(dailyPayloadFor(gameName, date));
@@ -143,7 +160,7 @@ public class NativePuzzleService {
     }
 
     private NativePuzzle refreshSonglessDailyIfNeeded(GameName gameName, NativePuzzle puzzle, LocalDate date) {
-        if (gameName != GameName.SONGLESS || puzzle.getPayloadJson() == null || puzzle.getPayloadJson().contains("\"songlessVersion\":2")) {
+        if (gameName != GameName.SONGLESS || puzzle.getPayloadJson() == null || puzzle.getPayloadJson().contains("\"songlessVersion\":3")) {
             return puzzle;
         }
         puzzle.setPayloadJson(dailyPayloadFor(gameName, date));
@@ -152,6 +169,14 @@ public class NativePuzzleService {
 
     private NativePuzzle refreshTimeguessrDailyIfNeeded(GameName gameName, NativePuzzle puzzle, LocalDate date) {
         if (gameName != GameName.TIMEGUESSR || puzzle.getPayloadJson() == null || puzzle.getPayloadJson().contains("\"timeguessrVersion\":4")) {
+            return puzzle;
+        }
+        puzzle.setPayloadJson(dailyPayloadFor(gameName, date));
+        return repository.save(puzzle);
+    }
+
+    private NativePuzzle refreshArtistburetDailyIfNeeded(GameName gameName, NativePuzzle puzzle, LocalDate date) {
+        if (gameName != GameName.ARTISTBURET || puzzle.getPayloadJson() == null || puzzle.getPayloadJson().contains("\"artistburetVersion\":2")) {
             return puzzle;
         }
         puzzle.setPayloadJson(dailyPayloadFor(gameName, date));
@@ -183,6 +208,7 @@ public class NativePuzzleService {
             case SONGLESS -> "Daglig Låtburet";
             case CROSSTUNES -> "Daglig Kryssburet";
             case TIMEGUESSR -> "Daglig Tidsburet";
+            case ARTISTBURET -> "Daglig Artistburet";
             default -> "Daglig Spill";
         };
     }
@@ -204,6 +230,7 @@ public class NativePuzzleService {
                 case SONGLESS -> validateSongless(payload, body);
                 case CROSSTUNES -> validateCrosstunes(payload, body);
                 case TIMEGUESSR -> validateTimeguessr(payload, body);
+                case ARTISTBURET -> validateArtistburet(payload, body);
                 default -> throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
             };
         } catch (ResponseStatusException e) {
@@ -254,6 +281,15 @@ public class NativePuzzleService {
             }
             if (gameName == GameName.TIMEGUESSR) {
                 hideTimeguessrAnswer(root);
+            }
+            if (gameName == GameName.ARTISTBURET) {
+                root.remove("answer");
+                root.remove("debut");
+                root.remove("members");
+                root.remove("gender");
+                root.remove("genre");
+                root.remove("country");
+                root.remove("popularity");
             }
             return objectMapper.writeValueAsString(root);
         } catch (Exception e) {
@@ -343,6 +379,60 @@ public class NativePuzzleService {
         node.remove("lat");
         node.remove("lng");
         node.remove("locationName");
+    }
+
+    private Map<String, Object> validateArtistburet(JsonNode payload, Map<String, Object> body) {
+        String guess = String.valueOf(body.getOrDefault("guess", "")).trim().toLowerCase();
+        ArrayNode artists = (ArrayNode) payload.path("artists");
+        JsonNode guessedArtist = null;
+        for (JsonNode artist : artists) {
+            if (artist.path("name").asText("").toLowerCase().equals(guess)) {
+                guessedArtist = artist;
+                break;
+            }
+        }
+        if (guessedArtist == null) {
+            return Map.of("correct", false, "notFound", true);
+        }
+        String answer = payload.path("answer").asText("");
+        boolean correct = answer.toLowerCase().equals(guess);
+        int guessDebut = guessedArtist.path("debut").asInt();
+        int answerDebut = payload.path("debut").asInt();
+        int guessPop = guessedArtist.path("popularity").asInt();
+        int answerPop = payload.path("popularity").asInt();
+        Map<String, Object> result = new java.util.HashMap<>();
+        result.put("correct", correct);
+        result.put("notFound", false);
+        result.put("name", guessedArtist.path("name").asText());
+        result.put("debut", guessDebut);
+        result.put("members", guessedArtist.path("members").asText());
+        result.put("gender", guessedArtist.path("gender").asText());
+        result.put("genre", guessedArtist.path("genre").asText());
+        result.put("country", guessedArtist.path("country").asText());
+        result.put("popularity", guessPop);
+        result.put("imageUrl", guessedArtist.path("imageUrl").asText(""));
+        if (correct) {
+            result.put("debutStatus", "match");
+            result.put("debutDirection", "none");
+            result.put("popularityStatus", "match");
+            result.put("popularityDirection", "none");
+            result.put("membersStatus", "match");
+            result.put("genderStatus", "match");
+            result.put("genreStatus", "match");
+            result.put("countryStatus", "match");
+        } else {
+            int debutDiff = Math.abs(guessDebut - answerDebut);
+            result.put("debutStatus", guessDebut == answerDebut ? "match" : (debutDiff <= 5 ? "close" : "no-match"));
+            result.put("debutDirection", guessDebut < answerDebut ? "up" : (guessDebut > answerDebut ? "down" : "none"));
+            int popDiff = Math.abs(guessPop - answerPop);
+            result.put("popularityStatus", guessPop == answerPop ? "match" : (popDiff <= 50 ? "close" : "no-match"));
+            result.put("popularityDirection", guessPop > answerPop ? "down" : (guessPop < answerPop ? "up" : "none"));
+            result.put("membersStatus", guessedArtist.path("members").asText().equals(payload.path("members").asText()) ? "match" : "no-match");
+            result.put("genderStatus", guessedArtist.path("gender").asText().equals(payload.path("gender").asText()) ? "match" : "no-match");
+            result.put("genreStatus", guessedArtist.path("genre").asText().equals(payload.path("genre").asText()) ? "match" : "no-match");
+            result.put("countryStatus", guessedArtist.path("country").asText().equals(payload.path("country").asText()) ? "match" : "no-match");
+        }
+        return result;
     }
 
     private double distanceKm(double lat1, double lng1, double lat2, double lng2) {
