@@ -15,6 +15,9 @@ public class QuoteDto {
 
     private boolean featured;
 
+    // Optional image URL (stored under /uploads/ on the server)
+    private String imageUrl;
+
     public String getText() { return text; }
     public void setText(String text) { this.text = text; }
     public String getAuthor() { return author; }
@@ -24,4 +27,6 @@ public class QuoteDto {
 
     public String getCreatedAt() { return createdAt; }
     public void setCreatedAt(String createdAt) { this.createdAt = createdAt; }
+    public String getImageUrl() { return imageUrl; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 }

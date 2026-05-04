@@ -20,7 +20,11 @@ public class QuoteService {
     }
 
     public List<Quote> findAll() {
-        return quoteRepository.findAll();
+        // Return newest quotes first. Call repository.findAll() (keeps tests/stubs happy),
+        // then sort in-memory to ensure deterministic newest-first ordering.
+        var list = new java.util.ArrayList<>(quoteRepository.findAll());
+        list.sort((a, b) -> b.getCreatedAt().compareTo(a.getCreatedAt()));
+        return list;
     }
 
     public Quote findById(Long id) {
@@ -47,6 +51,7 @@ public class QuoteService {
         Quote quote = new Quote();
         quote.setText(dto.getText());
         quote.setAuthor(dto.getAuthor());
+        quote.setImageUrl(dto.getImageUrl());
         quote.setFeatured(dto.isFeatured());
         if (dto.getCreatedAt() != null && !dto.getCreatedAt().isBlank()) {
             try {
@@ -62,6 +67,7 @@ public class QuoteService {
         Quote quote = findById(id);
         quote.setText(dto.getText());
         quote.setAuthor(dto.getAuthor());
+        quote.setImageUrl(dto.getImageUrl());
         quote.setFeatured(dto.isFeatured());
         if (dto.getCreatedAt() != null && !dto.getCreatedAt().isBlank()) {
             try {

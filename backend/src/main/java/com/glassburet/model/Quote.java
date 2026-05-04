@@ -33,6 +33,10 @@ public class Quote {
     @Column(name = "member_name")
     private Set<String> likes = new HashSet<>();
 
+    // Optional image URL pointing to an uploaded file (e.g. /uploads/abc.jpg)
+    @Column(nullable = true)
+    private String imageUrl;
+
     public Quote() {}
 
     public Long getId() { return id; }
@@ -46,4 +50,6 @@ public class Quote {
     public void setFeatured(boolean featured) { this.featured = featured; }
     public Set<String> getLikes() { return likes; }
     public void setLikes(Set<String> likes) { this.likes = likes; }
+    public String getImageUrl() { return imageUrl; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 }
