@@ -20,14 +20,11 @@ public class QuoteService {
     }
 
     public List<Quote> findAll() {
-        // Return newest quotes first
-        try {
-            org.springframework.data.domain.Sort sort = org.springframework.data.domain.Sort.by(org.springframework.data.domain.Sort.Direction.DESC, "createdAt");
-            return quoteRepository.findAll(sort);
-        } catch (NoSuchMethodError | UnsupportedOperationException e) {
-            // Fallback to default
-            return quoteRepository.findAll();
-        }
+        // Return newest quotes first. Call repository.findAll() (keeps tests/stubs happy),
+        // then sort in-memory to ensure deterministic newest-first ordering.
+        var list = quoteRepository.findAll();
+        list.sort((a, b) -> b.getCreatedAt().compareTo(a.getCreatedAt()));
+        return list;
     }
 
     public Quote findById(Long id) {
