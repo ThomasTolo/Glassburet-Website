@@ -20,7 +20,14 @@ public class QuoteService {
     }
 
     public List<Quote> findAll() {
-        return quoteRepository.findAll();
+        // Return newest quotes first
+        try {
+            org.springframework.data.domain.Sort sort = org.springframework.data.domain.Sort.by(org.springframework.data.domain.Sort.Direction.DESC, "createdAt");
+            return quoteRepository.findAll(sort);
+        } catch (NoSuchMethodError | UnsupportedOperationException e) {
+            // Fallback to default
+            return quoteRepository.findAll();
+        }
     }
 
     public Quote findById(Long id) {
@@ -47,6 +54,7 @@ public class QuoteService {
         Quote quote = new Quote();
         quote.setText(dto.getText());
         quote.setAuthor(dto.getAuthor());
+        quote.setImageUrl(dto.getImageUrl());
         quote.setFeatured(dto.isFeatured());
         if (dto.getCreatedAt() != null && !dto.getCreatedAt().isBlank()) {
             try {
@@ -62,6 +70,7 @@ public class QuoteService {
         Quote quote = findById(id);
         quote.setText(dto.getText());
         quote.setAuthor(dto.getAuthor());
+        quote.setImageUrl(dto.getImageUrl());
         quote.setFeatured(dto.isFeatured());
         if (dto.getCreatedAt() != null && !dto.getCreatedAt().isBlank()) {
             try {

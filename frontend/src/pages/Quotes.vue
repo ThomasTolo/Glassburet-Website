@@ -26,6 +26,9 @@
           <input type="date" v-model="newQuote.createdAt" class="admin-input" style="margin-top:6px;" />
         </label>
         <label class="admin-check"><input type="checkbox" v-model="newQuote.featured" /> Sett som dagens quote</label>
+        <label style="font-size:13px;color:var(--ink-mute);display:flex;flex-direction:column;gap:6px;">Bilde (valgfritt)
+          <input type="file" accept="image/*" @change="onNewFileChange" />
+        </label>
         <div class="admin-actions">
           <button type="button" class="btn-secondary" @click="showCreate = false">Avbryt</button>
           <button type="submit" class="btn-primary" :disabled="creating">{{ creating ? 'Lagrer…' : 'Publiser' }}</button>
@@ -38,6 +41,7 @@
         <span class="quote-number">№ {{ String(idx + 1).padStart(2, '0') }}</span>
         <span v-if="isToday(quote.createdAt)" class="quote-day-tag">⭐ DAGENS</span>
         <p class="quote-text">"{{ quote.text }}"</p>
+        <img v-if="quote.imageUrl" :src="resolveMediaUrl(quote.imageUrl)" class="quote-image" alt="Quote image" />
         <div class="quote-foot">
           <span>— {{ quote.author }}</span>
           <span v-if="quote.createdAt">{{ formatDate(quote.createdAt) }}</span>
@@ -65,6 +69,9 @@
         <form @submit.prevent="saveEdit">
           <textarea v-model="editForm.text" class="admin-input" rows="3" required></textarea>
           <input v-model="editForm.author" class="admin-input" required />
+          <label style="font-size:13px;color:var(--ink-mute);display:flex;flex-direction:column;gap:6px;">Bilde (valgfritt)
+            <input type="file" accept="image/*" @change="onEditFileChange" />
+          </label>
           <label style="font-size:13px;color:var(--ink-mute);">Dato for sitatet
             <input type="date" v-model="editForm.createdAt" class="admin-input" style="margin-top:6px;" />
           </label>
@@ -81,7 +88,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { quoteApi } from '../services/api'
+import { quoteApi, galleryApi, resolveMediaUrl } from '../services/api'
 import { isAuthenticated, isAdminOrAbove, displayName } from '../services/authState'
 import { useLiveDateInfo } from '../composables/useLiveDateInfo'
 import { subscribeToUpdates } from '../services/realtime'
@@ -90,10 +97,12 @@ const quotes = ref([])
 const showCreate = ref(false)
 const creating = ref(false)
 const newQuote = ref({ text: '', author: '', featured: false, createdAt: null })
+const newQuoteFile = ref(null)
 const { dateLabel, semesterLabel } = useLiveDateInfo({ intervalMs: 60000 })
 
 const editingQuote = ref(null)
-const editForm = ref({ text: '', author: '', featured: false, createdAt: null })
+const editForm = ref({ text: '', author: '', featured: false, createdAt: null, imageUrl: null })
+const editFile = ref(null)
 const saving = ref(false)
 const quoteTones = ['forest', 'paper', 'rust', 'cream', 'ink', 'gold', 'sage', 'clay']
 const quoteShapes = ['hero', 'wide', 'stack', 'spotlight', 'small', 'tall', 'wide', 'small']
@@ -144,10 +153,21 @@ const createQuote = async () => {
   creating.value = true
   try {
     const payload = { ...newQuote.value }
+    // handle optional file upload first
+    if (newQuoteFile.value) {
+      const fd = new FormData()
+      fd.append('file', newQuoteFile.value)
+      // attach uploader for provenance
+      fd.append('uploadedBy', displayName.value || '')
+      const uploaded = await galleryApi.uploadFile(fd)
+      if (uploaded && uploaded.imageUrl) payload.imageUrl = uploaded.imageUrl
+    }
     if (payload.createdAt) payload.createdAt = normalizeDateForApi(payload.createdAt)
     const created = await quoteApi.create(payload)
     quotes.value.unshift(created)
     newQuote.value = { text: '', author: '', featured: false, createdAt: null }
+    newQuoteFile.value = null
+    // reset file input by hiding form and reopening if needed
     showCreate.value = false
   } catch {} finally {
     creating.value = false
@@ -156,13 +176,21 @@ const createQuote = async () => {
 
 const startEdit = (quote) => {
   editingQuote.value = quote
-  editForm.value = { text: quote.text, author: quote.author, featured: quote.featured, createdAt: quote.createdAt ? quote.createdAt.substring(0,10) : null }
+  editForm.value = { text: quote.text, author: quote.author, featured: quote.featured, createdAt: quote.createdAt ? quote.createdAt.substring(0,10) : null, imageUrl: quote.imageUrl || null }
 }
 
 const saveEdit = async () => {
   saving.value = true
   try {
     const payload = { ...editForm.value }
+    // optional upload for replacement image
+    if (editFile.value) {
+      const fd = new FormData()
+      fd.append('file', editFile.value)
+      fd.append('uploadedBy', displayName.value || '')
+      const uploaded = await galleryApi.uploadFile(fd)
+      if (uploaded && uploaded.imageUrl) payload.imageUrl = uploaded.imageUrl
+    }
     if (payload.createdAt) payload.createdAt = normalizeDateForApi(payload.createdAt)
     const updated = await quoteApi.update(editingQuote.value.id, payload)
     const idx = quotes.value.findIndex(q => q.id === editingQuote.value.id)
@@ -171,6 +199,16 @@ const saveEdit = async () => {
   } catch {} finally {
     saving.value = false
   }
+}
+
+const onNewFileChange = (e) => {
+  const f = e.target.files && e.target.files[0]
+  newQuoteFile.value = f || null
+}
+
+const onEditFileChange = (e) => {
+  const f = e.target.files && e.target.files[0]
+  editFile.value = f || null
 }
 
 const normalizeDateForApi = (dateString) => {
@@ -338,4 +376,15 @@ onUnmounted(() => {
   gap: 16px;
 }
 .modal h3 { font-family: var(--serif); font-size: 24px; }
+
+.quote-image {
+  display: block;
+  max-width: 100%;
+  max-height: 220px;
+  width: auto;
+  height: auto;
+  margin: 12px 0;
+  border-radius: 8px;
+  object-fit: contain;
+}
 </style>
