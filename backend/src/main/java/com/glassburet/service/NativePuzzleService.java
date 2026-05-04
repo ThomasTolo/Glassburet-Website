@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class NativePuzzleService {
@@ -417,6 +419,7 @@ public class NativePuzzleService {
             result.put("popularityStatus", "match");
             result.put("popularityDirection", "none");
             result.put("membersStatus", "match");
+            result.put("membersDirection", "none");
             result.put("genderStatus", "match");
             result.put("genreStatus", "match");
             result.put("countryStatus", "match");
@@ -426,13 +429,39 @@ public class NativePuzzleService {
             result.put("debutDirection", guessDebut < answerDebut ? "up" : (guessDebut > answerDebut ? "down" : "none"));
             int popDiff = Math.abs(guessPop - answerPop);
             result.put("popularityStatus", guessPop == answerPop ? "match" : (popDiff <= 50 ? "close" : "no-match"));
-            result.put("popularityDirection", guessPop > answerPop ? "down" : (guessPop < answerPop ? "up" : "none"));
-            result.put("membersStatus", guessedArtist.path("members").asText().equals(payload.path("members").asText()) ? "match" : "no-match");
+            result.put("popularityDirection", guessPop < answerPop ? "down" : (guessPop > answerPop ? "up" : "none"));
+            result.put("membersStatus", artistMembersStatus(guessedArtist.path("members").asText(), payload.path("members").asText()));
+            result.put("membersDirection", artistMembersDirection(guessedArtist.path("members").asText(), payload.path("members").asText()));
             result.put("genderStatus", guessedArtist.path("gender").asText().equals(payload.path("gender").asText()) ? "match" : "no-match");
             result.put("genreStatus", guessedArtist.path("genre").asText().equals(payload.path("genre").asText()) ? "match" : "no-match");
             result.put("countryStatus", guessedArtist.path("country").asText().equals(payload.path("country").asText()) ? "match" : "no-match");
         }
         return result;
+    }
+
+    private String artistMembersStatus(String guessedMembers, String answerMembers) {
+        if (guessedMembers.equals(answerMembers)) {
+            return "match";
+        }
+        return isArtistGroup(guessedMembers) && isArtistGroup(answerMembers) ? "close" : "no-match";
+    }
+
+    private String artistMembersDirection(String guessedMembers, String answerMembers) {
+        int guessedCount = artistMemberCount(guessedMembers);
+        int answerCount = artistMemberCount(answerMembers);
+        return guessedCount < answerCount ? "up" : (guessedCount > answerCount ? "down" : "none");
+    }
+
+    private int artistMemberCount(String members) {
+        if (members == null || members.equalsIgnoreCase("Solo")) {
+            return 1;
+        }
+        Matcher matcher = Pattern.compile("\\d+").matcher(members);
+        return matcher.find() ? Integer.parseInt(matcher.group()) : 1;
+    }
+
+    private boolean isArtistGroup(String members) {
+        return members != null && !members.equalsIgnoreCase("Solo") && members.toLowerCase().contains("member");
     }
 
     private double distanceKm(double lat1, double lng1, double lat2, double lng2) {

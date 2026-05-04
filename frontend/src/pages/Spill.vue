@@ -393,14 +393,14 @@
           </div>
         </div>
 
-        <div v-if="activeNativeGameState === 'completed'" class="sp-result compact-result">
+        <div v-if="activeNativeLocked" class="sp-result compact-result">
           <div class="sp-result-icon">✅</div>
           <h3>Allerede fullført</h3>
           <p>Du har allerede spilt denne. Velg en annen fra listen over.</p>
         </div>
 
         <div v-if="activeGame === 'merburet'" class="native-game-body">
-          <template v-if="activeNativeGameState !== 'completed' && !merDone">
+          <template v-if="!activeNativeLocked && !merDone">
             <span class="eyebrow">Runde {{ merIndex + 1 }} / {{ merRounds.length }}</span>
             <h3 class="native-prompt">{{ merCurrent.metric }}</h3>
             <div class="choice-grid">
@@ -409,7 +409,7 @@
             </div>
             <p v-if="merMessage" class="wrd-message">{{ merMessage }}</p>
           </template>
-          <div v-if="activeNativeGameState !== 'completed' && merDone" class="sp-result compact-result">
+          <div v-if="!activeNativeLocked && merDone" class="sp-result compact-result">
             <div class="sp-result-icon">↕</div>
             <h3>{{ merCorrect }} av {{ merRounds.length }} riktig</h3>
             <p><strong>{{ merScore }} poeng</strong></p>
@@ -419,7 +419,7 @@
         </div>
 
         <div v-if="activeGame === 'latburet'" class="native-game-body">
-          <template v-if="activeNativeGameState !== 'completed' && !songDone">
+          <template v-if="!activeNativeLocked && !songDone">
             <div class="songless-steps">
               <button
                 v-for="(duration, idx) in songDurations"
@@ -458,7 +458,7 @@
             </form>
             <p v-if="songMessage" class="wrd-message">{{ songMessage }}</p>
           </template>
-          <div v-if="activeNativeGameState !== 'completed' && songDone" class="sp-result compact-result">
+          <div v-if="!activeNativeLocked && songDone" class="sp-result compact-result">
             <div class="sp-result-icon">♪</div>
             <h3>{{ songPuzzle.answer }}</h3>
             <p><strong>{{ songScore }} poeng</strong></p>
@@ -468,7 +468,7 @@
         </div>
 
         <div v-if="activeGame === 'kryssburet'" class="native-game-body">
-          <template v-if="cwPuzzle && !cwDone && activeNativeGameState !== 'completed'">
+          <template v-if="cwPuzzle && !cwDone && !activeNativeLocked">
             <div class="cw-layout">
               <!-- Grid -->
               <div class="cw-grid-wrap">
@@ -539,7 +539,7 @@
             </div>
           </template>
 
-          <div v-if="cwDone && activeNativeGameState !== 'completed'" class="sp-result compact-result">
+          <div v-if="cwDone && !activeNativeLocked" class="sp-result compact-result">
             <div class="sp-result-icon">{{ cwWon ? '+' : '✕' }}</div>
             <h3>{{ cwWon ? 'Løst!' : 'Ferdig' }}</h3>
             <p><strong>{{ cwScore }} poeng</strong></p>
@@ -549,7 +549,7 @@
         </div>
 
         <div v-if="activeGame === 'tidsburet'" class="native-game-body">
-          <template v-if="activeNativeGameState !== 'completed'">
+          <template v-if="!activeNativeLocked">
             <h3 class="native-prompt">{{ timePuzzle.prompt }}</h3>
             <p v-if="timeRoundTotal > 1" class="sp-sub">Runde {{ timeRoundIndex + 1 }} av {{ timeRoundTotal }}</p>
             <div class="time-play-layout">
@@ -584,7 +584,7 @@
         </div>
 
         <div v-if="activeGame === 'artistburet'" class="native-game-body ab-body">
-          <template v-if="activeNativeGameState !== 'completed'">
+          <template v-if="!activeNativeLocked">
 
             <!-- Top bar with counter + help -->
             <div class="ab-top-bar">
@@ -606,7 +606,7 @@
                   </div>
                   <div :class="['ab-attr', `ab-${g.membersStatus}`]">
                     <span class="ab-attr-label">ANTALL</span>
-                    <span class="ab-attr-val">{{ g.members }}</span>
+                    <span class="ab-attr-val">{{ g.members }}<span v-if="g.membersDirection && g.membersDirection !== 'none'" class="ab-dir">{{ g.membersDirection === 'up' ? ' ↑' : ' ↓' }}</span></span>
                   </div>
                   <div :class="['ab-attr', `ab-${g.popularityStatus}`]">
                     <span class="ab-attr-label">POPULARITET</span>
@@ -670,14 +670,9 @@
             </div>
           </template>
 
-          <div v-if="activeNativeGameState === 'completed'" class="sp-result compact-result">
-            <div class="sp-result-icon">✓</div>
-            <h3>Allerede fullført</h3>
-            <p>Du har allerede spilt dette spillet i dag.</p>
-          </div>
         </div>
 
-        <div v-if="activeGame !== 'artistburet'" class="creator-wrap native-creator">
+        <div v-if="activeNativeGame" class="creator-wrap native-creator">
           <template v-if="isAuthenticated">
             <button class="creator-toggle" @click="toggleCreator">
               <span class="creator-toggle-icon">{{ creatorOpen ? '−' : '+' }}</span>
@@ -707,10 +702,9 @@
             </template>
 
             <template v-if="activeGame === 'latburet'">
-              <input v-model="songCreator.searchQuery" class="creator-input" placeholder="Søk sang" @keyup.enter.prevent="songCreatorSearch" />
-              <button type="button" class="conn-btn" @click="songCreatorSearch">Søk</button>
+              <input v-model="songCreator.searchQuery" class="creator-input" placeholder="Søk sang" @input="songCreatorSearch" />
               <div v-if="songCreator.searchResults.length" class="music-search-results">
-                <button type="button" v-for="r in songCreator.searchResults" :key="r.trackId" class="music-search-result" @click="songCreatorSelectTrack(r)">
+                <button type="button" v-for="r in songCreator.searchResults" :key="musicSearchResultKey(r)" class="music-search-result" @click="songCreatorSelectTrack(r)">
                   <strong>{{ r.artistName }}</strong> – {{ r.trackName }}
                 </button>
               </div>
@@ -795,6 +789,27 @@
               <input v-model="timeCreator.attribution" class="creator-input" placeholder="Fotokreditering / lisens" required />
             </template>
 
+            <template v-if="activeGame === 'artistburet'">
+              <input
+                v-model="artistCreator.searchQuery"
+                class="creator-input"
+                placeholder="Søk artist eller gruppe"
+                @input="artistCreatorSearch"
+              />
+              <div v-if="artistCreator.searchResults.length" class="music-search-results">
+                <button
+                  v-for="artist in artistCreator.searchResults"
+                  :key="artist.name"
+                  type="button"
+                  class="music-search-result"
+                  @click="artistCreatorSelect(artist)"
+                >
+                  <strong>{{ artist.name }}</strong> – {{ artist.genre }} · {{ artist.members }} · #{{ artist.popularity }}
+                </button>
+              </div>
+              <p v-if="artistCreator.answer" style="font-size:12px;color:var(--accent);margin:0;">✓ {{ artistCreator.answer }}</p>
+            </template>
+
             <div class="creator-actions">
               <button type="button" class="conn-btn" @click="cancelCreator">Avbryt</button>
               <button type="submit" class="conn-btn conn-btn-primary" :disabled="nativeCreating">
@@ -868,9 +883,9 @@ const gameHelp = {
     { title: 'MÅL', text: 'Gjett dagens artist eller gruppe på maks 10 forsøk.' },
     { title: 'HINT', text: 'Etter hver gjetning får du treff på debutår, antall medlemmer, popularitet, kjønn, sjanger og land.' },
     { title: 'GRØNN', status: 'match', text: 'Attributtet matcher riktig artist.' },
-    { title: 'GUL', status: 'close', text: 'Nær match: debutår innen ±5 år eller popularitet innen ±50 plasser.' },
+    { title: 'GUL', status: 'close', text: 'Nær match: debutår innen ±5 år, popularitet innen ±50 plasser, eller begge er grupper med ulikt medlemstall.' },
     { title: 'GRÅ', status: 'no-match', text: 'Attributtet matcher ikke riktig artist.' },
-    { title: 'PILER', text: 'Pil opp eller ned viser retningen mot riktig debutår eller popularitetsrangering.' },
+    { title: 'PILER', text: 'Pil opp eller ned viser retningen mot riktig debutår, antall medlemmer eller popularitetsrangering.' },
     { title: 'POENG', text: 'Riktig på første forsøk gir 1000 poeng. Hvert ekstra forsøk trekker 100 poeng. Ingen riktig gjetning på 10 forsøk gir 0 poeng.' },
   ],
 }
@@ -935,6 +950,7 @@ const activeNativeGameState = computed(() => {
   const id = selectedNativeIds.value[activeGame.value]
   return id && activeNativeCompletedIds.value.includes(id) ? 'completed' : 'playing'
 })
+const activeNativeLocked = computed(() => activeNativeGameState.value === 'completed' && !nativeSubmitted.value[activeGame.value])
 
 function toggleGameHelp(gameId) {
   gameHelpOpen.value = {
@@ -2324,6 +2340,9 @@ const merCreatorRounds = ref([
   { metric: '', left: '', right: '', answer: 'left' },
 ])
 const songCreator = ref({ answer: '', artist: '', title: '', trackId: null, previewUrl: null, searchQuery: '', searchResults: [] })
+let _songCreatorSearchTimer = null
+let _songCreatorSearchToken = 0
+const artistCreator = ref({ answer: '', searchQuery: '', searchResults: [] })
 const cwCreatorForm = ref({
   title: '', rows: 7, cols: 7,
   clues: [{ n: 1, dir: 'D', row: 0, col: 0, answer: '', clue: '', searchQuery: '', searchResults: [], trackId: null, artist: '', title: '', previewUrl: null }],
@@ -2345,14 +2364,55 @@ const cwCreatorGrid = computed(() => buildCwGrid({
 }))
 const cwCreatorFilledCells = computed(() => cwCreatorGrid.value.flat().filter(cell => !cell.black).length)
 
-async function songCreatorSearch() {
-  if (!songCreator.value.searchQuery.trim()) return
-  const q = encodeURIComponent(songCreator.value.searchQuery.trim())
+function songCreatorSearch() {
+  const query = songCreator.value.searchQuery.trim()
+  if (_songCreatorSearchTimer) clearTimeout(_songCreatorSearchTimer)
+  if (!query) {
+    songCreator.value.searchResults = []
+    return
+  }
+  const token = ++_songCreatorSearchToken
+  songCreator.value.searchResults = songCreatorNativeResults(query)
+  _songCreatorSearchTimer = setTimeout(() => songCreatorFetchItunes(query, token), 250)
+}
+
+async function songCreatorFetchItunes(query, token) {
+  const q = encodeURIComponent(query)
   try {
-    const res = await fetch(`https://itunes.apple.com/search?term=${q}&media=music&limit=5`)
+    const res = await fetch(`https://itunes.apple.com/search?term=${q}&media=music&limit=50`)
     const data = await res.json()
-    songCreator.value.searchResults = data.results || []
+    if (token !== _songCreatorSearchToken) return
+    songCreator.value.searchResults = mergeMusicSearchResults(songCreatorNativeResults(query), data.results || [])
   } catch {}
+}
+
+function songCreatorNativeResults(query) {
+  const needle = normalizeCwAudioTitle(query)
+  if (!needle) return []
+  return (nativePuzzles.value.latburet || [])
+    .map(parseNativePayload)
+    .filter(Boolean)
+    .filter(track => normalizeCwAudioTitle(`${track.artist} ${track.title} ${track.answer}`).includes(needle))
+    .map(track => ({
+      artistName: track.artist || '',
+      trackName: track.title || track.answer || '',
+      trackId: track.trackId || null,
+      previewUrl: track.previewUrl || null,
+    }))
+}
+
+function mergeMusicSearchResults(primary, secondary) {
+  const seen = new Set()
+  return [...primary, ...secondary].filter(track => {
+    const key = musicSearchResultKey(track)
+    if (seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
+}
+
+function musicSearchResultKey(track) {
+  return track.trackId || `${normalizeCwAudioTitle(track.artistName)}-${normalizeCwAudioTitle(track.trackName)}`
 }
 
 function songCreatorSelectTrack(track) {
@@ -2395,6 +2455,33 @@ function cwCreatorAddClue() {
 }
 const timeCreator = ref({ prompt: '', imageUrl: '', year: new Date().getFullYear(), locationName: '', lat: 0, lng: 0, attribution: '' })
 
+function artistCreatorPool() {
+  if (artistPool.value.length) return artistPool.value
+  const source = (nativePuzzles.value.artistburet || [])
+    .map(parseNativePayload)
+    .find(payload => Array.isArray(payload?.artists))
+  return source?.artists || []
+}
+
+function artistCreatorSearch() {
+  const query = artistCreator.value.searchQuery.trim().toLowerCase()
+  if (!query) {
+    artistCreator.value.searchResults = []
+    return
+  }
+  artistCreator.value.searchResults = artistCreatorPool()
+    .filter(artist => artist.name?.toLowerCase().includes(query))
+    .slice(0, 20)
+}
+
+function artistCreatorSelect(artist) {
+  artistCreator.value = {
+    answer: artist.name,
+    searchQuery: artist.name,
+    searchResults: [],
+  }
+}
+
 function resetNativeCreator(gameId) {
   nativeCreatorTitle.value = ''
   editingNativeId.value = null
@@ -2408,6 +2495,7 @@ function resetNativeCreator(gameId) {
     ]
   }
   if (gameId === 'latburet') songCreator.value = { answer: '', artist: '', title: '', trackId: null, previewUrl: null, searchQuery: '', searchResults: [] }
+  if (gameId === 'artistburet') artistCreator.value = { answer: '', searchQuery: '', searchResults: [] }
   if (gameId === 'kryssburet') {
     cwCreatorForm.value = {
       title: '', rows: 7, cols: 7,
@@ -2467,6 +2555,22 @@ function buildNativeCreatorPayload(gameId) {
       lng: Number(timeCreator.value.lng),
       locationName: timeCreator.value.locationName.trim(),
       attribution: timeCreator.value.attribution.trim(),
+    }
+  }
+  if (gameId === 'artistburet') {
+    const selectedArtist = artistCreatorPool().find(artist => artist.name === artistCreator.value.answer)
+    if (!selectedArtist) return null
+    return {
+      artistburetVersion: 2,
+      answer: selectedArtist.name,
+      debut: selectedArtist.debut,
+      members: selectedArtist.members,
+      gender: selectedArtist.gender,
+      genre: selectedArtist.genre,
+      country: selectedArtist.country,
+      popularity: selectedArtist.popularity,
+      imageUrl: selectedArtist.imageUrl || '',
+      artists: artistCreatorPool(),
     }
   }
   return null
@@ -2567,6 +2671,13 @@ function editNativePuzzle(p) {
       lat: payload.lat || 0,
       lng: payload.lng || 0,
       attribution: payload.attribution || '',
+    }
+  }
+  if (activeGame.value === 'artistburet') {
+    artistCreator.value = {
+      answer: payload.answer || '',
+      searchQuery: payload.answer || '',
+      searchResults: [],
     }
   }
   creatorOpen.value = true
@@ -3340,6 +3451,7 @@ onUnmounted(() => {
 
 .music-search-results {
   display: flex; flex-direction: column; gap: 4px; margin-top: 8px;
+  max-height: 320px; overflow-y: auto; padding-right: 4px;
 }
 .music-search-result {
   text-align: left; padding: 8px 12px;
