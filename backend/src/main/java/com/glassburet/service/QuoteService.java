@@ -22,7 +22,7 @@ public class QuoteService {
     public List<Quote> findAll() {
         // Return newest quotes first. Call repository.findAll() (keeps tests/stubs happy),
         // then sort in-memory to ensure deterministic newest-first ordering.
-        var list = quoteRepository.findAll();
+        var list = new java.util.ArrayList<>(quoteRepository.findAll());
         list.sort((a, b) -> b.getCreatedAt().compareTo(a.getCreatedAt()));
         return list;
     }
