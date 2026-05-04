@@ -1,0 +1,5406 @@
+{
+  "pool": [
+    {
+      "name": "Taylor Swift",
+      "debut": 2006,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 1,
+      "imageUrl": ""
+    },
+    {
+      "name": "Ariana Grande",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 6,
+      "imageUrl": ""
+    },
+    {
+      "name": "Billie Eilish",
+      "debut": 2016,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 7,
+      "imageUrl": ""
+    },
+    {
+      "name": "Rihanna",
+      "debut": 2005,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "R&B",
+      "country": "BB",
+      "popularity": 5,
+      "imageUrl": ""
+    },
+    {
+      "name": "Beyonce",
+      "debut": 1997,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 16,
+      "imageUrl": ""
+    },
+    {
+      "name": "Dua Lipa",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 14,
+      "imageUrl": ""
+    },
+    {
+      "name": "Olivia Rodrigo",
+      "debut": 2021,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 25,
+      "imageUrl": ""
+    },
+    {
+      "name": "Adele",
+      "debut": 2008,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 22,
+      "imageUrl": ""
+    },
+    {
+      "name": "Nicki Minaj",
+      "debut": 2007,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Hip Hop",
+      "country": "TT",
+      "popularity": 33,
+      "imageUrl": ""
+    },
+    {
+      "name": "Cardi B",
+      "debut": 2016,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 34,
+      "imageUrl": ""
+    },
+    {
+      "name": "Shakira",
+      "debut": 1991,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "CO",
+      "popularity": 17,
+      "imageUrl": ""
+    },
+    {
+      "name": "Lady Gaga",
+      "debut": 2008,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 21,
+      "imageUrl": ""
+    },
+    {
+      "name": "Selena Gomez",
+      "debut": 2007,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 95,
+      "imageUrl": ""
+    },
+    {
+      "name": "Doja Cat",
+      "debut": 2014,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 26,
+      "imageUrl": ""
+    },
+    {
+      "name": "Katy Perry",
+      "debut": 2001,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 31,
+      "imageUrl": ""
+    },
+    {
+      "name": "SZA",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 19,
+      "imageUrl": ""
+    },
+    {
+      "name": "Madonna",
+      "debut": 1983,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 39,
+      "imageUrl": ""
+    },
+    {
+      "name": "Megan Thee Stallion",
+      "debut": 2016,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 477,
+      "imageUrl": ""
+    },
+    {
+      "name": "Dolly Parton",
+      "debut": 1967,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Country",
+      "country": "US",
+      "popularity": 108,
+      "imageUrl": ""
+    },
+    {
+      "name": "Alicia Keys",
+      "debut": 2001,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 61,
+      "imageUrl": ""
+    },
+    {
+      "name": "Whitney Houston",
+      "debut": 1985,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 62,
+      "imageUrl": ""
+    },
+    {
+      "name": "Mariah Carey",
+      "debut": 1990,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 63,
+      "imageUrl": ""
+    },
+    {
+      "name": "Miley Cyrus",
+      "debut": 2006,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 32,
+      "imageUrl": ""
+    },
+    {
+      "name": "Kylie Minogue",
+      "debut": 1987,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "AU",
+      "popularity": 496,
+      "imageUrl": ""
+    },
+    {
+      "name": "Aurora",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Indie",
+      "country": "NO",
+      "popularity": 420,
+      "imageUrl": ""
+    },
+    {
+      "name": "Lana Del Rey",
+      "debut": 2010,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 97,
+      "imageUrl": ""
+    },
+    {
+      "name": "Lorde",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "NZ",
+      "popularity": 500,
+      "imageUrl": ""
+    },
+    {
+      "name": "Sabrina Carpenter",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 98,
+      "imageUrl": ""
+    },
+    {
+      "name": "Chappell Roan",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 99,
+      "imageUrl": ""
+    },
+    {
+      "name": "Tate McRae",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "CA",
+      "popularity": 100,
+      "imageUrl": ""
+    },
+    {
+      "name": "Charli XCX",
+      "debut": 2008,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 101,
+      "imageUrl": ""
+    },
+    {
+      "name": "Halsey",
+      "debut": 2014,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 102,
+      "imageUrl": ""
+    },
+    {
+      "name": "Camila Cabello",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 96,
+      "imageUrl": ""
+    },
+    {
+      "name": "Demi Lovato",
+      "debut": 2008,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 103,
+      "imageUrl": ""
+    },
+    {
+      "name": "P!nk",
+      "debut": 2000,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 104,
+      "imageUrl": ""
+    },
+    {
+      "name": "Christina Aguilera",
+      "debut": 1999,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 65,
+      "imageUrl": ""
+    },
+    {
+      "name": "Britney Spears",
+      "debut": 1998,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 64,
+      "imageUrl": ""
+    },
+    {
+      "name": "Janet Jackson",
+      "debut": 1982,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 107,
+      "imageUrl": ""
+    },
+    {
+      "name": "Cher",
+      "debut": 1965,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 106,
+      "imageUrl": ""
+    },
+    {
+      "name": "Celine Dion",
+      "debut": 1981,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "CA",
+      "popularity": 105,
+      "imageUrl": ""
+    },
+    {
+      "name": "Alanis Morissette",
+      "debut": 1991,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Rock",
+      "country": "CA",
+      "popularity": 490,
+      "imageUrl": ""
+    },
+    {
+      "name": "Avril Lavigne",
+      "debut": 2002,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop Punk",
+      "country": "CA",
+      "popularity": 498,
+      "imageUrl": ""
+    },
+    {
+      "name": "Nelly Furtado",
+      "debut": 2000,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "CA",
+      "popularity": 484,
+      "imageUrl": ""
+    },
+    {
+      "name": "Shania Twain",
+      "debut": 1993,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Country",
+      "country": "CA",
+      "popularity": 109,
+      "imageUrl": ""
+    },
+    {
+      "name": "Joni Mitchell",
+      "debut": 1968,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Folk",
+      "country": "CA",
+      "popularity": 494,
+      "imageUrl": ""
+    },
+    {
+      "name": "Sarah McLachlan",
+      "debut": 1988,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "CA",
+      "popularity": 475,
+      "imageUrl": ""
+    },
+    {
+      "name": "Norah Jones",
+      "debut": 2002,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Jazz",
+      "country": "US",
+      "popularity": 495,
+      "imageUrl": ""
+    },
+    {
+      "name": "Sade",
+      "debut": 1984,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "R&B",
+      "country": "GB",
+      "popularity": 470,
+      "imageUrl": ""
+    },
+    {
+      "name": "Amy Winehouse",
+      "debut": 2003,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "R&B",
+      "country": "GB",
+      "popularity": 482,
+      "imageUrl": ""
+    },
+    {
+      "name": "Florence Welch",
+      "debut": 2009,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Indie",
+      "country": "GB",
+      "popularity": 497,
+      "imageUrl": ""
+    },
+    {
+      "name": "Ellie Goulding",
+      "debut": 2010,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 480,
+      "imageUrl": ""
+    },
+    {
+      "name": "Jessie J",
+      "debut": 2011,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 483,
+      "imageUrl": ""
+    },
+    {
+      "name": "Rita Ora",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 485,
+      "imageUrl": ""
+    },
+    {
+      "name": "Anne-Marie",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 488,
+      "imageUrl": ""
+    },
+    {
+      "name": "Jess Glynne",
+      "debut": 2014,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 486,
+      "imageUrl": ""
+    },
+    {
+      "name": "Jorja Smith",
+      "debut": 2016,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "R&B",
+      "country": "GB",
+      "popularity": 492,
+      "imageUrl": ""
+    },
+    {
+      "name": "Raye",
+      "debut": 2014,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "R&B",
+      "country": "GB",
+      "popularity": 491,
+      "imageUrl": ""
+    },
+    {
+      "name": "Mabel",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 489,
+      "imageUrl": ""
+    },
+    {
+      "name": "Tina Turner",
+      "debut": 1960,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 132,
+      "imageUrl": ""
+    },
+    {
+      "name": "Aretha Franklin",
+      "debut": 1956,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Soul",
+      "country": "US",
+      "popularity": 131,
+      "imageUrl": ""
+    },
+    {
+      "name": "Diana Ross",
+      "debut": 1959,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Soul",
+      "country": "US",
+      "popularity": 133,
+      "imageUrl": ""
+    },
+    {
+      "name": "Etta James",
+      "debut": 1954,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Blues",
+      "country": "US",
+      "popularity": 134,
+      "imageUrl": ""
+    },
+    {
+      "name": "Patti LaBelle",
+      "debut": 1960,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Soul",
+      "country": "US",
+      "popularity": 463,
+      "imageUrl": ""
+    },
+    {
+      "name": "Gladys Knight",
+      "debut": 1952,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Soul",
+      "country": "US",
+      "popularity": 460,
+      "imageUrl": ""
+    },
+    {
+      "name": "Mary J. Blige",
+      "debut": 1992,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 468,
+      "imageUrl": ""
+    },
+    {
+      "name": "Lauryn Hill",
+      "debut": 1993,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 466,
+      "imageUrl": ""
+    },
+    {
+      "name": "Missy Elliott",
+      "debut": 1991,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 465,
+      "imageUrl": ""
+    },
+    {
+      "name": "Queen Latifah",
+      "debut": 1988,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 464,
+      "imageUrl": ""
+    },
+    {
+      "name": "Lil Kim",
+      "debut": 1994,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 467,
+      "imageUrl": ""
+    },
+    {
+      "name": "Eve",
+      "debut": 1998,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 469,
+      "imageUrl": ""
+    },
+    {
+      "name": "Lizzo",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 472,
+      "imageUrl": ""
+    },
+    {
+      "name": "Summer Walker",
+      "debut": 2018,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 481,
+      "imageUrl": ""
+    },
+    {
+      "name": "Jhene Aiko",
+      "debut": 2011,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 476,
+      "imageUrl": ""
+    },
+    {
+      "name": "Kehlani",
+      "debut": 2014,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 478,
+      "imageUrl": ""
+    },
+    {
+      "name": "Kali Uchis",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "R&B",
+      "country": "CO",
+      "popularity": 301,
+      "imageUrl": ""
+    },
+    {
+      "name": "Rosalia",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "ES",
+      "popularity": 54,
+      "imageUrl": ""
+    },
+    {
+      "name": "Karol G",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Reggaeton",
+      "country": "CO",
+      "popularity": 27,
+      "imageUrl": ""
+    },
+    {
+      "name": "Anitta",
+      "debut": 2010,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "BR",
+      "popularity": 55,
+      "imageUrl": ""
+    },
+    {
+      "name": "Natti Natasha",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Reggaeton",
+      "country": "DO",
+      "popularity": 302,
+      "imageUrl": ""
+    },
+    {
+      "name": "Becky G",
+      "debut": 2011,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 303,
+      "imageUrl": ""
+    },
+    {
+      "name": "Gloria Estefan",
+      "debut": 1975,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "CU",
+      "popularity": 284,
+      "imageUrl": ""
+    },
+    {
+      "name": "Jennifer Lopez",
+      "debut": 1999,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 66,
+      "imageUrl": ""
+    },
+    {
+      "name": "Thalia",
+      "debut": 1981,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "MX",
+      "popularity": 285,
+      "imageUrl": ""
+    },
+    {
+      "name": "Paulina Rubio",
+      "debut": 1982,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "MX",
+      "popularity": 286,
+      "imageUrl": ""
+    },
+    {
+      "name": "Julieta Venegas",
+      "debut": 1997,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "MX",
+      "popularity": 287,
+      "imageUrl": ""
+    },
+    {
+      "name": "Natalia Lafourcade",
+      "debut": 2002,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "MX",
+      "popularity": 288,
+      "imageUrl": ""
+    },
+    {
+      "name": "Mon Laferte",
+      "debut": 2003,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "CL",
+      "popularity": 289,
+      "imageUrl": ""
+    },
+    {
+      "name": "Lali",
+      "debut": 2003,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "AR",
+      "popularity": 290,
+      "imageUrl": ""
+    },
+    {
+      "name": "Tini",
+      "debut": 2007,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "AR",
+      "popularity": 291,
+      "imageUrl": ""
+    },
+    {
+      "name": "Aitana",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "ES",
+      "popularity": 292,
+      "imageUrl": ""
+    },
+    {
+      "name": "Nathy Peluso",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Hip Hop",
+      "country": "AR",
+      "popularity": 293,
+      "imageUrl": ""
+    },
+    {
+      "name": "Nicki Nicole",
+      "debut": 2019,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Hip Hop",
+      "country": "AR",
+      "popularity": 294,
+      "imageUrl": ""
+    },
+    {
+      "name": "Maria Becerra",
+      "debut": 2019,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "AR",
+      "popularity": 295,
+      "imageUrl": ""
+    },
+    {
+      "name": "Young Miko",
+      "debut": 2021,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Reggaeton",
+      "country": "PR",
+      "popularity": 296,
+      "imageUrl": ""
+    },
+    {
+      "name": "Ivy Queen",
+      "debut": 1995,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Reggaeton",
+      "country": "PR",
+      "popularity": 297,
+      "imageUrl": ""
+    },
+    {
+      "name": "Tokischa",
+      "debut": 2018,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Reggaeton",
+      "country": "DO",
+      "popularity": 298,
+      "imageUrl": ""
+    },
+    {
+      "name": "La India",
+      "debut": 1985,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Salsa",
+      "country": "PR",
+      "popularity": 299,
+      "imageUrl": ""
+    },
+    {
+      "name": "Celia Cruz",
+      "debut": 1948,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Salsa",
+      "country": "CU",
+      "popularity": 283,
+      "imageUrl": ""
+    },
+    {
+      "name": "Selena",
+      "debut": 1989,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Tejano",
+      "country": "US",
+      "popularity": 300,
+      "imageUrl": ""
+    },
+    {
+      "name": "Iza",
+      "debut": 2016,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "BR",
+      "popularity": 304,
+      "imageUrl": ""
+    },
+    {
+      "name": "Ludmilla",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Funk",
+      "country": "BR",
+      "popularity": 305,
+      "imageUrl": ""
+    },
+    {
+      "name": "Luisa Sonza",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "BR",
+      "popularity": 306,
+      "imageUrl": ""
+    },
+    {
+      "name": "Marilia Mendonca",
+      "debut": 2011,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Sertanejo",
+      "country": "BR",
+      "popularity": 307,
+      "imageUrl": ""
+    },
+    {
+      "name": "Ivete Sangalo",
+      "debut": 1993,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "BR",
+      "popularity": 308,
+      "imageUrl": ""
+    },
+    {
+      "name": "Rita Lee",
+      "debut": 1966,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Rock",
+      "country": "BR",
+      "popularity": 309,
+      "imageUrl": ""
+    },
+    {
+      "name": "Astrud Gilberto",
+      "debut": 1963,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Bossa Nova",
+      "country": "BR",
+      "popularity": 310,
+      "imageUrl": ""
+    },
+    {
+      "name": "Girl in Red",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Indie",
+      "country": "NO",
+      "popularity": 422,
+      "imageUrl": ""
+    },
+    {
+      "name": "Sigrid",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 421,
+      "imageUrl": ""
+    },
+    {
+      "name": "Dagny",
+      "debut": 2010,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 430,
+      "imageUrl": ""
+    },
+    {
+      "name": "Astrid S",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 429,
+      "imageUrl": ""
+    },
+    {
+      "name": "Ane Brun",
+      "debut": 1998,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Folk",
+      "country": "NO",
+      "popularity": 446,
+      "imageUrl": ""
+    },
+    {
+      "name": "Susanne Sundfor",
+      "debut": 2005,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 431,
+      "imageUrl": ""
+    },
+    {
+      "name": "Maria Mena",
+      "debut": 2002,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 443,
+      "imageUrl": ""
+    },
+    {
+      "name": "Marit Larsen",
+      "debut": 1996,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 444,
+      "imageUrl": ""
+    },
+    {
+      "name": "Lene Marlin",
+      "debut": 1998,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 445,
+      "imageUrl": ""
+    },
+    {
+      "name": "Annie",
+      "debut": 1999,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 499,
+      "imageUrl": ""
+    },
+    {
+      "name": "Julie Bergan",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 447,
+      "imageUrl": ""
+    },
+    {
+      "name": "Emilie Nicolas",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 448,
+      "imageUrl": ""
+    },
+    {
+      "name": "Highasakite",
+      "debut": 2011,
+      "members": "5 members",
+      "gender": "Mixed",
+      "genre": "Indie",
+      "country": "NO",
+      "popularity": 449,
+      "imageUrl": ""
+    },
+    {
+      "name": "Amanda Delara",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 450,
+      "imageUrl": ""
+    },
+    {
+      "name": "Kamelen",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Hip Hop",
+      "country": "NO",
+      "popularity": 451,
+      "imageUrl": ""
+    },
+    {
+      "name": "Drake",
+      "debut": 2006,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "CA",
+      "popularity": 2,
+      "imageUrl": ""
+    },
+    {
+      "name": "The Weeknd",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "CA",
+      "popularity": 3,
+      "imageUrl": ""
+    },
+    {
+      "name": "Ed Sheeran",
+      "debut": 2011,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 9,
+      "imageUrl": ""
+    },
+    {
+      "name": "Justin Bieber",
+      "debut": 2009,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "CA",
+      "popularity": 8,
+      "imageUrl": ""
+    },
+    {
+      "name": "Eminem",
+      "debut": 1996,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 10,
+      "imageUrl": ""
+    },
+    {
+      "name": "Kanye West",
+      "debut": 2004,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 18,
+      "imageUrl": ""
+    },
+    {
+      "name": "Kendrick Lamar",
+      "debut": 2009,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 15,
+      "imageUrl": ""
+    },
+    {
+      "name": "Post Malone",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 12,
+      "imageUrl": ""
+    },
+    {
+      "name": "Bruno Mars",
+      "debut": 2010,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 13,
+      "imageUrl": ""
+    },
+    {
+      "name": "Harry Styles",
+      "debut": 2010,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 24,
+      "imageUrl": ""
+    },
+    {
+      "name": "Bad Bunny",
+      "debut": 2016,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "PR",
+      "popularity": 4,
+      "imageUrl": ""
+    },
+    {
+      "name": "Travis Scott",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 20,
+      "imageUrl": ""
+    },
+    {
+      "name": "J Balvin",
+      "debut": 2004,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "CO",
+      "popularity": 28,
+      "imageUrl": ""
+    },
+    {
+      "name": "Michael Jackson",
+      "debut": 1964,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 23,
+      "imageUrl": ""
+    },
+    {
+      "name": "Calvin Harris",
+      "debut": 2007,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "GB",
+      "popularity": 58,
+      "imageUrl": ""
+    },
+    {
+      "name": "Sam Smith",
+      "debut": 2014,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 487,
+      "imageUrl": ""
+    },
+    {
+      "name": "Shawn Mendes",
+      "debut": 2014,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "CA",
+      "popularity": 493,
+      "imageUrl": ""
+    },
+    {
+      "name": "Lil Nas X",
+      "debut": 2019,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 479,
+      "imageUrl": ""
+    },
+    {
+      "name": "Jay-Z",
+      "debut": 1996,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 49,
+      "imageUrl": ""
+    },
+    {
+      "name": "Elton John",
+      "debut": 1969,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 38,
+      "imageUrl": ""
+    },
+    {
+      "name": "David Bowie",
+      "debut": 1964,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 48,
+      "imageUrl": ""
+    },
+    {
+      "name": "Prince",
+      "debut": 1978,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 47,
+      "imageUrl": ""
+    },
+    {
+      "name": "Frank Ocean",
+      "debut": 2011,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 68,
+      "imageUrl": ""
+    },
+    {
+      "name": "Tyler, the Creator",
+      "debut": 2009,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 69,
+      "imageUrl": ""
+    },
+    {
+      "name": "J. Cole",
+      "debut": 2007,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 70,
+      "imageUrl": ""
+    },
+    {
+      "name": "Future",
+      "debut": 2011,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 51,
+      "imageUrl": ""
+    },
+    {
+      "name": "Lil Baby",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 52,
+      "imageUrl": ""
+    },
+    {
+      "name": "Morgan Wallen",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Country",
+      "country": "US",
+      "popularity": 53,
+      "imageUrl": ""
+    },
+    {
+      "name": "Johnny Cash",
+      "debut": 1955,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Country",
+      "country": "US",
+      "popularity": 110,
+      "imageUrl": ""
+    },
+    {
+      "name": "Usher",
+      "debut": 1994,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 67,
+      "imageUrl": ""
+    },
+    {
+      "name": "Marshmello",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "US",
+      "popularity": 59,
+      "imageUrl": ""
+    },
+    {
+      "name": "Bob Dylan",
+      "debut": 1961,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Folk",
+      "country": "US",
+      "popularity": 471,
+      "imageUrl": ""
+    },
+    {
+      "name": "Alan Walker",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "NO",
+      "popularity": 418,
+      "imageUrl": ""
+    },
+    {
+      "name": "Peso Pluma",
+      "debut": 2020,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Regional Mexican",
+      "country": "MX",
+      "popularity": 29,
+      "imageUrl": ""
+    },
+    {
+      "name": "Rauw Alejandro",
+      "debut": 2014,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "PR",
+      "popularity": 30,
+      "imageUrl": ""
+    },
+    {
+      "name": "Ozuna",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "PR",
+      "popularity": 230,
+      "imageUrl": ""
+    },
+    {
+      "name": "Daddy Yankee",
+      "debut": 1994,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "PR",
+      "popularity": 229,
+      "imageUrl": ""
+    },
+    {
+      "name": "Maluma",
+      "debut": 2010,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "CO",
+      "popularity": 231,
+      "imageUrl": ""
+    },
+    {
+      "name": "Feid",
+      "debut": 2010,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "CO",
+      "popularity": 232,
+      "imageUrl": ""
+    },
+    {
+      "name": "Luis Miguel",
+      "debut": 1982,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "MX",
+      "popularity": 246,
+      "imageUrl": ""
+    },
+    {
+      "name": "Enrique Iglesias",
+      "debut": 1995,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "ES",
+      "popularity": 244,
+      "imageUrl": ""
+    },
+    {
+      "name": "Ricky Martin",
+      "debut": 1984,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "PR",
+      "popularity": 245,
+      "imageUrl": ""
+    },
+    {
+      "name": "Marc Anthony",
+      "debut": 1988,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Salsa",
+      "country": "US",
+      "popularity": 247,
+      "imageUrl": ""
+    },
+    {
+      "name": "Romeo Santos",
+      "debut": 1995,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Bachata",
+      "country": "US",
+      "popularity": 248,
+      "imageUrl": ""
+    },
+    {
+      "name": "Prince Royce",
+      "debut": 2009,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Bachata",
+      "country": "US",
+      "popularity": 249,
+      "imageUrl": ""
+    },
+    {
+      "name": "Juanes",
+      "debut": 1988,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "CO",
+      "popularity": 250,
+      "imageUrl": ""
+    },
+    {
+      "name": "Carlos Vives",
+      "debut": 1986,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Vallenato",
+      "country": "CO",
+      "popularity": 251,
+      "imageUrl": ""
+    },
+    {
+      "name": "Sebastian Yatra",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "CO",
+      "popularity": 252,
+      "imageUrl": ""
+    },
+    {
+      "name": "Manuel Turizo",
+      "debut": 2016,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "CO",
+      "popularity": 253,
+      "imageUrl": ""
+    },
+    {
+      "name": "Camilo",
+      "debut": 2008,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "CO",
+      "popularity": 254,
+      "imageUrl": ""
+    },
+    {
+      "name": "Nicky Jam",
+      "debut": 1994,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "US",
+      "popularity": 236,
+      "imageUrl": ""
+    },
+    {
+      "name": "Don Omar",
+      "debut": 1996,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "PR",
+      "popularity": 237,
+      "imageUrl": ""
+    },
+    {
+      "name": "Wisin",
+      "debut": 1998,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "PR",
+      "popularity": 238,
+      "imageUrl": ""
+    },
+    {
+      "name": "Yandel",
+      "debut": 1998,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "PR",
+      "popularity": 239,
+      "imageUrl": ""
+    },
+    {
+      "name": "Anuel AA",
+      "debut": 2011,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "PR",
+      "popularity": 233,
+      "imageUrl": ""
+    },
+    {
+      "name": "Myke Towers",
+      "debut": 2016,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "PR",
+      "popularity": 234,
+      "imageUrl": ""
+    },
+    {
+      "name": "Farruko",
+      "debut": 2007,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "PR",
+      "popularity": 235,
+      "imageUrl": ""
+    },
+    {
+      "name": "Arcangel",
+      "debut": 2004,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "US",
+      "popularity": 240,
+      "imageUrl": ""
+    },
+    {
+      "name": "Mora",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "PR",
+      "popularity": 241,
+      "imageUrl": ""
+    },
+    {
+      "name": "Quevedo",
+      "debut": 2020,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "ES",
+      "popularity": 242,
+      "imageUrl": ""
+    },
+    {
+      "name": "C. Tangana",
+      "debut": 2005,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "ES",
+      "popularity": 243,
+      "imageUrl": ""
+    },
+    {
+      "name": "Alejandro Sanz",
+      "debut": 1989,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "ES",
+      "popularity": 255,
+      "imageUrl": ""
+    },
+    {
+      "name": "Pablo Alboran",
+      "debut": 2010,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "ES",
+      "popularity": 256,
+      "imageUrl": ""
+    },
+    {
+      "name": "David Bisbal",
+      "debut": 2001,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "ES",
+      "popularity": 257,
+      "imageUrl": ""
+    },
+    {
+      "name": "Julio Iglesias",
+      "debut": 1968,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "ES",
+      "popularity": 258,
+      "imageUrl": ""
+    },
+    {
+      "name": "Manu Chao",
+      "debut": 1987,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Latin Rock",
+      "country": "ES",
+      "popularity": 259,
+      "imageUrl": ""
+    },
+    {
+      "name": "Gustavo Cerati",
+      "debut": 1982,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "AR",
+      "popularity": 260,
+      "imageUrl": ""
+    },
+    {
+      "name": "Charly Garcia",
+      "debut": 1972,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "AR",
+      "popularity": 261,
+      "imageUrl": ""
+    },
+    {
+      "name": "Fito Paez",
+      "debut": 1984,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "AR",
+      "popularity": 262,
+      "imageUrl": ""
+    },
+    {
+      "name": "Bizarrap",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "AR",
+      "popularity": 263,
+      "imageUrl": ""
+    },
+    {
+      "name": "Duki",
+      "debut": 2016,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Trap",
+      "country": "AR",
+      "popularity": 264,
+      "imageUrl": ""
+    },
+    {
+      "name": "Trueno",
+      "debut": 2016,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "AR",
+      "popularity": 265,
+      "imageUrl": ""
+    },
+    {
+      "name": "Khea",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Trap",
+      "country": "AR",
+      "popularity": 266,
+      "imageUrl": ""
+    },
+    {
+      "name": "Paulo Londra",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Trap",
+      "country": "AR",
+      "popularity": 267,
+      "imageUrl": ""
+    },
+    {
+      "name": "Wos",
+      "debut": 2018,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "AR",
+      "popularity": 268,
+      "imageUrl": ""
+    },
+    {
+      "name": "Residente",
+      "debut": 2004,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "PR",
+      "popularity": 269,
+      "imageUrl": ""
+    },
+    {
+      "name": "Rene Perez",
+      "debut": 2004,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "PR",
+      "popularity": 270,
+      "imageUrl": ""
+    },
+    {
+      "name": "Ricardo Arjona",
+      "debut": 1985,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GT",
+      "popularity": 271,
+      "imageUrl": ""
+    },
+    {
+      "name": "Juan Luis Guerra",
+      "debut": 1984,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Merengue",
+      "country": "DO",
+      "popularity": 272,
+      "imageUrl": ""
+    },
+    {
+      "name": "Luis Fonsi",
+      "debut": 1998,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "PR",
+      "popularity": 273,
+      "imageUrl": ""
+    },
+    {
+      "name": "Alejandro Fernandez",
+      "debut": 1992,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Ranchera",
+      "country": "MX",
+      "popularity": 274,
+      "imageUrl": ""
+    },
+    {
+      "name": "Vicente Fernandez",
+      "debut": 1966,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Ranchera",
+      "country": "MX",
+      "popularity": 275,
+      "imageUrl": ""
+    },
+    {
+      "name": "Christian Nodal",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Regional Mexican",
+      "country": "MX",
+      "popularity": 276,
+      "imageUrl": ""
+    },
+    {
+      "name": "Carin Leon",
+      "debut": 2018,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Regional Mexican",
+      "country": "MX",
+      "popularity": 277,
+      "imageUrl": ""
+    },
+    {
+      "name": "Natanael Cano",
+      "debut": 2019,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Regional Mexican",
+      "country": "MX",
+      "popularity": 278,
+      "imageUrl": ""
+    },
+    {
+      "name": "Junior H",
+      "debut": 2019,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Regional Mexican",
+      "country": "MX",
+      "popularity": 279,
+      "imageUrl": ""
+    },
+    {
+      "name": "Santa Fe Klan",
+      "debut": 2016,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "MX",
+      "popularity": 280,
+      "imageUrl": ""
+    },
+    {
+      "name": "Gerardo Ortiz",
+      "debut": 2009,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Regional Mexican",
+      "country": "US",
+      "popularity": 281,
+      "imageUrl": ""
+    },
+    {
+      "name": "Pepe Aguilar",
+      "debut": 1989,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Ranchera",
+      "country": "US",
+      "popularity": 282,
+      "imageUrl": ""
+    },
+    {
+      "name": "Joao Gilberto",
+      "debut": 1958,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Bossa Nova",
+      "country": "BR",
+      "popularity": 311,
+      "imageUrl": ""
+    },
+    {
+      "name": "Caetano Veloso",
+      "debut": 1965,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "MPB",
+      "country": "BR",
+      "popularity": 312,
+      "imageUrl": ""
+    },
+    {
+      "name": "Gilberto Gil",
+      "debut": 1963,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "MPB",
+      "country": "BR",
+      "popularity": 313,
+      "imageUrl": ""
+    },
+    {
+      "name": "Roberto Carlos",
+      "debut": 1959,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "BR",
+      "popularity": 314,
+      "imageUrl": ""
+    },
+    {
+      "name": "Seu Jorge",
+      "debut": 1998,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Samba",
+      "country": "BR",
+      "popularity": 315,
+      "imageUrl": ""
+    },
+    {
+      "name": "Gusttavo Lima",
+      "debut": 2009,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Sertanejo",
+      "country": "BR",
+      "popularity": 316,
+      "imageUrl": ""
+    },
+    {
+      "name": "Luan Santana",
+      "debut": 2009,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Sertanejo",
+      "country": "BR",
+      "popularity": 317,
+      "imageUrl": ""
+    },
+    {
+      "name": "Wesley Safadao",
+      "debut": 2003,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Forro",
+      "country": "BR",
+      "popularity": 318,
+      "imageUrl": ""
+    },
+    {
+      "name": "Michel Telo",
+      "debut": 1994,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Sertanejo",
+      "country": "BR",
+      "popularity": 319,
+      "imageUrl": ""
+    },
+    {
+      "name": "Jorge Ben Jor",
+      "debut": 1963,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Samba Rock",
+      "country": "BR",
+      "popularity": 320,
+      "imageUrl": ""
+    },
+    {
+      "name": "Tim Maia",
+      "debut": 1968,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Soul",
+      "country": "BR",
+      "popularity": 321,
+      "imageUrl": ""
+    },
+    {
+      "name": "Tego Calderon",
+      "debut": 1996,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "PR",
+      "popularity": 322,
+      "imageUrl": ""
+    },
+    {
+      "name": "Vico C",
+      "debut": 1985,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "PR",
+      "popularity": 323,
+      "imageUrl": ""
+    },
+    {
+      "name": "Pitbull",
+      "debut": 2001,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 324,
+      "imageUrl": ""
+    },
+    {
+      "name": "will.i.am",
+      "debut": 1997,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 325,
+      "imageUrl": ""
+    },
+    {
+      "name": "Pharrell Williams",
+      "debut": 1992,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 326,
+      "imageUrl": ""
+    },
+    {
+      "name": "Snoop Dogg",
+      "debut": 1992,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 72,
+      "imageUrl": ""
+    },
+    {
+      "name": "Dr. Dre",
+      "debut": 1985,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 73,
+      "imageUrl": ""
+    },
+    {
+      "name": "Tupac Shakur",
+      "debut": 1991,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 74,
+      "imageUrl": ""
+    },
+    {
+      "name": "The Notorious B.I.G.",
+      "debut": 1992,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 75,
+      "imageUrl": ""
+    },
+    {
+      "name": "Nas",
+      "debut": 1991,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 76,
+      "imageUrl": ""
+    },
+    {
+      "name": "50 Cent",
+      "debut": 1996,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 71,
+      "imageUrl": ""
+    },
+    {
+      "name": "Lil Wayne",
+      "debut": 1995,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 50,
+      "imageUrl": ""
+    },
+    {
+      "name": "A$AP Rocky",
+      "debut": 2011,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 474,
+      "imageUrl": ""
+    },
+    {
+      "name": "Childish Gambino",
+      "debut": 2011,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 327,
+      "imageUrl": ""
+    },
+    {
+      "name": "Mac Miller",
+      "debut": 2007,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 77,
+      "imageUrl": ""
+    },
+    {
+      "name": "Chance the Rapper",
+      "debut": 2011,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 328,
+      "imageUrl": ""
+    },
+    {
+      "name": "Logic",
+      "debut": 2009,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 329,
+      "imageUrl": ""
+    },
+    {
+      "name": "Jack Harlow",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 330,
+      "imageUrl": ""
+    },
+    {
+      "name": "Roddy Ricch",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 331,
+      "imageUrl": ""
+    },
+    {
+      "name": "21 Savage",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "GB",
+      "popularity": 82,
+      "imageUrl": ""
+    },
+    {
+      "name": "Playboi Carti",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 81,
+      "imageUrl": ""
+    },
+    {
+      "name": "Lil Uzi Vert",
+      "debut": 2014,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 80,
+      "imageUrl": ""
+    },
+    {
+      "name": "Juice WRLD",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 78,
+      "imageUrl": ""
+    },
+    {
+      "name": "XXXTentacion",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 79,
+      "imageUrl": ""
+    },
+    {
+      "name": "Pop Smoke",
+      "debut": 2018,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 332,
+      "imageUrl": ""
+    },
+    {
+      "name": "NLE Choppa",
+      "debut": 2018,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 333,
+      "imageUrl": ""
+    },
+    {
+      "name": "Gunna",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 83,
+      "imageUrl": ""
+    },
+    {
+      "name": "Metro Boomin",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 84,
+      "imageUrl": ""
+    },
+    {
+      "name": "DJ Khaled",
+      "debut": 1998,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 85,
+      "imageUrl": ""
+    },
+    {
+      "name": "Akon",
+      "debut": 2004,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 86,
+      "imageUrl": ""
+    },
+    {
+      "name": "Ne-Yo",
+      "debut": 2005,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 87,
+      "imageUrl": ""
+    },
+    {
+      "name": "Chris Brown",
+      "debut": 2005,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 57,
+      "imageUrl": ""
+    },
+    {
+      "name": "T-Pain",
+      "debut": 2004,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 88,
+      "imageUrl": ""
+    },
+    {
+      "name": "Trey Songz",
+      "debut": 2005,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 473,
+      "imageUrl": ""
+    },
+    {
+      "name": "Miguel",
+      "debut": 2010,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 94,
+      "imageUrl": ""
+    },
+    {
+      "name": "Giveon",
+      "debut": 2018,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 334,
+      "imageUrl": ""
+    },
+    {
+      "name": "Daniel Caesar",
+      "debut": 2014,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "CA",
+      "popularity": 90,
+      "imageUrl": ""
+    },
+    {
+      "name": "Bryson Tiller",
+      "debut": 2011,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 93,
+      "imageUrl": ""
+    },
+    {
+      "name": "Anderson .Paak",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 335,
+      "imageUrl": ""
+    },
+    {
+      "name": "Khalid",
+      "debut": 2016,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 56,
+      "imageUrl": ""
+    },
+    {
+      "name": "Steve Lacy",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 91,
+      "imageUrl": ""
+    },
+    {
+      "name": "Brent Faiyaz",
+      "debut": 2014,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 92,
+      "imageUrl": ""
+    },
+    {
+      "name": "Leon Bridges",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Soul",
+      "country": "US",
+      "popularity": 336,
+      "imageUrl": ""
+    },
+    {
+      "name": "John Legend",
+      "debut": 2000,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 89,
+      "imageUrl": ""
+    },
+    {
+      "name": "Aloe Blacc",
+      "debut": 2003,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Soul",
+      "country": "US",
+      "popularity": 337,
+      "imageUrl": ""
+    },
+    {
+      "name": "Jason Derulo",
+      "debut": 2009,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 338,
+      "imageUrl": ""
+    },
+    {
+      "name": "Taio Cruz",
+      "debut": 2008,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 339,
+      "imageUrl": ""
+    },
+    {
+      "name": "Craig David",
+      "debut": 2000,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "GB",
+      "popularity": 340,
+      "imageUrl": ""
+    },
+    {
+      "name": "George Michael",
+      "debut": 1981,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 341,
+      "imageUrl": ""
+    },
+    {
+      "name": "Robbie Williams",
+      "debut": 1990,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 342,
+      "imageUrl": ""
+    },
+    {
+      "name": "Phil Collins",
+      "debut": 1968,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 343,
+      "imageUrl": ""
+    },
+    {
+      "name": "Sting",
+      "debut": 1977,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 344,
+      "imageUrl": ""
+    },
+    {
+      "name": "Paul McCartney",
+      "debut": 1957,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 345,
+      "imageUrl": ""
+    },
+    {
+      "name": "John Lennon",
+      "debut": 1957,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 346,
+      "imageUrl": ""
+    },
+    {
+      "name": "Mick Jagger",
+      "debut": 1960,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 347,
+      "imageUrl": ""
+    },
+    {
+      "name": "Freddie Mercury",
+      "debut": 1969,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 348,
+      "imageUrl": ""
+    },
+    {
+      "name": "Rod Stewart",
+      "debut": 1961,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 349,
+      "imageUrl": ""
+    },
+    {
+      "name": "Eric Clapton",
+      "debut": 1962,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Blues Rock",
+      "country": "GB",
+      "popularity": 350,
+      "imageUrl": ""
+    },
+    {
+      "name": "Ozzy Osbourne",
+      "debut": 1967,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Metal",
+      "country": "GB",
+      "popularity": 351,
+      "imageUrl": ""
+    },
+    {
+      "name": "Noel Gallagher",
+      "debut": 1991,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 352,
+      "imageUrl": ""
+    },
+    {
+      "name": "Liam Gallagher",
+      "debut": 1991,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 353,
+      "imageUrl": ""
+    },
+    {
+      "name": "Lewis Capaldi",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 354,
+      "imageUrl": ""
+    },
+    {
+      "name": "James Arthur",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 355,
+      "imageUrl": ""
+    },
+    {
+      "name": "James Bay",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 356,
+      "imageUrl": ""
+    },
+    {
+      "name": "Tom Odell",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 357,
+      "imageUrl": ""
+    },
+    {
+      "name": "Hozier",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Soul",
+      "country": "IE",
+      "popularity": 358,
+      "imageUrl": ""
+    },
+    {
+      "name": "Dermot Kennedy",
+      "debut": 2016,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "IE",
+      "popularity": 359,
+      "imageUrl": ""
+    },
+    {
+      "name": "Niall Horan",
+      "debut": 2010,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "IE",
+      "popularity": 360,
+      "imageUrl": ""
+    },
+    {
+      "name": "Vance Joy",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Folk",
+      "country": "AU",
+      "popularity": 361,
+      "imageUrl": ""
+    },
+    {
+      "name": "Gotye",
+      "debut": 2001,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "AU",
+      "popularity": 362,
+      "imageUrl": ""
+    },
+    {
+      "name": "Troye Sivan",
+      "debut": 2014,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "AU",
+      "popularity": 363,
+      "imageUrl": ""
+    },
+    {
+      "name": "Keith Urban",
+      "debut": 1991,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Country",
+      "country": "AU",
+      "popularity": 124,
+      "imageUrl": ""
+    },
+    {
+      "name": "Tame Impala",
+      "debut": 2007,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Psychedelic",
+      "country": "AU",
+      "popularity": 364,
+      "imageUrl": ""
+    },
+    {
+      "name": "The Kid Laroi",
+      "debut": 2018,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "AU",
+      "popularity": 365,
+      "imageUrl": ""
+    },
+    {
+      "name": "Shaboozey",
+      "debut": 2014,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Country",
+      "country": "US",
+      "popularity": 117,
+      "imageUrl": ""
+    },
+    {
+      "name": "Zach Bryan",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Country",
+      "country": "US",
+      "popularity": 112,
+      "imageUrl": ""
+    },
+    {
+      "name": "Luke Combs",
+      "debut": 2014,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Country",
+      "country": "US",
+      "popularity": 113,
+      "imageUrl": ""
+    },
+    {
+      "name": "Kane Brown",
+      "debut": 2014,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Country",
+      "country": "US",
+      "popularity": 114,
+      "imageUrl": ""
+    },
+    {
+      "name": "Chris Stapleton",
+      "debut": 2001,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Country",
+      "country": "US",
+      "popularity": 115,
+      "imageUrl": ""
+    },
+    {
+      "name": "Garth Brooks",
+      "debut": 1985,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Country",
+      "country": "US",
+      "popularity": 111,
+      "imageUrl": ""
+    },
+    {
+      "name": "Blake Shelton",
+      "debut": 2001,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Country",
+      "country": "US",
+      "popularity": 121,
+      "imageUrl": ""
+    },
+    {
+      "name": "Tim McGraw",
+      "debut": 1990,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Country",
+      "country": "US",
+      "popularity": 118,
+      "imageUrl": ""
+    },
+    {
+      "name": "Kenny Chesney",
+      "debut": 1993,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Country",
+      "country": "US",
+      "popularity": 119,
+      "imageUrl": ""
+    },
+    {
+      "name": "Jason Aldean",
+      "debut": 2005,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Country",
+      "country": "US",
+      "popularity": 120,
+      "imageUrl": ""
+    },
+    {
+      "name": "Thomas Rhett",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Country",
+      "country": "US",
+      "popularity": 122,
+      "imageUrl": ""
+    },
+    {
+      "name": "Sam Hunt",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Country",
+      "country": "US",
+      "popularity": 123,
+      "imageUrl": ""
+    },
+    {
+      "name": "Jelly Roll",
+      "debut": 2011,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Country",
+      "country": "US",
+      "popularity": 116,
+      "imageUrl": ""
+    },
+    {
+      "name": "Bruce Springsteen",
+      "debut": 1965,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 125,
+      "imageUrl": ""
+    },
+    {
+      "name": "Billy Joel",
+      "debut": 1965,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 126,
+      "imageUrl": ""
+    },
+    {
+      "name": "Stevie Wonder",
+      "debut": 1961,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Soul",
+      "country": "US",
+      "popularity": 127,
+      "imageUrl": ""
+    },
+    {
+      "name": "Marvin Gaye",
+      "debut": 1957,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Soul",
+      "country": "US",
+      "popularity": 128,
+      "imageUrl": ""
+    },
+    {
+      "name": "Ray Charles",
+      "debut": 1947,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Soul",
+      "country": "US",
+      "popularity": 129,
+      "imageUrl": ""
+    },
+    {
+      "name": "James Brown",
+      "debut": 1954,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Soul",
+      "country": "US",
+      "popularity": 130,
+      "imageUrl": ""
+    },
+    {
+      "name": "Otis Redding",
+      "debut": 1958,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Soul",
+      "country": "US",
+      "popularity": 462,
+      "imageUrl": ""
+    },
+    {
+      "name": "Sam Cooke",
+      "debut": 1951,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Soul",
+      "country": "US",
+      "popularity": 461,
+      "imageUrl": ""
+    },
+    {
+      "name": "Bob Marley",
+      "debut": 1962,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggae",
+      "country": "JM",
+      "popularity": 46,
+      "imageUrl": ""
+    },
+    {
+      "name": "Sean Paul",
+      "debut": 1994,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Dancehall",
+      "country": "JM",
+      "popularity": 368,
+      "imageUrl": ""
+    },
+    {
+      "name": "Shaggy",
+      "debut": 1993,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggae",
+      "country": "JM",
+      "popularity": 369,
+      "imageUrl": ""
+    },
+    {
+      "name": "Damian Marley",
+      "debut": 1996,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggae",
+      "country": "JM",
+      "popularity": 370,
+      "imageUrl": ""
+    },
+    {
+      "name": "Ziggy Marley",
+      "debut": 1979,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggae",
+      "country": "JM",
+      "popularity": 371,
+      "imageUrl": ""
+    },
+    {
+      "name": "Burning Spear",
+      "debut": 1969,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggae",
+      "country": "JM",
+      "popularity": 372,
+      "imageUrl": ""
+    },
+    {
+      "name": "Gregory Isaacs",
+      "debut": 1968,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggae",
+      "country": "JM",
+      "popularity": 373,
+      "imageUrl": ""
+    },
+    {
+      "name": "Peter Tosh",
+      "debut": 1962,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggae",
+      "country": "JM",
+      "popularity": 374,
+      "imageUrl": ""
+    },
+    {
+      "name": "Stevie Nicks",
+      "debut": 1966,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 375,
+      "imageUrl": ""
+    },
+    {
+      "name": "Neil Young",
+      "debut": 1960,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "CA",
+      "popularity": 366,
+      "imageUrl": ""
+    },
+    {
+      "name": "Bryan Adams",
+      "debut": 1975,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "CA",
+      "popularity": 367,
+      "imageUrl": ""
+    },
+    {
+      "name": "The-Dream",
+      "debut": 2001,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 376,
+      "imageUrl": ""
+    },
+    {
+      "name": "MAX",
+      "debut": 2010,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 377,
+      "imageUrl": ""
+    },
+    {
+      "name": "Benson Boone",
+      "debut": 2021,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 378,
+      "imageUrl": ""
+    },
+    {
+      "name": "Teddy Swims",
+      "debut": 2019,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Soul",
+      "country": "US",
+      "popularity": 379,
+      "imageUrl": ""
+    },
+    {
+      "name": "Charlie Puth",
+      "debut": 2009,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 380,
+      "imageUrl": ""
+    },
+    {
+      "name": "Austin Mahone",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 381,
+      "imageUrl": ""
+    },
+    {
+      "name": "Conan Gray",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 382,
+      "imageUrl": ""
+    },
+    {
+      "name": "Rex Orange County",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Indie",
+      "country": "GB",
+      "popularity": 383,
+      "imageUrl": ""
+    },
+    {
+      "name": "Joji",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "AU",
+      "popularity": 384,
+      "imageUrl": ""
+    },
+    {
+      "name": "Passenger",
+      "debut": 2003,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Folk",
+      "country": "GB",
+      "popularity": 385,
+      "imageUrl": ""
+    },
+    {
+      "name": "Paolo Nutini",
+      "debut": 2006,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Soul",
+      "country": "GB",
+      "popularity": 386,
+      "imageUrl": ""
+    },
+    {
+      "name": "James Blunt",
+      "debut": 2004,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 387,
+      "imageUrl": ""
+    },
+    {
+      "name": "Seal",
+      "debut": 1987,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Soul",
+      "country": "GB",
+      "popularity": 388,
+      "imageUrl": ""
+    },
+    {
+      "name": "Sam Fender",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 389,
+      "imageUrl": ""
+    },
+    {
+      "name": "Yungblud",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 390,
+      "imageUrl": ""
+    },
+    {
+      "name": "Stormzy",
+      "debut": 2014,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "GB",
+      "popularity": 391,
+      "imageUrl": ""
+    },
+    {
+      "name": "Dave",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "GB",
+      "popularity": 392,
+      "imageUrl": ""
+    },
+    {
+      "name": "Skepta",
+      "debut": 2005,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "GB",
+      "popularity": 393,
+      "imageUrl": ""
+    },
+    {
+      "name": "J Hus",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "GB",
+      "popularity": 394,
+      "imageUrl": ""
+    },
+    {
+      "name": "Central Cee",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "GB",
+      "popularity": 395,
+      "imageUrl": ""
+    },
+    {
+      "name": "Aitch",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "GB",
+      "popularity": 396,
+      "imageUrl": ""
+    },
+    {
+      "name": "AJ Tracey",
+      "debut": 2016,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "GB",
+      "popularity": 397,
+      "imageUrl": ""
+    },
+    {
+      "name": "Headie One",
+      "debut": 2014,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "GB",
+      "popularity": 398,
+      "imageUrl": ""
+    },
+    {
+      "name": "Bugzy Malone",
+      "debut": 2010,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "GB",
+      "popularity": 399,
+      "imageUrl": ""
+    },
+    {
+      "name": "Dizzee Rascal",
+      "debut": 2000,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "GB",
+      "popularity": 400,
+      "imageUrl": ""
+    },
+    {
+      "name": "Kano",
+      "debut": 2002,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "GB",
+      "popularity": 401,
+      "imageUrl": ""
+    },
+    {
+      "name": "Wiley",
+      "debut": 1997,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "GB",
+      "popularity": 402,
+      "imageUrl": ""
+    },
+    {
+      "name": "Slowthai",
+      "debut": 2016,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "GB",
+      "popularity": 403,
+      "imageUrl": ""
+    },
+    {
+      "name": "Morrissey",
+      "debut": 1977,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Indie",
+      "country": "GB",
+      "popularity": 404,
+      "imageUrl": ""
+    },
+    {
+      "name": "Alex Turner",
+      "debut": 2002,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 405,
+      "imageUrl": ""
+    },
+    {
+      "name": "Thom Yorke",
+      "debut": 1985,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 406,
+      "imageUrl": ""
+    },
+    {
+      "name": "Matty Healy",
+      "debut": 2002,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop Rock",
+      "country": "GB",
+      "popularity": 407,
+      "imageUrl": ""
+    },
+    {
+      "name": "Bon Iver",
+      "debut": 2007,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Indie",
+      "country": "US",
+      "popularity": 408,
+      "imageUrl": ""
+    },
+    {
+      "name": "Sufjan Stevens",
+      "debut": 1999,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Indie",
+      "country": "US",
+      "popularity": 409,
+      "imageUrl": ""
+    },
+    {
+      "name": "Beck",
+      "debut": 1988,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Alternative",
+      "country": "US",
+      "popularity": 410,
+      "imageUrl": ""
+    },
+    {
+      "name": "Jack White",
+      "debut": 1997,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 411,
+      "imageUrl": ""
+    },
+    {
+      "name": "Lenny Kravitz",
+      "debut": 1989,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 412,
+      "imageUrl": ""
+    },
+    {
+      "name": "John Mayer",
+      "debut": 1998,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 413,
+      "imageUrl": ""
+    },
+    {
+      "name": "Jason Mraz",
+      "debut": 1999,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 414,
+      "imageUrl": ""
+    },
+    {
+      "name": "Jack Johnson",
+      "debut": 1999,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Folk",
+      "country": "US",
+      "popularity": 415,
+      "imageUrl": ""
+    },
+    {
+      "name": "Ben Harper",
+      "debut": 1992,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Folk",
+      "country": "US",
+      "popularity": 416,
+      "imageUrl": ""
+    },
+    {
+      "name": "Norah Benatia",
+      "debut": 2022,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 459,
+      "imageUrl": ""
+    },
+    {
+      "name": "Kygo",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "NO",
+      "popularity": 417,
+      "imageUrl": ""
+    },
+    {
+      "name": "Matoma",
+      "debut": 2014,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "NO",
+      "popularity": 428,
+      "imageUrl": ""
+    },
+    {
+      "name": "Todd Terje",
+      "debut": 1999,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "NO",
+      "popularity": 456,
+      "imageUrl": ""
+    },
+    {
+      "name": "Cashmere Cat",
+      "debut": 2003,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "NO",
+      "popularity": 457,
+      "imageUrl": ""
+    },
+    {
+      "name": "Lido",
+      "debut": 2008,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "NO",
+      "popularity": 458,
+      "imageUrl": ""
+    },
+    {
+      "name": "Cezinando",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "NO",
+      "popularity": 436,
+      "imageUrl": ""
+    },
+    {
+      "name": "Karpe",
+      "debut": 2000,
+      "members": "2 members",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "NO",
+      "popularity": 423,
+      "imageUrl": ""
+    },
+    {
+      "name": "OnklP",
+      "debut": 1998,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "NO",
+      "popularity": 452,
+      "imageUrl": ""
+    },
+    {
+      "name": "Arif",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "NO",
+      "popularity": 437,
+      "imageUrl": ""
+    },
+    {
+      "name": "Unge Ferrari",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "NO",
+      "popularity": 438,
+      "imageUrl": ""
+    },
+    {
+      "name": "Stig Brenner",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "NO",
+      "popularity": 439,
+      "imageUrl": ""
+    },
+    {
+      "name": "Gabrielle",
+      "debut": 2011,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 435,
+      "imageUrl": ""
+    },
+    {
+      "name": "Tix",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 433,
+      "imageUrl": ""
+    },
+    {
+      "name": "Chris Holsten",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 434,
+      "imageUrl": ""
+    },
+    {
+      "name": "Sondre Justad",
+      "debut": 2014,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 440,
+      "imageUrl": ""
+    },
+    {
+      "name": "Sondre Lerche",
+      "debut": 2001,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Indie",
+      "country": "NO",
+      "popularity": 441,
+      "imageUrl": ""
+    },
+    {
+      "name": "Thomas Dybdahl",
+      "debut": 2000,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Folk",
+      "country": "NO",
+      "popularity": 455,
+      "imageUrl": ""
+    },
+    {
+      "name": "Morten Harket",
+      "debut": 1982,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 432,
+      "imageUrl": ""
+    },
+    {
+      "name": "Kurt Nilsen",
+      "debut": 2003,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 442,
+      "imageUrl": ""
+    },
+    {
+      "name": "Sivert Hoyem",
+      "debut": 1999,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "NO",
+      "popularity": 454,
+      "imageUrl": ""
+    },
+    {
+      "name": "Tommy Tee",
+      "debut": 1997,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "NO",
+      "popularity": 453,
+      "imageUrl": ""
+    },
+    {
+      "name": "Roc Boyz",
+      "debut": 2019,
+      "members": "3 members",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "NO",
+      "popularity": 424,
+      "imageUrl": ""
+    },
+    {
+      "name": "Coldplay",
+      "debut": 1997,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 11,
+      "imageUrl": ""
+    },
+    {
+      "name": "Take That",
+      "debut": 1990,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 177,
+      "imageUrl": ""
+    },
+    {
+      "name": "Sugababes",
+      "debut": 1998,
+      "members": "3 members",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 178,
+      "imageUrl": ""
+    },
+    {
+      "name": "Imagine Dragons",
+      "debut": 2008,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 40,
+      "imageUrl": ""
+    },
+    {
+      "name": "The Prodigy",
+      "debut": 1990,
+      "members": "3 members",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "GB",
+      "popularity": 189,
+      "imageUrl": ""
+    },
+    {
+      "name": "Queen",
+      "debut": 1970,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 36,
+      "imageUrl": ""
+    },
+    {
+      "name": "The Beatles",
+      "debut": 1960,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 37,
+      "imageUrl": ""
+    },
+    {
+      "name": "Led Zeppelin",
+      "debut": 1968,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 135,
+      "imageUrl": ""
+    },
+    {
+      "name": "Nirvana",
+      "debut": 1987,
+      "members": "3 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 136,
+      "imageUrl": ""
+    },
+    {
+      "name": "Green Day",
+      "debut": 1987,
+      "members": "3 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 137,
+      "imageUrl": ""
+    },
+    {
+      "name": "Red Hot Chili Peppers",
+      "debut": 1983,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 138,
+      "imageUrl": ""
+    },
+    {
+      "name": "Linkin Park",
+      "debut": 1996,
+      "members": "6 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 139,
+      "imageUrl": ""
+    },
+    {
+      "name": "U2",
+      "debut": 1976,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "IE",
+      "popularity": 140,
+      "imageUrl": ""
+    },
+    {
+      "name": "Foo Fighters",
+      "debut": 1994,
+      "members": "6 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 141,
+      "imageUrl": ""
+    },
+    {
+      "name": "Radiohead",
+      "debut": 1985,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 142,
+      "imageUrl": ""
+    },
+    {
+      "name": "The Chainsmokers",
+      "debut": 2012,
+      "members": "2 members",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "US",
+      "popularity": 60,
+      "imageUrl": ""
+    },
+    {
+      "name": "The Rolling Stones",
+      "debut": 1962,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 44,
+      "imageUrl": ""
+    },
+    {
+      "name": "AC/DC",
+      "debut": 1973,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "AU",
+      "popularity": 45,
+      "imageUrl": ""
+    },
+    {
+      "name": "Metallica",
+      "debut": 1981,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Metal",
+      "country": "US",
+      "popularity": 42,
+      "imageUrl": ""
+    },
+    {
+      "name": "a-ha",
+      "debut": 1982,
+      "members": "3 members",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 419,
+      "imageUrl": ""
+    },
+    {
+      "name": "One Direction",
+      "debut": 2010,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 43,
+      "imageUrl": ""
+    },
+    {
+      "name": "Little Mix",
+      "debut": 2011,
+      "members": "3 members",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 176,
+      "imageUrl": ""
+    },
+    {
+      "name": "Spice Girls",
+      "debut": 1994,
+      "members": "5 members",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 175,
+      "imageUrl": ""
+    },
+    {
+      "name": "Backstreet Boys",
+      "debut": 1993,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 173,
+      "imageUrl": ""
+    },
+    {
+      "name": "NSYNC",
+      "debut": 1995,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 174,
+      "imageUrl": ""
+    },
+    {
+      "name": "Jonas Brothers",
+      "debut": 2005,
+      "members": "3 members",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 172,
+      "imageUrl": ""
+    },
+    {
+      "name": "Maroon 5",
+      "debut": 1994,
+      "members": "6 members",
+      "gender": "Male",
+      "genre": "Pop Rock",
+      "country": "US",
+      "popularity": 35,
+      "imageUrl": ""
+    },
+    {
+      "name": "Twenty One Pilots",
+      "debut": 2009,
+      "members": "2 members",
+      "gender": "Male",
+      "genre": "Alternative",
+      "country": "US",
+      "popularity": 171,
+      "imageUrl": ""
+    },
+    {
+      "name": "Panic! At The Disco",
+      "debut": 2004,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Pop Rock",
+      "country": "US",
+      "popularity": 170,
+      "imageUrl": ""
+    },
+    {
+      "name": "Fall Out Boy",
+      "debut": 2001,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Pop Punk",
+      "country": "US",
+      "popularity": 168,
+      "imageUrl": ""
+    },
+    {
+      "name": "Paramore",
+      "debut": 2004,
+      "members": "3 members",
+      "gender": "Mixed",
+      "genre": "Pop Punk",
+      "country": "US",
+      "popularity": 169,
+      "imageUrl": ""
+    },
+    {
+      "name": "My Chemical Romance",
+      "debut": 2001,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 166,
+      "imageUrl": ""
+    },
+    {
+      "name": "Blink-182",
+      "debut": 1992,
+      "members": "3 members",
+      "gender": "Male",
+      "genre": "Pop Punk",
+      "country": "US",
+      "popularity": 167,
+      "imageUrl": ""
+    },
+    {
+      "name": "The Killers",
+      "debut": 2001,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 158,
+      "imageUrl": ""
+    },
+    {
+      "name": "Kings of Leon",
+      "debut": 1999,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 159,
+      "imageUrl": ""
+    },
+    {
+      "name": "The Strokes",
+      "debut": 1998,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 160,
+      "imageUrl": ""
+    },
+    {
+      "name": "Arctic Monkeys",
+      "debut": 2002,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 161,
+      "imageUrl": ""
+    },
+    {
+      "name": "The 1975",
+      "debut": 2002,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Pop Rock",
+      "country": "GB",
+      "popularity": 162,
+      "imageUrl": ""
+    },
+    {
+      "name": "Oasis",
+      "debut": 1991,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 163,
+      "imageUrl": ""
+    },
+    {
+      "name": "Blur",
+      "debut": 1988,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 164,
+      "imageUrl": ""
+    },
+    {
+      "name": "The Smiths",
+      "debut": 1982,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Indie",
+      "country": "GB",
+      "popularity": 165,
+      "imageUrl": ""
+    },
+    {
+      "name": "Fleetwood Mac",
+      "debut": 1967,
+      "members": "5 members",
+      "gender": "Mixed",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 41,
+      "imageUrl": ""
+    },
+    {
+      "name": "Eagles",
+      "debut": 1971,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 148,
+      "imageUrl": ""
+    },
+    {
+      "name": "Aerosmith",
+      "debut": 1970,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 145,
+      "imageUrl": ""
+    },
+    {
+      "name": "Guns N Roses",
+      "debut": 1985,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 143,
+      "imageUrl": ""
+    },
+    {
+      "name": "Bon Jovi",
+      "debut": 1983,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 144,
+      "imageUrl": ""
+    },
+    {
+      "name": "Kiss",
+      "debut": 1973,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 146,
+      "imageUrl": ""
+    },
+    {
+      "name": "Journey",
+      "debut": 1973,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 147,
+      "imageUrl": ""
+    },
+    {
+      "name": "Chicago",
+      "debut": 1967,
+      "members": "7 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 228,
+      "imageUrl": ""
+    },
+    {
+      "name": "The Beach Boys",
+      "debut": 1961,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 149,
+      "imageUrl": ""
+    },
+    {
+      "name": "The Doors",
+      "debut": 1965,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 150,
+      "imageUrl": ""
+    },
+    {
+      "name": "Creedence Clearwater Revival",
+      "debut": 1967,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 227,
+      "imageUrl": ""
+    },
+    {
+      "name": "Pearl Jam",
+      "debut": 1990,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 151,
+      "imageUrl": ""
+    },
+    {
+      "name": "Soundgarden",
+      "debut": 1984,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 152,
+      "imageUrl": ""
+    },
+    {
+      "name": "Alice in Chains",
+      "debut": 1987,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 153,
+      "imageUrl": ""
+    },
+    {
+      "name": "R.E.M.",
+      "debut": 1980,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Alternative",
+      "country": "US",
+      "popularity": 154,
+      "imageUrl": ""
+    },
+    {
+      "name": "Pixies",
+      "debut": 1986,
+      "members": "4 members",
+      "gender": "Mixed",
+      "genre": "Alternative",
+      "country": "US",
+      "popularity": 226,
+      "imageUrl": ""
+    },
+    {
+      "name": "The Smashing Pumpkins",
+      "debut": 1988,
+      "members": "4 members",
+      "gender": "Mixed",
+      "genre": "Alternative",
+      "country": "US",
+      "popularity": 155,
+      "imageUrl": ""
+    },
+    {
+      "name": "Weezer",
+      "debut": 1992,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Alternative",
+      "country": "US",
+      "popularity": 156,
+      "imageUrl": ""
+    },
+    {
+      "name": "No Doubt",
+      "debut": 1986,
+      "members": "4 members",
+      "gender": "Mixed",
+      "genre": "Ska Punk",
+      "country": "US",
+      "popularity": 157,
+      "imageUrl": ""
+    },
+    {
+      "name": "The White Stripes",
+      "debut": 1997,
+      "members": "2 members",
+      "gender": "Mixed",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 225,
+      "imageUrl": ""
+    },
+    {
+      "name": "The Black Keys",
+      "debut": 2001,
+      "members": "2 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "US",
+      "popularity": 224,
+      "imageUrl": ""
+    },
+    {
+      "name": "The Lumineers",
+      "debut": 2005,
+      "members": "3 members",
+      "gender": "Mixed",
+      "genre": "Folk",
+      "country": "US",
+      "popularity": 223,
+      "imageUrl": ""
+    },
+    {
+      "name": "Mumford & Sons",
+      "debut": 2007,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Folk",
+      "country": "GB",
+      "popularity": 221,
+      "imageUrl": ""
+    },
+    {
+      "name": "Florence and the Machine",
+      "debut": 2007,
+      "members": "7 members",
+      "gender": "Mixed",
+      "genre": "Indie",
+      "country": "GB",
+      "popularity": 222,
+      "imageUrl": ""
+    },
+    {
+      "name": "The xx",
+      "debut": 2005,
+      "members": "3 members",
+      "gender": "Mixed",
+      "genre": "Indie",
+      "country": "GB",
+      "popularity": 220,
+      "imageUrl": ""
+    },
+    {
+      "name": "Gorillaz",
+      "debut": 1998,
+      "members": "4 members",
+      "gender": "Mixed",
+      "genre": "Alternative",
+      "country": "GB",
+      "popularity": 190,
+      "imageUrl": ""
+    },
+    {
+      "name": "Massive Attack",
+      "debut": 1988,
+      "members": "3 members",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "GB",
+      "popularity": 191,
+      "imageUrl": ""
+    },
+    {
+      "name": "The Chemical Brothers",
+      "debut": 1989,
+      "members": "2 members",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "GB",
+      "popularity": 192,
+      "imageUrl": ""
+    },
+    {
+      "name": "Disclosure",
+      "debut": 2010,
+      "members": "2 members",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "GB",
+      "popularity": 193,
+      "imageUrl": ""
+    },
+    {
+      "name": "Rudimental",
+      "debut": 2010,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "GB",
+      "popularity": 194,
+      "imageUrl": ""
+    },
+    {
+      "name": "Clean Bandit",
+      "debut": 2008,
+      "members": "3 members",
+      "gender": "Mixed",
+      "genre": "Electronic",
+      "country": "GB",
+      "popularity": 195,
+      "imageUrl": ""
+    },
+    {
+      "name": "Major Lazer",
+      "debut": 2008,
+      "members": "3 members",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "US",
+      "popularity": 196,
+      "imageUrl": ""
+    },
+    {
+      "name": "Black Eyed Peas",
+      "debut": 1995,
+      "members": "4 members",
+      "gender": "Mixed",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 197,
+      "imageUrl": ""
+    },
+    {
+      "name": "Fugees",
+      "debut": 1990,
+      "members": "3 members",
+      "gender": "Mixed",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 198,
+      "imageUrl": ""
+    },
+    {
+      "name": "Outkast",
+      "debut": 1992,
+      "members": "2 members",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 199,
+      "imageUrl": ""
+    },
+    {
+      "name": "Migos",
+      "debut": 2008,
+      "members": "3 members",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 200,
+      "imageUrl": ""
+    },
+    {
+      "name": "Wu-Tang Clan",
+      "debut": 1992,
+      "members": "9 members",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 201,
+      "imageUrl": ""
+    },
+    {
+      "name": "N.W.A",
+      "debut": 1987,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 202,
+      "imageUrl": ""
+    },
+    {
+      "name": "A Tribe Called Quest",
+      "debut": 1985,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 203,
+      "imageUrl": ""
+    },
+    {
+      "name": "Public Enemy",
+      "debut": 1985,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 204,
+      "imageUrl": ""
+    },
+    {
+      "name": "Run-DMC",
+      "debut": 1983,
+      "members": "3 members",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 205,
+      "imageUrl": ""
+    },
+    {
+      "name": "Beastie Boys",
+      "debut": 1981,
+      "members": "3 members",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 206,
+      "imageUrl": ""
+    },
+    {
+      "name": "Cypress Hill",
+      "debut": 1988,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 207,
+      "imageUrl": ""
+    },
+    {
+      "name": "Destinys Child",
+      "debut": 1990,
+      "members": "3 members",
+      "gender": "Female",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 208,
+      "imageUrl": ""
+    },
+    {
+      "name": "TLC",
+      "debut": 1990,
+      "members": "3 members",
+      "gender": "Female",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 209,
+      "imageUrl": ""
+    },
+    {
+      "name": "Boyz II Men",
+      "debut": 1985,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 210,
+      "imageUrl": ""
+    },
+    {
+      "name": "New Edition",
+      "debut": 1978,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 211,
+      "imageUrl": ""
+    },
+    {
+      "name": "Jackson 5",
+      "debut": 1964,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Soul",
+      "country": "US",
+      "popularity": 212,
+      "imageUrl": ""
+    },
+    {
+      "name": "The Supremes",
+      "debut": 1959,
+      "members": "3 members",
+      "gender": "Female",
+      "genre": "Soul",
+      "country": "US",
+      "popularity": 213,
+      "imageUrl": ""
+    },
+    {
+      "name": "The Temptations",
+      "debut": 1960,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Soul",
+      "country": "US",
+      "popularity": 214,
+      "imageUrl": ""
+    },
+    {
+      "name": "Earth Wind & Fire",
+      "debut": 1969,
+      "members": "9 members",
+      "gender": "Male",
+      "genre": "Funk",
+      "country": "US",
+      "popularity": 215,
+      "imageUrl": ""
+    },
+    {
+      "name": "Kool & The Gang",
+      "debut": 1964,
+      "members": "7 members",
+      "gender": "Male",
+      "genre": "Funk",
+      "country": "US",
+      "popularity": 216,
+      "imageUrl": ""
+    },
+    {
+      "name": "Village People",
+      "debut": 1977,
+      "members": "6 members",
+      "gender": "Male",
+      "genre": "Disco",
+      "country": "US",
+      "popularity": 217,
+      "imageUrl": ""
+    },
+    {
+      "name": "Bee Gees",
+      "debut": 1958,
+      "members": "3 members",
+      "gender": "Male",
+      "genre": "Disco",
+      "country": "GB",
+      "popularity": 181,
+      "imageUrl": ""
+    },
+    {
+      "name": "Bananarama",
+      "debut": 1979,
+      "members": "3 members",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 179,
+      "imageUrl": ""
+    },
+    {
+      "name": "Wham!",
+      "debut": 1981,
+      "members": "2 members",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 180,
+      "imageUrl": ""
+    },
+    {
+      "name": "Eurythmics",
+      "debut": 1980,
+      "members": "2 members",
+      "gender": "Mixed",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 218,
+      "imageUrl": ""
+    },
+    {
+      "name": "Pet Shop Boys",
+      "debut": 1981,
+      "members": "2 members",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 219,
+      "imageUrl": ""
+    },
+    {
+      "name": "Duran Duran",
+      "debut": 1978,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 182,
+      "imageUrl": ""
+    },
+    {
+      "name": "Depeche Mode",
+      "debut": 1980,
+      "members": "3 members",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "GB",
+      "popularity": 183,
+      "imageUrl": ""
+    },
+    {
+      "name": "Tears for Fears",
+      "debut": 1981,
+      "members": "2 members",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 184,
+      "imageUrl": ""
+    },
+    {
+      "name": "The Cure",
+      "debut": 1978,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 185,
+      "imageUrl": ""
+    },
+    {
+      "name": "New Order",
+      "debut": 1980,
+      "members": "5 members",
+      "gender": "Mixed",
+      "genre": "Alternative",
+      "country": "GB",
+      "popularity": 186,
+      "imageUrl": ""
+    },
+    {
+      "name": "Sex Pistols",
+      "debut": 1975,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Punk",
+      "country": "GB",
+      "popularity": 187,
+      "imageUrl": ""
+    },
+    {
+      "name": "The Clash",
+      "debut": 1976,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Punk",
+      "country": "GB",
+      "popularity": 188,
+      "imageUrl": ""
+    },
+    {
+      "name": "Bausa",
+      "debut": 2021,
+      "members": "3 members",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "NO",
+      "popularity": 426,
+      "imageUrl": ""
+    },
+    {
+      "name": "Lars Vaular",
+      "debut": 2007,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "NO",
+      "popularity": 427,
+      "imageUrl": ""
+    },
+    {
+      "name": "GOLF",
+      "debut": 2022,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 425,
+      "imageUrl": ""
+    }
+  ],
+  "daily": [
+    {
+      "artistburetVersion": 2,
+      "answer": "Roc Boyz",
+      "debut": 2019,
+      "members": "3 members",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "NO",
+      "popularity": 424
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Bausa",
+      "debut": 2021,
+      "members": "3 members",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "NO",
+      "popularity": 426
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Lars Vaular",
+      "debut": 2007,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "NO",
+      "popularity": 427
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "GOLF",
+      "debut": 2022,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 425
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Karpe",
+      "debut": 2000,
+      "members": "2 members",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "NO",
+      "popularity": 423
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Aurora",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Indie",
+      "country": "NO",
+      "popularity": 420
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Sigrid",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 421
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Alan Walker",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "NO",
+      "popularity": 418
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Kygo",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Electronic",
+      "country": "NO",
+      "popularity": 417
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "a-ha",
+      "debut": 1982,
+      "members": "3 members",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "NO",
+      "popularity": 419
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Shakira",
+      "debut": 1991,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "CO",
+      "popularity": 17
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Bad Bunny",
+      "debut": 2016,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "PR",
+      "popularity": 4
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Karol G",
+      "debut": 2013,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Reggaeton",
+      "country": "CO",
+      "popularity": 27
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Rosalia",
+      "debut": 2017,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "ES",
+      "popularity": 54
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Peso Pluma",
+      "debut": 2020,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Regional Mexican",
+      "country": "MX",
+      "popularity": 29
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Rauw Alejandro",
+      "debut": 2014,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "PR",
+      "popularity": 30
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Celia Cruz",
+      "debut": 1948,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Salsa",
+      "country": "CU",
+      "popularity": 283
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "J Balvin",
+      "debut": 2004,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggaeton",
+      "country": "CO",
+      "popularity": 28
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Anitta",
+      "debut": 2010,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "BR",
+      "popularity": 55
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Luis Miguel",
+      "debut": 1982,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "MX",
+      "popularity": 246
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Taylor Swift",
+      "debut": 2006,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 1
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "The Weeknd",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "R&B",
+      "country": "CA",
+      "popularity": 3
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Adele",
+      "debut": 2008,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 22
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Kendrick Lamar",
+      "debut": 2009,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 15
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Dua Lipa",
+      "debut": 2015,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 14
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Rihanna",
+      "debut": 2005,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "R&B",
+      "country": "BB",
+      "popularity": 5
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Eminem",
+      "debut": 1996,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 10
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Olivia Rodrigo",
+      "debut": 2021,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 25
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Bob Marley",
+      "debut": 1962,
+      "members": "Solo",
+      "gender": "Male",
+      "genre": "Reggae",
+      "country": "JM",
+      "popularity": 46
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Miley Cyrus",
+      "debut": 2006,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "US",
+      "popularity": 32
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Coldplay",
+      "debut": 1997,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 11
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Queen",
+      "debut": 1970,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 36
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Fleetwood Mac",
+      "debut": 1967,
+      "members": "5 members",
+      "gender": "Mixed",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 41
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Outkast",
+      "debut": 1992,
+      "members": "2 members",
+      "gender": "Male",
+      "genre": "Hip Hop",
+      "country": "US",
+      "popularity": 199
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Paramore",
+      "debut": 2004,
+      "members": "3 members",
+      "gender": "Mixed",
+      "genre": "Pop Punk",
+      "country": "US",
+      "popularity": 169
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "The Beatles",
+      "debut": 1960,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Rock",
+      "country": "GB",
+      "popularity": 37
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Metallica",
+      "debut": 1981,
+      "members": "4 members",
+      "gender": "Male",
+      "genre": "Metal",
+      "country": "US",
+      "popularity": 42
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "One Direction",
+      "debut": 2010,
+      "members": "5 members",
+      "gender": "Male",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 43
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "Little Mix",
+      "debut": 2011,
+      "members": "3 members",
+      "gender": "Female",
+      "genre": "Pop",
+      "country": "GB",
+      "popularity": 176
+    },
+    {
+      "artistburetVersion": 2,
+      "answer": "SZA",
+      "debut": 2012,
+      "members": "Solo",
+      "gender": "Female",
+      "genre": "R&B",
+      "country": "US",
+      "popularity": 19
+    }
+  ]
+}
